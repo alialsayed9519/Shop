@@ -12,7 +12,7 @@ class currencyViewModel: NSObject {
     var bindCurrencyViewModel:(()->())={}
     var currency :String?{
         didSet{
-            self.bindCurrencyViewModel
+            self.bindCurrencyViewModel()
         }
     }
     override init(){
@@ -20,7 +20,7 @@ class currencyViewModel: NSObject {
         currency=getCurrency(key: "currency")
     }
     func setCurrency(key:String,value:String){
-        userDefaults.setCurrency(key: key, value: Value)
+        userDefaults.setCurrency(key: key, value:value)
         self.currency=value
     }
     func getCurrency(key:String){

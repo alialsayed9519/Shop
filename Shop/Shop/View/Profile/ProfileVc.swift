@@ -12,18 +12,36 @@ class ProfileVc: UIViewController {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet private weak var tableView: UITableView!
     private let profileTableViewCellId = "ProfileTableViewCell"
-    
+var currencyViewModel=currencyViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         let nibCell = UINib(nibName: profileTableViewCellId, bundle: nil)
         tableView.register(nibCell, forCellReuseIdentifier: profileTableViewCellId)
+        currencyViewModel.bindCurrencyViewModel=onSucess
+    }
+    func onSucess(){
+        guard let currency=currencyViewModel.currency
+        else{
+            return
+        }
     }
     func setUserData(){
             let name=userdefaults.getUserName()
             userName.text=name
         }
     func showCurrencyAlert(){
-        
+        let alert=UIAlertController(title: "choose currency", message: nil, preferredStyle: .alert)
+        let egpAction=UIAlertAction(title: "EGP", style: .default){
+            (UIAlertAction) in
+            self.currencyViewModel.setCurrency(key: "currency", value: "EGP")
+        }
+        let usdAction=UIAlertAction(title: "USD", style: .default){
+            (UIAlertAction) in
+            self.currencyViewModel.setCurrency(key: "currency", value: "USD")
+        }
+        alert.addAction(egpAction)
+        alert.addAction(usdAction)
+        self.present(alert, animated: true, completion: nil)
     }
         func showAlertSheet(title:String, message:String,complition:@escaping (Bool)->Void){
             let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
@@ -67,7 +85,7 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
                 cell.name.text = "My Orders"
             case 1:
                 cell.image1.image = UIImage(named: "heart")
-                cell.name.text = "My Wishlist"
+                cell.name.text = "currency"
             default:
                 cell.image1.image = UIImage(named: "address")
                 cell.name.text = "Address"
