@@ -6,15 +6,24 @@
 //
 
 import UIKit
-
+import SDWebImage
 class brandProductsVc: UIViewController {
+    private let shopViewModel = ShopingViewModel()
     @IBOutlet weak var brandImg: UIImageView!
     let productCell="productCell"
+    var smartCol:SmartCollection?
     @IBOutlet weak var productCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         let brandProductCell=UINib(nibName:productCell , bundle: nil)
                 productCollectionView.register(brandProductCell, forCellWithReuseIdentifier:productCell)
+        
+//       brandImg.sd_setImage(with:URL(string:smartCol?.image
+//.src?),placeholderImage:UIImage(named:"adidas.png"))
+        shopViewModel.fetchCustomCollection()
+       // let imageView = SDAnimatedImageView()
+        let animatedImage = SDAnimatedImage(named: (smartCol?.image.src)!)
+        brandImg.image = animatedImage
         // Do any additional setup after loading the view.
     }
 

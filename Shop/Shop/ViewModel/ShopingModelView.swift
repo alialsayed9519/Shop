@@ -8,13 +8,17 @@
 import Foundation
 
 class ShopingViewModel{
-    
+    var bindBrands={}
     var bindProducts = {}
     var bindCategorys = {}
     var bindError = {}
 
     private var network = NetworkService()
-    
+    var brands:[Brand]?{
+        didSet{
+            self.bindBrands()
+        }
+    }
     var allProduct: [Product]?{
         didSet{
             self.bindProducts()
@@ -60,6 +64,16 @@ class ShopingViewModel{
             
         }
     }
+    func filterBrandsByNmae(brandName:String){
+        self.allProduct=allProduct?.filter{
+            ($0.vendor==brandName)
+        }
+        
+    }
+    
+    
+    
+    
     
     func filterPorductsByMainCategory(itemIndex: Int){
         guard let categories = self.categorys else {
