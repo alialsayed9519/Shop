@@ -22,6 +22,9 @@ class ProfileVc: UIViewController {
             let name=userdefaults.getUserName()
             userName.text=name
         }
+    func showCurrencyAlert(){
+        
+    }
         func showAlertSheet(title:String, message:String,complition:@escaping (Bool)->Void){
             let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
             let logOut = UIAlertAction(title: "Log out", style: .destructive) { _ in
