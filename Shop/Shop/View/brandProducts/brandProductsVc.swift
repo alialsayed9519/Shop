@@ -12,22 +12,25 @@ class brandProductsVc: UIViewController {
     @IBOutlet weak var brandImg: UIImageView!
     let productCell="productCell"
     var smartCol:SmartCollection?
+    var product:Product!
     @IBOutlet weak var productCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         let brandProductCell=UINib(nibName:productCell , bundle: nil)
                 productCollectionView.register(brandProductCell, forCellWithReuseIdentifier:productCell)
         
-//       brandImg.sd_setImage(with:URL(string:smartCol?.image
-//.src?),placeholderImage:UIImage(named:"adidas.png"))
-        shopViewModel.fetchCustomCollection()
+      brandImg.sd_setImage(with:URL(string:smartCol?.image
+.src?),placeholderImage:UIImage(named:"adidas.png"))
+        shopViewModel.filterBrandsByNmae(brandName:smartCol?.title!)
        // let imageView = SDAnimatedImageView()
         let animatedImage = SDAnimatedImage(named: (smartCol?.image.src)!)
         brandImg.image = animatedImage
         // Do any additional setup after loading the view.
     }
 
-
+    func display(){
+        
+    }
     /*
     // MARK: - Navigation
 
@@ -39,6 +42,7 @@ class brandProductsVc: UIViewController {
     */
 
 }
+
 extension brandProductsVc:UICollectionViewDelegate,UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -50,6 +54,8 @@ extension brandProductsVc:UICollectionViewDelegate,UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let proCell=collectionView.dequeueReusableCell(withReuseIdentifier: productCell, for: indexPath) as! productCell
+        proCell.productName.text=product.title
+        proCell.productImg.sd_setImage(with: URL(string: product.images[0].src), placeholderImage: UIImage(named: "adidas"))
         return proCell
     }
 }

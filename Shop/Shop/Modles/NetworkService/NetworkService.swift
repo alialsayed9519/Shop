@@ -153,4 +153,23 @@ class NetworkService {
             completion(data, response, error)
         }.resume()
     }
+    
+    func fetchAllProducts(completion:@escaping ([Product]?,Error?)->()){
+        AF.request(URLs.allProducts()).responseDecodable(of:AllProducts.self){
+            (response) in
+            switch response.result{
+            case .success(_):
+                guard let data=response.value
+                else{
+                    return
+                }
+                completion(data.products,nil)
+            case .failure(let error):
+                completion(nil,error)
+            
+                
+            }
+        }
+        
+    }
 }

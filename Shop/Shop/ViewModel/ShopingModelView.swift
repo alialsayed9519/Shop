@@ -64,7 +64,22 @@ class ShopingViewModel{
             
         }
     }
+    func fetchAllProducts(){
+        network.fetchAllProducts(){(products,error) in
+            if let message=error?.localizedDescription{
+                self.error=message
+                
+            }
+            else {
+                if let response=products{
+                    self.allProduct=response
+                }
+            }
+                
+        }
+    }
     func filterBrandsByNmae(brandName:String){
+        fetchAllProducts()
         self.allProduct=allProduct?.filter{
             ($0.vendor==brandName)
         }
