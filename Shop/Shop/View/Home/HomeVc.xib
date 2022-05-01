@@ -55,9 +55,11 @@
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="GIM-cA-LF3"/>
                         <barButtonItem title="Item" image="heart" catalog="system" id="1zT-yL-8CI">
-                            <color key="tintColor" systemColor="systemPinkColor"/>
+                            <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
-                        <barButtonItem title="Item" image="cart" catalog="system" id="UFI-Kv-TvD"/>
+                        <barButtonItem title="Item" image="cart" catalog="system" id="UFI-Kv-TvD">
+                            <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
                     </items>
                 </toolbar>
             </subviews>
@@ -88,9 +90,6 @@
         <image name="heart" catalog="system" width="128" height="109"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
