@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1166CA17283EA6C90036648C /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1166CA15283EA6C90036648C /* CartItem.swift */; };
+		1166CA18283EA6C90036648C /* CartItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1166CA16283EA6C90036648C /* CartItem.xib */; };
+		1166CA1F283EAD260036648C /* Porduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1166CA1E283EAD260036648C /* Porduct.swift */; };
+		1166CA24283EADB60036648C /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1166CA23283EADB60036648C /* UITableView.swift */; };
 		411B3B09283E7B9C006EBC17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411B3B08283E7B9C006EBC17 /* AppDelegate.swift */; };
 		411B3B0B283E7B9C006EBC17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411B3B0A283E7B9C006EBC17 /* SceneDelegate.swift */; };
 		411B3B13283E7B9C006EBC17 /* Shop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 411B3B11283E7B9C006EBC17 /* Shop.xcdatamodeld */; };
@@ -44,6 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1166CA15283EA6C90036648C /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
+		1166CA16283EA6C90036648C /* CartItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartItem.xib; sourceTree = "<group>"; };
+		1166CA1E283EAD260036648C /* Porduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Porduct.swift; sourceTree = "<group>"; };
+		1166CA23283EADB60036648C /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		411B3B05283E7B9C006EBC17 /* Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		411B3B08283E7B9C006EBC17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		411B3B0A283E7B9C006EBC17 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +100,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1166CA14283EA6A40036648C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1166CA15283EA6C90036648C /* CartItem.swift */,
+				1166CA16283EA6C90036648C /* CartItem.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		1166CA1C283EACE20036648C /* Modles */ = {
+			isa = PBXGroup;
+			children = (
+				1166CA1D283EACF10036648C /* PONSOs */,
+			);
+			path = Modles;
+			sourceTree = "<group>";
+		};
+		1166CA1D283EACF10036648C /* PONSOs */ = {
+			isa = PBXGroup;
+			children = (
+				1166CA1E283EAD260036648C /* Porduct.swift */,
+			);
+			path = PONSOs;
+			sourceTree = "<group>";
+		};
 		411B3AFC283E7B9C006EBC17 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +148,7 @@
 		411B3B07283E7B9C006EBC17 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
+				1166CA1C283EACE20036648C /* Modles */,
 				411B3B95283E8359006EBC17 /* Extension */,
 				411B3B94283E8337006EBC17 /* Resources */,
 				411B3B8A283E828E006EBC17 /* Constants */,
@@ -145,11 +179,11 @@
 		411B3B88283E81DC006EBC17 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1166CA14283EA6A40036648C /* Cells */,
 				411B3B93283E8324006EBC17 /* TabBar */,
 				411B3B92283E8310006EBC17 /* Profile */,
 				411B3B91283E82FD006EBC17 /* Catagory */,
 				411B3B90283E82ED006EBC17 /* Home */,
-				411B3B8F283E82E2006EBC17 /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -177,13 +211,6 @@
 				411B3B8C283E82B2006EBC17 /* URLs.swift */,
 			);
 			path = URLs;
-			sourceTree = "<group>";
-		};
-		411B3B8F283E82E2006EBC17 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		411B3B90283E82ED006EBC17 /* Home */ = {
@@ -235,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				411B3B96283E83C9006EBC17 /* UIImage.swift */,
+				1166CA23283EADB60036648C /* UITableView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -347,6 +375,7 @@
 				411B3B83283E7FA9006EBC17 /* CategoryVc.xib in Resources */,
 				411B3B7F283E7F88006EBC17 /* HomeVc.xib in Resources */,
 				411B3B15283E7B9D006EBC17 /* Assets.xcassets in Resources */,
+				1166CA18283EA6C90036648C /* CartItem.xib in Resources */,
 				411B3B87283E7FC5006EBC17 /* ProfileVc.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,10 +406,13 @@
 				411B3B0B283E7B9C006EBC17 /* SceneDelegate.swift in Sources */,
 				411B3B8D283E82B2006EBC17 /* URLs.swift in Sources */,
 				411B3B86283E7FC5006EBC17 /* ProfileVc.swift in Sources */,
+				1166CA24283EADB60036648C /* UITableView.swift in Sources */,
 				411B3B7E283E7F88006EBC17 /* HomeVc.swift in Sources */,
 				411B3B97283E83C9006EBC17 /* UIImage.swift in Sources */,
 				411B3B7B283E7F3E006EBC17 /* MyTabBar.swift in Sources */,
+				1166CA17283EA6C90036648C /* CartItem.swift in Sources */,
 				411B3B13283E7B9C006EBC17 /* Shop.xcdatamodeld in Sources */,
+				1166CA1F283EAD260036648C /* Porduct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
