@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38A05C7A283E9CB100918131 /* LoginVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A05C78283E9CB100918131 /* LoginVc.swift */; };
+		38A05C7B283E9CB100918131 /* LoginVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38A05C79283E9CB100918131 /* LoginVc.xib */; };
 		411B3B09283E7B9C006EBC17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411B3B08283E7B9C006EBC17 /* AppDelegate.swift */; };
 		411B3B0B283E7B9C006EBC17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411B3B0A283E7B9C006EBC17 /* SceneDelegate.swift */; };
 		411B3B13283E7B9C006EBC17 /* Shop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 411B3B11283E7B9C006EBC17 /* Shop.xcdatamodeld */; };
@@ -44,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		38A05C78283E9CB100918131 /* LoginVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVc.swift; sourceTree = "<group>"; };
+		38A05C79283E9CB100918131 /* LoginVc.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginVc.xib; sourceTree = "<group>"; };
 		411B3B05283E7B9C006EBC17 /* Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		411B3B08283E7B9C006EBC17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		411B3B0A283E7B9C006EBC17 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +96,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38A05C67283E9BEA00918131 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				38A05C78283E9CB100918131 /* LoginVc.swift */,
+				38A05C79283E9CB100918131 /* LoginVc.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		411B3AFC283E7B9C006EBC17 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +158,7 @@
 		411B3B88283E81DC006EBC17 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				38A05C67283E9BEA00918131 /* Login */,
 				411B3B93283E8324006EBC17 /* TabBar */,
 				411B3B92283E8310006EBC17 /* Profile */,
 				411B3B91283E82FD006EBC17 /* Catagory */,
@@ -343,6 +357,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38A05C7B283E9CB100918131 /* LoginVc.xib in Resources */,
 				411B3B18283E7B9E006EBC17 /* LaunchScreen.storyboard in Resources */,
 				411B3B83283E7FA9006EBC17 /* CategoryVc.xib in Resources */,
 				411B3B7F283E7F88006EBC17 /* HomeVc.xib in Resources */,
@@ -376,6 +391,7 @@
 				411B3B09283E7B9C006EBC17 /* AppDelegate.swift in Sources */,
 				411B3B0B283E7B9C006EBC17 /* SceneDelegate.swift in Sources */,
 				411B3B8D283E82B2006EBC17 /* URLs.swift in Sources */,
+				38A05C7A283E9CB100918131 /* LoginVc.swift in Sources */,
 				411B3B86283E7FC5006EBC17 /* ProfileVc.swift in Sources */,
 				411B3B7E283E7F88006EBC17 /* HomeVc.swift in Sources */,
 				411B3B97283E83C9006EBC17 /* UIImage.swift in Sources */,
