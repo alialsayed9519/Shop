@@ -11,6 +11,8 @@
 		1166CA18283EA6C90036648C /* CartItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1166CA16283EA6C90036648C /* CartItem.xib */; };
 		1166CA1F283EAD260036648C /* Porduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1166CA1E283EAD260036648C /* Porduct.swift */; };
 		1166CA24283EADB60036648C /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1166CA23283EADB60036648C /* UITableView.swift */; };
+		1166CA2E283EB1170036648C /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1166CA2C283EB1170036648C /* CartView.swift */; };
+		1166CA2F283EB1170036648C /* CartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1166CA2D283EB1170036648C /* CartView.xib */; };
 		411B3B09283E7B9C006EBC17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411B3B08283E7B9C006EBC17 /* AppDelegate.swift */; };
 		411B3B0B283E7B9C006EBC17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411B3B0A283E7B9C006EBC17 /* SceneDelegate.swift */; };
 		411B3B13283E7B9C006EBC17 /* Shop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 411B3B11283E7B9C006EBC17 /* Shop.xcdatamodeld */; };
@@ -28,6 +30,7 @@
 		411B3B87283E7FC5006EBC17 /* ProfileVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 411B3B85283E7FC5006EBC17 /* ProfileVc.xib */; };
 		411B3B8D283E82B2006EBC17 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411B3B8C283E82B2006EBC17 /* URLs.swift */; };
 		411B3B97283E83C9006EBC17 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411B3B96283E83C9006EBC17 /* UIImage.swift */; };
+		91CA100865EE1BF7AF7AE5CC /* Pods_Shop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45022AB5F80D4BF3E4EE5602 /* Pods_Shop.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,9 @@
 		1166CA16283EA6C90036648C /* CartItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartItem.xib; sourceTree = "<group>"; };
 		1166CA1E283EAD260036648C /* Porduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Porduct.swift; sourceTree = "<group>"; };
 		1166CA23283EADB60036648C /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		1166CA2C283EB1170036648C /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
+		1166CA2D283EB1170036648C /* CartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartView.xib; sourceTree = "<group>"; };
+		184FBA5037E28EBDFAC904F0 /* Pods-Shop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shop.release.xcconfig"; path = "Target Support Files/Pods-Shop/Pods-Shop.release.xcconfig"; sourceTree = "<group>"; };
 		411B3B05283E7B9C006EBC17 /* Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		411B3B08283E7B9C006EBC17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		411B3B0A283E7B9C006EBC17 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +79,8 @@
 		411B3B85283E7FC5006EBC17 /* ProfileVc.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileVc.xib; sourceTree = "<group>"; };
 		411B3B8C283E82B2006EBC17 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		411B3B96283E83C9006EBC17 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		44D0C7356825CD29B30FAA4D /* Pods-Shop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shop.debug.xcconfig"; path = "Target Support Files/Pods-Shop/Pods-Shop.debug.xcconfig"; sourceTree = "<group>"; };
+		45022AB5F80D4BF3E4EE5602 /* Pods_Shop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91CA100865EE1BF7AF7AE5CC /* Pods_Shop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +134,23 @@
 			path = PONSOs;
 			sourceTree = "<group>";
 		};
+		1166CA28283EAF7C0036648C /* CartView */ = {
+			isa = PBXGroup;
+			children = (
+				1166CA2C283EB1170036648C /* CartView.swift */,
+				1166CA2D283EB1170036648C /* CartView.xib */,
+			);
+			path = CartView;
+			sourceTree = "<group>";
+		};
+		201258757C8C7E1BDF9ABCDC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				45022AB5F80D4BF3E4EE5602 /* Pods_Shop.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		411B3AFC283E7B9C006EBC17 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +158,8 @@
 				411B3B21283E7B9E006EBC17 /* ShopTests */,
 				411B3B2B283E7B9E006EBC17 /* ShopUITests */,
 				411B3B06283E7B9C006EBC17 /* Products */,
+				950D708913E80854593D40C6 /* Pods */,
+				201258757C8C7E1BDF9ABCDC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,6 +207,7 @@
 		411B3B88283E81DC006EBC17 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1166CA28283EAF7C0036648C /* CartView */,
 				1166CA14283EA6A40036648C /* Cells */,
 				411B3B93283E8324006EBC17 /* TabBar */,
 				411B3B92283E8310006EBC17 /* Profile */,
@@ -267,6 +296,16 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		950D708913E80854593D40C6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				44D0C7356825CD29B30FAA4D /* Pods-Shop.debug.xcconfig */,
+				184FBA5037E28EBDFAC904F0 /* Pods-Shop.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -274,9 +313,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 411B3B32283E7B9E006EBC17 /* Build configuration list for PBXNativeTarget "Shop" */;
 			buildPhases = (
+				C8E380FE7127DA8A4C7DD3BD /* [CP] Check Pods Manifest.lock */,
 				411B3B01283E7B9C006EBC17 /* Sources */,
 				411B3B02283E7B9C006EBC17 /* Frameworks */,
 				411B3B03283E7B9C006EBC17 /* Resources */,
+				E3E6D4705502DEA00BBB76C8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -372,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				411B3B18283E7B9E006EBC17 /* LaunchScreen.storyboard in Resources */,
+				1166CA2F283EB1170036648C /* CartView.xib in Resources */,
 				411B3B83283E7FA9006EBC17 /* CategoryVc.xib in Resources */,
 				411B3B7F283E7F88006EBC17 /* HomeVc.xib in Resources */,
 				411B3B15283E7B9D006EBC17 /* Assets.xcassets in Resources */,
@@ -396,6 +438,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C8E380FE7127DA8A4C7DD3BD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Shop-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3E6D4705502DEA00BBB76C8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Shop/Pods-Shop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Shop/Pods-Shop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shop/Pods-Shop-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		411B3B01283E7B9C006EBC17 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -403,6 +487,7 @@
 			files = (
 				411B3B82283E7FA9006EBC17 /* CategoryVc.swift in Sources */,
 				411B3B09283E7B9C006EBC17 /* AppDelegate.swift in Sources */,
+				1166CA2E283EB1170036648C /* CartView.swift in Sources */,
 				411B3B0B283E7B9C006EBC17 /* SceneDelegate.swift in Sources */,
 				411B3B8D283E82B2006EBC17 /* URLs.swift in Sources */,
 				411B3B86283E7FC5006EBC17 /* ProfileVc.swift in Sources */,
@@ -576,6 +661,7 @@
 		};
 		411B3B33283E7B9E006EBC17 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44D0C7356825CD29B30FAA4D /* Pods-Shop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -603,6 +689,7 @@
 		};
 		411B3B34283E7B9E006EBC17 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 184FBA5037E28EBDFAC904F0 /* Pods-Shop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
