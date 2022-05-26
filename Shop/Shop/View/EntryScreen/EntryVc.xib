@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EntryVc" customModule="Shop" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chart.bar.doc.horizontal.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="whB-zO-VZS">
+                    <rect key="frame" x="0.0" y="44" width="414" height="537.5"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dwg-2z-JPP">
+                    <rect key="frame" x="0.0" y="581.5" width="414" height="280.5"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUL-69-ffU">
+                            <rect key="frame" x="164.5" y="145.5" width="85" height="50"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Skip">
+                                        <attributes>
+                                            <font key="NSFont" size="31" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="goToHome:" destination="-1" eventType="touchUpInside" id="LCp-Dc-ob7"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TA1-Ev-QHV">
+                            <rect key="frame" x="157" y="95.5" width="100" height="50"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Login">
+                                        <attributes>
+                                            <font key="NSFont" size="31" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="goToLogin:" destination="-1" eventType="touchUpInside" id="Zc1-CR-OYN"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="PUL-69-ffU" firstAttribute="centerY" secondItem="Dwg-2z-JPP" secondAttribute="centerY" constant="30" id="1Fp-gh-4I0"/>
+                        <constraint firstItem="PUL-69-ffU" firstAttribute="centerX" secondItem="Dwg-2z-JPP" secondAttribute="centerX" id="73B-07-RwN"/>
+                        <constraint firstItem="TA1-Ev-QHV" firstAttribute="centerY" secondItem="Dwg-2z-JPP" secondAttribute="centerY" constant="-20" id="Mdn-dr-oDp"/>
+                        <constraint firstItem="TA1-Ev-QHV" firstAttribute="centerX" secondItem="Dwg-2z-JPP" secondAttribute="centerX" id="nZe-3K-aZE"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Dwg-2z-JPP" firstAttribute="top" secondItem="whB-zO-VZS" secondAttribute="bottom" id="6Zo-3u-vUQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Dwg-2z-JPP" secondAttribute="trailing" id="9AZ-c7-UtW"/>
+                <constraint firstItem="Dwg-2z-JPP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="D2p-gW-f1z"/>
+                <constraint firstItem="whB-zO-VZS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="DDc-oZ-7d3"/>
+                <constraint firstItem="whB-zO-VZS" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.6" id="GoQ-O4-tJD"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="whB-zO-VZS" secondAttribute="trailing" id="lzh-4t-ryc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Dwg-2z-JPP" secondAttribute="bottom" id="xuj-Gb-9P8"/>
+                <constraint firstItem="whB-zO-VZS" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="yoq-kU-W2k"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="93.75"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chart.bar.doc.horizontal.fill" catalog="system" width="115" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
