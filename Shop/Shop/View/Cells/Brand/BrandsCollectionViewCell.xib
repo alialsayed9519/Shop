@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BrandsCollectionViewCell" id="gTV-IL-0wX" customClass="BrandsCollectionViewCell" customModule="Shop" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="305" height="194"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="305" height="194"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adidas" translatesAutoresizingMaskIntoConstraints="NO" id="ZYo-ap-BnZ" userLabel="BrandImage">
+                        <rect key="frame" x="8" y="8" width="289" height="136"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Nq-ka-tKz">
+                        <rect key="frame" x="8" y="148" width="289" height="21"/>
+                        <attributedString key="attributedText">
+                            <fragment content="BrandName">
+                                <attributes>
+                                    <font key="NSFont" metaFont="system" size="17"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="ZYo-ap-BnZ" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.7" id="9tm-bh-E8y"/>
+                <constraint firstItem="ZYo-ap-BnZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Q0F-Zv-obz"/>
+                <constraint firstAttribute="trailing" secondItem="ZYo-ap-BnZ" secondAttribute="trailing" constant="8" id="QI3-Lu-cNM"/>
+                <constraint firstItem="0Nq-ka-tKz" firstAttribute="top" secondItem="ZYo-ap-BnZ" secondAttribute="bottom" constant="4" id="bpj-vR-Y0l"/>
+                <constraint firstItem="ZYo-ap-BnZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="cTP-gy-PvN"/>
+                <constraint firstItem="0Nq-ka-tKz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="fbx-lN-fcb"/>
+                <constraint firstAttribute="trailing" secondItem="0Nq-ka-tKz" secondAttribute="trailing" constant="8" id="hde-ye-4gZ"/>
+            </constraints>
+            <size key="customSize" width="305" height="194"/>
+            <connections>
+                <outlet property="image" destination="ZYo-ap-BnZ" id="nbX-Km-J2s"/>
+                <outlet property="name" destination="0Nq-ka-tKz" id="dro-sN-bXL"/>
+            </connections>
+            <point key="canvasLocation" x="322.46376811594206" y="176.11607142857142"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="adidas" width="1000" height="676"/>
+    </resources>
+</document>

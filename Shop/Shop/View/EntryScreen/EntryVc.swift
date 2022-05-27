@@ -26,7 +26,12 @@ class EntryVc: UIViewController {
     
     @IBAction func goToHome(_ sender: Any) {
         let home = MyTabBar(nibName: "MyTabBar", bundle: nil)
-        self.navigationController?.pushViewController(home, animated: true)
+        //self.navigationController?.pushViewController(home, animated: true)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as? HomeVc
     }
 
 }

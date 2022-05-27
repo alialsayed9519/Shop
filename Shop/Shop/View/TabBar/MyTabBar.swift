@@ -15,7 +15,7 @@ class MyTabBar: UITabBarController {
         let you = CategoryVc()
         let us = ProfileVc()
         
-        self.setViewControllers([my, us, you], animated: true)
+        self.setViewControllers([my, you, us], animated: true)
         self.tabBar.backgroundColor = .white
         
         guard let items = self.tabBar.items else {return}
