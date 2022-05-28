@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CatagoryCollectionViewCell" customModule="Shop" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="427" height="282"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="427" height="282"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bag" translatesAutoresizingMaskIntoConstraints="NO" id="Ujl-to-DGT">
+                        <rect key="frame" x="4" y="4" width="419" height="197.5"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vt2-ZY-4uA">
+                        <rect key="frame" x="4" y="205.5" width="38.5" height="21"/>
+                        <attributedString key="attributedText">
+                            <fragment content="price">
+                                <attributes>
+                                    <font key="NSFont" metaFont="system" size="17"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CD9-3p-7BY">
+                        <rect key="frame" x="388" y="209.5" width="31" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="CD9-3p-7BY" secondAttribute="height" multiplier="1:1" id="UsK-u6-5wJ"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="heart"/>
+                    </button>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="Ujl-to-DGT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="0qO-Sf-EQa"/>
+                <constraint firstItem="CD9-3p-7BY" firstAttribute="top" secondItem="Ujl-to-DGT" secondAttribute="bottom" constant="8" id="8yI-I6-qVu"/>
+                <constraint firstItem="vt2-ZY-4uA" firstAttribute="top" secondItem="Ujl-to-DGT" secondAttribute="bottom" constant="4" id="Lnc-bZ-Z2s"/>
+                <constraint firstItem="vt2-ZY-4uA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="XLy-C3-nee"/>
+                <constraint firstItem="Ujl-to-DGT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="bJI-Y9-5xH"/>
+                <constraint firstItem="CD9-3p-7BY" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.109929" id="d8O-e7-mYq"/>
+                <constraint firstAttribute="trailing" secondItem="CD9-3p-7BY" secondAttribute="trailing" constant="8" id="hTN-oo-m1k"/>
+                <constraint firstItem="Ujl-to-DGT" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.7" id="qFH-2q-m12"/>
+                <constraint firstAttribute="trailing" secondItem="Ujl-to-DGT" secondAttribute="trailing" constant="4" id="v8j-9u-FF5"/>
+            </constraints>
+            <size key="customSize" width="427" height="282"/>
+            <connections>
+                <outlet property="productImage" destination="Ujl-to-DGT" id="jcD-KB-BnV"/>
+                <outlet property="productPrice" destination="vt2-ZY-4uA" id="bfs-P4-p2e"/>
+            </connections>
+            <point key="canvasLocation" x="303.62318840579712" y="200.89285714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="bag" width="635" height="560"/>
+        <image name="heart" width="24" height="24"/>
+    </resources>
+</document>

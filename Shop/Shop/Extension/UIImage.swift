@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
-extension UIImage {
-    
+extension UIImageView {
+    func roundedImage() {
+        self.layer.cornerRadius = 25
+        self.clipsToBounds = true
+        self.layer.borderColor = UIColor.blue.cgColor
+        self.layer.borderWidth = 4
+    }
 }

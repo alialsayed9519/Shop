@@ -11,11 +11,11 @@ class MyTabBar: UITabBarController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let my = HomeVc()
-        let you = CategoryVc()
-        let us = ProfileVc()
+        let home = HomeVc()
+        let catagory = CategoryVc()
+        let profile = ProfileVc()
         
-        self.setViewControllers([my, us, you], animated: true)
+        self.setViewControllers([home, catagory, profile], animated: true)
         self.tabBar.backgroundColor = .white
         
         guard let items = self.tabBar.items else {return}
