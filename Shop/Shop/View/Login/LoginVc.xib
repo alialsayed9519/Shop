@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginVc" customModule="Shop" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginVc" customModule="Shop">
             <connections>
+                <outlet property="emailTF" destination="7fh-ok-viT" id="rjK-99-VRU"/>
+                <outlet property="loginImage" destination="0NC-IE-cfK" id="qlg-HX-c5H"/>
+                <outlet property="passTF" destination="HJN-cy-iBQ" id="0oU-IG-ykA"/>
+                <outlet property="signInBtn" destination="Xsm-7y-sUj" id="OJT-D2-gWI"/>
+                <outlet property="signUpBtn" destination="fef-8Q-Cec" id="6x4-Ja-62l"/>
+                <outlet property="skipBtn" destination="3nT-ru-BIG" id="kcb-Bo-DEz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -39,11 +45,17 @@
                     <rect key="frame" x="64" y="532" width="286" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <state key="normal" title="Sign In"/>
+                    <connections>
+                        <action selector="SignInBtn:" destination="-1" eventType="touchUpInside" id="wSp-7J-5vQ"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3nT-ru-BIG">
                     <rect key="frame" x="64" y="604" width="286" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <state key="normal" title="Skip "/>
+                    <connections>
+                        <action selector="skipBtn:" destination="-1" eventType="touchUpInside" id="2T3-62-Yj7"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or do not have account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbY-KW-NQv">
                     <rect key="frame" x="32" y="772" width="224" height="26"/>
@@ -55,6 +67,9 @@
                     <rect key="frame" x="264" y="772" width="73" height="26"/>
                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                     <state key="normal" title="Sing Up"/>
+                    <connections>
+                        <action selector="sinUpBtn:" destination="-1" eventType="touchUpInside" id="bcs-JY-E3a"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
