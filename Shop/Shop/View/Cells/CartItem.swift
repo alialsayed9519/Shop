@@ -40,10 +40,8 @@ class CartItem: UITableViewCell {
     }
     
     func updateUI(item: Product) {
-        itemName.text = item.itemName
-        itemSize.text = item.itemSize
-        itemCounter.text = "\(item.itemCount)"
-        itemPrice.text = "\(item.itemprice)"
+        itemName.text = item.title
+
     }
     
 }
