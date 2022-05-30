@@ -8,5 +8,9 @@
 import Foundation
 
 struct URLs {
+    private static var baseURL = "https://mobile-ismailia.myshopify.com/admin/api/2022-04/"
     
+    static func getCategoriesURL() -> String {
+        return baseURL + "smart_collections.json"
+    }
 }
