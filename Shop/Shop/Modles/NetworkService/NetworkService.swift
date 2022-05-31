@@ -27,9 +27,9 @@ class NetworkService {
                     completion(nil, error)
                 }
             }
+     }
        
-func fetchCustomCatagegories(completion:@escaping ([CustomCollections]?,Error?)->()){
-        AF.request(URLs.customCollections()).validate().responseDecodable(of:CustomCollection.self){
+
 
     func fetchCustomCatagegories (completion:@escaping ([CustomCollection]?, Error?) -> () ){
         AF.request(URLs.customCollections()).validate().responseDecodable(of:CustomCollections.self){
