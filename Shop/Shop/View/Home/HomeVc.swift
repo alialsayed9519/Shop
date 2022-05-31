@@ -8,9 +8,12 @@
 import UIKit
 
 class HomeVc: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    
+    @IBOutlet private weak var addsImage: UIImageView!
     private let brandsCollectionViewCellId = "BrandsCollectionViewCell"
-    private var brands: [Brand] = []
+    private var brands: [SmartCollection] = []
+    private var brandsViewModel = BrandsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,17 +21,41 @@ class HomeVc: UIViewController {
         // Do any additional setup after loading the view.
         let nibCell = UINib(nibName: brandsCollectionViewCellId, bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: brandsCollectionViewCellId)
-
-        for _ in 1...16 {
-            let brand = Brand(name: "Adidas", image: "adidas")
-            brands.append(brand)
-        }
         
+        showAddsImages()
+        
+        brandsViewModel.bindBrandsViewModelToView = { self.onSuccessUpdateView() }
+        brandsViewModel.bindViewModelErrorToView = { self.onFailUpdateView() }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         collectionView.reloadData()
     }
+    
+    func showAddsImages() {
+        let images = [UIImage(named: "addsOne"), UIImage(named: "addsTwo"), UIImage(named: "addsThree"), UIImage(named: "addsFour"), UIImage(named: "addsFive")].compactMap{$0} // ignore nil image
+        addsImage.animationImages = images
+        addsImage.animationDuration = 5
+        addsImage.roundedImage()
+        addsImage.startAnimating()
+    }
+
+    func onSuccessUpdateView(){
+        brands = brandsViewModel.smartCollection ?? []
+        self.collectionView.reloadData()
+    }
+    
+    func onFailUpdateView(){
+        let alert = UIAlertController(title: "Error", message: brandsViewModel.showError, preferredStyle: .alert)
+        let okAction  = UIAlertAction(title: "Ok", style: .default) { (UIAlertAction) in
+            
+        }
+    
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+
+
 }
 
 extension HomeVc: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
@@ -54,7 +81,6 @@ extension HomeVc: UICollectionViewDataSource, UICollectionViewDelegate,UICollect
         }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let brand = brands[indexPath.row]
-        print("\(brand.name) in index  \(indexPath.row + 1)")
+        
     }
 }

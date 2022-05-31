@@ -19,10 +19,7 @@ class CategoryVc: UIViewController {
         let nibCell = UINib(nibName: CatagoryCollectionViewCellId, bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: CatagoryCollectionViewCellId)
 
-        for _ in 1...30 {
-            let brand = Brand(name: "Adidas", image: "adidas")
-            brands.append(brand)
-        }
+      
         
     }
     
@@ -54,7 +51,7 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
         }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let brand = brands[indexPath.row]
-        print("\(brand.name) in index  \(indexPath.row + 1)")
+       // let brand = brands[indexPath.row]
+      //  print("\(brand.name) in index  \(indexPath.row + 1)")
     }
 }

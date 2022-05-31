@@ -19,8 +19,8 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
     }
 
     func updateUI(brand: Brand) {
-        self.productPrice.text = brand.name
-        self.productImage.image = UIImage(named: brand.image)
+      //  self.productPrice.text = brand.name
+      //  self.productImage.image = UIImage(named: brand.image)
     }
     
 }
