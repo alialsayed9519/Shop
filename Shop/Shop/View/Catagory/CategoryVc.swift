@@ -24,11 +24,7 @@ class CategoryVc: UIViewController {
         // Do any additional setup after loading the view.
         collectionView.registerNib(cell: CatagoryCollectionViewCell.self)
 
-        for _ in 1...30 {
-            let brand = Brand(name: "Adidas", image: "adidas")
-            brands.append(brand)
-        }
-    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         collectionView.reloadData()
@@ -66,8 +62,8 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
         }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let brand = brands[indexPath.row]
-        print("\(brand.name) in index  \(indexPath.row + 1)")
+       // let brand = brands[indexPath.row]
+      //  print("\(brand.name) in index  \(indexPath.row + 1)")
     }
 }
 

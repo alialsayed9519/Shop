@@ -7,13 +7,27 @@
 
 import Foundation
 import Alamofire
-//class NetworkService {
-//
-//    static func getAllCategories(completion: @escaping ([SmartCollection]?, Error?) -> ()) {
-//
-//
-//    }
-//
+
+
+class NetworkService {
+    
+     func getAllBrands(completion: @escaping ([SmartCollection]?, Error?) -> ()) {
+        AF.request(URLs.getCategoriesURL())
+             .responseDecodable(of: Brand.self) { (response) in
+                print(response)
+                switch response.result {
+                case .success(_):
+                    guard let data = response.value else { return }
+                    print("\(data.smart_collections?.count ?? 0)  empty array")
+                    print("NetworkService")
+                    completion(data.smart_collections, nil)
+               
+                case .failure(let error):
+                    print("ddddd")
+                    completion(nil, error)
+                }
+            }
+       
 func fetchCustomCatagegories(completion:@escaping ([CustomCollections]?,Error?)->()){
         AF.request(URLs.customCollections()).validate().responseDecodable(of:CustomCollection.self){
             (response) in
