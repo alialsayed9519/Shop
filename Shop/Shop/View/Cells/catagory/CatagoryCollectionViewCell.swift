@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CatagoryCollectionViewCell: UICollectionViewCell {
 
@@ -18,9 +19,9 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
 
-    func updateUI(brand: Brand) {
-      //  self.productPrice.text = brand.name
-      //  self.productImage.image = UIImage(named: brand.image)
+    func updateUI(product: Product) {
+        self.productPrice.text = product.title
+        self.productImage.sd_setImage(with: URL(string: product.images![0].src!), placeholderImage: UIImage(named: "adidas"))
     }
     
 }

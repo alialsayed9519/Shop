@@ -30,19 +30,23 @@ class NetworkService {
        
 func fetchCustomCatagegories(completion:@escaping ([CustomCollections]?,Error?)->()){
         AF.request(URLs.customCollections()).validate().responseDecodable(of:CustomCollection.self){
+
+    func fetchCustomCatagegories (completion:@escaping ([CustomCollection]?, Error?) -> () ){
+        AF.request(URLs.customCollections()).validate().responseDecodable(of:CustomCollections.self){
             (response) in
             switch response.result{
         case .success(_):
-            guard let data=response.value
+            guard let data = response.value
             else{return}
-                completion(data.custom_collections,nil)
+            completion(data.custom_collections, nil)
             case .failure(let error):
                 completion(nil,error)
             }
             
         }
     }
-     func getProducts(collectionID:String,completion:@escaping([Product]?,Error?)->()){
+
+     func fetchProducts (collectionID:String, completion: @escaping ([Product]?, Error?) -> () ){
         AF.request(URLs.products(collectionId: collectionID)).validate().responseDecodable(of:AllProducts.self){
             (response) in
             switch response.result{
@@ -61,3 +65,4 @@ func fetchCustomCatagegories(completion:@escaping ([CustomCollections]?,Error?)-
     }
 
 
+}

@@ -6,14 +6,16 @@
 //
 
 import Foundation
-struct CustomCollection:Codable{
-    var custom_collections:[CustomCollections]
-}
 struct CustomCollections:Codable{
+    var custom_collections:[CustomCollection]
+}
+
+struct CustomCollection:Codable{
 var id:Int?
 var title:String?
 var image:[collectionImage]?
 }
+
 struct collectionImage:Codable{
     var width:Double?
     var height:Double?

@@ -14,7 +14,6 @@ class CategoryVc: UIViewController {
     
     private var products = [Product]()
     private var mainCategory = [CustomCollection]()
-    private var brands: [Brand] = []
     
     private let shopViewModel = ShopingViewModel()
     
@@ -23,18 +22,20 @@ class CategoryVc: UIViewController {
 
         // Do any additional setup after loading the view.
         collectionView.registerNib(cell: CatagoryCollectionViewCell.self)
-
-
+        
+        shopViewModel.fetchCustonCollection()
+        shopViewModel.bindProducts = self.updateViewwithProducts
+        shopViewModel.filterPorductsByMainCategory(itemIndex: 0, completion: updateViewwithProducts)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         collectionView.reloadData()
     }
-
-    @IBAction func tabBarItemSelected(_ sender: Any) {
-        shopViewModel.filterPorductsByMainCategory()
+    
+    @IBAction func tabItemSelected(_ sender: UIBarButtonItem) {
+        shopViewModel.filterPorductsByMainCategory(itemIndex: sender.tag, completion: self.updateViewwithProducts)
     }
     
-        
     
 }
 
@@ -46,13 +47,13 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-      return brands.count
+      return products.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueNib(indexPath: indexPath) as! CatagoryCollectionViewCell
-        let brand = brands[indexPath.row]
-        cell.updateUI(brand: brand)
+        let product = products[indexPath.row]
+        cell.updateUI(product: product)
         return cell
     }
     
@@ -62,12 +63,19 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
         }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       // let brand = brands[indexPath.row]
-      //  print("\(brand.name) in index  \(indexPath.row + 1)")
+        let product = products[indexPath.row]
+        print("\(String(describing: product.title)) in index  \(indexPath.row + 1)")
     }
 }
 
-// MARK: TabBar Items' Action
 extension CategoryVc{
+    
+    func updateViewwithProducts(){
+        guard  let products = shopViewModel.allProduct else {
+            print("there are no proucts yet")
+            return
+        }
+        self.products = products
+    }
     
 }
