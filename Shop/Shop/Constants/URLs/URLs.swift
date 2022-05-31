@@ -16,4 +16,13 @@ struct URLs {
         return fullUrl
         
     }
+    static func allProducts()->String{
+        return baseURL+"products.json"
+    }
+    static func customCollections()->String{
+        return baseURL+"custom_collections.json"
+    }
+    static func products(collectionId:String)->String{
+        return baseURL+"products.json?collection_id=\(collectionId)"
+    }
 }
