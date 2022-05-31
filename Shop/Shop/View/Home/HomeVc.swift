@@ -14,7 +14,7 @@ class HomeVc: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+         self.navigationController?.setNavigationBarHidden(true, animated: false)
         // Do any additional setup after loading the view.
         let nibCell = UINib(nibName: brandsCollectionViewCellId, bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: brandsCollectionViewCellId)
@@ -27,6 +27,7 @@ class HomeVc: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         collectionView.reloadData()
     }
 }
