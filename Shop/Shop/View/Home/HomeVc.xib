@@ -35,7 +35,7 @@
                     </connections>
                 </collectionView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2um-ej-hL1">
-                    <rect key="frame" x="0.0" y="384" width="414" height="30"/>
+                    <rect key="frame" x="0.0" y="381.5" width="414" height="32.5"/>
                     <attributedString key="attributedText">
                         <fragment content="Brand">
                             <attributes>
@@ -46,15 +46,28 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iv1-ER-wz8">
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="GIM-cA-LF3"/>
+                        <barButtonItem title="Item" image="heart" catalog="system" id="1zT-yL-8CI">
+                            <color key="tintColor" systemColor="systemPinkColor"/>
+                        </barButtonItem>
+                        <barButtonItem title="Item" image="cart" catalog="system" id="UFI-Kv-TvD"/>
+                    </items>
+                </toolbar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="iv1-ER-wz8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="36z-v6-hy0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2um-ej-hL1" secondAttribute="trailing" id="CsK-lO-1KX"/>
                 <constraint firstItem="cf8-Yk-Wtd" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.5" id="OZ5-XW-Xe0"/>
                 <constraint firstItem="2um-ej-hL1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Zpg-xQ-mxR"/>
                 <constraint firstItem="cf8-Yk-Wtd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="aGX-BG-fot"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cf8-Yk-Wtd" secondAttribute="trailing" constant="8" id="g5E-Pl-vvZ"/>
+                <constraint firstItem="iv1-ER-wz8" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ir7-PO-NYm"/>
+                <constraint firstItem="iv1-ER-wz8" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="lhl-dI-Cy9"/>
                 <constraint firstItem="cf8-Yk-Wtd" firstAttribute="top" secondItem="2um-ej-hL1" secondAttribute="bottom" id="mtY-x1-fqi"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="cf8-Yk-Wtd" secondAttribute="bottom" id="rDz-yr-MNA"/>
             </constraints>
@@ -62,8 +75,13 @@
         </view>
     </objects>
     <resources>
+        <image name="cart" catalog="system" width="128" height="102"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
