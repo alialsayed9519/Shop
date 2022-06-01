@@ -38,31 +38,36 @@
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hMn-wl-9tg">
                     <rect key="frame" x="0.0" y="88" width="414" height="44"/>
                     <items>
-                        <barButtonItem title="Home" id="Hnc-Oe-AvT" userLabel="Home">
+                        <barButtonItem tag="0" title="Home" id="Hnc-Oe-AvT" userLabel="Home">
+                        <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="tabItemSelected:" destination="-1" id="rdP-jC-P3P"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Cng-k3-vRr"/>
                         <barButtonItem tag="1" title="Kid" id="r2r-f0-VEb">
+                        <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="tabItemSelected:" destination="-1" id="aMy-Rh-jrW"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="o1t-SD-D8m"/>
                         <barButtonItem tag="2" title="Men" id="KRb-qK-Oqn">
+                        <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="tabItemSelected:" destination="-1" id="QeD-c2-Wny"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="0AD-Y1-0Ye"/>
                         <barButtonItem tag="3" title="Sale" id="nmw-iT-ohk">
+                        <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="tabItemSelected:" destination="-1" id="pCx-Jj-osp"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Dh1-fG-4ST"/>
                         <barButtonItem tag="4" title="Women" id="3nb-Tm-mEc">
+                        <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="tabItemSelected:" destination="-1" id="sSC-01-Utl"/>
                             </connections>
@@ -74,12 +79,13 @@
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="UPG-FC-LPs"/>
                         <barButtonItem image="heart" catalog="system" id="vcT-61-j2a" userLabel="favorite">
-                            <color key="tintColor" red="1" green="0.15338520552585266" blue="0.21661486259929597" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="navigateToFavorite:" destination="-1" id="dLG-R5-asb"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem image="cart" catalog="system" id="kYv-Ve-32R" userLabel="cart">
+                        <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="navigateToCart:" destination="-1" id="sn7-Av-7Pb"/>
                             </connections>
