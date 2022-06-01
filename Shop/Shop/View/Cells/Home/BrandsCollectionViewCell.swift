@@ -19,7 +19,7 @@ class BrandsCollectionViewCell: UICollectionViewCell {
     
     func updateUI(brand: SmartCollection) {
         self.name.text = brand.title
-        self.image.image = UIImage(named: (brand.image?.src)!)
+        self.image.image = UIImage(named: (brand.image.src))
         self.image.roundedImage()
     }
 
