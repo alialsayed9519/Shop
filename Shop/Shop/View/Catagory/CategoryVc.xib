@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AuB-9W-AYF">
-                    <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                    <rect key="frame" x="0.0" y="132" width="414" height="730"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="148-Id-WqP">
                         <size key="itemSize" width="128" height="128"/>
@@ -36,7 +36,7 @@
                     </connections>
                 </collectionView>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hMn-wl-9tg">
-                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <rect key="frame" x="0.0" y="88" width="414" height="44"/>
                     <items>
                         <barButtonItem title="Home" id="Hnc-Oe-AvT" userLabel="Home">
                             <connections>
@@ -69,22 +69,44 @@
                         </barButtonItem>
                     </items>
                 </toolbar>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uM8-Y9-2Pa">
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="UPG-FC-LPs"/>
+                        <barButtonItem image="heart" catalog="system" id="vcT-61-j2a" userLabel="favorite">
+                            <color key="tintColor" red="1" green="0.15338520552585266" blue="0.21661486259929597" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="navigateToFavorite:" destination="-1" id="dLG-R5-asb"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="cart" catalog="system" id="kYv-Ve-32R" userLabel="cart">
+                            <connections>
+                                <action selector="navigateToCart:" destination="-1" id="sn7-Av-7Pb"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="AuB-9W-AYF" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="6aN-gJ-aOw"/>
-                <constraint firstItem="AuB-9W-AYF" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="7I3-pL-CGR"/>
-                <constraint firstItem="AuB-9W-AYF" firstAttribute="top" secondItem="hMn-wl-9tg" secondAttribute="bottom" id="Crf-te-Ooz"/>
-                <constraint firstItem="hMn-wl-9tg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="JFg-kE-eoz"/>
-                <constraint firstItem="hMn-wl-9tg" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="TNe-oT-DVE"/>
-                <constraint firstItem="AuB-9W-AYF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="tip-0r-AJH"/>
-                <constraint firstItem="hMn-wl-9tg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="zID-fE-miZ"/>
+                <constraint firstItem="uM8-Y9-2Pa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="1mI-fa-HoZ"/>
+                <constraint firstItem="AuB-9W-AYF" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="2bz-LA-atq"/>
+                <constraint firstItem="AuB-9W-AYF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BOy-XX-H2i"/>
+                <constraint firstItem="hMn-wl-9tg" firstAttribute="top" secondItem="uM8-Y9-2Pa" secondAttribute="bottom" id="KHG-YR-1iL"/>
+                <constraint firstItem="AuB-9W-AYF" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Mtl-rV-9zS"/>
+                <constraint firstItem="uM8-Y9-2Pa" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="PKJ-Ci-Ulx"/>
+                <constraint firstItem="AuB-9W-AYF" firstAttribute="top" secondItem="hMn-wl-9tg" secondAttribute="bottom" id="RZw-UB-sQW"/>
+                <constraint firstItem="hMn-wl-9tg" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Y0j-Cp-NDR"/>
+                <constraint firstItem="hMn-wl-9tg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="c2C-SC-xva"/>
+                <constraint firstItem="uM8-Y9-2Pa" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="kwF-Qo-bBM"/>
             </constraints>
             <point key="canvasLocation" x="140.57971014492756" y="113.83928571428571"/>
         </view>
     </objects>
     <resources>
+        <image name="cart" catalog="system" width="128" height="102"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

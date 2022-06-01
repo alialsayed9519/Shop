@@ -11,7 +11,8 @@ class CartView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.title = "Cart"
         // Do any additional setup after loading the view.
     }
 
