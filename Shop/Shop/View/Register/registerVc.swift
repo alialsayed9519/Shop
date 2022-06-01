@@ -6,18 +6,35 @@
 //
 
 import UIKit
-
+import TextFieldEffects
 class registerVc: UIViewController {
 
+    @IBOutlet weak var regImg: UIImageView!
+    
+    @IBOutlet weak var regiBtn: UIButton!
+    @IBOutlet weak var logBtn: UIButton!
+    @IBOutlet weak var passTf: HoshiTextField!
+    @IBOutlet weak var emailTf: HoshiTextField!
+    @IBOutlet weak var lnameTf: HoshiTextField!
+    @IBOutlet weak var fnameTf: HoshiTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       // regiBtn.backgroundColor =.green
+        regiBtn.layer.cornerRadius=20
+        regImg.image=UIImage(named: "shop")
         // Do any additional setup after loading the view.
     }
 
 
+    @IBAction func loginBtn(_ sender: Any) {
+        self.navigationController?.pushViewController(loginvc(), animated: true)
+    }
+    
+     @IBAction func regisBtn(_ sender: Any) {
+         self.navigationController?.pushViewController(HomeVc(), animated: true)
+     }
     /*
-    // MARK: - Navigation
+     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

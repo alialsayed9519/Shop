@@ -6,33 +6,31 @@
 //
 
 import UIKit
-
+import TextFieldEffects
 class loginvc: UIViewController {
 
-    @IBOutlet weak var signUpBtn: UIButton!
-    @IBOutlet weak var skipBtn: UIButton!
     @IBOutlet weak var signInBtn: UIButton!
-    @IBOutlet weak var passtf: UITextField!
-    @IBOutlet weak var emailTf: UITextField!
-    @IBOutlet weak var loginimg: UIImageView!
+    @IBOutlet weak var loginImg: UIImageView!
+    
+    @IBOutlet weak var emailTf: HoshiTextField!
+    
+    @IBOutlet weak var passTf: HoshiTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        skipBtn.backgroundColor =  .blue
-        skipBtn.layer.cornerRadius=20
-        signInBtn.backgroundColor =  .blue
+      
+      //  signInBtn.backgroundColor =  .green
         signInBtn.layer.cornerRadius=20
-
+        loginImg.image=UIImage(named: "shop")
         // Do any additional setup after loading the view.
     }
 
 
     @IBAction func signInBtn(_ sender: Any) {
-    }
-    
-    @IBAction func skipBtn(_ sender: Any) {
+        self.navigationController?.pushViewController(HomeVc(), animated: true)
     }
     
     @IBAction func signUpBtn(_ sender: Any) {
+        self.navigationController?.pushViewController(registerVc(), animated: true)
     }
     /*
     // MARK: - Navigation
