@@ -2,28 +2,44 @@
 //  CartView.swift
 //  Shop
 //
-//  Created by yasmeen hosny on 5/27/22.
+//  Created by yasmeen hosny on 5/25/22.
 //
 
 import UIKit
 
-class CartView: UIViewController {
+class CartView: UIViewController{
 
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var totalPrice: UILabel!
+    
+    var items = [Product]()
+    
+    
+    @IBAction func checkoutBoutton(_ sender: Any) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.registerNib(cell: CartItem.self)
     }
+}
 
+extension CartView: UITableViewDelegate{
+    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension CartView: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueNib() as CartItem
+        let item = items[indexPath.row]
+        cell.updateUI(item: item)
+        return cell
+    }
 }

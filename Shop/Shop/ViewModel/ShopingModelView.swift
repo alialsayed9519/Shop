@@ -1,4 +1,4 @@
-//
+ //
 //  ShopingModelView.swift
 //  Shop
 //
@@ -64,3 +64,4 @@ class ShopingViewModel{
         }
     }
 }
+ 
