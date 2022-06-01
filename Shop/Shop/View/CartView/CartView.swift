@@ -20,7 +20,11 @@ class CartView: UIViewController{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
         // Do any additional setup after loading the view.
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.title = "Cart"
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerNib(cell: CartItem.self)

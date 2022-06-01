@@ -19,11 +19,12 @@ class CategoryVc: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+
         collectionView.registerNib(cell: CatagoryCollectionViewCell.self)
-        
-        shopViewModel.fetchCustonCollection()
+
+        shopViewModel.fetchCustomCollection()
         shopViewModel.bindProducts = self.updateViewwithProducts
         shopViewModel.filterPorductsByMainCategory(itemIndex: 0, completion: updateViewwithProducts)
     }
@@ -34,6 +35,14 @@ class CategoryVc: UIViewController {
     
     @IBAction func tabItemSelected(_ sender: UIBarButtonItem) {
         shopViewModel.filterPorductsByMainCategory(itemIndex: sender.tag, completion: self.updateViewwithProducts)
+    }
+    
+    @IBAction func navigateToCart(_ sender: Any) {
+        self.navigationController?.pushViewController(CartView(), animated: true)
+    }
+    
+    @IBAction func navigateToFavorite(_ sender: Any) {
+        self.navigationController?.pushViewController(FavoriteViewController(), animated: true)
     }
     
     

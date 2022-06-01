@@ -16,13 +16,22 @@ class ShopingViewModel{
     private var network = NetworkService()
     
     var allProduct: [Product]?{
-        didSet{ self.bindProducts() }
+        didSet{
+            print("we are in all products")
+            self.bindProducts()
+        }
     }
     var categorys: [CustomCollection]?{
-        didSet{ self.bindCategorys() }
+        didSet{
+            print("we are in all categories")
+            self.bindCategorys()
+        }
     }
     var error: String?{
-        didSet{ self.bindError() }
+        didSet{
+            print("we are in error")
+            self.bindError()
+        }
     }
      
     
@@ -39,14 +48,17 @@ class ShopingViewModel{
     }
     
     
-    func fetchCustonCollection(){
+    func fetchCustomCollection(){
+        print("start of fetch categories")
         network.fetchCustomCatagegories { (customCollections, error) in
             if let error: Error = error{
                 let message = error.localizedDescription
                 self.error = message
+                print(message)
             } else {
                 if let respons = customCollections {
                     self.categorys = respons
+                    print(respons)
                 }
             }
             

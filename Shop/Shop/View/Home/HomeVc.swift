@@ -56,6 +56,14 @@ class HomeVc: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
+    @IBAction func navigateToCartScreen(_ sender: Any) {
+        self.navigationController?.pushViewController(CartView(), animated: true)
+    }
+    
+    @IBAction func navigateToFavoriteScreen(_ sender: Any) {
+        self.navigationController?.pushViewController(FavoriteViewController(), animated: true)
+    }
+    
 
 }
 
@@ -85,3 +93,4 @@ extension HomeVc: UICollectionViewDataSource, UICollectionViewDelegate,UICollect
         
     }
 }
+
