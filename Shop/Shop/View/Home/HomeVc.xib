@@ -21,20 +21,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="cf8-Yk-Wtd">
-                    <rect key="frame" x="8" y="414" width="398" height="448"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Uos-Gu-3Gg">
-                        <size key="itemSize" width="128" height="128"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="F5y-j0-B6i"/>
-                        <outlet property="delegate" destination="-1" id="xaL-9J-782"/>
-                    </connections>
-                </collectionView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2um-ej-hL1">
                     <rect key="frame" x="0.0" y="381.5" width="414" height="32.5"/>
                     <attributedString key="attributedText">
@@ -54,12 +40,33 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="125.5"/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="GIM-cA-LF3"/>
-                        <barButtonItem title="Item" image="heart" catalog="system" id="1zT-yL-8CI">
+                        <barButtonItem title="Item" image="heart" catalog="system" id="1zT-yL-8CI" userLabel="Favorite">
                             <color key="tintColor" systemColor="systemPinkColor"/>
+                            <connections>
+                                <action selector="navigateToFavoriteScreen:" destination="-1" id="A9y-MA-HKG"/>
+                            </connections>
                         </barButtonItem>
-                        <barButtonItem title="Item" image="cart" catalog="system" id="UFI-Kv-TvD"/>
+                        <barButtonItem title="Item" image="cart" catalog="system" id="UFI-Kv-TvD" userLabel="Cart">
+                            <connections>
+                                <action selector="navigateToCartScreen:" destination="-1" id="d0s-4k-uug"/>
+                            </connections>
+                        </barButtonItem>
                     </items>
                 </toolbar>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="cf8-Yk-Wtd">
+                    <rect key="frame" x="8" y="414" width="398" height="448"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Uos-Gu-3Gg">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="F5y-j0-B6i"/>
+                        <outlet property="delegate" destination="-1" id="xaL-9J-782"/>
+                    </connections>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
