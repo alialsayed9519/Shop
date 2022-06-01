@@ -72,16 +72,17 @@
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uM8-Y9-2Pa">
                     <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                     <items>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="UPG-FC-LPs"/>
-                        <barButtonItem image="heart" catalog="system" id="vcT-61-j2a" userLabel="favorite">
-                            <color key="tintColor" red="1" green="0.15338520552585266" blue="0.21661486259929597" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="GIM-cA-LF3"/>
+                        <barButtonItem title="Item" image="heart" catalog="system" id="1zT-yL-8CI" userLabel="Favorite">
+                            <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="navigateToFavorite:" destination="-1" id="dLG-R5-asb"/>
+                                <action selector="navigateToFavoriteScreen:" destination="-1" id="A9y-MA-HKG"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem image="cart" catalog="system" id="kYv-Ve-32R" userLabel="cart">
+                        <barButtonItem title="Item" image="cart" catalog="system" id="UFI-Kv-TvD" userLabel="Cart">
+                            <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="navigateToCart:" destination="-1" id="sn7-Av-7Pb"/>
+                                <action selector="navigateToCartScreen:" destination="-1" id="d0s-4k-uug"/>
                             </connections>
                         </barButtonItem>
                     </items>
