@@ -35,8 +35,8 @@ class ShopingViewModel{
     }
      
     
-    func fetchProducts (collectionID: String){
-        network.fetchProducts(collectionID: collectionID) { (products, error) in
+    func fetchProducts (collectionID: Int = 395727569125){
+        network.fetchProducts(collectionID: "\(collectionID)") { (products, error) in
             if let message = error?.localizedDescription{
                 self.error = message
             }else {
@@ -66,14 +66,15 @@ class ShopingViewModel{
     }
     
     func filterPorductsByMainCategory(itemIndex: Int, completion: @escaping () -> Void ){
-        guard let itemsArray = self.categorys else {
+        if self.categorys == nil {
             print("No categories yet")
-            return
+            fetchProducts()
+        }else{
+            if self.categorys!.count > 0{
+                fetchProducts(collectionID: categorys![itemIndex].id!)
+                self.bindProducts = completion
+            }
         }
-        if itemsArray.count > 0{
-            fetchProducts(collectionID: "\(String(describing: categorys![itemIndex].id!))")
-            self.bindProducts = completion
-        }
-    }
+            }
 }
  

@@ -25,8 +25,9 @@ class CategoryVc: UIViewController {
         collectionView.registerNib(cell: CatagoryCollectionViewCell.self)
 
         shopViewModel.fetchCustomCollection()
-        shopViewModel.bindProducts = self.updateViewwithProducts
+        shopViewModel.bindProducts = { self.updateViewwithProducts() }
         shopViewModel.filterPorductsByMainCategory(itemIndex: 0, completion: updateViewwithProducts)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

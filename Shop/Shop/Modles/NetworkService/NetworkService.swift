@@ -18,19 +18,14 @@ class NetworkService {
                 switch response.result {
                 case .success(_):
                     guard let data = response.value else { return }
-                    print("\(data.smart_collections?.count ?? 0)  empty array")
-                    print("NetworkService")
                     completion(data.smart_collections, nil)
                
                 case .failure(let error):
-                    print("ddddd")
                     completion(nil, error)
                 }
             }
      }
        
-
-
     func fetchCustomCatagegories (completion:@escaping ([CustomCollection]?, Error?) -> () ){
         AF.request(URLs.customCollections())
             .responseDecodable(of:CustomCollections.self){

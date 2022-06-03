@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class BrandsCollectionViewCell: UICollectionViewCell {
 
@@ -19,7 +20,10 @@ class BrandsCollectionViewCell: UICollectionViewCell {
     
     func updateUI(brand: SmartCollection) {
         self.name.text = brand.title
-        self.image.image = UIImage(named: (brand.image.src))
+        //self.image.image = UIImage(named: (brand.image.src))
+        
+        image.sd_setImage(with: URL(string: brand.image.src), placeholderImage: UIImage(named: "adidas.png"))
+        
         self.image.roundedImage()
     }
 

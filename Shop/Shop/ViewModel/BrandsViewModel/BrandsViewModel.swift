@@ -32,12 +32,9 @@ class BrandsViewModel {
     func fetchBrandsFromAPI(){
         networkService.getAllBrands() { (brands, error) in
             if let error: Error = error {
-                print("2222")
                 let message = error.localizedDescription
                 self.showError = message
-                print(message)
             } else {
-                print("BrandsViewModel")
                 self.smartCollection = brands
             }
         }
