@@ -13,20 +13,21 @@ class CategoryVc: UIViewController {
     
     
     private var products = [Product]()
-    private var mainCategory = [CustomCollection]()
+    private var mainCategories = [CustomCollection]()
     
     private let shopViewModel = ShopingViewModel()
+    
+    private var mainCategoryIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-
         collectionView.registerNib(cell: CatagoryCollectionViewCell.self)
 
         shopViewModel.fetchCustomCollection()
-        shopViewModel.bindProducts = { self.updateViewwithProducts() }
-        shopViewModel.filterPorductsByMainCategory(itemIndex: 0, completion: updateViewwithProducts)
+        shopViewModel.bindCategorys = onCategoriesSuccess
+        shopViewModel.bindProducts = onProductsSuccess
 
     }
     
@@ -35,7 +36,8 @@ class CategoryVc: UIViewController {
     }
     
     @IBAction func tabItemSelected(_ sender: UIBarButtonItem) {
-        shopViewModel.filterPorductsByMainCategory(itemIndex: sender.tag, completion: self.updateViewwithProducts)
+        self.mainCategoryIndex = sender.tag
+        shopViewModel.filterPorductsByMainCategory(itemIndex: mainCategoryIndex)
     }
     
     @IBAction func navigateToCart(_ sender: Any) {
@@ -78,14 +80,25 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
     }
 }
 
+
+// MARK: On Success Methods
 extension CategoryVc{
     
-    func updateViewwithProducts(){
+    func onCategoriesSuccess(){
+        guard let categories = shopViewModel.categorys else{
+            return
+        }
+        self.mainCategories = categories
+        shopViewModel.filterPorductsByMainCategory(itemIndex: mainCategoryIndex)
+    }
+    
+    func onProductsSuccess(){
         guard  let products = shopViewModel.allProduct else {
             print("there are no proucts yet")
             return
         }
         self.products = products
+        self.collectionView.reloadData()
     }
     
 }
