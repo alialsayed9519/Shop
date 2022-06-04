@@ -71,5 +71,9 @@ class ShopingViewModel{
         }
         fetchProducts(collectionID: categories[itemIndex].id!)
     }
+    
+    func filterPorductsBySubCategory(subCategoryName: String) {
+        
+    }
 }
  
