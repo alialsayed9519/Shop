@@ -73,7 +73,9 @@ class ShopingViewModel{
     }
     
     func filterPorductsBySubCategory(subCategoryName: String) {
-        
+        self.allProduct = allProduct?.filter{
+            ($0.product_type == subCategoryName)
+        }
     }
 }
  

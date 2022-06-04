@@ -103,6 +103,9 @@ extension CategoryVc{
             return
         }
         self.products = products
+        if let productType = subCategoryName {
+            shopViewModel.filterPorductsBySubCategory(subCategoryName: productType)
+        }
         self.collectionView.reloadData()
     }
 }
