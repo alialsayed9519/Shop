@@ -6,27 +6,33 @@
 //
 
 import UIKit
+import JJFloatingActionButton
 
 class CategoryVc: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tabBar: UIToolbar!
+    var actionButton = JJFloatingActionButton()
     
     
     private var products = [Product]()
-    private var mainCategory = [CustomCollection]()
+    private var mainCategories = [CustomCollection]()
     
     private let shopViewModel = ShopingViewModel()
+    
+    private var mainCategoryIndex = 0
+    private var subCategoryName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-
         collectionView.registerNib(cell: CatagoryCollectionViewCell.self)
 
+        createFAB()
+        
         shopViewModel.fetchCustomCollection()
-        shopViewModel.bindProducts = { self.updateViewwithProducts() }
-        shopViewModel.filterPorductsByMainCategory(itemIndex: 0, completion: updateViewwithProducts)
+        shopViewModel.bindCategorys = onCategoriesSuccess
+        shopViewModel.bindProducts = onProductsSuccess
 
     }
     
@@ -35,7 +41,8 @@ class CategoryVc: UIViewController {
     }
     
     @IBAction func tabItemSelected(_ sender: UIBarButtonItem) {
-        shopViewModel.filterPorductsByMainCategory(itemIndex: sender.tag, completion: self.updateViewwithProducts)
+        self.mainCategoryIndex = sender.tag
+        shopViewModel.filterPorductsByMainCategory(itemIndex: mainCategoryIndex)
     }
     
     @IBAction func navigateToCart(_ sender: Any) {
@@ -78,14 +85,87 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
     }
 }
 
+
+// MARK: On Success Methods
 extension CategoryVc{
     
-    func updateViewwithProducts(){
+    func onCategoriesSuccess(){
+        guard let categories = shopViewModel.categorys else{
+            return
+        }
+        self.mainCategories = categories
+        shopViewModel.filterPorductsByMainCategory(itemIndex: mainCategoryIndex)
+    }
+    
+    func onProductsSuccess(){
         guard  let products = shopViewModel.allProduct else {
             print("there are no proucts yet")
             return
         }
         self.products = products
+        if let productType = subCategoryName {
+            shopViewModel.filterPorductsBySubCategory(subCategoryName: productType)
+        }
+        self.collectionView.reloadData()
     }
-    
+}
+
+// MARK: FAB
+extension CategoryVc{
+    func createFAB(){
+        
+        actionButton.addItem(title: "shoes", image: UIImage(named: "shoes")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.actionButton.buttonImage = UIImage(named: "shoes")
+            self.subCategoryName = "SHOES"
+            self.shopViewModel.filterPorductsBySubCategory(subCategoryName: self.subCategoryName!)
+        }
+
+        actionButton.addItem(title: "T-Shirts", image: UIImage(named: "t-shirt")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.actionButton.buttonImage = UIImage(named: "t-shirt")
+            self.subCategoryName = "T-SHIRTS"
+            self.shopViewModel.filterPorductsBySubCategory(subCategoryName: self.subCategoryName!)
+        }
+
+        actionButton.addItem(title: "Accessres", image: UIImage(named: "accessres")?.withRenderingMode(.alwaysTemplate)) { item in
+            self.actionButton.buttonImage = UIImage(named: "accessres")
+            self.subCategoryName = "ACCESSRES"
+            self.shopViewModel.filterPorductsBySubCategory(subCategoryName: self.subCategoryName!)
+        }
+        
+        actionButton.display(inViewController: self)
+        customizFAB()
+    }
+    func customizFAB(){
+        actionButton.handleSingleActionDirectly = false
+        actionButton.buttonDiameter = 65
+        actionButton.overlayView.backgroundColor = UIColor(white: 0, alpha: 0.3)
+        actionButton.buttonImage = UIImage(named: "filter")
+        actionButton.buttonColor = .systemGreen
+        actionButton.buttonImageColor = .white
+        actionButton.buttonImageSize = CGSize(width: 30, height: 30)
+
+       // actionButton.buttonAnimationConfiguration = .transition(toImage: UIImage(named: "X"))
+        actionButton.itemAnimationConfiguration = .slideIn(withInterItemSpacing: 14)
+
+        actionButton.layer.shadowColor = UIColor.black.cgColor
+        actionButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        actionButton.layer.shadowOpacity = Float(0.4)
+        actionButton.layer.shadowRadius = CGFloat(2)
+
+        actionButton.itemSizeRatio = CGFloat(0.75)
+        actionButton.configureDefaultItem { item in
+            item.titlePosition = .trailing
+
+            item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
+            item.titleLabel.textColor = .white
+            item.buttonColor = .white
+            item.buttonImageColor = .red
+
+            item.layer.shadowColor = UIColor.black.cgColor
+            item.layer.shadowOffset = CGSize(width: 0, height: 1)
+            item.layer.shadowOpacity = Float(0.4)
+            item.layer.shadowRadius = CGFloat(2)
+        }
+    }
+
 }

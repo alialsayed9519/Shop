@@ -17,25 +17,25 @@ class ShopingViewModel{
     
     var allProduct: [Product]?{
         didSet{
-            print("we are in all products")
+            print("we are in all products computed property ")
             self.bindProducts()
         }
     }
     var categorys: [CustomCollection]?{
         didSet{
-            print("we are in all categories")
+            print("we are in categories computed property")
             self.bindCategorys()
         }
     }
     var error: String?{
         didSet{
-            print("we are in error")
+            print("we are in error computed property")
             self.bindError()
         }
     }
      
     
-    func fetchProducts (collectionID: Int = 395727569125){
+    func fetchProducts (collectionID: Int){
         network.fetchProducts(collectionID: "\(collectionID)") { (products, error) in
             if let message = error?.localizedDescription{
                 self.error = message
@@ -65,16 +65,17 @@ class ShopingViewModel{
         }
     }
     
-    func filterPorductsByMainCategory(itemIndex: Int, completion: @escaping () -> Void ){
-        if self.categorys == nil {
-            print("No categories yet")
-            fetchProducts()
-        }else{
-            if self.categorys!.count > 0{
-                fetchProducts(collectionID: categorys![itemIndex].id!)
-                self.bindProducts = completion
-            }
+    func filterPorductsByMainCategory(itemIndex: Int){
+        guard let categories = self.categorys else {
+            return
         }
-            }
+        fetchProducts(collectionID: categories[itemIndex].id!)
+    }
+    
+    func filterPorductsBySubCategory(subCategoryName: String) {
+        self.allProduct = allProduct?.filter{
+            ($0.product_type == subCategoryName)
+        }
+    }
 }
  

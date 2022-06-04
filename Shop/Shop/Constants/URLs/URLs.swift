@@ -24,6 +24,3 @@ struct URLs {
         return baseURL+"products.json?collection_id=\(collectionId)"
     }
 }
-
-
-
