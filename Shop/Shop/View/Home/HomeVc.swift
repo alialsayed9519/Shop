@@ -63,8 +63,6 @@ class HomeVc: UIViewController {
     @IBAction func navigateToFavoriteScreen(_ sender: Any) {
         self.navigationController?.pushViewController(FavoriteViewController(), animated: true)
     }
-    
-
 }
 
 extension HomeVc: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
