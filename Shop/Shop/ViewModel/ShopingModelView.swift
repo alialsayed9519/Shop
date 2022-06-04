@@ -34,7 +34,20 @@ class ShopingViewModel{
         }
     }
      
-    
+    func fetchOneProduct(productId:Int){
+        network.fetchOneProduct(productID: "\(productId)"){(products,error)
+            in
+            if let message=error?.localizedDescription{
+                self.error=message
+            }
+            else {
+                if let response=products{
+                    self.allProduct=response
+            }
+            }
+            
+        }
+    }
     func fetchProducts (collectionID: Int){
         network.fetchProducts(collectionID: "\(collectionID)") { (products, error) in
             if let message = error?.localizedDescription{
@@ -77,5 +90,7 @@ class ShopingViewModel{
             ($0.product_type == subCategoryName)
         }
     }
+    
+    
 }
  

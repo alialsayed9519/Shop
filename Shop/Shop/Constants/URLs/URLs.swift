@@ -23,4 +23,7 @@ struct URLs {
     static func products(collectionId:String)->String{
         return baseURL+"products.json?collection_id=\(collectionId)"
     }
+    static func getOneProduct(productId:String)->String{
+        return baseURL+"products\(productId).json"
+    }
 }

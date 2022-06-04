@@ -61,6 +61,23 @@ class NetworkService {
             }
         }
     }
-
+    func fetchOneProduct (productID:String, completion: @escaping ([Product]?, Error?) -> () ){
+       AF.request(URLs.getOneProduct(productId: productID))
+            .responseDecodable(of:AllProducts.self){
+           (response) in
+           switch response.result{
+           case .success(_):
+               guard let data=response.value
+               else {
+                   return
+               }
+               completion(data.products,nil)
+           case .failure(let error) :
+               completion(nil,error)
+           
+               
+           }
+       }
+   }
 
 }
