@@ -37,7 +37,7 @@ class CartItem: UITableViewCell {
     func updateUI(item: Product) {
         itemName.text = item.title
         itemCounter.text = String(describing: itemCounter)
-        itemPrice.text = String(describing: item.variants)
+        //itemPrice.text = String(describing: item.variants)
     }
     
 }

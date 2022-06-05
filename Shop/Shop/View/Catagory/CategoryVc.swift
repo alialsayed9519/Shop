@@ -26,8 +26,9 @@ class CategoryVc: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        collectionView.registerNib(cell: CatagoryCollectionViewCell.self)
-
+       // collectionView.registerNib(cell: CatagoryCollectionViewCell.self)
+        let nibCell = UINib(nibName: "CatagoryCollectionViewCell", bundle: nil)
+        collectionView.register(nibCell, forCellWithReuseIdentifier: "CatagoryCollectionViewCell")
         createFAB()
         
         shopViewModel.fetchCustomCollection()
@@ -68,7 +69,9 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueNib(indexPath: indexPath) as! CatagoryCollectionViewCell
+       // let cell = collectionView.dequeueNib(indexPath: indexPath) as! CatagoryCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatagoryCollectionViewCell", for: indexPath) as! CatagoryCollectionViewCell
+        
         let product = products[indexPath.row]
         cell.updateUI(product: product)
         return cell

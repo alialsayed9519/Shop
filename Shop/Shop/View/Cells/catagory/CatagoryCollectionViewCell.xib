@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CatagoryCollectionViewCell" customModule="Shop" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CatagoryCollectionViewCell" id="gTV-IL-0wX" customClass="CatagoryCollectionViewCell" customModule="Shop" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="427" height="282"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -37,7 +37,7 @@
                             <constraint firstAttribute="width" secondItem="CD9-3p-7BY" secondAttribute="height" multiplier="1:1" id="UsK-u6-5wJ"/>
                         </constraints>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="heart"/>
+                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
                     </button>
                 </subviews>
             </view>
@@ -63,6 +63,6 @@
     </objects>
     <resources>
         <image name="bag" width="635" height="560"/>
-        <image name="heart" width="24" height="24"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
     </resources>
 </document>

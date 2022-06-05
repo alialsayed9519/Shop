@@ -14,7 +14,6 @@ class NetworkService {
      func getAllBrands(completion: @escaping ([SmartCollection]?, Error?) -> ()) {
         AF.request(URLs.getCategoriesURL())
              .responseDecodable(of: Brand.self) { (response) in
-                print(response)
                 switch response.result {
                 case .success(_):
                     guard let data = response.value else { return }
@@ -26,7 +25,7 @@ class NetworkService {
             }
      }
        
-    func fetchCustomCatagegories (completion:@escaping ([CustomCollection]?, Error?) -> () ){
+    func fetchCustomCatagegories(completion:@escaping ([CustomCollection]?, Error?) -> () ){
         AF.request(URLs.customCollections())
             .responseDecodable(of:CustomCollections.self){
             (response) in
@@ -34,8 +33,8 @@ class NetworkService {
         case .success(_):
             guard let data = response.value
             else{return}
-                print("aaa")
-            completion(data.custom_collections, nil)
+                print(data.custom_collections?[0].title as Any)
+                completion(data.custom_collections, nil)
             case .failure(let error):
                 completion(nil,error)
             }
@@ -43,7 +42,7 @@ class NetworkService {
         }
     }
 
-     func fetchProducts (collectionID:String, completion: @escaping ([Product]?, Error?) -> () ){
+     func fetchProducts(collectionID:Int, completion: @escaping ([Product]?, Error?) -> () ){
         AF.request(URLs.products(collectionId: collectionID))
              .responseDecodable(of:AllProducts.self){
             (response) in
@@ -53,11 +52,11 @@ class NetworkService {
                 else {
                     return
                 }
+                print(data.products[0].title)
                 completion(data.products,nil)
             case .failure(let error) :
                 completion(nil,error)
-            
-                
+                print(error.localizedDescription)
             }
         }
     }

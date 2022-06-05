@@ -21,7 +21,7 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
 
     func updateUI(product: Product) {
         self.productPrice.text = product.title
-        self.productImage.sd_setImage(with: URL(string: product.images![0].src!), placeholderImage: UIImage(named: "adidas"))
+        //self.productImage.sd_setImage(with: URL(string: product.images[0].src ?? "adidas"), placeholderImage: UIImage(named: "adidas"))
     }
     
 }

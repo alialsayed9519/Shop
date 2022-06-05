@@ -35,12 +35,14 @@ class ShopingViewModel{
     }
      
     
-    func fetchProducts (collectionID: Int){
-        network.fetchProducts(collectionID: "\(collectionID)") { (products, error) in
+    func fetchProducts(collectionID: Int = 395727569125) {
+        network.fetchProducts(collectionID: collectionID) { (products, error) in
             if let message = error?.localizedDescription{
                 self.error = message
+                print(error?.localizedDescription)
             }else {
                 if let respons = products {
+                    print(respons[0])
                     self.allProduct = respons
                 }
             }
@@ -49,16 +51,13 @@ class ShopingViewModel{
     
     
     func fetchCustomCollection(){
-        print("start of fetch categories")
         network.fetchCustomCatagegories { (customCollections, error) in
             if let error: Error = error{
                 let message = error.localizedDescription
                 self.error = message
-                print(message)
             } else {
                 if let respons = customCollections {
                     self.categorys = respons
-                    print(respons)
                 }
             }
             
@@ -73,9 +72,9 @@ class ShopingViewModel{
     }
     
     func filterPorductsBySubCategory(subCategoryName: String) {
-        self.allProduct = allProduct?.filter{
-            ($0.product_type == subCategoryName)
-        }
+        //self.allProduct = allProduct?.filter{
+            //($0.productType == subCategoryName)
+        //}
     }
 }
  

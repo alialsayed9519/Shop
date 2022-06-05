@@ -20,7 +20,9 @@ struct URLs {
     static func customCollections()->String{
         return baseURL+"custom_collections.json"
     }
-    static func products(collectionId:String)->String{
+    static func products(collectionId:Int)->String{
         return baseURL+"products.json?collection_id=\(collectionId)"
     }
 }
+
+
