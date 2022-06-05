@@ -20,7 +20,7 @@
                         <rect key="frame" x="4" y="4" width="419" height="197.5"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vt2-ZY-4uA">
-                        <rect key="frame" x="4" y="205.5" width="38.5" height="21"/>
+                        <rect key="frame" x="4" y="207.5" width="38.5" height="21"/>
                         <attributedString key="attributedText">
                             <fragment content="price">
                                 <attributes>
@@ -31,30 +31,27 @@
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CD9-3p-7BY">
-                        <rect key="frame" x="388" y="209.5" width="31" height="31"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="CD9-3p-7BY" secondAttribute="height" multiplier="1:1" id="UsK-u6-5wJ"/>
-                        </constraints>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tW-XG-pb0">
+                        <rect key="frame" x="369" y="203.5" width="50" height="31"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                        <buttonConfiguration key="configuration" style="gray" image="heart" catalog="system" title="."/>
                     </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="Ujl-to-DGT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="0qO-Sf-EQa"/>
-                <constraint firstItem="CD9-3p-7BY" firstAttribute="top" secondItem="Ujl-to-DGT" secondAttribute="bottom" constant="8" id="8yI-I6-qVu"/>
-                <constraint firstItem="vt2-ZY-4uA" firstAttribute="top" secondItem="Ujl-to-DGT" secondAttribute="bottom" constant="4" id="Lnc-bZ-Z2s"/>
+                <constraint firstAttribute="trailing" secondItem="6tW-XG-pb0" secondAttribute="trailing" constant="8" id="BuS-KI-gUh"/>
+                <constraint firstItem="vt2-ZY-4uA" firstAttribute="top" secondItem="Ujl-to-DGT" secondAttribute="bottom" constant="6" id="Lnc-bZ-Z2s"/>
                 <constraint firstItem="vt2-ZY-4uA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="XLy-C3-nee"/>
                 <constraint firstItem="Ujl-to-DGT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="bJI-Y9-5xH"/>
-                <constraint firstItem="CD9-3p-7BY" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.109929" id="d8O-e7-mYq"/>
-                <constraint firstAttribute="trailing" secondItem="CD9-3p-7BY" secondAttribute="trailing" constant="8" id="hTN-oo-m1k"/>
+                <constraint firstItem="6tW-XG-pb0" firstAttribute="top" secondItem="Ujl-to-DGT" secondAttribute="bottom" constant="2" id="gDm-jZ-eFl"/>
                 <constraint firstItem="Ujl-to-DGT" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.7" id="qFH-2q-m12"/>
                 <constraint firstAttribute="trailing" secondItem="Ujl-to-DGT" secondAttribute="trailing" constant="4" id="v8j-9u-FF5"/>
             </constraints>
             <size key="customSize" width="427" height="282"/>
             <connections>
+                <outlet property="favProductBtn" destination="6tW-XG-pb0" id="4Ne-ni-kBQ"/>
                 <outlet property="productImage" destination="Ujl-to-DGT" id="jcD-KB-BnV"/>
                 <outlet property="productPrice" destination="vt2-ZY-4uA" id="bfs-P4-p2e"/>
             </connections>

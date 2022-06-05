@@ -8,15 +8,22 @@
 import UIKit
 
 class FavoriteViewController: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    let coreDataManager = CoreDataManager()
+    private var favProducts = [Product]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.title = "Favorite"
         // Do any additional setup after loading the view.
-        collectionView.registerNib(cell: CatagoryCollectionViewCell.self)
+       // collectionView.registerNib(cell: CatagoryCollectionViewCell.self)
+        let nibCell = UINib(nibName: "CatagoryCollectionViewCell", bundle: nil)
+        collectionView.register(nibCell, forCellWithReuseIdentifier: "CatagoryCollectionViewCell")
         
+        favProducts = coreDataManager.getAllFavoriteProducts() ?? []
+        print(favProducts.count)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,19 +40,22 @@ extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-      return 0
+      print("\(favProducts.count)  nnnnnnnnnn")
+        return favProducts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueNib(indexPath: indexPath) as! CatagoryCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatagoryCollectionViewCell", for: indexPath) as! CatagoryCollectionViewCell
         
+        let product = favProducts[indexPath.row]
+        cell.updateUI(product: product)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             let side = (view.frame.size.width - 30 )/3
             return CGSize(width: side, height: side)
-        }
+    }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
