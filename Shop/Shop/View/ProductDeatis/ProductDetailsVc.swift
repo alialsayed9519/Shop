@@ -7,6 +7,7 @@
 
 import UIKit
 import Cosmos
+import SDWebImage
 class ProductDetailsVc: UIViewController {
     var product:Product!
     var ratings=[4,4.5,5]
@@ -15,11 +16,13 @@ class ProductDetailsVc: UIViewController {
     @IBOutlet weak var imageControl: UIPageControl!
     
     
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var reviewTextView: UITextView!
     
     @IBOutlet weak var ratingCosmos: CosmosView!
     @IBOutlet weak var priceLabel: UILabel!
     
+    @IBOutlet weak var navigationtitle: UINavigationItem!
     @IBOutlet weak var descTextView: UITextView!
     @IBOutlet weak var favButton: UIButton!
     @IBOutlet weak var addToBag: UIButton!
@@ -27,9 +30,10 @@ class ProductDetailsVc: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 displayProduct()
-        navigationItem.backBarButtonItem=UIBarButtonItem(
-            title: "Category", style: .plain, target: nil, action: nil)
-                addToBag.backgroundColor = .blue
+        
+        let backItem = UIBarButtonItem()
+            backItem.title = "Category"
+        navigationtitle.backBarButtonItem = backItem;                addToBag.backgroundColor = .blue
         addToBag.layer.cornerRadius = 20
 let productCell=UINib(nibName:productImageCell , bundle: nil)
         productImageCollectionView.register(productCell, forCellWithReuseIdentifier: productImageCell)
@@ -37,10 +41,13 @@ let productCell=UINib(nibName:productImageCell , bundle: nil)
         // Do any additional setup after loading the view.
     }
     func displayProduct(){
-        title=product.vendor
-        reviewTextView.text=product.product_type
-        descTextView.text=product.description
-        priceLabel.text=product.variants![0].price
+        navigationtitle.title=product?.vendor
+//        navigationtitle.backBarButtonItem
+       // navigationItem.title=product?.vendor
+        //title=product?.vendor
+        reviewTextView.text=product?.product_type
+        descTextView.text=product?.body_html
+        priceLabel.text=product?.variants![0].price
         ratingCosmos.rating=ratings.randomElement()!
         
         
@@ -62,14 +69,18 @@ extension ProductDetailsVc:UICollectionViewDelegate,UICollectionViewDataSource{
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        imageControl.numberOfPages=product.images!.count
-        return product.images!.count
+        imageControl.numberOfPages=product.images.count
+        return product.images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let imageCell=collectionView.dequeueReusableCell(withReuseIdentifier: productImageCell, for: indexPath) as! ProductImageCellCollectionViewCell
-        imageCell.productImg.image=UIImage(named: product.images![indexPath.row].src!)
-       
+        
+        let ImageSrc = product.images[indexPath.row].src
+        print(ImageSrc)
+        imageCell.productImg.sd_setImage(with: URL(string: ImageSrc), placeholderImage: UIImage(named: "adidas.png"))
+
+      //  imageCell.productImg.sd_setImage(with: URL(string: ImageSrc), completed: nil)
         return imageCell
     }
     
