@@ -8,7 +8,8 @@
 import UIKit
 import TextFieldEffects
 class registerVc: UIViewController {
-
+    var first_name,last_name,email,password:String!
+    var registerViewModel:regTemp=RegisterViewModel()
     @IBOutlet weak var regImg: UIImageView!
     
     @IBOutlet weak var regiBtn: UIButton!
@@ -31,6 +32,12 @@ class registerVc: UIViewController {
     }
     
      @IBAction func regisBtn(_ sender: Any) {
+         first_name=fnameTf.text ?? ""
+         last_name=lnameTf.text ?? ""
+         email=emailTf.text ?? ""
+         password=passTf.text ?? ""
+         registerViewModel.register(firstName: first_name, lastName: last_name, email: email, password: password)
+         
          self.navigationController?.pushViewController(HomeVc(), animated: true)
      }
     /*
