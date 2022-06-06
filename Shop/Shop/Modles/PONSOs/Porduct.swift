@@ -13,8 +13,15 @@ struct AllProducts:Codable{
 struct Product: Codable {
     let id: Int
     let title, body_html, vendor: String
+    var images:[productImage]?
+    var variants:[productvariants]?
+}
 
+struct productvariants:Codable{
+    var id: Int
+    var price:String
+}
 
-
-
+struct productImage:Codable{
+    var src:String?
 }
