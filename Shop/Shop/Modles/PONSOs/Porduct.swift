@@ -18,6 +18,7 @@ struct Product: Codable {
 }
 
 struct productvariants:Codable{
+    var id: Int
     var price:String
 }
 

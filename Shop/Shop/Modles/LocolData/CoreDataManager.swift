@@ -22,10 +22,10 @@ class CoreDataManager {
         let favoriteProduct: NSManagedObject = NSManagedObject(entity: entity!, insertInto: managedContext)
         
         favoriteProduct.setValue(product.title, forKey: "title")
-        favoriteProduct.setValue(product.id, forKey: "id")
-        favoriteProduct.setValue(product.images?[0].src , forKey: "image")
+        favoriteProduct.setValue(product.variants![0].id, forKey: "id")
+        favoriteProduct.setValue(product.images![0].src , forKey: "image")
         favoriteProduct.setValue(product.body_html , forKey: "descrp")
-        favoriteProduct.setValue(product.variants?[0].price ?? "0", forKey: "price")
+        favoriteProduct.setValue(product.variants![0].price, forKey: "price")
         
         do {
             try managedContext.save()
@@ -51,7 +51,7 @@ class CoreDataManager {
         }
     }
     
-    func getAllFavoriteProducts() -> [Product]? {
+    func getAllFavoriteProducts() -> [Product] {
         var list: [Product] = []
         let managedContext =  appDelegate!.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteList")
@@ -63,7 +63,7 @@ class CoreDataManager {
                 let price = product.value(forKey: "price") as! String
                 let description = product.value(forKey: "descrp") as! String
                 let title = product.value(forKey: "title") as! String
-                let prod = Product(id: id, title: title, body_html: description, vendor: "nil", images: [productImage(src: image)], variants: [productvariants(price: price)])
+                let prod = Product(id: 0, title: title, body_html: description, vendor: "nil", images: [productImage(src: image)], variants: [productvariants(id: id, price: price)])
                 list.append(prod)
             }
         } catch {

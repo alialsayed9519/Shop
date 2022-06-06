@@ -12,8 +12,7 @@ class CategoryVc: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tabBar: UIToolbar!
     var actionButton = JJFloatingActionButton()
-    var coreDataManager: CoreDataManager?
-    
+    private let favoriteViewModel = FavoriteViewModel()
     private var products = [Product]()
     private var mainCategories = [CustomCollection]()
     
@@ -26,12 +25,11 @@ class CategoryVc: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-       // collectionView.registerNib(cell: CatagoryCollectionViewCell.self)
+        
         let nibCell = UINib(nibName: "CatagoryCollectionViewCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "CatagoryCollectionViewCell")
         createFAB()
        
-        coreDataManager = CoreDataManager()
         
         shopViewModel.fetchCustomCollection()
         shopViewModel.bindCategorys = onCategoriesSuccess
@@ -84,8 +82,7 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
     
     @objc func addProductToFav(sender: UIButton) {
         let index = IndexPath(row: sender.tag, section: 0)
-        coreDataManager?.addProductToFavorite(product: products[index.row])
-        print(products[index.row].variants![0].price)
+        favoriteViewModel.addProductToFavorite(product: products[index.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

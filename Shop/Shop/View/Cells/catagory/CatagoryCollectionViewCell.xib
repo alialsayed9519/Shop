@@ -32,9 +32,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tW-XG-pb0">
-                        <rect key="frame" x="369" y="203.5" width="50" height="31"/>
+                        <rect key="frame" x="373.5" y="203.5" width="45.5" height="31"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="gray" image="heart" catalog="system" title="."/>
+                        <buttonConfiguration key="configuration" style="gray" image="suit.heart" catalog="system"/>
                     </button>
                 </subviews>
             </view>
@@ -60,6 +60,6 @@
     </objects>
     <resources>
         <image name="bag" width="635" height="560"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="suit.heart" catalog="system" width="128" height="109"/>
     </resources>
 </document>
