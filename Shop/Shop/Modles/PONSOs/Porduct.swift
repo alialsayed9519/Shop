@@ -12,16 +12,23 @@ struct AllProducts:Codable{
 // MARK: - Product
 struct Product: Codable {
     let id: Int
-    let title, body_html, vendor: String
-    var images:[productImage]?
-    var variants:[productvariants]?
+    let title, body_html, vendor,product_type: String
+    let images:[productImage]
+    let opitions:[productOpitions]?
+    let variants:[Variant]?
 }
-
-struct productvariants:Codable{
-    var id: Int
-    var price:String
-}
-
 struct productImage:Codable{
-    var src:String?
+    let id:Int
+    let product_id:Int
+    let src:String
+}
+struct productOpitions:Codable{
+ let id:Int
+let product_id:Int
+    let values:[String]?
+}
+struct Variant:Codable{
+    let id:Int
+    let product_id:Int
+    let price:String
 }

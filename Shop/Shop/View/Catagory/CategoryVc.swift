@@ -93,6 +93,9 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let product = products[indexPath.row]
         print("\(String(describing: product.title)) in index  \(indexPath.row + 1)")
+        let vc = ProductDetailsVc()
+        vc.product=product
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
