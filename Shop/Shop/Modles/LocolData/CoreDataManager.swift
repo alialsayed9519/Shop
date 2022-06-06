@@ -23,7 +23,7 @@ class CoreDataManager {
         
         favoriteProduct.setValue(product.title, forKey: "title")
         favoriteProduct.setValue(product.variants![0].id, forKey: "id")
-        favoriteProduct.setValue(product.images![0].src , forKey: "image")
+        favoriteProduct.setValue(product.images[0].src , forKey: "image")
         favoriteProduct.setValue(product.body_html , forKey: "descrp")
         favoriteProduct.setValue(product.variants![0].price, forKey: "price")
         
@@ -63,7 +63,7 @@ class CoreDataManager {
                 let price = product.value(forKey: "price") as! String
                 let description = product.value(forKey: "descrp") as! String
                 let title = product.value(forKey: "title") as! String
-                let prod = Product(id: 0, title: title, body_html: description, vendor: "nil", images: [productImage(src: image)], variants: [productvariants(id: id, price: price)])
+                let prod = Product(id: 0, title: title, body_html: description, vendor: "", product_type: "", images: [productImage(id: 0, product_id: 0, src: image)], opitions: nil, variants: [Variant(id: id, product_id: 0, price: price)])
                 list.append(prod)
             }
         } catch {

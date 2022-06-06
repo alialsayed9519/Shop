@@ -25,7 +25,7 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
 
     func updateUI(product: Product) {
         self.productPrice.text = product.variants?[0].price ?? "123"
-        self.productImage.sd_setImage(with: URL(string: product.images![0].src ?? "adidas"), placeholderImage: UIImage(named: "adidas"))
+        self.productImage.sd_setImage(with: URL(string: product.images[0].src ?? "adidas"), placeholderImage: UIImage(named: "adidas"))
         self.favProductBtn.setTitle("", for: .normal)
      
         if favoriteViewModel.isProductFavoriteWith(id: product.variants![0].id) {
