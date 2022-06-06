@@ -76,13 +76,13 @@
                         <barButtonItem title="Item" image="heart" catalog="system" id="1zT-yL-8CI" userLabel="Favorite">
                             <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="navigateToFavoriteScreen:" destination="-1" id="A9y-MA-HKG"/>
+                                <action selector="navigateToFavorite:" destination="-1" id="xBe-rO-RWO"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem title="Item" image="cart" catalog="system" id="UFI-Kv-TvD" userLabel="Cart">
                             <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="navigateToCartScreen:" destination="-1" id="d0s-4k-uug"/>
+                                <action selector="navigateToCart:" destination="-1" id="pfF-Bq-48w"/>
                             </connections>
                         </barButtonItem>
                     </items>
