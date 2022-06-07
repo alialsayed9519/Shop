@@ -50,4 +50,9 @@ class FavoriteViewModel {
         self.favoriteProducts = coreDataManager.getAllFavoriteProducts()
     }
     
+    func isFavoriteProductsExistinCoreData() -> Bool {
+        print("getAllFavoriteProductsFromDataCore")
+        self.favoriteProducts = coreDataManager.getAllFavoriteProducts()
+        return favoriteProducts?.count != 0
+    }
 }

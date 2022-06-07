@@ -10,6 +10,7 @@ import UIKit
 class HomeVc: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     
+    @IBOutlet private weak var internetImage: UIImageView!
     @IBOutlet private weak var addsImage: UIImageView!
     private let brandsCollectionViewCellId = "BrandsCollectionViewCell"
     private var brands: [SmartCollection] = []
@@ -30,7 +31,9 @@ class HomeVc: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        collectionView.reloadData()
+        if ReachabilityViewModel.isConnected() {
+            internetImage.isHidden = true
+        }
     }
     
     func showAddsImages() {
@@ -41,12 +44,12 @@ class HomeVc: UIViewController {
         addsImage.startAnimating()
     }
 
-    func onSuccessUpdateView(){
+    func onSuccessUpdateView() {
         brands = brandsViewModel.smartCollection ?? []
         self.collectionView.reloadData()
     }
     
-    func onFailUpdateView(){
+    func onFailUpdateView() {
         let alert = UIAlertController(title: "Error", message: brandsViewModel.showError, preferredStyle: .alert)
         let okAction  = UIAlertAction(title: "Ok", style: .default) { (UIAlertAction) in
             
