@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import RxCocoa
+import RxSwift
 protocol regTemp{
     var alertMsgDriver:Driver<String> {get}
-    var alertMsgSubject:PublicSubject<String>{get}
+    var alertMsgSubject:PublishSubject<String>{get}
     func register(firstName:String,lastName:String,email:String,password:String)
     
 }
@@ -16,9 +18,9 @@ class RegisterViewModel:regTemp{
     let network=NetworkService()
     let defaults:userDefaultsprotocol=userDefault()
     var alertMsgDriver:Driver<String>
-    var alertMsgSubject:PublicSubject<String>()
+    var alertMsgSubject = PublishSubject<String>()
     init() {
-        alertMsgDriver=alertMsgSubject.asDriver()
+        alertMsgDriver=alertMsgSubject.asDriver(onErrorJustReturn: "")
     }
     func register(firstName: String, lastName: String, email: String, password: String) {
         if firstName != ""{
@@ -53,8 +55,8 @@ class RegisterViewModel:regTemp{
                     let name=getCustomer?["first_name"] as? String ?? ""
                     if id != 0 {
                         self?.defaults.login()
-                        self?.defaults.addId(id: id)
-                        self?.defaults.addUserNAme(userName:name)
+                        self?.defaults.setId(id: id)
+                        self?.defaults.setUserNAme(userName:name)
                         self?.alertMsgSubject.onNext("registered successfully")}
                         else{
                             self?.alertMsgSubject.onNext("An error occurred while registering")

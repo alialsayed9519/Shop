@@ -7,16 +7,17 @@
 
 import Foundation
 protocol userDefaultsprotocol{
-    func addUserNAme(userName:String)
-    func addId(id:Int)
+    func setUserNAme(userName:String)
+    func setId(id:Int)
     func login()
+    
 }
 class userDefault:userDefaultsprotocol{
     let Defaults=UserDefaults.standard
-    func addUserNAme(userName: String) {
+    func setUserNAme(userName: String) {
         UserDefaults.standard.set(userName, forKey: "name")
     }
-    func addId(id: Int) {
+    func setId(id: Int) {
         UserDefaults.standard.set(id, forKey: "id")
     }
     
