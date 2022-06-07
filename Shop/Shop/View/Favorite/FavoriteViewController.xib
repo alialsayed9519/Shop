@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavoriteViewController" customModule="Shop" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="Db8-6F-g4W" id="Ylq-gH-w8L"/>
+                <outlet property="noProductsLabel" destination="Xoa-kL-r2A" id="AKv-8w-Ewg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,6 +35,18 @@
                         <outlet property="delegate" destination="-1" id="AUh-rJ-VFl"/>
                     </connections>
                 </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xoa-kL-r2A">
+                    <rect key="frame" x="81.5" y="431" width="251" height="34.5"/>
+                    <attributedString key="attributedText">
+                        <fragment content="No Products Added ">
+                            <attributes>
+                                <font key="NSFont" metaFont="system" size="31"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -41,7 +54,9 @@
                 <constraint firstItem="Db8-6F-g4W" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="1N1-64-h8l"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Db8-6F-g4W" secondAttribute="trailing" id="Kil-OX-tZ2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Db8-6F-g4W" secondAttribute="bottom" id="Lbp-Qj-gdD"/>
+                <constraint firstItem="Xoa-kL-r2A" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="p0f-yZ-woW"/>
                 <constraint firstItem="Db8-6F-g4W" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pOP-c3-bCd"/>
+                <constraint firstItem="Xoa-kL-r2A" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="szf-0L-kvb"/>
             </constraints>
             <point key="canvasLocation" x="139" y="128"/>
         </view>
