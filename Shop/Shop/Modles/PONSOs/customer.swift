@@ -30,4 +30,6 @@ extension Encodable{
     }
 }
 
-
+struct Login:Codable{
+    let customers:[Customers]
+}

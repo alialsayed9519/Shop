@@ -8,7 +8,9 @@
 import UIKit
 import TextFieldEffects
 class loginvc: UIViewController {
-
+    var delegate=UIApplication.shared.delegate as! AppDelegate
+    var loginviewModel:loginTemp
+    var email,password:String!
     @IBOutlet weak var signInBtn: UIButton!
     @IBOutlet weak var loginImg: UIImageView!
     
@@ -17,7 +19,7 @@ class loginvc: UIViewController {
     @IBOutlet weak var passTf: HoshiTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+      loginviewModel=LoginViewModel(appdelegate: &delegate)
       //  signInBtn.backgroundColor =  .green
         signInBtn.layer.cornerRadius=20
         loginImg.image=UIImage(named: "shop")
@@ -26,6 +28,9 @@ class loginvc: UIViewController {
 
 
     @IBAction func signInBtn(_ sender: Any) {
+        email=emailTf.text
+        password=passTf.text
+        loginviewModel.login(email: email, password: password)
         self.navigationController?.pushViewController(HomeVc(), animated: true)
     }
     

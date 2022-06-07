@@ -10,6 +10,12 @@ import Alamofire
 
 
 class NetworkService {
+    func login(email:String,password:String,completion:@escaping(DataResponse<Login,AFError>)->()){
+        AF.request(URLs.customer()).validate().responseDecodable(of:Login.self){
+            (response) in
+            completion (response)
+        }
+    }
     func register(newCutomer:Customer,compeletion:@escaping(Data?,URLResponse?,Error?)->()){
         guard let url=URL(string:URLs.customer()) else
         {return}
