@@ -12,6 +12,9 @@ class AddressCell: UITableViewCell {
     @IBOutlet weak var country: UILabel!
     @IBOutlet weak var cityAddress: UILabel!
     @IBOutlet weak var phone: UILabel!
+    
+    var delegate: NavigationHelper?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,6 +27,12 @@ class AddressCell: UITableViewCell {
     }
     
     @IBAction func editAddress(_ sender: Any) {
-        
+        self.delegate?.editAddrss()
+
+    }
+    func updateUI(address: Address){
+        country.text = address.country
+        cityAddress.text = address.city! + ", " + address.detailedAddress!
+        phone.text = address.phone!
     }
 }

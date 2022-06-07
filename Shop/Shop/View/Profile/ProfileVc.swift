@@ -29,27 +29,45 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 cell.image1.image = UIImage(named: "shopping-bag")
                 cell.name.text = "My Orders"
-                cell.accessoryType = .disclosureIndicator
             case 1:
                 cell.image1.image = UIImage(named: "heart")
                 cell.name.text = "My Wishlist"
-                cell.accessoryType = .disclosureIndicator
             default:
                 cell.image1.image = UIImage(named: "address")
-                cell.name.text = "Add New Address"
-                cell.accessoryType = .disclosureIndicator
+                cell.name.text = "Address"
             }
             
         default:
                 cell.image1.image = UIImage(named: "aboutUs")
                 cell.name.text = "About us"
-                cell.accessoryType = .disclosureIndicator
         }
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
+    }
+    
+    
+    
+    
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                print("order")
+            case 1:
+                print("whislist")
+            default:
+                self.navigationController?.pushViewController(AddressesTable(), animated: true)
+            }
+            
+        default:
+            print("about us")
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

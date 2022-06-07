@@ -14,6 +14,8 @@ class AddAddress: UIViewController {
     @IBOutlet weak var TFAddress: UITextField!
     @IBOutlet weak var TFPhone: UITextField!
     
+    var editFlag: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +23,7 @@ class AddAddress: UIViewController {
     }
     
     @IBAction func addAddress(_ sender: Any) {
-        
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
