@@ -30,13 +30,13 @@ class RegisterViewModel:regTemp{
     func register(firstName: String, lastName: String, email: String, password: String) {
         if firstName != ""{
             if checkEmailValidation(email: email){
-                if password.count<6{
+                if password.count >= 6{
                     let customer = Customers(first_name: firstName, last_name: lastName, email: email, phone: nil, tags: password, id: nil, verified_email: true, addresses: nil)
                    let newCustomer=Customer(customer: customer)
                     register(customer: newCustomer)
                 }
                 else{
-                    alertMsgSubject.onNext("pass must not be less than 6 characters")
+                    alertMsgSubject.onNext("Password should be 6 characters at least")
                 }
                 
             }else{
