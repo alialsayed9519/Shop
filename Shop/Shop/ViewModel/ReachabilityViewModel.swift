@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Reachability
 
 class ReachabilityViewModel {
     static func isConnected() -> Bool {

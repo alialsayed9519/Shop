@@ -8,7 +8,8 @@
 import UIKit
 import TextFieldEffects
 class registerVc: UIViewController {
-
+    var first_name,last_name,email,password:String!
+    var registerViewModel:regTemp=RegisterViewModel()
     @IBOutlet weak var regImg: UIImageView!
     
     @IBOutlet weak var regiBtn: UIButton!
@@ -22,26 +23,44 @@ class registerVc: UIViewController {
        // regiBtn.backgroundColor =.green
         regiBtn.layer.cornerRadius=20
         regImg.image=UIImage(named: "shop")
+        bindToViewModel()
         // Do any additional setup after loading the view.
     }
 
-
-
+    func bindToViewModel(){
+        let _=registerViewModel.alertMsgDriver.drive(onNext: {
+            [weak self] (message) in
+            (self?.showAlert(message: message))
+        }, onCompleted: nil, onDisposed:nil )
+        registerViewModel.navigate={[weak self ]
+            in
+            self?.navigate()
+        }
+    }
+    func navigate(){
+        self.navigationController?.pushViewController(HomeVc(), animated: true)
+    }
     @IBAction func loginBtn(_ sender: Any) {
         self.navigationController?.pushViewController(loginvc(), animated: true)
     }
     
      @IBAction func regisBtn(_ sender: Any) {
-         self.navigationController?.pushViewController(HomeVc(), animated: true)
+         first_name=fnameTf.text ?? ""
+         last_name=lnameTf.text ?? ""
+         email=emailTf.text ?? ""
+         password=passTf.text ?? ""
+         registerViewModel.register(firstName: first_name, lastName: last_name, email: email, password: password)
+         
+        
      }
-    /*
-     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func showAlert(message:String){
+        let alert=UIAlertController(title: "warning", message: message, preferredStyle: .alert)
+        let okAction=UIAlertAction(title: "OK", style: .default){
+            (action) in
+            print("alert")
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
     }
-    */
 
 }

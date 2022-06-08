@@ -32,7 +32,7 @@ class AddressCell: UITableViewCell {
     }
     func updateUI(address: Address){
         country.text = address.country
-        cityAddress.text = address.city! + ", " + address.detailedAddress!
+        cityAddress.text = address.city! + ", " + address.address1!
         phone.text = address.phone!
     }
 }

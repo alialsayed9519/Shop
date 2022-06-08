@@ -3,6 +3,12 @@ PODS:
   - Cosmos (23.0.0)
   - JJFloatingActionButton (2.5.0)
   - ReachabilitySwift (5.0.0)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
   - SDWebImage (5.12.5):
     - SDWebImage/Core (= 5.12.5)
   - SDWebImage/Core (5.12.5)
@@ -13,6 +19,8 @@ DEPENDENCIES:
   - Cosmos
   - JJFloatingActionButton
   - ReachabilitySwift
+  - RxCocoa
+  - RxSwift
   - SDWebImage (~> 5.0)
   - TextFieldEffects
 
@@ -22,6 +30,9 @@ SPEC REPOS:
     - Cosmos
     - JJFloatingActionButton
     - ReachabilitySwift
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SDWebImage
     - TextFieldEffects
 
@@ -30,9 +41,12 @@ SPEC CHECKSUMS:
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   JJFloatingActionButton: fdc3aefb0f28f04d0f988fa25d5fac97028a9ea7
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: 5a8bbf9f4282ea2dba83090026af7d0f9aa802cb
+PODFILE CHECKSUM: 5ffc0435a00878f669df07e4d34e2d238f3c20ce
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.8.4
