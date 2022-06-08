@@ -9,9 +9,9 @@ import Foundation
 import Alamofire
 protocol loginTemp{
     func login(email:String,password:String)
-    var notFound:Bool {get set}
-    var navigate:Bool {get set}
-    var alertMessage:String {get}
+    var notFound:Bool! {get set}
+    var navigate:Bool! {get set}
+    var alertMessage:String! {get}
     var bindNavigate:(()->()) {get set}
     var bindDontNavigate:(()->()) {get set}
     
@@ -72,20 +72,20 @@ class LoginViewModel:loginTemp{
         }
     }
     
-    var notFound: Bool{
+    var notFound: Bool!{
         didSet{
             bindDontNavigate()
         }
     }
     
-    var navigate: Bool{
+    var navigate: Bool!{
         didSet
         {
         bindNavigate()
         }
     }
     
-    var alertMessage: String{
+    var alertMessage: String!{
         didSet{
         bindDontNavigate()
         }

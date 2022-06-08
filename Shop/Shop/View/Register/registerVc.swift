@@ -23,11 +23,23 @@ class registerVc: UIViewController {
        // regiBtn.backgroundColor =.green
         regiBtn.layer.cornerRadius=20
         regImg.image=UIImage(named: "shop")
+        bindToViewModel()
         // Do any additional setup after loading the view.
     }
 
-
-
+    func bindToViewModel(){
+        let _=registerViewModel.alertMsgDriver.drive(onNext: {
+            [weak self] (message) in
+            (self?.showAlert(message: message))
+        }, onCompleted: nil, onDisposed:nil )
+        registerViewModel.navigate={[weak self ]
+            in
+            self?.navigate()
+        }
+    }
+    func navigate(){
+        self.navigationController?.pushViewController(HomeVc(), animated: true)
+    }
     @IBAction func loginBtn(_ sender: Any) {
         self.navigationController?.pushViewController(loginvc(), animated: true)
     }
@@ -39,16 +51,16 @@ class registerVc: UIViewController {
          password=passTf.text ?? ""
          registerViewModel.register(firstName: first_name, lastName: last_name, email: email, password: password)
          
-         self.navigationController?.pushViewController(HomeVc(), animated: true)
+        
      }
-    /*
-     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func showAlert(message:String){
+        let alert=UIAlertController(title: "warning", message: message, preferredStyle: .alert)
+        let okAction=UIAlertAction(title: "OK", style: .default){
+            (action) in
+            print("alert")
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
     }
-    */
 
 }

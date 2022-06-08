@@ -12,9 +12,14 @@ protocol regTemp{
     var alertMsgDriver:Driver<String> {get}
     var alertMsgSubject:PublishSubject<String>{get}
     func register(firstName:String,lastName:String,email:String,password:String)
+    var navigate:()->(){set get}
     
 }
 class RegisterViewModel:regTemp{
+    var navigate={
+        print ("navigation")
+    }
+    
     let network=NetworkService()
     let defaults:userDefaultsprotocol=userDefault()
     var alertMsgDriver:Driver<String>
@@ -24,18 +29,18 @@ class RegisterViewModel:regTemp{
     }
     func register(firstName: String, lastName: String, email: String, password: String) {
         if firstName != ""{
-            if password.count>=6{
-                if checkEmailValidation(email: email){
+            if checkEmailValidation(email: email){
+                if password.count<6{
                     let customer = Customers(first_name: firstName, last_name: lastName, email: email, phone: nil, tags: password, id: nil, verified_email: true, addresses: nil)
                    let newCustomer=Customer(customer: customer)
                     register(customer: newCustomer)
                 }
                 else{
-                    alertMsgSubject.onNext("Please enter a valid mail")
+                    alertMsgSubject.onNext("pass must not be less than 6 characters")
                 }
                 
             }else{
-                alertMsgSubject.onNext("Pass must be 6 characters at lest")
+                alertMsgSubject.onNext("please enter a valid email")
             }
         }else{
             alertMsgSubject.onNext("Please your firstName")
@@ -57,9 +62,15 @@ class RegisterViewModel:regTemp{
                         self?.defaults.login()
                         self?.defaults.setId(id: id)
                         self?.defaults.setUserNAme(userName:name)
-                        self?.alertMsgSubject.onNext("registered successfully")}
+                        DispatchQueue.main.async {
+                            self?.navigate()
+                        }
+                        self?.alertMsgSubject.onNext("registered successfully")
+                        print("registered successfully")
+                    }
                         else{
                             self?.alertMsgSubject.onNext("An error occurred while registering")
+                            print("error occurred while reg")
                         }
                         
                     }

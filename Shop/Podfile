@@ -22,5 +22,6 @@ pod 'SDWebImage', '~> 5.0'
 pod 'TextFieldEffects'
 pod 'Cosmos'
 pod 'JJFloatingActionButton'
-
+pod 'RxSwift' 
+pod 'RxCocoa' 
 end
