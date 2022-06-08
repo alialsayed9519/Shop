@@ -15,6 +15,7 @@
                 <outlet property="TFCity" destination="sIQ-43-S3Q" id="cPt-wT-pvr"/>
                 <outlet property="TFCountry" destination="TWd-E8-l4K" id="Ko1-Gv-t7E"/>
                 <outlet property="TFPhone" destination="ey9-zY-hH8" id="aiw-N6-xxF"/>
+                <outlet property="addAddress" destination="mtU-KX-6y8" id="c9V-vW-Mui"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -32,7 +33,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKZ-It-Vrj">
-                    <rect key="frame" x="80" y="228" width="254" height="27"/>
+                    <rect key="frame" x="73" y="228" width="268.5" height="29"/>
                     <attributedString key="attributedText">
                         <fragment content="Enter your Address details">
                             <attributes>
@@ -43,24 +44,24 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B03-Vk-JaG">
-                    <rect key="frame" x="36" y="319" width="64.5" height="21.5"/>
+                    <rect key="frame" x="36" y="321" width="64.5" height="21.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TWd-E8-l4K">
-                    <rect key="frame" x="16" y="348.5" width="382" height="34"/>
+                    <rect key="frame" x="16" y="350.5" width="382" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgH-sp-BrF">
-                    <rect key="frame" x="36" y="418.5" width="32" height="22"/>
+                    <rect key="frame" x="36" y="420.5" width="32" height="22"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sIQ-43-S3Q">
-                    <rect key="frame" x="16" y="448.5" width="382" height="44.5"/>
+                    <rect key="frame" x="16" y="450.5" width="382" height="42.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>

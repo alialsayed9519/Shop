@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NavigationHelper {
-    func editAddrss()
+    func editAddrss(editAddress: Address)
 }
 
 class AddressesTable: UIViewController, NavigationHelper{
@@ -25,7 +25,7 @@ class AddressesTable: UIViewController, NavigationHelper{
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = button.layer.frame.height / 2
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -67,8 +67,9 @@ class AddressesTable: UIViewController, NavigationHelper{
     }
     
     //MARK: navigation portocol
-    func editAddrss() {
+    func editAddrss(editAddress: Address) {
         addAddressView.editFlag = true
+        addAddressView.editAddress = editAddress
         self.navigationController?.pushViewController(addAddressView, animated: true)
     }
 }
