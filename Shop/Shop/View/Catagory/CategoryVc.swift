@@ -11,9 +11,10 @@ import JJFloatingActionButton
 class CategoryVc: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tabBar: UIToolbar!
+    @IBOutlet private weak var internetImage: UIImageView!
+
     var actionButton = JJFloatingActionButton()
-    
-    
+    private let favoriteViewModel = FavoriteViewModel()
     private var products = [Product]()
     private var mainCategories = [CustomCollection]()
     
@@ -25,11 +26,11 @@ class CategoryVc: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-       // collectionView.registerNib(cell: CatagoryCollectionViewCell.self)
+        
         let nibCell = UINib(nibName: "CatagoryCollectionViewCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "CatagoryCollectionViewCell")
         createFAB()
+       
         
         shopViewModel.fetchCustomCollection()
         shopViewModel.bindCategorys = onCategoriesSuccess
@@ -38,7 +39,11 @@ class CategoryVc: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         collectionView.reloadData()
+        if ReachabilityViewModel.isConnected() {
+            internetImage.isHidden = true
+        }
     }
     
     @IBAction func tabItemSelected(_ sender: UIBarButtonItem) {
@@ -72,9 +77,17 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
        // let cell = collectionView.dequeueNib(indexPath: indexPath) as! CatagoryCollectionViewCell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatagoryCollectionViewCell", for: indexPath) as! CatagoryCollectionViewCell
         
+        cell.favProductBtn.tag = indexPath.row
+        cell.favProductBtn.addTarget(self, action: #selector(addProductToFav), for: .touchUpInside)
+        
         let product = products[indexPath.row]
         cell.updateUI(product: product)
         return cell
+    }
+    
+    @objc func addProductToFav(sender: UIButton) {
+        let index = IndexPath(row: sender.tag, section: 0)
+        favoriteViewModel.addProductToFavorite(product: products[index.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -85,6 +98,9 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let product = products[indexPath.row]
         print("\(String(describing: product.title)) in index  \(indexPath.row + 1)")
+        let vc = ProductDetailsVc()
+        vc.product=product
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

@@ -8,19 +8,36 @@
 import UIKit
 
 class FavoriteViewController: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var noProductsLabel: UILabel!
+    private var favProducts = [Product]()
+    private let favoriteViewModel = FavoriteViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.title = "Favorite"
-        // Do any additional setup after loading the view.
-        collectionView.registerNib(cell: CatagoryCollectionViewCell.self)
         
+        let nibCell = UINib(nibName: "CatagoryCollectionViewCell", bundle: nil)
+        collectionView.register(nibCell, forCellWithReuseIdentifier: "CatagoryCollectionViewCell")
+        print("dd")
+        favoriteViewModel.bindFavoriteProductsToFavoriteViewController = { self.BindData() }
+        favoriteViewModel.getAllFavoriteProductsFromDataCore()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         collectionView.reloadData()
+        if favoriteViewModel.isFavoriteProductsExistinCoreData() {
+            noProductsLabel.isHidden = true
+        }
+    }
+    
+    func BindData(){
+        favProducts = favoriteViewModel.favoriteProducts ?? []
+        print("\(favProducts.count)     BindData ")
+        self.collectionView.reloadData()
     }
     
 }
@@ -33,19 +50,30 @@ extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-      return 0
+        return favProducts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueNib(indexPath: indexPath) as! CatagoryCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatagoryCollectionViewCell", for: indexPath) as! CatagoryCollectionViewCell
         
+        cell.favProductBtn.tag = indexPath.row
+        cell.favProductBtn.addTarget(self, action: #selector(deleteProductFromFav), for: .touchUpInside)
+        
+        let product = favProducts[indexPath.row]
+        cell.updateUI(product: product)
+                
         return cell
+    }
+    
+    @objc func deleteProductFromFav(sender: UIButton) {
+        let index = IndexPath(row: sender.tag, section: 0)
+        favoriteViewModel.deleteProductFromFavoriteWith(id: favProducts[index.row].variants![0].id)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             let side = (view.frame.size.width - 30 )/3
             return CGSize(width: side, height: side)
-        }
+    }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 

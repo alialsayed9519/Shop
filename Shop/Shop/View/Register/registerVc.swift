@@ -27,6 +27,7 @@ class registerVc: UIViewController {
     }
 
 
+
     @IBAction func loginBtn(_ sender: Any) {
         self.navigationController?.pushViewController(loginvc(), animated: true)
     }

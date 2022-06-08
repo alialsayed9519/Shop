@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategoryVc" customModule="Shop" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="AuB-9W-AYF" id="tvb-uv-z8x"/>
+                <outlet property="internetImage" destination="J5o-iF-7x9" id="iYY-Fc-Ttm"/>
                 <outlet property="tabBar" destination="hMn-wl-9tg" id="zuQ-47-SWj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -76,31 +77,38 @@
                         <barButtonItem title="Item" image="heart" catalog="system" id="1zT-yL-8CI" userLabel="Favorite">
                             <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="navigateToFavoriteScreen:" destination="-1" id="A9y-MA-HKG"/>
+                                <action selector="navigateToFavorite:" destination="-1" id="xBe-rO-RWO"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem title="Item" image="cart" catalog="system" id="UFI-Kv-TvD" userLabel="Cart">
                             <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="navigateToCartScreen:" destination="-1" id="d0s-4k-uug"/>
+                                <action selector="navigateToCart:" destination="-1" id="pfF-Bq-48w"/>
                             </connections>
                         </barButtonItem>
                     </items>
                 </toolbar>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="noInternet" translatesAutoresizingMaskIntoConstraints="NO" id="J5o-iF-7x9">
+                    <rect key="frame" x="0.0" y="132" width="414" height="730"/>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="uM8-Y9-2Pa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="1mI-fa-HoZ"/>
                 <constraint firstItem="AuB-9W-AYF" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="2bz-LA-atq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="J5o-iF-7x9" secondAttribute="trailing" id="AoF-CW-mgU"/>
                 <constraint firstItem="AuB-9W-AYF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BOy-XX-H2i"/>
                 <constraint firstItem="hMn-wl-9tg" firstAttribute="top" secondItem="uM8-Y9-2Pa" secondAttribute="bottom" id="KHG-YR-1iL"/>
                 <constraint firstItem="AuB-9W-AYF" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Mtl-rV-9zS"/>
+                <constraint firstItem="J5o-iF-7x9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="NNm-ff-zuN"/>
                 <constraint firstItem="uM8-Y9-2Pa" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="PKJ-Ci-Ulx"/>
                 <constraint firstItem="AuB-9W-AYF" firstAttribute="top" secondItem="hMn-wl-9tg" secondAttribute="bottom" id="RZw-UB-sQW"/>
                 <constraint firstItem="hMn-wl-9tg" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Y0j-Cp-NDR"/>
                 <constraint firstItem="hMn-wl-9tg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="c2C-SC-xva"/>
                 <constraint firstItem="uM8-Y9-2Pa" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="kwF-Qo-bBM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="J5o-iF-7x9" secondAttribute="bottom" id="thR-6J-am2"/>
+                <constraint firstItem="J5o-iF-7x9" firstAttribute="top" secondItem="hMn-wl-9tg" secondAttribute="bottom" id="ubQ-Ft-Qcc"/>
             </constraints>
             <point key="canvasLocation" x="140.57971014492756" y="113.83928571428571"/>
         </view>
@@ -108,6 +116,7 @@
     <resources>
         <image name="cart" catalog="system" width="128" height="102"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="noInternet" width="2000" height="2000"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

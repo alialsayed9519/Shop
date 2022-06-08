@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -10,13 +11,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailsVc" customModule="Shop" customModuleProvider="target">
             <connections>
-                <outlet property="addTOBagBtn" destination="guo-jH-jf4" id="Q9y-aB-s2I"/>
                 <outlet property="addToBag" destination="guo-jH-jf4" id="QIZ-Cv-wDd"/>
                 <outlet property="descTextView" destination="KYM-89-wLY" id="R4A-h0-Lur"/>
                 <outlet property="favButton" destination="hfA-ws-hgd" id="xqC-0o-I9q"/>
                 <outlet property="imageControl" destination="K2A-4g-4So" id="6C9-Kc-uLd"/>
+                <outlet property="navBar" destination="ub2-iw-fHC" id="UtG-O1-XTU"/>
+                <outlet property="navigationtitle" destination="pDz-Ea-FR3" id="dg3-YY-5sC"/>
                 <outlet property="priceLabel" destination="KjP-cP-U7y" id="2k8-k9-IOP"/>
-                <outlet property="productImagCollection" destination="dpB-Pl-Kbc" id="Jid-kH-Uo8"/>
                 <outlet property="productImageCollectionView" destination="dpB-Pl-Kbc" id="Bue-wv-UhT"/>
                 <outlet property="ratingCosmos" destination="lXX-J3-iQd" id="A6P-S3-cXj"/>
                 <outlet property="reviewTextView" destination="jSi-wG-RfB" id="CPO-aq-urq"/>
@@ -34,7 +35,9 @@
                         <constraint firstAttribute="width" constant="272" id="IdD-tE-9xh"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <state key="normal" title="Add to Bag"/>
+                    <state key="normal" title="Add to Bag">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfA-ws-hgd">
                     <rect key="frame" x="62" y="796" width="60.5" height="52"/>
@@ -80,9 +83,8 @@
                             </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lXX-J3-iQd" customClass="CosmosView" customModule="Cosmos">
-                            <rect key="frame" x="181" y="135" width="215" height="27"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lXX-J3-iQd" customClass="CosmosView" customModule="Cosmos">
+                            <rect key="frame" x="181" y="135" width="120" height="20"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                     </subviews>
@@ -92,9 +94,12 @@
                         <constraint firstAttribute="bottom" secondItem="KjP-cP-U7y" secondAttribute="bottom" constant="8" id="XST-zt-40l"/>
                         <constraint firstItem="jSi-wG-RfB" firstAttribute="leading" secondItem="wyk-Gg-Gnl" secondAttribute="leading" constant="8" id="gSP-Dg-hgE"/>
                         <constraint firstAttribute="height" constant="168" id="ghx-on-Yjz"/>
+                        <constraint firstItem="lXX-J3-iQd" firstAttribute="top" secondItem="jSi-wG-RfB" secondAttribute="bottom" constant="28" id="hVj-jg-bKe"/>
                         <constraint firstItem="SQH-Rg-hjK" firstAttribute="leading" secondItem="wyk-Gg-Gnl" secondAttribute="leading" constant="8" id="m4z-00-2ue"/>
                         <constraint firstItem="SQH-Rg-hjK" firstAttribute="top" secondItem="wyk-Gg-Gnl" secondAttribute="top" constant="8" id="pNB-u5-X9S"/>
                         <constraint firstItem="jSi-wG-RfB" firstAttribute="top" secondItem="SQH-Rg-hjK" secondAttribute="bottom" constant="13" id="r0a-iG-cz9"/>
+                        <constraint firstItem="lXX-J3-iQd" firstAttribute="leading" secondItem="KjP-cP-U7y" secondAttribute="trailing" constant="89.5" id="vkd-r8-GaG"/>
+                        <constraint firstItem="lXX-J3-iQd" firstAttribute="leading" secondItem="wyk-Gg-Gnl" secondAttribute="leading" constant="181" id="whV-2F-gMO"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7pr-oq-iUw">
@@ -106,9 +111,8 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KYM-89-wLY">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KYM-89-wLY">
                             <rect key="frame" x="8" y="37" width="398" height="151"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                             <color key="textColor" systemColor="labelColor"/>
@@ -120,6 +124,10 @@
                     <constraints>
                         <constraint firstItem="hFO-Uo-cpc" firstAttribute="leading" secondItem="7pr-oq-iUw" secondAttribute="leading" constant="8" id="1tw-LX-Oha"/>
                         <constraint firstAttribute="width" secondItem="7pr-oq-iUw" secondAttribute="height" multiplier="207:98" id="2kt-9Q-gcc"/>
+                        <constraint firstItem="KYM-89-wLY" firstAttribute="trailing" secondItem="7pr-oq-iUw" secondAttribute="trailingMargin" id="IkK-UP-d1s"/>
+                        <constraint firstItem="KYM-89-wLY" firstAttribute="bottom" secondItem="7pr-oq-iUw" secondAttribute="bottomMargin" id="RUQ-ly-9lc"/>
+                        <constraint firstItem="KYM-89-wLY" firstAttribute="leading" secondItem="hFO-Uo-cpc" secondAttribute="leading" id="WAM-sl-hPu"/>
+                        <constraint firstItem="KYM-89-wLY" firstAttribute="top" secondItem="hFO-Uo-cpc" secondAttribute="bottom" constant="5" id="l24-d1-uMj"/>
                         <constraint firstItem="hFO-Uo-cpc" firstAttribute="top" secondItem="7pr-oq-iUw" secondAttribute="top" constant="8" id="vh0-Aa-xr0"/>
                     </constraints>
                 </view>
@@ -137,20 +145,22 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="K2A-4g-4So">
-                    <rect key="frame" x="152.5" y="344" width="115.5" height="26"/>
+                    <rect key="frame" x="152" y="344" width="116" height="26"/>
                 </pageControl>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LOR-lw-csw">
-                    <rect key="frame" x="0.0" y="64" width="414" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ub2-iw-fHC">
+                    <rect key="frame" x="3" y="44" width="414" height="44"/>
                     <items>
-                        <navigationItem title="Title" id="zcN-kk-EKt"/>
+                        <navigationItem title="Title" id="pDz-Ea-FR3"/>
                     </items>
                 </navigationBar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemGray5Color"/>
             <constraints>
+                <constraint firstItem="ub2-iw-fHC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="0LD-nm-khi"/>
                 <constraint firstItem="hfA-ws-hgd" firstAttribute="top" secondItem="7pr-oq-iUw" secondAttribute="bottom" constant="32" id="A8u-rD-sha"/>
+                <constraint firstItem="ub2-iw-fHC" firstAttribute="centerX" secondItem="K2A-4g-4So" secondAttribute="centerX" id="BvT-qZ-dCi"/>
+                <constraint firstAttribute="trailing" secondItem="ub2-iw-fHC" secondAttribute="trailing" constant="-3" id="DdF-7S-2yl"/>
                 <constraint firstItem="guo-jH-jf4" firstAttribute="top" secondItem="7pr-oq-iUw" secondAttribute="bottom" constant="32" id="Fps-BI-OzQ"/>
                 <constraint firstItem="dpB-Pl-Kbc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="64" id="J2P-gv-5bS"/>
                 <constraint firstItem="hfA-ws-hgd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="62" id="LuC-Fa-FbW"/>
@@ -165,6 +175,7 @@
                 <constraint firstItem="dpB-Pl-Kbc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="sa2-C0-kiT"/>
                 <constraint firstItem="K2A-4g-4So" firstAttribute="top" secondItem="dpB-Pl-Kbc" secondAttribute="bottom" constant="32" id="t7I-FP-AEv"/>
                 <constraint firstItem="7pr-oq-iUw" firstAttribute="top" secondItem="wyk-Gg-Gnl" secondAttribute="bottom" constant="23" id="wiy-Ag-PfR"/>
+                <constraint firstItem="ub2-iw-fHC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="3" id="xty-Ib-qVL"/>
             </constraints>
             <point key="canvasLocation" x="140.57971014492756" y="71.651785714285708"/>
         </view>
