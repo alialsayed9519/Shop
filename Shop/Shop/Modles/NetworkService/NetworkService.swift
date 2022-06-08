@@ -10,7 +10,31 @@ import Alamofire
 
 
 class NetworkService {
-    
+    func login(email:String,password:String,completion:@escaping(DataResponse<Login,AFError>)->()){
+        AF.request(URLs.customer()).validate().responseDecodable(of:Login.self){
+            (response) in
+            completion (response)
+        }
+    }
+    func register(newCutomer:Customer,compeletion:@escaping(Data?,URLResponse?,Error?)->()){
+        guard let url=URL(string:URLs.customer()) else
+        {return}
+        var request=URLRequest(url: url)
+        request.httpMethod="POST"
+        let seesion=URLSession.shared
+        request.httpShouldHandleCookies=false
+        do{
+            request.httpBody = try JSONSerialization.data(withJSONObject: newCutomer.asDictionary(), options: .prettyPrinted)}
+        catch let error {
+            print(error.localizedDescription)
+        }
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        seesion.dataTask(with: request) { (data,response,error)in
+            compeletion(data,response,error)
+        }.resume()
+       
+    }
      func getAllBrands(completion: @escaping ([SmartCollection]?, Error?) -> ()) {
         AF.request(URLs.getCategoriesURL())
              .responseDecodable(of: Brand.self) { (response) in

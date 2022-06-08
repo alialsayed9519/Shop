@@ -14,6 +14,9 @@ struct URLs {
         let fullUrl = baseURL + "smart_collections.json"
         return fullUrl
     }
+    static func customer()->String{
+        return baseURL+"customers.json"
+    }
     static func allProducts()->String{
         return baseURL+"products.json"
     }

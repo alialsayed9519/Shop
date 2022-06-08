@@ -9,6 +9,8 @@ import UIKit
 
 class FavoriteViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var noProductsLabel: UILabel!
     private var favProducts = [Product]()
     private let favoriteViewModel = FavoriteViewModel()
     
@@ -26,6 +28,9 @@ class FavoriteViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         collectionView.reloadData()
+        if favoriteViewModel.isFavoriteProductsExistinCoreData() {
+            noProductsLabel.isHidden = true
+        }
     }
     
     func BindData(){

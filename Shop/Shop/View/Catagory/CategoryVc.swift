@@ -12,7 +12,8 @@ class CategoryVc: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tabBar: UIToolbar!
-    
+    @IBOutlet private weak var internetImage: UIImageView!
+
     var actionButton = JJFloatingActionButton()
     private let favoriteViewModel = FavoriteViewModel()
     private var products = [Product]()
@@ -28,8 +29,6 @@ class CategoryVc: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
         let nibCell = UINib(nibName: "CatagoryCollectionViewCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "CatagoryCollectionViewCell")
         createFAB()
@@ -41,7 +40,11 @@ class CategoryVc: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         collectionView.reloadData()
+        if ReachabilityViewModel.isConnected() {
+            internetImage.isHidden = true
+        }
     }
     
     @IBAction func tabItemSelected(_ sender: UIBarButtonItem) {
