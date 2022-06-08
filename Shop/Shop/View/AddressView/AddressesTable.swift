@@ -7,43 +7,75 @@
 
 import UIKit
 
+protocol NavigationHelper {
+    func editAddrss(editAddress: Address)
+}
+
 class AddressesTable: UIViewController, NavigationHelper{
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var button: UIButton!
     
     var addresses = [Address]()
+    var addressViewModel = AddressViewModel()
+    let addressCell = AddressCell()
+    let addAddressView = AddAddress()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = button.layer.frame.height / 2
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerNib(cell: AddressCell.self)
-        let addressCell = AddressCell()
+        
+        
         addressCell.delegate = self
+        
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.title = "Addresses"
+        
+        addressViewModel.bindAddresses = self.bindAddresses
+        addressViewModel.bindError = self.bindError
+        addressViewModel.fetchAddresses()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
     
+    func bindAddresses(){
+        addresses = addressViewModel.addresses ?? []
+        self.tableView.reloadData()
+    }
+    
+    func bindError() {
+        let message = addressViewModel.error
+        let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            print("alert working")
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+
     @IBAction func addNewAddress(_ sender: Any) {
-        let addAddressView = AddAddress()
         addAddressView.editFlag = false
         self.navigationController?.pushViewController(addAddressView, animated: true)
     }
     
-    func editAddrss() {
-        let addAddressView = AddAddress()
+    //MARK: navigation portocol
+    func editAddrss(editAddress: Address) {
         addAddressView.editFlag = true
+        addAddressView.editAddress = editAddress
         self.navigationController?.pushViewController(addAddressView, animated: true)
     }
-
 }
 
-extension AddressesTable: UITableViewDataSource{
+//MARK: table data source and delgate
+extension AddressesTable: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return addresses.count
     }
@@ -54,14 +86,5 @@ extension AddressesTable: UITableViewDataSource{
         cell.updateUI(address: address)
         return cell
     }
-    
-    
 }
 
-extension AddressesTable: UITableViewDelegate{
-    
-}
-
-protocol NavigationHelper {
-    func editAddrss()
-}

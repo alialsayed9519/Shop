@@ -26,6 +26,23 @@ struct URLs {
     static func products(collectionId:Int)->String{
         return baseURL+"products.json?collection_id=\(collectionId)"
     }
+    
+    static func customers() -> String {
+        return baseURL + "customers.json"
+    }
+    
+    static func customer(id: String) -> String {
+        return baseURL + "customers/\(id).json"
+    }
+    
+    static func oneAddress(customerId: Int, addressId: Int) -> String {
+        return baseURL + "customers/\(customerId)/addresses/\(addressId).json"
+    }
+    
+    static func AllAddresses(customerId: Int) -> String {
+        return baseURL + "customers/\(customerId)/addresses.json"
+    }
+
 }
 
 

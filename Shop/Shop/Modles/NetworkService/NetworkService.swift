@@ -84,6 +84,73 @@ class NetworkService {
             }
         }
     }
+    
+    func fetchAddresses(completion: @escaping ([Address]?, Error?) -> () ){
+        
+        let customerID = UserDefault().getId()
+        AF.request(URLs.AllAddresses(customerId: customerID))
+            .responseDecodable(of: CustomerAddresses.self){ (response) in
+                
+                switch response.result{
+                case .success(_):
+                    guard let data = response.value else { return }
+                    print(data.addresses![0].city)
+                    completion(data.addresses,nil)
+                case .failure(let error) :
+                    completion(nil,error)
+                    print(error.localizedDescription)
+                }
+            }
+    }
+    
+    func addAddress(id: Int, address: Address, completion: @escaping(Data?, URLResponse?, Error?)->()){
+        
+        let customer = CustomerAddresses(addresses: [address])
+        let putObject = PutAddress(customer: customer)
+        guard let url = URL(string: URLs.customer(id: "\(id)")) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared
+        request.httpShouldHandleCookies = false
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: putObject.asDictionary(), options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+           
+        //MARK: HTTP Headers
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+           
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+    }
+       
+       func editAddress(id: Int, address: Address, completion: @escaping(Data?, URLResponse?, Error?)->()){
+        updateCustomerAddresses(httpMethod: "PUT", id: id, completion: completion)
+    }
 
-
+       
+    func deleteAddress(id: Int, completion: @escaping(Data?, URLResponse?, Error?)->()){
+        updateCustomerAddresses(httpMethod: "DELETE", id: id, completion: completion)
+    }
+    
+    private func updateCustomerAddresses(httpMethod: String, id: Int, completion: @escaping(Data?, URLResponse?, Error?)->()){
+        let addressId = id
+        let customerId = UserDefault().getId()
+        guard let url = URL(string: URLs.oneAddress(customerId: customerId, addressId: addressId)) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = httpMethod
+        let session = URLSession.shared
+        request.httpShouldHandleCookies = false
+           
+        //MARK: HTTP Headers
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+           
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+    }
 }

@@ -7,14 +7,14 @@
 
 import Foundation
 
+struct Address: Codable {
+    var address1, city, province, phone: String?
+    var zip, last_name, first_name, country: String?
+    var id: Int!
 
-
-struct Address:Codable{
-    var address1 , city ,province ,phone,zip,last_name,firt_name,country :String?
-    var id :Int?
 }
 
-struct CustomerAddress: Codable {
+struct CustomerAddresses: Codable {
     var addresses: [Address]?
 }
 
@@ -23,5 +23,5 @@ struct UpdateAddress: Codable {
 }
 
 struct PutAddress: Codable {
-    let customer: CustomerAddress?
+    let customer: CustomerAddresses?
 }
