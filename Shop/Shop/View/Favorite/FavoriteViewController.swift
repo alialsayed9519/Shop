@@ -19,7 +19,6 @@ class FavoriteViewController: UIViewController {
         
         let nibCell = UINib(nibName: "CatagoryCollectionViewCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "CatagoryCollectionViewCell")
-        print("dd")
         favoriteViewModel.bindFavoriteProductsToFavoriteViewController = { self.BindData() }
         favoriteViewModel.getAllFavoriteProductsFromDataCore()
 
@@ -31,7 +30,6 @@ class FavoriteViewController: UIViewController {
     
     func BindData(){
         favProducts = favoriteViewModel.favoriteProducts ?? []
-        print("\(favProducts.count)     BindData ")
         self.collectionView.reloadData()
     }
     

@@ -61,8 +61,10 @@ class NetworkService {
         }
     }
     
-    func fetchAddresses(customerID: Int, completion: @escaping ([Address]?, Error?) -> () ){
-       AF.request(URLs.AllAddresses(customerId: customerID))
+    func fetchAddresses(completion: @escaping ([Address]?, Error?) -> () ){
+        
+        let customerID = UserDefault().getId()
+        AF.request(URLs.AllAddresses(customerId: customerID))
             .responseDecodable(of: CustomerAddresses.self){ (response) in
                 
                 switch response.result{

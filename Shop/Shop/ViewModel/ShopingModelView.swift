@@ -17,19 +17,16 @@ class ShopingViewModel{
     
     var allProduct: [Product]?{
         didSet{
-            print("we are in all products computed property ")
             self.bindProducts()
         }
     }
     var categorys: [CustomCollection]?{
         didSet{
-            print("we are in categories computed property")
             self.bindCategorys()
         }
     }
     var error: String?{
         didSet{
-            print("we are in error computed property")
             self.bindError()
         }
     }

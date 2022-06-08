@@ -9,8 +9,10 @@ import UIKit
 import JJFloatingActionButton
 
 class CategoryVc: UIViewController {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tabBar: UIToolbar!
+    
     var actionButton = JJFloatingActionButton()
     private let favoriteViewModel = FavoriteViewModel()
     private var products = [Product]()
@@ -23,13 +25,14 @@ class CategoryVc: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
+        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         let nibCell = UINib(nibName: "CatagoryCollectionViewCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "CatagoryCollectionViewCell")
         createFAB()
-       
         
         shopViewModel.fetchCustomCollection()
         shopViewModel.bindCategorys = onCategoriesSuccess
@@ -69,7 +72,7 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       // let cell = collectionView.dequeueNib(indexPath: indexPath) as! CatagoryCollectionViewCell
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatagoryCollectionViewCell", for: indexPath) as! CatagoryCollectionViewCell
         
         cell.favProductBtn.tag = indexPath.row
