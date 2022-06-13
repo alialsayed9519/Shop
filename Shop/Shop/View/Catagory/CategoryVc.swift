@@ -17,6 +17,7 @@ class CategoryVc: UIViewController {
     var actionButton = JJFloatingActionButton()
     private let favoriteViewModel = FavoriteViewModel()
     private var products = [Product]()
+    private var searchProducts = [Product]()
     private var mainCategories = [CustomCollection]()
     
     private let shopViewModel = ShopingViewModel()
@@ -133,38 +134,36 @@ extension CategoryVc{
 // MARK: FAB
 extension CategoryVc{
     func createFAB(){
-        
-        actionButton.addItem(title: "shoes", image: UIImage(named: "shoes")?.withRenderingMode(.alwaysTemplate)) { item in
+        actionButton.addItem(title: "shoes", image: UIImage(named: "shoes")?.withRenderingMode(.alwaysOriginal)) { item in
             self.actionButton.buttonImage = UIImage(named: "shoes")
             self.subCategoryName = "SHOES"
             self.shopViewModel.filterPorductsBySubCategory(subCategoryName: self.subCategoryName!)
         }
 
-        actionButton.addItem(title: "T-Shirts", image: UIImage(named: "t-shirt")?.withRenderingMode(.alwaysTemplate)) { item in
+        actionButton.addItem(title: "T-Shirts", image: UIImage(named: "t-shirt")?.withRenderingMode(.alwaysOriginal)) { item in
             self.actionButton.buttonImage = UIImage(named: "t-shirt")
             self.subCategoryName = "T-SHIRTS"
             self.shopViewModel.filterPorductsBySubCategory(subCategoryName: self.subCategoryName!)
         }
 
-        actionButton.addItem(title: "Accessres", image: UIImage(named: "accessres")?.withRenderingMode(.alwaysTemplate)) { item in
+        actionButton.addItem(title: "Accessres", image: UIImage(named: "accessres")?.withRenderingMode(.alwaysOriginal)) { item in
             self.actionButton.buttonImage = UIImage(named: "accessres")
             self.subCategoryName = "ACCESSRES"
             self.shopViewModel.filterPorductsBySubCategory(subCategoryName: self.subCategoryName!)
         }
         
         actionButton.display(inViewController: self)
-        customizFAB()
+        customizeFAB()
     }
-    func customizFAB(){
+    func customizeFAB(){
         actionButton.handleSingleActionDirectly = false
-        actionButton.buttonDiameter = 65
+        actionButton.buttonDiameter = 90
         actionButton.overlayView.backgroundColor = UIColor(white: 0, alpha: 0.3)
         actionButton.buttonImage = UIImage(named: "filter")
-        actionButton.buttonColor = .systemGreen
+        actionButton.buttonColor = .white
         actionButton.buttonImageColor = .white
-        actionButton.buttonImageSize = CGSize(width: 30, height: 30)
+        actionButton.buttonImageSize = CGSize(width:65, height: 65)
 
-       // actionButton.buttonAnimationConfiguration = .transition(toImage: UIImage(named: "X"))
         actionButton.itemAnimationConfiguration = .slideIn(withInterItemSpacing: 14)
 
         actionButton.layer.shadowColor = UIColor.black.cgColor
@@ -174,12 +173,12 @@ extension CategoryVc{
 
         actionButton.itemSizeRatio = CGFloat(0.75)
         actionButton.configureDefaultItem { item in
-            item.titlePosition = .trailing
+            item.titlePosition = .leading
 
             item.titleLabel.font = .boldSystemFont(ofSize: UIFont.systemFontSize)
             item.titleLabel.textColor = .white
             item.buttonColor = .white
-            item.buttonImageColor = .red
+            item.buttonImageColor = .white
 
             item.layer.shadowColor = UIColor.black.cgColor
             item.layer.shadowOffset = CGSize(width: 0, height: 1)
@@ -187,5 +186,8 @@ extension CategoryVc{
             item.layer.shadowRadius = CGFloat(2)
         }
     }
+}
 
+extension CategoryVc{
+    
 }

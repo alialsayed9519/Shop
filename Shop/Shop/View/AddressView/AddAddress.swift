@@ -29,7 +29,6 @@ class AddAddress: UIViewController {
     }
     
     @IBAction func addAddress(_ sender: Any){
-        self.navigationController?.popViewController(animated: true)
         if editFlag{
             editAddress.country = TFCountry.text ?? ""
             editAddress.city = TFCity.text ?? ""

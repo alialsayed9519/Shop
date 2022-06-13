@@ -32,11 +32,25 @@ class ShopingViewModel{
     }
      
     
-    func fetchProducts(collectionID: Int = 395727569125) {
-        network.fetchProducts(collectionID: collectionID) { (products, error) in
+    func fetchProductsInCategory(collectionID: Int) {
+        network.fetchProductsInCategory(collectionID: collectionID) { (products, error) in
             if let message = error?.localizedDescription{
                 self.error = message
-                print(error?.localizedDescription)
+                print(error?.localizedDescription ?? "No error")
+            }else {
+                if let respons = products {
+                    print(respons[0])
+                    self.allProduct = respons
+                }
+            }
+        }
+    }
+    
+    func fetchAllProducts() {
+        network.fetchAllProducts(){ (products, error) in
+            if let message = error?.localizedDescription{
+                self.error = message
+                print(error?.localizedDescription ?? "No error")
             }else {
                 if let respons = products {
                     print(respons[0])
@@ -65,13 +79,16 @@ class ShopingViewModel{
         guard let categories = self.categorys else {
             return
         }
-        fetchProducts(collectionID: categories[itemIndex].id!)
+        if itemIndex == 0{
+            self.fetchAllProducts()
+        } else {
+            self.fetchProductsInCategory(collectionID: categories[itemIndex].id!)
+        }
     }
     
     func filterPorductsBySubCategory(subCategoryName: String) {
-        //self.allProduct = allProduct?.filter{
-            //($0.productType == subCategoryName)
-        //}
+        self.allProduct = allProduct?.filter{
+            ($0.product_type == subCategoryName)
+        }
     }
 }
- 

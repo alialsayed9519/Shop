@@ -65,8 +65,25 @@ class NetworkService {
             
         }
     }
+    
+    func fetchAllProducts(completion: @escaping ([Product]?, Error?) -> () ){
+        AF.request(URLs.allProducts())
+            .responseDecodable(of:AllProducts.self){
+           (response) in
+           switch response.result{
+           case .success(_):
+               guard let data=response.value
+               else {
+                   return
+               }
+               completion(data.products,nil)
+           case .failure(let error) :
+               completion(nil,error)
+           }
+       }
+   }
 
-     func fetchProducts(collectionID:Int, completion: @escaping ([Product]?, Error?) -> () ){
+     func fetchProductsInCategory(collectionID:Int, completion: @escaping ([Product]?, Error?) -> () ){
         AF.request(URLs.products(collectionId: collectionID))
              .responseDecodable(of:AllProducts.self){
             (response) in
@@ -76,11 +93,9 @@ class NetworkService {
                 else {
                     return
                 }
-                print(data.products[0].title)
                 completion(data.products,nil)
             case .failure(let error) :
                 completion(nil,error)
-                print(error.localizedDescription)
             }
         }
     }
@@ -94,7 +109,7 @@ class NetworkService {
                 switch response.result{
                 case .success(_):
                     guard let data = response.value else { return }
-                    print(data.addresses![0].city)
+                    print(data.addresses![0].city ?? "no data returned" )
                     completion(data.addresses,nil)
                 case .failure(let error) :
                     completion(nil,error)

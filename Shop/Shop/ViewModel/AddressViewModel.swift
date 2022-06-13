@@ -31,7 +31,7 @@ class AddressViewModel {
         network.fetchAddresses() { (addresses, error) in
             if let message = error?.localizedDescription{
                 self.error = message
-                print(error?.localizedDescription)
+                print(error?.localizedDescription ?? "No error")
             }
             else {
                 if let respons = addresses {
