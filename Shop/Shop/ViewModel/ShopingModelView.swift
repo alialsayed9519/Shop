@@ -40,10 +40,10 @@ class ShopingViewModel{
         network.fetchProducts(collectionID: collectionID) { (products, error) in
             if let message = error?.localizedDescription{
                 self.error = message
-                print(error?.localizedDescription)
+               // print(error?.localizedDescription)
             }else {
                 if let respons = products {
-                    print(respons[0])
+                   // print(respons[0])
                     self.allProduct = respons
                 }
             }
@@ -94,13 +94,16 @@ class ShopingViewModel{
         guard let categories = self.categorys else {
             return
         }
-        fetchProducts(collectionID: categories[itemIndex].id!)
+        if(itemIndex==0){
+            fetchAllProducts()
+        }else{
+            fetchProducts(collectionID: categories[itemIndex].id!)}
     }
     
     func filterPorductsBySubCategory(subCategoryName: String) {
-        //self.allProduct = allProduct?.filter{
-            //($0.productType == subCategoryName)
-        //}
+        self.allProduct = allProduct?.filter{
+            ($0.product_type == subCategoryName)
+        }
     }
 }
  

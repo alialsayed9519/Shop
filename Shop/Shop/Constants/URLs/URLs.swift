@@ -8,7 +8,7 @@
 import Foundation
 
 struct URLs {
-    private static var baseURL = "https://c48655414af1ada2cd256a6b5ee391be%20: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@mobile-ismailia.myshopify.com/admin/api/2022-04/"
+    private static var baseURL = "https://54e7ce1d28a9d3b395830ea17be70ae1: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@mad-ism2022.myshopify.com/admin/api/2022-04/"
     
     static func getCategoriesURL() -> String {
         let fullUrl = baseURL + "smart_collections.json"

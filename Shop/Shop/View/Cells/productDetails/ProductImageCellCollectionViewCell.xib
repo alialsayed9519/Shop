@@ -2,16 +2,13 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductImageCellCollectionViewCell" customModule="Shop" customModuleProvider="target">
-            <connections>
-                <outlet property="productImg" destination="Uja-JI-tKi" id="tDo-BY-cQ1"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductImageCellCollectionViewCell" customModule="Shop" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="productImgCell" id="gTV-IL-0wX" customClass="ProductImageCollectionViewCell" customModule="Shop" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="204"/>
@@ -33,9 +30,6 @@
                 <constraint firstItem="Uja-JI-tKi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="tJG-V0-kte"/>
             </constraints>
             <size key="customSize" width="201" height="113"/>
-            <connections>
-                <outlet property="productImg" destination="Uja-JI-tKi" id="u5S-pt-oOb"/>
-            </connections>
             <point key="canvasLocation" x="30.434782608695656" y="50.223214285714285"/>
         </collectionViewCell>
     </objects>

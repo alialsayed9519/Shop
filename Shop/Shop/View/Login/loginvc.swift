@@ -39,7 +39,8 @@ class loginvc: UIViewController {
         }
     }
     func navigate(){
-        self.navigationController?.pushViewController(HomeVc(), animated: true)
+        let home = MyTabBar(nibName: "MyTabBar", bundle: nil)
+        self.navigationController?.pushViewController(home, animated: true)
     }
     @IBAction func signInBtn(_ sender: Any) {
         email=emailTf.text
