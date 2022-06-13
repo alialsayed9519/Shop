@@ -60,7 +60,7 @@ class AddressViewModel {
     }
     
     func addAddress(address: Address){
-        let id = UserDefault().getId()
+        let id = userDefault().getId()
         var newAddress = address
         network.addAddress(id: id, address: address) { [weak self] (data, response, error) in
             if error != nil {
@@ -74,7 +74,7 @@ class AddressViewModel {
                 let returnedCustomer = json["customer"] as? Dictionary<String,Any>
                 do{
                     let reutrnedCust = try JSONDecoder().decode(Customer.self, from: data)
-                    newAddress.id = reutrnedCust.addresses?.last?.id ?? 0
+                   // newAddress.id = reutrnedCust.addresses?.last?.id ?? 0
                 }catch{
                     print("could parse response: \(error.localizedDescription)")
                 }
@@ -91,7 +91,7 @@ class AddressViewModel {
     }
     
     func editAddress(address: Address){
-        let id = UserDefault().getId()
+        let id = userDefault().getId()
         network.editAddress(id: id, address: address) { [weak self] (data, response, error) in
             if error != nil {
                 print("error while editing address \(error!)")

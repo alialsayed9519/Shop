@@ -8,13 +8,17 @@
 import Foundation
 
 class ShopingViewModel{
-    
+    var bindBrands={}
     var bindProducts = {}
     var bindCategorys = {}
     var bindError = {}
 
     private var network = NetworkService()
-    
+    var brands:[Brand]?{
+        didSet{
+            self.bindBrands()
+        }
+    }
     var allProduct: [Product]?{
         didSet{
             self.bindProducts()
@@ -36,10 +40,10 @@ class ShopingViewModel{
         network.fetchProducts(collectionID: collectionID) { (products, error) in
             if let message = error?.localizedDescription{
                 self.error = message
-                print(error?.localizedDescription)
+               // print(error?.localizedDescription)
             }else {
                 if let respons = products {
-                    print(respons[0])
+                   // print(respons[0])
                     self.allProduct = respons
                 }
             }
@@ -60,18 +64,46 @@ class ShopingViewModel{
             
         }
     }
+    func fetchAllProducts(){
+        network.fetchAllProducts(){(products,error) in
+            if let message=error?.localizedDescription{
+                self.error=message
+                
+            }
+            else {
+                if let response=products{
+                    self.allProduct=response
+                }
+            }
+                
+        }
+    }
+    func filterBrandsByNmae(brandName:String){
+        fetchAllProducts()
+        self.allProduct=allProduct?.filter{
+            ($0.vendor==brandName)
+        }
+        
+    }
+    
+    
+    
+    
     
     func filterPorductsByMainCategory(itemIndex: Int){
         guard let categories = self.categorys else {
             return
         }
-        fetchProducts(collectionID: categories[itemIndex].id!)
+        if(itemIndex==0){
+            fetchAllProducts()
+        }else{
+            fetchProducts(collectionID: categories[itemIndex].id!)}
     }
     
     func filterPorductsBySubCategory(subCategoryName: String) {
-        //self.allProduct = allProduct?.filter{
-            //($0.productType == subCategoryName)
-        //}
+        self.allProduct = allProduct?.filter{
+            ($0.product_type == subCategoryName)
+        }
     }
 }
  

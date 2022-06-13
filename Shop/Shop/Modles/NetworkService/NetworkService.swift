@@ -87,7 +87,7 @@ class NetworkService {
     
     func fetchAddresses(completion: @escaping ([Address]?, Error?) -> () ){
         
-        let customerID = UserDefault().getId()
+        let customerID = userDefault().getId()
         AF.request(URLs.AllAddresses(customerId: customerID))
             .responseDecodable(of: CustomerAddresses.self){ (response) in
                 
@@ -138,7 +138,7 @@ class NetworkService {
     
     private func updateCustomerAddresses(httpMethod: String, id: Int, completion: @escaping(Data?, URLResponse?, Error?)->()){
         let addressId = id
-        let customerId = UserDefault().getId()
+        let customerId = userDefault().getId()
         guard let url = URL(string: URLs.oneAddress(customerId: customerId, addressId: addressId)) else {return}
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod
@@ -152,5 +152,24 @@ class NetworkService {
         session.dataTask(with: request) { (data, response, error) in
             completion(data, response, error)
         }.resume()
+    }
+    
+    func fetchAllProducts(completion:@escaping ([Product]?,Error?)->()){
+        AF.request(URLs.allProducts()).responseDecodable(of:AllProducts.self){
+            (response) in
+            switch response.result{
+            case .success(_):
+                guard let data=response.value
+                else{
+                    return
+                }
+                completion(data.products,nil)
+            case .failure(let error):
+                completion(nil,error)
+            
+                
+            }
+        }
+        
     }
 }

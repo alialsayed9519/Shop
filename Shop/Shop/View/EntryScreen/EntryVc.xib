@@ -46,7 +46,7 @@
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain">
                         <attributedString key="attributedTitle">
-                            <fragment content="Log in">
+                            <fragment content="Login">
                                 <attributes>
                                     <color key="NSColor" red="0.92812162639999995" green="0.91982406380000004" blue="0.94815045600000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <font key="NSFont" size="34" name="Helvetica"/>

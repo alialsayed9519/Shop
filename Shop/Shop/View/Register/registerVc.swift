@@ -38,7 +38,8 @@ class registerVc: UIViewController {
         }
     }
     func navigate(){
-        self.navigationController?.pushViewController(HomeVc(), animated: true)
+        let home = MyTabBar(nibName: "MyTabBar", bundle: nil)
+        self.navigationController?.pushViewController(home, animated: true)
     }
     @IBAction func loginBtn(_ sender: Any) {
         self.navigationController?.pushViewController(loginvc(), animated: true)

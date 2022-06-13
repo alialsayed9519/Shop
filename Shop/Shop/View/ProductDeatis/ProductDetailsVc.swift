@@ -26,24 +26,26 @@ class ProductDetailsVc: UIViewController {
     @IBOutlet weak var descTextView: UITextView!
     @IBOutlet weak var favButton: UIButton!
     @IBOutlet weak var addToBag: UIButton!
-    let productImageCell="productImgCell"
+    let productImageCell="ImageCollectionViewCell"
     override func viewDidLoad() {
         super.viewDidLoad()
 displayProduct()
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         let backItem = UIBarButtonItem()
             backItem.title = "Category"
-        navigationtitle.backBarButtonItem = backItem;                addToBag.backgroundColor = .blue
+       // navBar.ba = backItem;
+        addToBag.backgroundColor = .blue
         addToBag.layer.cornerRadius = 20
-let productCell=UINib(nibName:productImageCell , bundle: nil)
-        productImageCollectionView.register(productCell, forCellWithReuseIdentifier: productImageCell)
-        
+
+        let nibCell = UINib(nibName: productImageCell, bundle: nil)
+        productImageCollectionView.register(nibCell, forCellWithReuseIdentifier: productImageCell)
         // Do any additional setup after loading the view.
     }
     func displayProduct(){
-        navigationtitle.title=product?.vendor
+      //  navigationtitle.title=product?.vendor
 //        navigationtitle.backBarButtonItem
-       // navigationItem.title=product?.vendor
+        navigationItem.title=product?.vendor
         //title=product?.vendor
         reviewTextView.text=product?.product_type
         descTextView.text=product?.body_html
@@ -74,11 +76,11 @@ extension ProductDetailsVc:UICollectionViewDelegate,UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let imageCell=collectionView.dequeueReusableCell(withReuseIdentifier: productImageCell, for: indexPath) as! ProductImageCellCollectionViewCell
+        let imageCell=collectionView.dequeueReusableCell(withReuseIdentifier: productImageCell, for: indexPath) as! ImageCollectionViewCell
         
         let ImageSrc = product.images[indexPath.row].src
         print(ImageSrc)
-        imageCell.productImg.sd_setImage(with: URL(string: ImageSrc), placeholderImage: UIImage(named: "adidas.png"))
+        imageCell.proimageCell.sd_setImage(with: URL(string: ImageSrc), placeholderImage: UIImage(named: "adidas.png"))
 
       //  imageCell.productImg.sd_setImage(with: URL(string: ImageSrc), completed: nil)
         return imageCell

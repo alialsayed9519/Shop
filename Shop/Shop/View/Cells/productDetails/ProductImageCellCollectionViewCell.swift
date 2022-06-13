@@ -8,9 +8,10 @@
 import UIKit
 
 class ProductImageCellCollectionViewCell: UICollectionViewCell {
-
+  
     @IBOutlet weak var productImg: UIImageView!
-    override func awakeFromNib() {
+    
+        override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
