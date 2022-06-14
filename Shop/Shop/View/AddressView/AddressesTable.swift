@@ -24,12 +24,15 @@ class AddressesTable: UIViewController, NavigationHelper{
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let nibCell = UINib(nibName: "AddressCell", bundle: nil)
+     //   tableView.register(nibCell, forCellReuseIdentifier: "AddressCell")
+        
         // Do any additional setup after loading the view.
         button.layer.cornerRadius = button.layer.frame.height / 2
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.registerNib(cell: AddressCell.self)
+       tableView.registerNib(cell: AddressCell.self)
         
         
         addressCell.delegate = self
@@ -81,7 +84,8 @@ extension AddressesTable: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueNib() as AddressCell
+       // let cell = tableView.dequeueNib() as AddressCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AddressCell", for: indexPath) as! AddressCell
         let address = addresses[indexPath.row]
         cell.updateUI(address: address)
         return cell

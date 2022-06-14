@@ -18,15 +18,17 @@ class brandProductsVc: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let brandProductCell=UINib(nibName:productCell , bundle: nil)
                 productCollectionView.register(brandProductCell, forCellWithReuseIdentifier:productCell)
-        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
     //  brandImg.sd_setImage(with:URL(string:smartCol?.image
 //.src?),placeholderImage:UIImage(named:"adidas.png"))
-//        brandImg.sd_setImage(with: URL(string: smartCol?.image), placeholderImage: UIImage(named: "adidas,png"))
-//        brandImg.sd_setImage(with: URL(string: smartCol?.image.src?), placeholderImage: UIImage(named: "adidas.png"))
+      //  brandImg.sd_setImage(with: URL(string:smartCol?.image), placeholderImage: UIImage(named: "adidas,png"))
+    //  brandImg.sd_setImage(with: URL(string: smartCol?.image.src?), placeholderImage: UIImage(named: "adidas.png"))
       //  shopViewModel.filterBrandsByNmae(brandName:smartCol?.title?)
-    //shopViewModel.filterBrandsByNmae(brandName:smartCol?.title!)
+//    shopViewModel.filterBrandsByNmae(brandName: smartCol?.title!)
        // let imageView = SDAnimatedImageView()
         let animatedImage = SDAnimatedImage(named: (smartCol?.image.src)!)
         brandImg.image = animatedImage

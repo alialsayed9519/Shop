@@ -29,16 +29,24 @@ class AddAddress: UIViewController {
     }
     
     @IBAction func addAddress(_ sender: Any){
-        self.navigationController?.popViewController(animated: true)
-        if editFlag{
-            editAddress.country = TFCountry.text ?? ""
-            editAddress.city = TFCity.text ?? ""
-            editAddress.address1 = TFAddress.text ?? ""
-            editAddress.phone = TFPhone.text ?? ""
-            addressViewModel.editAddress(address: editAddress)
-        }else{
-            addressViewModel.addAddress(country: TFCountry.text ?? "", city: TFCity.text ?? "", address: TFAddress.text ?? "", phone: TFPhone.text ?? "")
+     //   self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async { [self] in
+            if editFlag{
+                editAddress.country = TFCountry.text ?? ""
+                editAddress.city = TFCity.text ?? ""
+                editAddress.address1 = TFAddress.text ?? ""
+                editAddress.phone = TFPhone.text ?? ""
+                addressViewModel.editAddress(address: editAddress)
+
+            }else{
+                addressViewModel.addAddress(country: TFCountry.text ?? "", city: TFCity.text ?? "", address: TFAddress.text ?? "", phone: TFPhone.text ?? "")
+            }
+
         }
+        self.navigationController?.popViewController(animated: true)
+
+        
+     
     }
     
     func updateUI() {
@@ -53,7 +61,7 @@ class AddAddress: UIViewController {
     }
     
     func bindAddresses() {
-        self.navigationController?.popViewController(animated: true)
+       // self.navigationController?.popViewController(animated: true)
     }
     
     func bindError() {

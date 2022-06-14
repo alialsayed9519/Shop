@@ -78,17 +78,13 @@ class ShopingViewModel{
                 
         }
     }
+    
     func filterBrandsByNmae(brandName:String){
         fetchAllProducts()
         self.allProduct=allProduct?.filter{
             ($0.vendor==brandName)
         }
-        
     }
-    
-    
-    
-    
     
     func filterPorductsByMainCategory(itemIndex: Int){
         guard let categories = self.categorys else {
@@ -101,7 +97,7 @@ class ShopingViewModel{
     }
     
     func filterPorductsBySubCategory(subCategoryName: String) {
-        self.allProduct = allProduct?.filter{
+       self.allProduct = allProduct?.filter{
             ($0.product_type == subCategoryName)
         }
     }

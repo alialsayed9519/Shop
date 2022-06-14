@@ -94,7 +94,7 @@ class NetworkService {
                 switch response.result{
                 case .success(_):
                     guard let data = response.value else { return }
-                    print(data.addresses![0].city)
+                   // print(data.addresses![0].city)
                     completion(data.addresses,nil)
                 case .failure(let error) :
                     completion(nil,error)
