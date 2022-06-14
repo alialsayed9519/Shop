@@ -11,8 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="brandProductsVc" customModule="Shop" customModuleProvider="target">
             <connections>
-                <outlet property="brandImg" destination="xEF-Uf-vrz" id="fJb-Pe-I4X"/>
-                <outlet property="productCollectionView" destination="mwE-Mf-OuH" id="IiI-te-kdD"/>
+                <outlet property="brandImg" destination="xEF-Uf-vrz" id="uzV-BM-BUb"/>
+                <outlet property="productCollectionView" destination="mwE-Mf-OuH" id="HuM-44-rax"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -42,6 +42,10 @@
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="KHk-NZ-5De"/>
+                        <outlet property="delegate" destination="-1" id="oqK-Gf-aEe"/>
+                    </connections>
                 </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
