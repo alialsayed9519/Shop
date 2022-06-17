@@ -88,7 +88,7 @@ class NetworkService {
     func fetchAddresses(completion: @escaping ([Address]?, Error?) -> () ){
         
         let customerID = userDefault().getId()
-        AF.request(URLs.AllAddresses(customerId: customerID))
+        AF.request(URLs.allAddresses(customerId: customerID))
             .responseDecodable(of: CustomerAddresses.self){ (response) in
                 
                 switch response.result{
@@ -170,6 +170,21 @@ class NetworkService {
                 
             }
         }
-        
     }
+    
+    func fetchPriceRules(completion:@escaping ([Price_Rule]?, Error?)->()){
+    AF.request(URLs.priceRole())
+        .responseDecodable(of:Price_Rules.self){(response) in
+            switch response.result{
+            case .success(_):
+                guard let data = response.value
+                else{
+                    return
+                }
+                completion(data.price_rules, nil)
+            case .failure(let error):
+                completion(nil, error)
+        }
+    }
+}
 }
