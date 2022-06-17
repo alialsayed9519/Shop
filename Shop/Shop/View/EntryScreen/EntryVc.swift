@@ -36,4 +36,7 @@ class EntryVc: UIViewController {
         self.navigationController?.pushViewController(home, animated: true)
     }
 
+    @IBAction func payment(_ sender: Any) {
+        self.navigationController?.pushViewController(PaymentVc(), animated: true)
+    }
 }

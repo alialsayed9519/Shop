@@ -1,5 +1,16 @@
 PODS:
   - Alamofire (5.6.1)
+  - Braintree (5.10.0):
+    - Braintree/Card (= 5.10.0)
+    - Braintree/Core (= 5.10.0)
+    - Braintree/PayPal (= 5.10.0)
+  - Braintree/Card (5.10.0):
+    - Braintree/Core
+  - Braintree/Core (5.10.0)
+  - Braintree/PayPal (5.10.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+  - Braintree/PayPalDataCollector (5.10.0)
   - Cosmos (23.0.0)
   - JJFloatingActionButton (2.5.0)
   - ReachabilitySwift (5.0.0)
@@ -16,6 +27,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Braintree
   - Cosmos
   - JJFloatingActionButton
   - ReachabilitySwift
@@ -27,6 +39,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Braintree
     - Cosmos
     - JJFloatingActionButton
     - ReachabilitySwift
@@ -38,6 +51,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
+  Braintree: a4df29b5453664ea01f89a04e0ae97397021c92f
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   JJFloatingActionButton: fdc3aefb0f28f04d0f988fa25d5fac97028a9ea7
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
@@ -47,6 +61,6 @@ SPEC CHECKSUMS:
   SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: 5ffc0435a00878f669df07e4d34e2d238f3c20ce
+PODFILE CHECKSUM: c98a01484ccff77de967a7002630a46fa92dcf29
 
 COCOAPODS: 1.8.4
