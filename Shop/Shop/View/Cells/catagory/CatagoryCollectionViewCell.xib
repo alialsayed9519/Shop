@@ -36,6 +36,13 @@
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="gray" image="suit.heart" catalog="system"/>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Bv-eo-LfN">
+                        <rect key="frame" x="192" y="241" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -52,10 +59,11 @@
             <size key="customSize" width="427" height="282"/>
             <connections>
                 <outlet property="favProductBtn" destination="6tW-XG-pb0" id="4Ne-ni-kBQ"/>
+                <outlet property="producTitle" destination="4Bv-eo-LfN" id="kCb-Rs-3Ma"/>
                 <outlet property="productImage" destination="Ujl-to-DGT" id="jcD-KB-BnV"/>
                 <outlet property="productPrice" destination="vt2-ZY-4uA" id="bfs-P4-p2e"/>
             </connections>
-            <point key="canvasLocation" x="303.62318840579712" y="200.89285714285714"/>
+            <point key="canvasLocation" x="260" y="88"/>
         </collectionViewCell>
     </objects>
     <resources>

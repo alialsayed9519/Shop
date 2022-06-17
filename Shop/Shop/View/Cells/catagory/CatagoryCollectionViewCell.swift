@@ -16,6 +16,7 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet  var favProductBtn: UIButton!
     
+    @IBOutlet weak var producTitle: UILabel!
     private let favoriteViewModel = FavoriteViewModel()
 
     override func awakeFromNib() {
@@ -25,6 +26,7 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
 
     func updateUI(product: Product) {
         self.productPrice.text = product.variants?[0].price ?? "123"
+        self.producTitle.text=product.title
         self.productImage.sd_setImage(with: URL(string: product.images[0].src), placeholderImage: UIImage(named: "adidas"))
         self.favProductBtn.setTitle("", for: .normal)
      

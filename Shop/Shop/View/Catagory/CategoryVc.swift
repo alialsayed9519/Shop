@@ -13,20 +13,22 @@ class CategoryVc: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tabBar: UIToolbar!
     @IBOutlet private weak var internetImage: UIImageView!
-
+var searching=false
     var actionButton = JJFloatingActionButton()
     private let favoriteViewModel = FavoriteViewModel()
     private var products = [Product]()
+    var searchedProduct=[Product]()
     private var mainCategories = [CustomCollection]()
     
     private let shopViewModel = ShopingViewModel()
     
     private var mainCategoryIndex = 0
     private var subCategoryName: String?
+    let searchController=UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setSearchController()
         // Do any additional setup after loading the view.
         
         let nibCell = UINib(nibName: "CatagoryCollectionViewCell", bundle: nil)
@@ -38,6 +40,23 @@ class CategoryVc: UIViewController {
         shopViewModel.bindProducts = onProductsSuccess
 
     }
+    
+    func setSearchController(){
+        searchController.loadViewIfNeeded()
+        searchController.searchResultsUpdater=self
+        searchController.searchBar.delegate=self
+        searchController.obscuresBackgroundDuringPresentation=false
+        searchController.searchBar.enablesReturnKeyAutomatically=false
+        searchController.searchBar.returnKeyType=UIReturnKeyType.done
+        self.navigationItem.hidesSearchBarWhenScrolling=false
+        self.navigationItem.searchController=searchController
+        definesPresentationContext=true
+        searchController.searchBar.placeholder="search product By Name"
+    }
+    
+    
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -64,14 +83,44 @@ class CategoryVc: UIViewController {
 }
 
 // MARK: CollectionView Methods
-extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UISearchResultsUpdating,UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchText=searchController.searchBar.text!
+        if !searchText.isEmpty{
+            searching=true
+            searchedProduct.removeAll()
+            for product in products{
+                if product.title.lowercased().contains(searchText.lowercased()){
+                    searchedProduct.append(product)
+                }
+            }
+            
+        }
+        else{
+            searching=false
+            searchedProduct.removeAll()
+            searchedProduct=products
+            
+        }
+        collectionView.reloadData()
+    }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching=false
+        searchedProduct.removeAll()
+        collectionView.reloadData()
+    }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if searching{
+            return searchedProduct.count
+        }
+        else{
       return products.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -80,9 +129,15 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
         
         cell.favProductBtn.tag = indexPath.row
         cell.favProductBtn.addTarget(self, action: #selector(addProductToFav), for: .touchUpInside)
-        
+        let searchedProducts=searchedProduct[indexPath.row]
         let product = products[indexPath.row]
-        cell.updateUI(product: product)
+        if searching{
+            cell.updateUI(product: searchedProducts)
+        }
+        else{
+            cell.updateUI(product: product)
+            
+        }
         return cell
     }
     
