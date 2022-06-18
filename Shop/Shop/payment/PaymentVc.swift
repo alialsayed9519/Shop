@@ -9,21 +9,29 @@ import UIKit
 
 class PaymentVc: UIViewController {
 
+    @IBOutlet weak var discountView: UIView!
+    @IBOutlet weak var paymentView: UIView!
+    @IBOutlet weak var cashButton: UIButton!
+    @IBOutlet weak var onlineButton: UIButton!
+    
+    var orderAddress: Address?
+    var orderItems: [Product]?
+    var customer: Customer?
+    var discountCode: Price_Rule?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.discountView.layer.cornerRadius = 20
+        self.paymentView.layer.cornerRadius = 20
+        
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+   
+    @IBAction func cashPayment(_ sender: Any) {
     }
-    */
-
+    
+    @IBAction func onlinePayment(_ sender: Any) {
+    }
 }

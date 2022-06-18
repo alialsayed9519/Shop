@@ -176,15 +176,44 @@ class NetworkService {
     AF.request(URLs.priceRole())
         .responseDecodable(of:Price_Rules.self){(response) in
             switch response.result{
-            case .success(_):
-                guard let data = response.value
-                else{
-                    return
-                }
-                completion(data.price_rules, nil)
-            case .failure(let error):
-                completion(nil, error)
+                case .success(_):
+                    guard let data = response.value
+                    else{
+                        return
+                    }
+                    completion(data.price_rules, nil)
+                case .failure(let error):
+                    completion(nil, error)
+            }
         }
     }
-}
+    
+//    func postOrder(order: Order, completion: @escaping (Data?, URLResponse?, Error?)->()){
+//        guard let url = URL(string: URLs.order()) else {return}
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//        let session = URLSession.shared
+//        request.httpShouldHandleCookies = false
+//        do {
+//            request.httpBody = try JSONSerialization.data(withJSONObject: order.asDictionary(), options: .prettyPrinted)
+//        } catch let error {
+//            print(error.localizedDescription)
+//        }
+//        
+//        //HTTP Headers
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.addValue("application/json", forHTTPHeaderField: "Accept")
+//        
+//        session.dataTask(with: request) { (data, response, error) in
+//            completion(data, response, error)
+//        }.resume()
+//
+//    }
+//
+//    func getOrders(completion: @escaping (DataResponse<Orders, AFError>) -> ()){
+//        AF.request(URLs.order()).validate().responseDecodable(of:Orders.self) { (response) in
+//            completion(response)
+//            
+//        }
+//    }
 }

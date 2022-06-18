@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddressesTable" customModule="Shop" customModuleProvider="target">
             <connections>
                 <outlet property="button" destination="qnL-Ko-SRh" id="wj9-rj-Siq"/>
+                <outlet property="lable" destination="VAl-pe-ea6" id="egr-io-YJN"/>
                 <outlet property="tableView" destination="Kca-sI-2W1" id="dnS-DC-xhs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,8 +22,20 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAl-pe-ea6">
+                    <rect key="frame" x="16" y="16" width="382" height="48"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Choose an address to ship your order ">
+                            <attributes>
+                                <font key="NSFont" metaFont="system" size="22"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Kca-sI-2W1">
-                    <rect key="frame" x="8" y="52" width="398" height="721.5"/>
+                    <rect key="frame" x="8" y="68" width="398" height="705.5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qnL-Ko-SRh">
@@ -47,12 +60,16 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="Kca-sI-2W1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="5LF-1Y-HZt"/>
+                <constraint firstItem="Kca-sI-2W1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="5It-dD-6BV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="qnL-Ko-SRh" secondAttribute="bottom" constant="24" id="7Mu-0z-aS4"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qnL-Ko-SRh" secondAttribute="trailing" constant="32" id="8Uw-b4-uBA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VAl-pe-ea6" secondAttribute="trailing" constant="16" id="HDB-Ve-Bg8"/>
+                <constraint firstItem="VAl-pe-ea6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="HGJ-Wv-E9I"/>
+                <constraint firstItem="VAl-pe-ea6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="JPh-pB-sva"/>
                 <constraint firstItem="qnL-Ko-SRh" firstAttribute="top" secondItem="Kca-sI-2W1" secondAttribute="bottom" constant="24" id="Rs9-0B-7cT"/>
                 <constraint firstItem="qnL-Ko-SRh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="mGl-HA-iRu"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Kca-sI-2W1" secondAttribute="trailing" constant="8" id="s4M-dI-DD7"/>
+                <constraint firstItem="Kca-sI-2W1" firstAttribute="top" secondItem="VAl-pe-ea6" secondAttribute="bottom" constant="4" id="ts7-lD-F0B"/>
                 <constraint firstItem="Kca-sI-2W1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="wmv-Ca-6u6"/>
             </constraints>
             <point key="canvasLocation" x="-136" y="25"/>

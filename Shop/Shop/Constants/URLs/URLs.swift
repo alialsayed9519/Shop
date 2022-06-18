@@ -46,6 +46,10 @@ struct URLs {
     static func priceRole() -> String {
         return baseURL + "price_rules.json"
     }
+    
+    static func order()->String{
+            return baseURL + "orders.json"
+        }
 }
 
 
