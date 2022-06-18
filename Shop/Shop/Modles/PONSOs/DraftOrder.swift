@@ -1,9 +1,9 @@
 //
-//  DraftOrder.swift
+//  Order.swift
 //  Shop
 //
-//  Created by yasmeen hosny on 6/18/22.
-//
+//  Created by Ali on 14/06/2022.
+
 
 import Foundation
 
@@ -14,8 +14,6 @@ struct Images: Codable {
 struct ProductImage: Codable {
     let src: String
 }
-
-
 
 struct Draft: Decodable {
     let draft_order: DraftOrder

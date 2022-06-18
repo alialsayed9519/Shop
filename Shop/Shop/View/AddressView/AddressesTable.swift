@@ -25,23 +25,21 @@ class AddressesTable: UIViewController, NavigationHelper{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+
         button.layer.cornerRadius = button.layer.frame.height / 2
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.registerNib(cell: AddressCell.self)
+       tableView.registerNib(cell: AddressCell.self)
+              
+
         addressCell.delegate = self
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.title = "Addresses"
         
-        addressViewModel.fetchAddresses()
-        addressViewModel.bindAddresses = self.bindAddresses
-        addressViewModel.bindError = self.bindError
-        
-        
+
+       
         if chooseAddressFlag {
             if addresses.count != 0 {
                 button.isHidden = true
@@ -55,6 +53,9 @@ class AddressesTable: UIViewController, NavigationHelper{
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        addressViewModel.fetchAddresses()
+        addressViewModel.bindAddresses = self.bindAddresses
+        addressViewModel.bindError = self.bindError
         self.tableView.reloadData()
     }
     
@@ -93,10 +94,10 @@ extension AddressesTable: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       // let cell = tableView.dequeueNib() as AddressCell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AddressCell", for: indexPath) as! AddressCell
+        let cell = tableView.dequeueNib() as AddressCell
         let address = addresses[indexPath.row]
         cell.updateUI(address: address)
+        
         return cell
     }
     

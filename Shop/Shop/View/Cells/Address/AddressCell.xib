@@ -84,12 +84,6 @@
             </connections>
             <point key="canvasLocation" x="-133.33333333333334" y="101.78571428571428"/>
         </tableViewCell>
-        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="e2v-Va-I5q">
-            <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <state key="normal" title="Button"/>
-            <point key="canvasLocation" x="183" y="121"/>
-        </button>
     </objects>
     <resources>
         <image name="pencil" catalog="system" width="128" height="113"/>
