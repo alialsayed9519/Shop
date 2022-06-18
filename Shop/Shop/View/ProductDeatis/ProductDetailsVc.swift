@@ -60,7 +60,7 @@ class ProductDetailsVc: UIViewController {
     @IBAction func addToCart(_ sender: Any) {
         if userDefault().isLoggedIn() {
            let userDefault = userDefault()
-            let order = Api(draft_order: Sendd(line_items: [Order(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault.getId(), email: "AliALiAliAliAli", first_name: userDefault.getUserName(), last_name: "")))
+            let order = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault.getId(), email: "AliALiAliAliAli", first_name: userDefault.getUserName(), last_name: "")))
                 print(userDefault.getId())
            
             draftOrderViewModel.postNewDraftOrderWith(order: order)

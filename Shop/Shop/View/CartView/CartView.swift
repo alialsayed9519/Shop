@@ -15,7 +15,6 @@ class CartView: UIViewController{
     var items = [LineItems]()
     
     @IBOutlet var checkoutButton: UIView!
-    var items = [Product]()
     var orderAddress: Address?
 
     
@@ -23,6 +22,7 @@ class CartView: UIViewController{
         if userDefault().isLoggedIn() {
             if orderAddress == nil{
                 let addressTable = AddressesTable()
+                addressTable.chooseAddressFlag = true
                 self.navigationController?.pushViewController(addressTable, animated: true)
             }else{
                 let paymentVc = PaymentVc()
