@@ -15,11 +15,13 @@ class AddressesTable: UIViewController, NavigationHelper{
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var lable: UILabel!
     
     var addresses = [Address]()
     var addressViewModel = AddressViewModel()
     let addressCell = AddressCell()
     let addAddressView = AddAddress()
+    var chooseAddressFlag = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +32,24 @@ class AddressesTable: UIViewController, NavigationHelper{
         tableView.delegate = self
        tableView.registerNib(cell: AddressCell.self)
               
+
         addressCell.delegate = self
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.title = "Addresses"
         
+
        
+        if chooseAddressFlag {
+            if addresses.count != 0 {
+                button.isHidden = true
+            }
+        }
+        else{
+            lable.isHidden = true
+        }
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,6 +99,14 @@ extension AddressesTable: UITableViewDataSource, UITableViewDelegate{
         cell.updateUI(address: address)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if chooseAddressFlag{
+            let cartView = CartView()
+            cartView.orderAddress = addresses[indexPath.row]
+            self.navigationController?.pushViewController(cartView, animated: true)
+        }
     }
 }
 

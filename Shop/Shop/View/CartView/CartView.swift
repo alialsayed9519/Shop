@@ -14,14 +14,31 @@ class CartView: UIViewController{
     
     var items = [LineItems]()
     
+    @IBOutlet var checkoutButton: UIView!
+    var items = [Product]()
+    var orderAddress: Address?
+
     
     @IBAction func checkoutBoutton(_ sender: Any) {
-        
+        if userDefault().isLoggedIn() {
+            if orderAddress == nil{
+                let addressTable = AddressesTable()
+                self.navigationController?.pushViewController(addressTable, animated: true)
+            }else{
+                let paymentVc = PaymentVc()
+                paymentVc.orderAddress = self.orderAddress
+                paymentVc.orderItems = self.items 
+                self.navigationController?.pushViewController(paymentVc, animated: true)
+            }
+        }else{
+            let login = loginvc()
+            login.homeFlag = false
+            self.navigationController?.pushViewController(login, animated: true)
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         // Do any additional setup after loading the view.
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.title = "Cart"

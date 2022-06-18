@@ -40,6 +40,7 @@ class LoginViewModel:loginTemp{
                                 print("user found")
                                 self?.defaults.login()
                                 print(self?.defaults.isLoggedIn())
+
                                 self?.defaults.setId(id: customer.id ?? 0)
                                 if customer.addresses?.count ?? 0>0 && customer.addresses?[0].address1 != ""{
                                     for address in customer.addresses!{
