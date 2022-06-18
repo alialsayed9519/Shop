@@ -3,45 +3,9 @@
 //  Shop
 //
 //  Created by Ali on 14/06/2022.
-//
+
 
 import Foundation
-
-
-struct Images: Codable {
-    let images: [ProductImage]
-}
-
-struct ProductImage: Codable {
-    let src: String
-}
-
-
-
-struct Draft: Decodable {
-    let draft_order: DraftOrder
-}
-
-struct DraftOrder: Decodable {
-    let id: Int
-    let line_items: [LineItems]
-}
-
-struct LineItems: Decodable {
-    let id: Int
-    let variant_id: Int
-    let product_id: Int
-    let title: String
-    let quantity: Int
-    let price: String
-}
-
-
-
-
-
-
-
 
 
 struct customer: Codable {
@@ -63,4 +27,14 @@ struct Sendd: Codable {
 struct Order: Codable {
     let variant_id: Int
     let quantity: Int
+}
+
+
+struct OrderItem: Codable {
+    let variant_id: Int
+    let quantity: Int
+}
+
+struct Orders: Codable{
+    let orders: [OrderItem]
 }

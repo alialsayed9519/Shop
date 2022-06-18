@@ -11,6 +11,7 @@ class loginvc: UIViewController {
     var delegate=UIApplication.shared.delegate as! AppDelegate
     var loginviewModel:loginTemp?
     var email,password:String!
+    var homeFlag = true
     @IBOutlet weak var signInBtn: UIButton!
     @IBOutlet weak var loginImg: UIImageView!
     
@@ -39,14 +40,19 @@ class loginvc: UIViewController {
         }
     }
     func navigate(){
-        let home = MyTabBar(nibName: "MyTabBar", bundle: nil)
-        self.navigationController?.pushViewController(home, animated: true)
+        if homeFlag{
+            let home = MyTabBar(nibName: "MyTabBar", bundle: nil)
+            self.navigationController?.pushViewController(home, animated: true)
+        }
+        else {
+            self.navigationController?.popViewController(animated: true)
+        }
+        
     }
     @IBAction func signInBtn(_ sender: Any) {
         email=emailTf.text
         password=passTf.text
         loginviewModel?.login(email: email, password: password)
-      //  self.navigationController?.pushViewController(HomeVc(), animated: true)
     }
     
     @IBAction func signUpBtn(_ sender: Any) {

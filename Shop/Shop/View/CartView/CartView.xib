@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartView" customModule="Shop" customModuleProvider="target">
             <connections>
+                <outlet property="checkoutButton" destination="i5M-Pr-FkT" id="Lu8-cf-ico"/>
                 <outlet property="tableView" destination="CB7-xx-2ul" id="t2y-3r-zg3"/>
                 <outlet property="totalPrice" destination="YkB-Rk-DTQ" id="KUi-8e-RrH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -25,7 +26,7 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lig-uk-T2S">
-                    <rect key="frame" x="32" y="782" width="37" height="20"/>
+                    <rect key="frame" x="32" y="782" width="39" height="21.5"/>
                     <attributedString key="attributedText">
                         <fragment content="Total">
                             <attributes>
@@ -36,7 +37,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkB-Rk-DTQ">
-                    <rect key="frame" x="77" y="782" width="49.5" height="20"/>
+                    <rect key="frame" x="79" y="782" width="55" height="21.5"/>
                     <attributedString key="attributedText">
                         <fragment content="165.00">
                             <attributes>
@@ -48,7 +49,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xXa-4V-DvL">
-                    <rect key="frame" x="32" y="818" width="350" height="46"/>
+                    <rect key="frame" x="32" y="819.5" width="350" height="44.5"/>
                     <color key="backgroundColor" red="0.30671769380000002" green="0.56494402889999995" blue="0.18259373309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
