@@ -170,6 +170,92 @@ class NetworkService {
                 
             }
         }
+    }
+ 
+    func postNewDraftOrder(order: Api, completion: @escaping (Data?, URLResponse?, Error?)->()) {
+        guard let url = URL(string: URLs.getDraftOrdersURL()) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let session = URLSession.shared
+        request.httpShouldHandleCookies = false
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: order.asDictionary(), options: .prettyPrinted)
+          
+        } catch let error {
+            print(error.localizedDescription)
+        }
         
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+    }
+
+    func getSingleDraftOrder(id: String, completion: @escaping ([LineItems]?, Error?)->()){
+        AF.request(URLs.getSingleDraftOrder(id: id))
+             .responseDecodable(of: Draft.self) { (response) in
+                switch response.result {
+                case .success(_):
+                    guard let data = response.value else { return }
+                    completion(data.draft_order.line_items, nil)
+               
+                case .failure(let error):
+                    completion(nil, error)
+                }
+            }
+    }
+   
+    func getProductImageById(id: String , completion: @escaping (String?, Error?)->()){
+        AF.request(URLs.getProductImage(id: id))
+             .responseDecodable(of: Images.self) { (response) in
+                switch response.result {
+                case .success(_):
+                    guard let data = response.value else { return }
+                    completion(data.images[0].src, nil)
+               
+                case .failure(let error):
+                    completion(nil, error)
+                }
+            }
+    }
+
+    func removeAnExistingDraftOrder(id: String , completion: @escaping (Data?, URLResponse?, Error?)->()){
+        guard let url = URL(string: URLs.deleteDraftOrder(id: id)) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        let session = URLSession.shared
+             
+        //HTTP Headers
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+             
+    }
+    
+    func ModifyAnExistingDraftOrder(id: String, order: Api, completion: @escaping (Data?, URLResponse?, Error?)->()) {
+        guard let url = URL(string: URLs.modifyDeraftOrder(id: id)) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared
+    
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: order.asDictionary(), options: .prettyPrinted)
+          
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
     }
 }

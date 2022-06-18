@@ -23,8 +23,8 @@ struct productImage:Codable{
     let src:String
 }
 struct productOpitions:Codable{
- let id:Int
-let product_id:Int
+    let id:Int
+    let product_id:Int
     let values:[String]?
 }
 struct Variant:Codable{

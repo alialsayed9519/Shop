@@ -43,6 +43,25 @@ struct URLs {
         return baseURL + "customers/\(customerId)/addresses.json"
     }
 
+    static func getDraftOrdersURL() -> String {
+        return baseURL + "draft_orders.json"
+    }
+    
+    static func getSingleDraftOrder(id: String) -> String {
+        return baseURL + "draft_orders/\(id).json"
+    }
+    
+    static func getProductImage(id: String) -> String {
+        return baseURL + "products/\(id)/images.json"
+    }
+    
+    static func deleteDraftOrder(id: String) -> String {
+        return baseURL + "draft_orders/\(id).json"
+    }
+    
+    static func modifyDeraftOrder(id: String) -> String {
+        return baseURL + "draft_orders/\(id).json"
+    }
 }
 
 
