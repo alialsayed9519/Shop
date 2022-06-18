@@ -15,34 +15,43 @@ class AddressesTable: UIViewController, NavigationHelper{
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var lable: UILabel!
     
     var addresses = [Address]()
     var addressViewModel = AddressViewModel()
     let addressCell = AddressCell()
     let addAddressView = AddAddress()
+    var chooseAddressFlag = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let nibCell = UINib(nibName: "AddressCell", bundle: nil)
-     //   tableView.register(nibCell, forCellReuseIdentifier: "AddressCell")
         
         // Do any additional setup after loading the view.
         button.layer.cornerRadius = button.layer.frame.height / 2
         
         tableView.dataSource = self
         tableView.delegate = self
-       tableView.registerNib(cell: AddressCell.self)
-        
-        
+        tableView.registerNib(cell: AddressCell.self)
         addressCell.delegate = self
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.title = "Addresses"
         
+        addressViewModel.fetchAddresses()
         addressViewModel.bindAddresses = self.bindAddresses
         addressViewModel.bindError = self.bindError
-        addressViewModel.fetchAddresses()
+        
+        
+        if chooseAddressFlag {
+            if addresses.count != 0 {
+                button.isHidden = true
+            }
+        }
+        else{
+            lable.isHidden = true
+        }
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,6 +98,14 @@ extension AddressesTable: UITableViewDataSource, UITableViewDelegate{
         let address = addresses[indexPath.row]
         cell.updateUI(address: address)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if chooseAddressFlag{
+            let cartView = CartView()
+            cartView.orderAddress = addresses[indexPath.row]
+            self.navigationController?.pushViewController(cartView, animated: true)
+        }
     }
 }
 
