@@ -26,6 +26,7 @@ class CartView: UIViewController{
                 self.navigationController?.pushViewController(addressTable, animated: true)
             }else{
                 order?.line_items = self.items
+                order?.current_total_price = totalPrice.text
                 let paymentVc = PaymentVc()
                 paymentVc.order = self.order
                 self.navigationController?.pushViewController(paymentVc, animated: true)
@@ -53,6 +54,7 @@ class CartView: UIViewController{
     func onSuccessUpdateView() {
         items = draftOrderViewModel.lineItems ?? []
         print("aaaaaaa")
+        self.clacTotal()
         self.tableView.reloadData()
     }
     
@@ -63,6 +65,14 @@ class CartView: UIViewController{
         }
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func clacTotal() {
+        var total = 0
+        for item in items{
+            total += item.quantity * Int(item.price)!
+        }
+        totalPrice.text = "\(total)"
     }
 }
 
