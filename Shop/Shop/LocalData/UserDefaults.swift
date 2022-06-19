@@ -14,6 +14,8 @@ protocol userDefaultsprotocol{
     func getUserName()->String
     func getId()->Int
     func logout()
+    func setDraftOrder(note: String)
+    func getDraftOrder() -> String
 }
 class userDefault:userDefaultsprotocol{
     func logout() {
@@ -43,6 +45,43 @@ class userDefault:userDefaultsprotocol{
     
     func login() {
         UserDefaults.standard.set(true, forKey: "IsLoggedIn")
+    }
+    func setFiftyDescountID(id: Int){
+        UserDefaults.standard.set(id, forKey: "fiftyDescountID")
+    }
+    func setFiftyDescountTitle(title: String) {
+        UserDefaults.standard.set(title, forKey: "fiftyDescountTitle")
+    }
+    func getFiftyDescountID() -> Int{
+        UserDefaults.standard.value(forKey: "fiftyDescountID") as? Int ?? 0
+    }
+    func getFiftyDescountTitle() -> String{
+        UserDefaults.standard.value(forKey: "fiftyDescountTitle") as? String ?? ""
+    }
+    func setThirtyDescountID(id: Int){
+        UserDefaults.standard.set(id, forKey: "thirtyDescountID")
+    }
+    func setThirtyDescountTitle(title: String) {
+        UserDefaults.standard.set(title, forKey: "thirtyDescountTitle")
+    }
+    func getThirtyDescountID() -> Int{
+        UserDefaults.standard.value(forKey: "thirtyDescountID") as? Int ?? 0
+    }
+    func getThirtyDescountTitle() -> String{
+        UserDefaults.standard.value(forKey: "thirtyDescountTitle") as? String ?? ""
+    }
+    func setDescountMessage(message: String){
+        UserDefaults.standard.set(message, forKey: "descountMessage")
+    }
+    func getDescountMessage() -> String {
+        UserDefaults.standard.value(forKey: "descountMessage") as? String ?? ""
+    }
+    
+    func setDraftOrder(note: String){
+        UserDefaults.standard.set(note, forKey: "draftOrderId")
+    }
+    func getDraftOrder() -> String {
+        UserDefaults.standard.value(forKey: "draftOrderId") as? String ?? ""
     }
 }
 

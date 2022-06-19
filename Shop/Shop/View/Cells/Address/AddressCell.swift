@@ -28,6 +28,7 @@ class AddressCell: UITableViewCell {
     }
     
     @IBAction func editAddress(_ sender: Any) {
+        print("editAddress")
         self.delegate?.editAddrss(editAddress: editAddress!)
     }
     func updateUI(address: Address){

@@ -9,7 +9,17 @@ import UIKit
 //import Braintree
 import BraintreeDropIn
 class PaymentVc: UIViewController {
- // var braintreeClient: BTAPIClient!
+
+    @IBOutlet weak var discountView: UIView!
+    @IBOutlet weak var paymentView: UIView!
+    @IBOutlet weak var cashButton: UIButton!
+    @IBOutlet weak var onlineButton: UIButton!
+    
+    var orderAddress: Address?
+    var orderItems: [LineItems]?
+    var customer: Customer?
+    var discountCode: Price_Rule?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,6 +95,16 @@ class PaymentVc: UIViewController {
     }
     @IBAction func pay(_ sender: Any) {
         payMent()
+        self.discountView.layer.cornerRadius = 20
+        self.paymentView.layer.cornerRadius = 20
+        
+    }
+
+   
+    @IBAction func cashPayment(_ sender: Any) {
+    }
+    
+    @IBAction func onlinePayment(_ sender: Any) {
     }
 }
 

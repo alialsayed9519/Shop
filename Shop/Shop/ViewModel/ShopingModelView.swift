@@ -12,6 +12,7 @@ class ShopingViewModel{
     var bindProducts = {}
     var bindCategorys = {}
     var bindError = {}
+    var bindPriceRules = {}
 
     private var network = NetworkService()
     var brands:[Brand]?{
@@ -29,6 +30,11 @@ class ShopingViewModel{
             self.bindCategorys()
         }
     }
+    var price_rules: [Price_Rule]?{
+        didSet{
+            self.bindPriceRules()
+        }
+    }
     var error: String?{
         didSet{
             self.bindError()
@@ -36,7 +42,7 @@ class ShopingViewModel{
     }
      
     
-    func fetchProducts(collectionID: Int = 395727569125) {
+    func fetchProducts(collectionID: Int) {
         network.fetchProducts(collectionID: collectionID) { (products, error) in
             if let message = error?.localizedDescription{
                 self.error = message
@@ -64,18 +70,17 @@ class ShopingViewModel{
             
         }
     }
+    
     func fetchAllProducts(){
         network.fetchAllProducts(){(products,error) in
             if let message=error?.localizedDescription{
-                self.error=message
-                
+                self.error = message
             }
             else {
                 if let response=products{
                     self.allProduct=response
                 }
             }
-                
         }
     }
     
@@ -99,6 +104,24 @@ class ShopingViewModel{
     func filterPorductsBySubCategory(subCategoryName: String) {
        self.allProduct = allProduct?.filter{
             ($0.product_type == subCategoryName)
+        }
+    }
+    
+    func fetchPriceRules(){
+        network.fetchPriceRules(){(priceRule, error) in
+            if let message = error?.localizedDescription{
+                self.error = message
+            }
+            else {
+                if let response = priceRule{
+                    self.price_rules = response
+                    userDefault().setFiftyDescountID(id: response[0].id)
+                    userDefault().setFiftyDescountTitle(title: response[0].title)
+                    userDefault().setThirtyDescountID(id: response[1].id)
+                    userDefault().setThirtyDescountTitle(title: response[1].title)
+                    userDefault().setDescountMessage(message: "For 50% off enter \(response[0].title)\nFor 30% off enter \(response[1].title)")
+                }
+            }
         }
     }
 }
