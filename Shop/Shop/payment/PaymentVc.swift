@@ -14,10 +14,7 @@ class PaymentVc: UIViewController {
     @IBOutlet weak var cashButton: UIButton!
     @IBOutlet weak var onlineButton: UIButton!
     
-    var orderAddress: Address?
-    var orderItems: [LineItems]?
-    var customer: Customer?
-    var discountCode: Price_Rule?
+    var order: Order?
     
     override func viewDidLoad() {
         super.viewDidLoad()
