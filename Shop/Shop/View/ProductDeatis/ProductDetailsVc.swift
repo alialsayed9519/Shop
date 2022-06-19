@@ -60,11 +60,24 @@ class ProductDetailsVc: UIViewController {
     @IBAction func addToCart(_ sender: Any) {
         if userDefault().isLoggedIn() {
            let userDefault = userDefault()
-            let order = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault.getId(), email: "AliALiAliAliAli", first_name: userDefault.getUserName(), last_name: "")))
-                print(userDefault.getId())
            
-            draftOrderViewModel.postNewDraftOrderWith(order: order)
-        
+        // check if customer have draft or no. if no
+            print(userDefault.getDraftOrder())
+            //userDefault.getDraftOrder() == "0"
+            if false {
+                print("addToCart post")
+            let firstProduct = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault.getId())))
+          //      print(userDefault.getId())
+            draftOrderViewModel.postNewDraftOrderWith(order: firstProduct)
+        }
+                 
+        // if yes modify
+        if true {
+         //   print(userDefault.getId())
+            print("addToCart modify")
+            draftOrderViewModel.updateAnExistingDraftOrder(variantId: (product?.variants![0].id)!)
+        }
+            
         } else {
             print(userDefault().isLoggedIn())
             let alert = UIAlertController(title: "Error", message: "Guest can't add to cart please login first", preferredStyle: .alert)

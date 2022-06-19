@@ -18,6 +18,7 @@ class EntryVc: UIViewController {
        
         print(userDefault().getId())
         print(userDefault().getUserName())
+        print(userDefault().getDraftOrder())
         print(userDefault().isLoggedIn())
         
         entryImage.image=UIImage(named: "shop")
