@@ -7,15 +7,25 @@
 
 import UIKit
 import CoreData
+//import Braintree
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+//        BTAppContextSwitcher.setReturnURLScheme("iti.Shop.payments")
         // Override point for customization after application launch.
         return true
     }
+    
+//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+//        if url.scheme?.localizedCaseInsensitiveCompare("iti.Shop.payments") == .orderedSame {
+//                return BTAppContextSwitcher.handleOpenURL(url)
+//            }
+//            return false
+//
+//    }
 
     // MARK: UISceneSession Lifecycle
 
