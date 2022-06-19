@@ -15,19 +15,19 @@ class CartView: UIViewController{
     var items = [LineItems]()
     
     @IBOutlet var checkoutButton: UIView!
-    var orderAddress: Address?
+    var order: Order?
 
     
     @IBAction func checkoutBoutton(_ sender: Any) {
         if userDefault().isLoggedIn() {
-            if orderAddress == nil{
+            if order?.address == nil{
                 let addressTable = AddressesTable()
                 addressTable.chooseAddressFlag = true
                 self.navigationController?.pushViewController(addressTable, animated: true)
             }else{
+                order?.line_items = self.items
                 let paymentVc = PaymentVc()
-                paymentVc.orderAddress = self.orderAddress
-                paymentVc.orderItems = self.items 
+                paymentVc.order = self.order
                 self.navigationController?.pushViewController(paymentVc, animated: true)
             }
         }else{
@@ -45,14 +45,9 @@ class CartView: UIViewController{
         tableView.dataSource = self
         tableView.delegate = self  
         tableView.registerNib(cell: CartItem.self)
-        
-     // draftOrderViewModel.deleteAnExistingDraftOrder()
-        
-        
         draftOrderViewModel.getDraftOrderLineItems()
         draftOrderViewModel.bindDraftOrderLineItemsViewModelToView = { self.onSuccessUpdateView() }
         draftOrderViewModel.bindDraftViewModelErrorToView = { self.onFailUpdateView() }
-
     }
     
     func onSuccessUpdateView() {
@@ -66,18 +61,12 @@ class CartView: UIViewController{
         let okAction  = UIAlertAction(title: "Ok", style: .default) { (UIAlertAction) in
             
         }
-    
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
-    
 }
 
-extension CartView: UITableViewDelegate{
-    
-}
-
-extension CartView: UITableViewDataSource{
+extension CartView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }

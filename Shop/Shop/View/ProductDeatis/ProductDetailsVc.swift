@@ -59,14 +59,13 @@ class ProductDetailsVc: UIViewController {
 
     @IBAction func addToCart(_ sender: Any) {
         if userDefault().isLoggedIn() {
-           let userDefault = userDefault()
            
         // check if customer have draft or no. if no
-            print(userDefault.getDraftOrder())
+            print(userDefault().getDraftOrder())
             //userDefault.getDraftOrder() == "0"
             if false {
                 print("addToCart post")
-            let firstProduct = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault.getId())))
+            let firstProduct = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault().getId())))
           //      print(userDefault.getId())
             draftOrderViewModel.postNewDraftOrderWith(order: firstProduct)
         }
