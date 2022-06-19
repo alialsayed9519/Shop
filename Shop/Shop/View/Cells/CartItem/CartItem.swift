@@ -12,7 +12,7 @@ class CartItem: UITableViewCell {
     private let draftOrderViewModel = DraftOrderViewModel()
     @IBOutlet weak var itemimage: UIImageView!
     @IBOutlet weak var itemName: UILabel!
-    @IBOutlet weak var itemSize: UILabel!
+    @IBOutlet weak var itemVonder: UILabel!
     @IBOutlet weak var itemPrice: UILabel!
     @IBOutlet weak var itemCounter: UILabel!
     var ima = ""
@@ -32,14 +32,13 @@ class CartItem: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-
     
     func updateUI(item: LineItems) {
         itemName.text = item.title
    //     itemCounter.text = String(describing: itemCounter)
         itemCounter.text = String(describing: item.quantity)
-       
+        
+        itemVonder.text = item.vendor
         let id = String(describing: item.product_id)
         draftOrderViewModel.getProductImageFromAPI(id: id)
         draftOrderViewModel.bindImageURLToView = { self.onSuccessUpdateView() }

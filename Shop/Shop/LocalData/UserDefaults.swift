@@ -14,6 +14,8 @@ protocol userDefaultsprotocol{
     func getUserName()->String
     func getId()->Int
     func logout()
+    func setDraftOrder(note: String)
+    func getDraftOrder() -> String
 }
 class userDefault:userDefaultsprotocol{
     func logout() {
@@ -73,6 +75,13 @@ class userDefault:userDefaultsprotocol{
     }
     func getDescountMessage() -> String {
         UserDefaults.standard.value(forKey: "descountMessage") as? String ?? ""
+    }
+    
+    func setDraftOrder(note: String){
+        UserDefaults.standard.set(note, forKey: "draftOrderId")
+    }
+    func getDraftOrder() -> String {
+        UserDefaults.standard.value(forKey: "draftOrderId") as? String ?? ""
     }
 }
 
