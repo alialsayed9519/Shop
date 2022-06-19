@@ -104,7 +104,7 @@ extension AddressesTable: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if chooseAddressFlag{
             let cartView = CartView()
-            cartView.orderAddress = addresses[indexPath.row]
+            cartView.order?.address = addresses[indexPath.row]
             self.navigationController?.pushViewController(cartView, animated: true)
         }
     }

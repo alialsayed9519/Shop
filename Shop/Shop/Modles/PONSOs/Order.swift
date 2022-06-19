@@ -14,6 +14,7 @@ struct Order: Codable{
     var financial_status: String = "paid"
     var currency:String?
     var current_total_price:String?
+    var gateway: String?
 }
 
 struct APIOrder: Codable {
