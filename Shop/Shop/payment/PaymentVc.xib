@@ -26,13 +26,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash On Delivery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x47-TF-RhH">
-                    <rect key="frame" x="32" y="376.5" width="194" height="44.5"/>
+                    <rect key="frame" x="32" y="376.5" width="194" height="31.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNJ-sk-ZBu">
-                    <rect key="frame" x="68" y="677" width="269" height="39.5"/>
+                    <rect key="frame" x="68" y="664" width="269" height="52.5"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain">
@@ -54,24 +54,17 @@
                     <color key="textColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OFU-Nb-iqg">
-                    <rect key="frame" x="293" y="273" width="105" height="38"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="radioOf"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aqd-tx-twx">
-                    <rect key="frame" x="290" y="383" width="108" height="38"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="radioOf"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpC-ST-6tV">
-                    <rect key="frame" x="159" y="513" width="67" height="31"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lum-Do-yj1">
+                    <rect key="frame" x="316" y="270" width="48" height="38"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                    <connections>
-                        <action selector="pay:" destination="-1" eventType="touchUpInside" id="aO3-tE-b55"/>
-                    </connections>
+                    <buttonConfiguration key="configuration" style="plain" image="radioOf"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFH-7B-yhD">
+                    <rect key="frame" x="317" y="374" width="48" height="38"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="radioOf"/>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -80,7 +73,6 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BNJ-sk-ZBu" secondAttribute="trailing" constant="77" id="1FE-cq-COG"/>
                 <constraint firstItem="1th-7X-Ja5" firstAttribute="top" secondItem="rQq-ja-nW6" secondAttribute="bottom" constant="128" id="3Nd-fr-bLO"/>
                 <constraint firstItem="x47-TF-RhH" firstAttribute="top" secondItem="1th-7X-Ja5" secondAttribute="bottom" constant="72" id="6cM-e3-mZO"/>
-                <constraint firstItem="OFU-Nb-iqg" firstAttribute="leading" secondItem="1th-7X-Ja5" secondAttribute="trailing" constant="128" id="81H-1Q-EOS"/>
                 <constraint firstItem="x47-TF-RhH" firstAttribute="top" secondItem="1th-7X-Ja5" secondAttribute="bottom" constant="72" id="HYg-2x-E9U"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BNJ-sk-ZBu" secondAttribute="bottom" constant="145.5" id="IqY-kS-ZtP"/>
                 <constraint firstItem="rQq-ja-nW6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="JuQ-ND-KFH"/>
@@ -88,15 +80,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rQq-ja-nW6" secondAttribute="trailing" constant="24" id="PVd-fs-2TT"/>
                 <constraint firstItem="x47-TF-RhH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="QTG-yF-vm4"/>
                 <constraint firstItem="rQq-ja-nW6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="64" id="aK4-Rq-JAf"/>
-                <constraint firstItem="Aqd-tx-twx" firstAttribute="top" secondItem="OFU-Nb-iqg" secondAttribute="bottom" constant="72" id="afP-UI-Vc0"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="OFU-Nb-iqg" secondAttribute="trailing" constant="16" id="d7q-4o-bQ8"/>
-                <constraint firstItem="OFU-Nb-iqg" firstAttribute="top" secondItem="rQq-ja-nW6" secondAttribute="bottom" constant="128" id="dXG-8j-nxD"/>
-                <constraint firstItem="BNJ-sk-ZBu" firstAttribute="top" secondItem="Aqd-tx-twx" secondAttribute="bottom" constant="256" id="epZ-C3-Pet"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Aqd-tx-twx" secondAttribute="trailing" constant="16" id="gLf-Gi-DQP"/>
-                <constraint firstItem="Aqd-tx-twx" firstAttribute="top" secondItem="OFU-Nb-iqg" secondAttribute="bottom" constant="72" id="h3A-R6-deE"/>
                 <constraint firstItem="1th-7X-Ja5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="nxN-Yh-YNQ"/>
-                <constraint firstItem="OFU-Nb-iqg" firstAttribute="leading" secondItem="1th-7X-Ja5" secondAttribute="trailing" constant="128" id="szi-6V-Ix4"/>
-                <constraint firstItem="Aqd-tx-twx" firstAttribute="leading" secondItem="x47-TF-RhH" secondAttribute="trailing" constant="64" id="uVE-4a-Ctb"/>
                 <constraint firstItem="BNJ-sk-ZBu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="68" id="vV0-3g-dXt"/>
                 <constraint firstItem="1th-7X-Ja5" firstAttribute="top" secondItem="rQq-ja-nW6" secondAttribute="bottom" constant="128" id="zLy-fd-Por"/>
             </constraints>

@@ -94,9 +94,9 @@ extension HomeVc: UICollectionViewDataSource, UICollectionViewDelegate,UICollect
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let brand = brands[indexPath.row]
-        let proVc=brandProductsVc()
-        proVc.smartCol=brand
-        self.navigationController?.pushViewController(proVc, animated: true)
+    //    let proVc=brandProductsVc()
+       // proVc.smartCol=brand
+      //  self.navigationController?.pushViewController(proVc, animated: true)
     }
 }
 
