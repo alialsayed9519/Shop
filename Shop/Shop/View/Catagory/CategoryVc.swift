@@ -59,7 +59,7 @@ var searching=false
     
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         collectionView.reloadData()
         if ReachabilityViewModel.isConnected() {
             internetImage.isHidden = true
@@ -72,7 +72,8 @@ var searching=false
     }
     
     @IBAction func navigateToCart(_ sender: Any) {
-        self.navigationController?.pushViewController(CartView(), animated: true)
+       // self.navigationController?.pushViewController(CartView(), animated: true)
+        self.navigationController?.pushViewController(ProductListVc(), animated: true)
     }
     
     @IBAction func navigateToFavorite(_ sender: Any) {
@@ -129,12 +130,15 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
         
         cell.favProductBtn.tag = indexPath.row
         cell.favProductBtn.addTarget(self, action: #selector(addProductToFav), for: .touchUpInside)
-        let searchedProducts=searchedProduct[indexPath.row]
-        let product = products[indexPath.row]
+        
+        
+
         if searching{
-            cell.updateUI(product: searchedProducts)
+            let searchedProducts=searchedProduct[indexPath.row]
+            cell.updateUI(product:searchedProducts)
         }
         else{
+            let product = products[indexPath.row]
             cell.updateUI(product: product)
             
         }
