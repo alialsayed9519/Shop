@@ -19,6 +19,7 @@ class CartView: UIViewController{
 
     
     @IBAction func checkoutBoutton(_ sender: Any) {
+
         if (items.count == 0){
             if userDefault().isLoggedIn() {
                 if order?.pilling_address == nil{
@@ -36,7 +37,7 @@ class CartView: UIViewController{
                 let login = loginvc()
                 login.homeFlag = false
                 self.navigationController?.pushViewController(login, animated: true)
-            }
+
         } else {
             let alert = UIAlertController(title: "Empty Cart", message: "There is no items in your cart", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Back to shopp", style: .default) { (action) in
@@ -83,6 +84,7 @@ class CartView: UIViewController{
         }
         totalPrice.text = "\(total)"
     }
+
 }
 
 extension CartView: UITableViewDataSource, UITableViewDelegate{

@@ -16,6 +16,7 @@ struct Order: Codable{
     var current_total_price:String?
     var gateway: String?
     var discount: String?
+
 }
 
 struct APIOrder: Codable {
