@@ -6,15 +6,16 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CartItem: UITableViewCell {
-
+    private let draftOrderViewModel = DraftOrderViewModel()
     @IBOutlet weak var itemimage: UIImageView!
     @IBOutlet weak var itemName: UILabel!
-    @IBOutlet weak var itemSize: UILabel!
+    @IBOutlet weak var itemVonder: UILabel!
     @IBOutlet weak var itemPrice: UILabel!
     @IBOutlet weak var itemCounter: UILabel!
-    
+    var ima = ""
     var count: Int!
     
     @IBAction func icreseCount(_ sender: Any) {
@@ -31,13 +32,23 @@ class CartItem: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-
     
-    func updateUI(item: Product) {
+    func updateUI(item: LineItems) {
         itemName.text = item.title
-        itemCounter.text = String(describing: itemCounter)
-        //itemPrice.text = String(describing: item.variants)
+   //     itemCounter.text = String(describing: itemCounter)
+        itemCounter.text = String(describing: item.quantity)
+        
+        itemVonder.text = item.vendor
+        let id = String(describing: item.product_id)
+        draftOrderViewModel.getProductImageFromAPI(id: id)
+        draftOrderViewModel.bindImageURLToView = { self.onSuccessUpdateView() }
+
+        itemPrice.text = String(describing: item.price)
+    }
+    
+    func onSuccessUpdateView() {
+        ima = draftOrderViewModel.imageURL!
+        itemimage.sd_setImage(with: URL(string: ima), placeholderImage: UIImage(named: "adidas.png"))
     }
     
 }

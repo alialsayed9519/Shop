@@ -14,7 +14,9 @@ class HomeVc: UIViewController {
     @IBOutlet private weak var addsImage: UIImageView!
     private let brandsCollectionViewCellId = "BrandsCollectionViewCell"
     private var brands: [SmartCollection] = []
+    private var priceRules: [Price_Rule] = []
     private var brandsViewModel = BrandsViewModel()
+    private var shopingViewModel = ShopingViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +26,15 @@ class HomeVc: UIViewController {
         collectionView.register(nibCell, forCellWithReuseIdentifier: brandsCollectionViewCellId)
         
         showAddsImages()
-        
+        shopingViewModel.fetchPriceRules()
         brandsViewModel.bindBrandsViewModelToView = { self.onSuccessUpdateView() }
         brandsViewModel.bindViewModelErrorToView = { self.onFailUpdateView() }
+        shopingViewModel.bindPriceRules = self.onSuccessGetDescounts
+        
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
+        addsImage.isUserInteractionEnabled = true
+        addsImage.addGestureRecognizer(tapGestureRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,10 +44,16 @@ class HomeVc: UIViewController {
         }
     }
     
+    @objc func imageTapped(){
+        if userDefault().getDescountMessage() != ""{
+            self.showAlert(title: "Mid year sale", messgae: userDefault().getDescountMessage())
+        }
+    }
+    
     func showAddsImages() {
-        let images = [UIImage(named: "addsOne"), UIImage(named: "addsTwo"), UIImage(named: "addsThree"), UIImage(named: "addsFour"), UIImage(named: "addsFive")].compactMap{$0} // ignore nil image
+        let images = [UIImage(named: "dd1"), UIImage(named: "add2"), UIImage(named: "add3")].compactMap{$0} // ignore nil image
         addsImage.animationImages = images
-        addsImage.animationDuration = 5
+        addsImage.animationDuration = 10
         addsImage.roundedImage()
         addsImage.startAnimating()
     }
@@ -49,14 +63,16 @@ class HomeVc: UIViewController {
         self.collectionView.reloadData()
     }
     
-    func onFailUpdateView() {
-        let alert = UIAlertController(title: "Error", message: brandsViewModel.showError, preferredStyle: .alert)
-        let okAction  = UIAlertAction(title: "Ok", style: .default) { (UIAlertAction) in
-            
+    func onSuccessGetDescounts(){
+        if userDefault().getFiftyDescountID() != 0 || userDefault().getThirtyDescountID() != 0{
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
+            addsImage.isUserInteractionEnabled = true
+            addsImage.addGestureRecognizer(tapGestureRecognizer)
         }
+    }
     
-        alert.addAction(okAction)
-        self.present(alert, animated: true, completion: nil)
+    func onFailUpdateView() {
+        self.showAlert(title: "Error", messgae: brandsViewModel.showError!)
     }
 
     @IBAction func navigateToCartScreen(_ sender: Any) {
@@ -94,9 +110,19 @@ extension HomeVc: UICollectionViewDataSource, UICollectionViewDelegate,UICollect
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let brand = brands[indexPath.row]
-        let proVc=brandProductsVc()
-        proVc.smartCol=brand
-        self.navigationController?.pushViewController(proVc, animated: true)
+    //    let proVc=brandProductsVc()
+       // proVc.smartCol=brand
+      //  self.navigationController?.pushViewController(proVc, animated: true)
+    }
+    
+    func showAlert(title: String, messgae: String) {
+        let alert = UIAlertController(title: title, message: messgae, preferredStyle: .alert)
+        let okAction  = UIAlertAction(title: "Ok", style: .default) { (UIAlertAction) in
+            
+        }
+    
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

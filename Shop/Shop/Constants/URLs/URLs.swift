@@ -39,10 +39,37 @@ struct URLs {
         return baseURL + "customers/\(customerId)/addresses/\(addressId).json"
     }
     
-    static func AllAddresses(customerId: Int) -> String {
+    static func allAddresses(customerId: Int) -> String {
         return baseURL + "customers/\(customerId)/addresses.json"
     }
 
+    static func getDraftOrdersURL() -> String {
+        return baseURL + "draft_orders.json"
+    }
+    
+    static func getSingleDraftOrder(id: String) -> String {
+        return baseURL + "draft_orders/\(id).json"
+    }
+    
+    static func getProductImage(id: String) -> String {
+        return baseURL + "products/\(id)/images.json"
+    }
+    
+    static func deleteDraftOrder(id: String) -> String {
+        return baseURL + "draft_orders/\(id).json"
+    }
+    
+    static func modifyDeraftOrder(id: String) -> String {
+        return baseURL + "draft_orders/\(id).json"
+    }
+
+  static func priceRole() -> String {
+        return baseURL + "price_rules.json"
+    }
+    
+    static func order()->String{
+            return baseURL + "orders.json"
+        }
 }
 
 
