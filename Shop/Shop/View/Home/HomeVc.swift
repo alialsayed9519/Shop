@@ -32,7 +32,7 @@ class HomeVc: UIViewController {
         shopingViewModel.bindPriceRules = self.onSuccessGetDescounts
         
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
+        let tapGestureRecognizer = UITapGestur eRecognizer(target: self, action: #selector(self.imageTapped))
         addsImage.isUserInteractionEnabled = true
         addsImage.addGestureRecognizer(tapGestureRecognizer)
     }
