@@ -7,7 +7,7 @@
 
 import UIKit
 //import Braintree
-import BraintreeDropIn
+//import BraintreeDropIn
 class PaymentVc: UIViewController {
 
     @IBOutlet weak var discountView: UIView!
@@ -54,7 +54,7 @@ class PaymentVc: UIViewController {
 
 
     func payMent(){
-        print("salmaaaaaa")
+      /*  print("salmaaaaaa")
         func fetchClientToken() {
             let clientTokenURL = NSURL(string: "sandbox_v26b7763_zchjhvj48cst95wd")!
             let clientTokenRequest = NSMutableURLRequest(url: clientTokenURL as URL)
@@ -69,7 +69,8 @@ class PaymentVc: UIViewController {
                 }.resume()
         }
         showDropIn(clientTokenOrTokenizationKey: "sandbox_v26b7763_zchjhvj48cst95wd")
-    }
+    }*/
+/*
     func showDropIn(clientTokenOrTokenizationKey: String) {
         let request =  BTDropInRequest()
         let dropIn = BTDropInController(authorization: clientTokenOrTokenizationKey, request: request)
@@ -88,13 +89,14 @@ class PaymentVc: UIViewController {
             }
             controller.dismiss(animated: true, completion: nil)
         }
-        self.present(dropIn!, animated: true, completion: nil)
+        self.present(dropIn!, animated: true, completion: nil)*/
     }
     @IBAction func pay(_ sender: Any) {
-        payMent()
+     //   payMent()
     }
     @IBAction func cashPayment(_ sender: Any) {
         order?.gateway = "Cash On Delivery"
+        
     }
     
     @IBAction func onlinePayment(_ sender: Any) {
@@ -107,6 +109,8 @@ class PaymentVc: UIViewController {
         case "Cash On Delivery":
             viewModel.postOrder(order: order!)
         //    self.navigationController?.pushViewController(, animated: <#T##Bool#>)
+        case "Paypal":
+            payMent()
         default:
             print("Ay 7aga")
         }
@@ -114,7 +118,7 @@ class PaymentVc: UIViewController {
     
     @IBAction func applydiscountCode(_ sender: Any) {
         let discount = viewModel.checkDescountCode(copun: TFcopun.text ?? "")
-        utils.showAlert(message: discount.1, title: "Discount Code", view: self)
+     //   utils.showAlert(message: discount.1, title: "Discount Code", view: self)
         total = 15 + price! - (price! * (discount.0 / 100))
         
         //MARK: - Update Order
@@ -126,3 +130,4 @@ class PaymentVc: UIViewController {
         self.LTotale.text = "\(String(describing: total)).00 \(String(describing: currency))"
     }    
 }
+

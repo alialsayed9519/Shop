@@ -15,30 +15,33 @@ class CartView: UIViewController{
     var items = [LineItems]()
     
     @IBOutlet var checkoutButton: UIView!
-    var order: Order?
+    var order = Order()
 
     
     @IBAction func checkoutBoutton(_ sender: Any) {
-
-        if (items.count == 0){
-            if userDefault().isLoggedIn() {
-                if order?.pilling_address == nil{
+       // order = Order()
+        if items.count != 0{
+            if  userDefault().isLoggedIn(){
+                if order.pilling_address == nil{
                     let addressTable = AddressesTable()
                     addressTable.chooseAddressFlag = true
                     self.navigationController?.pushViewController(addressTable, animated: true)
-                }else{
-                    order?.line_items = self.items
-                    order?.current_total_price = totalPrice.text
+                }
+                else {
+                    order.line_items = self.items
+                    order.current_total_price = totalPrice.text
                     let paymentVc = PaymentVc()
                     paymentVc.order = self.order
                     self.navigationController?.pushViewController(paymentVc, animated: true)
                 }
-            }else{
+            }
+            else{
                 let login = loginvc()
                 login.homeFlag = false
                 self.navigationController?.pushViewController(login, animated: true)
-
-        } else {
+            }
+        }
+        else{
             let alert = UIAlertController(title: "Empty Cart", message: "There is no items in your cart", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Back to shopp", style: .default) { (action) in
                 self.navigationController?.pushViewController(HomeVc(), animated: true)
@@ -46,26 +49,30 @@ class CartView: UIViewController{
             alert.addAction(okAction)
             self.present(alert, animated: true, completion: nil)
         }
-        
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(items.count)
         // Do any additional setup after loading the view.
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.title = "Cart"
         tableView.dataSource = self
         tableView.delegate = self  
         tableView.registerNib(cell: CartItem.self)
+}
+    override func viewWillAppear(_ animated: Bool) {
         draftOrderViewModel.getDraftOrderLineItems()
         draftOrderViewModel.bindDraftOrderLineItemsViewModelToView = { self.onSuccessUpdateView() }
         draftOrderViewModel.bindDraftViewModelErrorToView = { self.onFailUpdateView() }
+        self.clacTotal()
+        print("viewWillAppear")
     }
     
     func onSuccessUpdateView() {
         items = draftOrderViewModel.lineItems ?? []
-        self.clacTotal()
         self.tableView.reloadData()
+        self.clacTotal()
     }
     
     func onFailUpdateView() {
@@ -78,17 +85,19 @@ class CartView: UIViewController{
     }
     
     func clacTotal() {
-        var total = 0
+        print("clacTotal")
+        var total = 0.0
         for item in items{
-            total += item.quantity * Int(item.price)!
+            print(Int(item.price))
+            total += Double(item.quantity) * (Double(item.price) ?? 0.0)
         }
         totalPrice.text = "\(total)"
     }
-
 }
 
 extension CartView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(items.count)
         return items.count
     }
     

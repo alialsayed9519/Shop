@@ -28,12 +28,12 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
         self.productPrice.text = product.variants?[0].price ?? "`123`"
        
         
-        let fullTitle = product.title.components(separatedBy: " | CLASSIC ")
+        let fullTitle = product.title.components(separatedBy: " | ")
 
         var fistpart: String = fullTitle[0]
         var secondpArt: String = fullTitle[1]
         self.producTitle.text=secondpArt
-        //print(secondpArt)
+        print(secondpArt)
         self.productImage.sd_setImage(with: URL(string: product.images[0].src), placeholderImage: UIImage(named: "adidas"))
         self.favProductBtn.setTitle("", for: .normal)
      

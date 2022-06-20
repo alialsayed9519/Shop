@@ -74,6 +74,10 @@ class DraftOrderViewModel {
                 self.showError = message
             } else {
                 self.lineItems = orders
+                
+                
+                
+                
             }
         }
     }
