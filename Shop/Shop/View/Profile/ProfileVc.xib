@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileVc" customModule="Shop" customModuleProvider="target">
             <connections>
                 <outlet property="tableView" destination="ail-7T-Lln" id="Qwi-j6-fWY"/>
+                <outlet property="userName" destination="cFX-Dl-Lgk" id="Lqe-nG-6Am"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

@@ -8,25 +8,35 @@
 import UIKit
 
 class ProfileVc: UIViewController {
+    @IBOutlet weak var userName: UILabel!
     var userdefaults:userDefaultsprotocol=userDefault()
     @IBOutlet private weak var tableView: UITableView!
     private let profileTableViewCellId = "ProfileTableViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUserData()
         let nibCell = UINib(nibName: profileTableViewCellId, bundle: nil)
         tableView.register(nibCell, forCellReuseIdentifier: profileTableViewCellId)
     }
 
     @IBAction func logout(_ sender: Any) {
-        showAlertSheet(title: "do you want to logout", message: "sorry to see you leave us"){
+        showAlertSheet(title: "do you want to logout", message: "sorry to see you leave us 💔"){
             sucess
             in
             if sucess{
                 self.userdefaults.logout()
-                self.navigationController?.pushViewController(HomeVc(), animated: true)
+                //self.userdefaults.setId(id: nil)
+                let home = MyTabBar(nibName: "MyTabBar", bundle: nil)
+                self.navigationController?.pushViewController(home, animated: true)
+                print(self.userdefaults.isLoggedIn())
             }
         }
+        
+    }
+    func setUserData(){
+        let name=userdefaults.getUserName()
+        userName.text=name
     }
     func showAlertSheet(title:String, message:String,complition:@escaping (Bool)->Void){
         let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)

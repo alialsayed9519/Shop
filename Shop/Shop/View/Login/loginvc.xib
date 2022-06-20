@@ -29,12 +29,17 @@
                     </constraints>
                 </imageView>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7fh-ok-viT" customClass="HoshiTextField" customModule="TextFieldEffects">
-                    <rect key="frame" x="32" y="324" width="350" height="41.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <rect key="frame" x="32" y="324" width="350" height="35.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
                     <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                            <real key="value" value="-4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xsm-7y-sUj">
-                    <rect key="frame" x="64" y="508" width="286" height="40"/>
+                    <rect key="frame" x="64" y="494.5" width="286" height="40"/>
                     <color key="backgroundColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal">
                         <attributedString key="attributedTitle">
@@ -58,9 +63,14 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HJN-cy-iBQ" customClass="HoshiTextField" customModule="TextFieldEffects">
-                    <rect key="frame" x="32" y="399" width="350" height="41.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <rect key="frame" x="32" y="393" width="350" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                            <real key="value" value="-3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fef-8Q-Cec">
                     <rect key="frame" x="277" y="658" width="73" height="38"/>
@@ -96,10 +106,10 @@
     </objects>
     <designables>
         <designable name="7fh-ok-viT">
-            <size key="intrinsicContentSize" width="84.5" height="41.5"/>
+            <size key="intrinsicContentSize" width="72.5" height="35.5"/>
         </designable>
         <designable name="HJN-cy-iBQ">
-            <size key="intrinsicContentSize" width="139" height="41.5"/>
+            <size key="intrinsicContentSize" width="118" height="34"/>
         </designable>
     </designables>
     <resources>

@@ -15,7 +15,7 @@ class MyTabBar: UITabBarController {
     let guestProfile=GuestProfileVc()
     override func viewDidLoad() {
         super.viewDidLoad()
-        var isLogged = defaults.isLoggedIn()
+        let isLogged = defaults.isLoggedIn()
         setViews(isLogedIn: isLogged)
        
         self.tabBar.backgroundColor = .white
