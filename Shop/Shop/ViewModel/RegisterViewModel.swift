@@ -58,7 +58,7 @@ class RegisterViewModel:regTemp{
                     let getCustomer = json["customer"] as? Dictionary<String,Any>
                     let id=getCustomer?["id"] as? Int ?? 0
                     let name=getCustomer?["first_name"] as? String ?? ""
-                    let draftId = getCustomer?["note"] as? String ?? "false"
+                    let draftId = getCustomer?["note"] as? String ?? "0"
                     if id != 0 {
                         self?.defaults.login()
                         self?.defaults.setId(id: id)

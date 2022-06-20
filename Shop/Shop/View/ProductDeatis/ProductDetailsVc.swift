@@ -12,6 +12,8 @@ class ProductDetailsVc: UIViewController {
     var product:Product!
     var ratings=[4,4.5,5]
     @IBOutlet weak var productImageCollectionView: UICollectionView!
+    private let customerViewModel = CustomerViewModel()
+    private var user: User? = nil
     
     @IBOutlet weak var imageControl: UIPageControl!
     private let draftOrderViewModel = DraftOrderViewModel()
@@ -56,30 +58,34 @@ class ProductDetailsVc: UIViewController {
         
     }
  
+    override func viewWillAppear(_ animated: Bool) {
+        print(userDefault().getId())
+        customerViewModel.getCustomerwith(id: String(userDefault().getId()))
+        customerViewModel.bindUser = { self.onSuccessUpdateView() }
+    }
+    
+    func onSuccessUpdateView() {
+        user = customerViewModel.customer
+    }
 
     @IBAction func addToCart(_ sender: Any) {
-        if userDefault().isLoggedIn() {
-           let userDefault = userDefault()
-           
-        // check if customer have draft or no. if no
-            print(userDefault.getDraftOrder())
-            //userDefault.getDraftOrder() == "0"
-            if false {
+        let userDefault: userDefaultsprotocol = userDefault()
+        print(user?.customer.note)
+        if userDefault.isLoggedIn() {
+            if user?.customer.note == "0" {
                 print("addToCart post")
-            let firstProduct = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault.getId())))
-          //      print(userDefault.getId())
-            draftOrderViewModel.postNewDraftOrderWith(order: firstProduct)
-        }
-                 
-        // if yes modify
-        if true {
-         //   print(userDefault.getId())
-            print("addToCart modify")
-            draftOrderViewModel.updateAnExistingDraftOrder(variantId: (product?.variants![0].id)!)
-        }
+                let firstProduct = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault.getId())))
+                //print(userDefault.getId())
+                draftOrderViewModel.postNewDraftOrderWith(order: firstProduct)
+            } else {
+                //print(userDefault.getId())
+                print("addToCart modify")
+            //    print(user?.customer.note)
+                draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.note)!, variantId: (product?.variants![0].id)!)
+            }
             
         } else {
-            print(userDefault().isLoggedIn())
+            print(userDefault.isLoggedIn())
             let alert = UIAlertController(title: "Error", message: "Guest can't add to cart please login first", preferredStyle: .alert)
             let loginAction  = UIAlertAction(title: "go to login ", style: .default) { (UIAlertAction) in
                 let login = loginvc()

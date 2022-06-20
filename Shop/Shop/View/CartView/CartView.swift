@@ -11,6 +11,9 @@ class CartView: UIViewController{
     private let draftOrderViewModel = DraftOrderViewModel()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalPrice: UILabel!
+   
+    private let customerViewModel = CustomerViewModel()
+    private var user: User? = nil
     
     var items = [LineItems]()
     
@@ -47,12 +50,28 @@ class CartView: UIViewController{
         tableView.registerNib(cell: CartItem.self)
         
      // draftOrderViewModel.deleteAnExistingDraftOrder()
-        
-        
+        print(userDefault().getId())
+        customerViewModel.getCustomerwith(id: String(userDefault().getId()))
+        customerViewModel.bindUser = { self.getUser() }
+      /*
         draftOrderViewModel.getDraftOrderLineItems()
         draftOrderViewModel.bindDraftOrderLineItemsViewModelToView = { self.onSuccessUpdateView() }
         draftOrderViewModel.bindDraftViewModelErrorToView = { self.onFailUpdateView() }
-
+*/
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       
+        
+        if userDefault().isLoggedIn() {
+      //      draftOrderViewModel.getDraftOrderLineItems(id: (user?.customer.note)!)
+       //     draftOrderViewModel.bindDraftOrderLineItemsViewModelToView = { self.onSuccessUpdateView() }
+        //    draftOrderViewModel.bindDraftViewModelErrorToView = { self.onFailUpdateView() }
+        }
+    }
+    
+    func getUser() {
+        user = customerViewModel.customer
     }
     
     func onSuccessUpdateView() {

@@ -43,6 +43,7 @@ class DraftOrderViewModel {
    }
     
     func postNewDraftOrderWith(order: Api) {
+        let customerViewModel = CustomerViewModel()
         networkService.postNewDraftOrder(order: order) { data, response, error in
             if let error: Error = error {
                 let message = error.localizedDescription
@@ -55,10 +56,10 @@ class DraftOrderViewModel {
             do {
                 let jsonObj = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
                 let i = jsonObj!["draft_order"] as? [String: Any]
-                let id = i!["id"]
-                print("\(String(describing: id))   postNewDraftOrderWith  vm")
-                
-                
+                let draftId = i!["id"] as! Int
+               // print(type(of: draftId))
+                print("\(String(describing: draftId))   postNewDraftOrderWith  vm")
+                customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: String(draftId))))
                 
             } catch {
                 print(error.localizedDescription)
@@ -68,12 +69,12 @@ class DraftOrderViewModel {
     }
     
     func getDraftOrderLineItems(id: String = "1100811043074") {
-        networkService.getSingleDraftOrder(id: id) { (orders, error) in
+        networkService.getSingleDraftOrder(id: id) { (items, error) in
             if let error: Error = error {
                 let message = error.localizedDescription
                 self.showError = message
             } else {
-                self.lineItems = orders
+                self.lineItems = items
             }
         }
     }
