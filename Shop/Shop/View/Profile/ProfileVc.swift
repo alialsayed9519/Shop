@@ -8,7 +8,7 @@
 import UIKit
 
 class ProfileVc: UIViewController {
-
+    var userdefaults:userDefaultsprotocol=userDefault()
     @IBOutlet private weak var tableView: UITableView!
     private let profileTableViewCellId = "ProfileTableViewCell"
     
@@ -16,6 +16,29 @@ class ProfileVc: UIViewController {
         super.viewDidLoad()
         let nibCell = UINib(nibName: profileTableViewCellId, bundle: nil)
         tableView.register(nibCell, forCellReuseIdentifier: profileTableViewCellId)
+    }
+
+    @IBAction func logout(_ sender: Any) {
+        showAlertSheet(title: "do you want to logout", message: "sorry to see you leave us"){
+            sucess
+            in
+            if sucess{
+                self.userdefaults.logout()
+                self.navigationController?.pushViewController(HomeVc(), animated: true)
+            }
+        }
+    }
+    func showAlertSheet(title:String, message:String,complition:@escaping (Bool)->Void){
+        let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        let logOut = UIAlertAction(title: "Log out", style: .destructive) { _ in
+            complition(true)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { _ in
+            complition(false)
+        }
+        actionSheet.addAction(logOut)
+        actionSheet.addAction(cancel)
+        self.present(actionSheet, animated: true, completion: nil)
     }
 
 }
