@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileVc" customModule="Shop" customModuleProvider="target">
             <connections>
                 <outlet property="tableView" destination="ail-7T-Lln" id="Qwi-j6-fWY"/>
+                <outlet property="userName" destination="cFX-Dl-Lgk" id="L3G-5n-Ncf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -35,7 +36,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFX-Dl-Lgk">
-                    <rect key="frame" x="0.0" y="206" width="414" height="27"/>
+                    <rect key="frame" x="0.0" y="206" width="414" height="29"/>
                     <attributedString key="attributedText">
                         <fragment content="Name">
                             <attributes>
@@ -47,7 +48,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C7P-DI-H7Q">
-                    <rect key="frame" x="20" y="273" width="374" height="35"/>
+                    <rect key="frame" x="20" y="275" width="374" height="35"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain">
                         <attributedString key="attributedTitle">
@@ -59,6 +60,9 @@
                             </fragment>
                         </attributedString>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="logout:" destination="-1" eventType="touchUpInside" id="hA2-Tu-NB3"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
