@@ -59,7 +59,7 @@ var searching=false
     
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         collectionView.reloadData()
         if ReachabilityViewModel.isConnected() {
             internetImage.isHidden = true
@@ -71,9 +71,11 @@ var searching=false
         shopViewModel.filterPorductsByMainCategory(itemIndex: mainCategoryIndex)
     }
     
-    @IBAction func navigateToCart(_ sender: Any) {
-       // self.navigationController?.pushViewController(CartView(), animated: true)
+    @IBAction func search(_ sender: Any) {
         self.navigationController?.pushViewController(ProductListVc(), animated: true)
+    }
+    @IBAction func navigateToCart(_ sender: Any) {
+        self.navigationController?.pushViewController(CartView(), animated: true)
     }
     
     @IBAction func navigateToFavorite(_ sender: Any) {
@@ -151,8 +153,9 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let side = (view.frame.size.width - 30 )/3
-            return CGSize(width: side, height: side)  
+            let side = (view.frame.size.width-10)/2
+            let height = view.frame.size.height / 4
+            return CGSize(width: side, height: height)
         }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

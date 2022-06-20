@@ -20,8 +20,9 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="d9E-M6-wrS">
-                    <rect key="frame" x="0.0" y="111" width="414" height="785"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="d9E-M6-wrS">
+                    <rect key="frame" x="0.0" y="234" width="414" height="662"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HwW-rs-gPY">
                         <size key="itemSize" width="128" height="128"/>
@@ -37,12 +38,6 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <constraints>
-                <constraint firstItem="d9E-M6-wrS" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="bMn-G7-CNb"/>
-                <constraint firstItem="d9E-M6-wrS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dBC-nC-A1J"/>
-                <constraint firstItem="d9E-M6-wrS" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="67" id="je3-RG-2vL"/>
-                <constraint firstAttribute="bottom" secondItem="d9E-M6-wrS" secondAttribute="bottom" id="uS4-rP-vVl"/>
-            </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="69.642857142857139"/>
         </view>
     </objects>
