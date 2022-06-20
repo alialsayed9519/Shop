@@ -14,7 +14,7 @@ class ProductDetailsVc: UIViewController {
     @IBOutlet weak var productImageCollectionView: UICollectionView!
     
     @IBOutlet weak var imageControl: UIPageControl!
-    
+    private let draftOrderViewModel = DraftOrderViewModel()
     
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var reviewTextView: UITextView!
@@ -25,18 +25,19 @@ class ProductDetailsVc: UIViewController {
     @IBOutlet weak var navigationtitle: UINavigationItem!
     @IBOutlet weak var descTextView: UITextView!
     @IBOutlet weak var favButton: UIButton!
-    @IBOutlet weak var addToBag: UIButton!
+//    @IBOutlet weak var addToBag: UIButton!
     let productImageCell="ImageCollectionViewCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-displayProduct()
+        displayProduct()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         let backItem = UIBarButtonItem()
             backItem.title = "Category"
        // navBar.ba = backItem;
-        addToBag.backgroundColor = .blue
-        addToBag.layer.cornerRadius = 20
+      //  addToBag.backgroundColor = .blue
+       // addToBag.layer.cornerRadius = 20
 
         let nibCell = UINib(nibName: productImageCell, bundle: nil)
         productImageCollectionView.register(nibCell, forCellWithReuseIdentifier: productImageCell)
@@ -55,15 +56,45 @@ displayProduct()
         
     }
  
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func addToCart(_ sender: Any) {
+        if userDefault().isLoggedIn() {
+           let userDefault = userDefault()
+           
+        // check if customer have draft or no. if no
+            print(userDefault.getDraftOrder())
+            //userDefault.getDraftOrder() == "0"
+            if false {
+                print("addToCart post")
+            let firstProduct = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault.getId())))
+          //      print(userDefault.getId())
+            draftOrderViewModel.postNewDraftOrderWith(order: firstProduct)
+        }
+                 
+        // if yes modify
+        if true {
+         //   print(userDefault.getId())
+            print("addToCart modify")
+            draftOrderViewModel.updateAnExistingDraftOrder(variantId: (product?.variants![0].id)!)
+        }
+            
+        } else {
+            print(userDefault().isLoggedIn())
+            let alert = UIAlertController(title: "Error", message: "Guest can't add to cart please login first", preferredStyle: .alert)
+            let loginAction  = UIAlertAction(title: "go to login ", style: .default) { (UIAlertAction) in
+                let login = loginvc()
+               // login.homeFlag = false
+                self.navigationController?.pushViewController(login, animated: true)
+            }
+            
+            let okAction  = UIAlertAction(title: "ok", style: .default) { (UIAlertAction) in
+            }
+            alert.addAction(okAction)
+            alert.addAction(loginAction)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
-    */
+    
 
 }
 extension ProductDetailsVc:UICollectionViewDelegate,UICollectionViewDataSource{

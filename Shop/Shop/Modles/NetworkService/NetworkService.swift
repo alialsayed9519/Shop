@@ -88,7 +88,7 @@ class NetworkService {
     func fetchAddresses(completion: @escaping ([Address]?, Error?) -> () ){
         
         let customerID = userDefault().getId()
-        AF.request(URLs.AllAddresses(customerId: customerID))
+        AF.request(URLs.allAddresses(customerId: customerID))
             .responseDecodable(of: CustomerAddresses.self){ (response) in
                 
                 switch response.result{
@@ -170,6 +170,138 @@ class NetworkService {
                 
             }
         }
-        
     }
+ 
+    func postNewDraftOrder(order: Api, completion: @escaping (Data?, URLResponse?, Error?)->()) {
+        guard let url = URL(string: URLs.getDraftOrdersURL()) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let session = URLSession.shared
+        request.httpShouldHandleCookies = false
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: order.asDictionary(), options: .prettyPrinted)
+          
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+    }
+
+    func getSingleDraftOrder(id: String, completion: @escaping ([LineItems]?, Error?)->()){
+        AF.request(URLs.getSingleDraftOrder(id: id))
+             .responseDecodable(of: Draft.self) { (response) in
+                switch response.result {
+                case .success(_):
+                    guard let data = response.value else { return }
+                    completion(data.draft_order.line_items, nil)
+               
+                case .failure(let error):
+                    completion(nil, error)
+                }
+            }
+    }
+   
+    func getProductImageById(id: String , completion: @escaping (String?, Error?)->()){
+        AF.request(URLs.getProductImage(id: id))
+             .responseDecodable(of: Images.self) { (response) in
+                switch response.result {
+                case .success(_):
+                    guard let data = response.value else { return }
+                    completion(data.images[0].src, nil)
+               
+                case .failure(let error):
+                    completion(nil, error)
+                }
+            }
+    }
+
+    func removeAnExistingDraftOrder(id: String , completion: @escaping (Data?, URLResponse?, Error?)->()){
+        guard let url = URL(string: URLs.deleteDraftOrder(id: id)) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        let session = URLSession.shared
+             
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+             
+    }
+    
+    func ModifyAnExistingDraftOrder(id: String, order: Updated, completion: @escaping (Data?, URLResponse?, Error?)->()) {
+        guard let url = URL(string: URLs.modifyDeraftOrder(id: id)) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: order.asDictionary(), options: .prettyPrinted)
+          
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        print(try? order.asDictionary())
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.httpShouldHandleCookies = false
+
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+
+    }
+    
+    func fetchPriceRules(completion:@escaping ([Price_Rule]?, Error?)->()){
+    AF.request(URLs.priceRole())
+        .responseDecodable(of:Price_Rules.self){(response) in
+            switch response.result{
+                case .success(_):
+                    guard let data = response.value
+                    else{
+                        return
+                    }
+                    completion(data.price_rules, nil)
+                case .failure(let error):
+                    completion(nil, error)
+            }
+        }
+    }
+    
+//    func postOrder(order: Order, completion: @escaping (Data?, URLResponse?, Error?)->()){
+//        guard let url = URL(string: URLs.order()) else {return}
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//        let session = URLSession.shared
+//        request.httpShouldHandleCookies = false
+//        do {
+//            request.httpBody = try JSONSerialization.data(withJSONObject: order.asDictionary(), options: .prettyPrinted)
+//        } catch let error {
+//            print(error.localizedDescription)
+//        }
+//        
+//        //HTTP Headers
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.addValue("application/json", forHTTPHeaderField: "Accept")
+//        
+//        session.dataTask(with: request) { (data, response, error) in
+//            completion(data, response, error)
+//        }.resume()
+//
+//    }
+//
+//    func getOrders(completion: @escaping (DataResponse<Orders, AFError>) -> ()){
+//        AF.request(URLs.order()).validate().responseDecodable(of:Orders.self) { (response) in
+//            completion(response)
+//            
+//        }
+//    }
 }

@@ -10,11 +10,14 @@ import CoreData
 protocol CoreDataProtocol{
     func setAddress(address:Address)
 }
+
+
 class CoreDataRepo:CoreDataProtocol{
     var delegate:AppDelegate
     init(appdelegate:inout AppDelegate){
         delegate=appdelegate
     }
+    
     func setAddress(address: Address) {
         let managedContext = delegate.persistentContainer.viewContext
         let addEntity = NSEntityDescription.entity(forEntityName: "address", in: managedContext)
@@ -33,3 +36,4 @@ class CoreDataRepo:CoreDataProtocol{
     
     
 }
+

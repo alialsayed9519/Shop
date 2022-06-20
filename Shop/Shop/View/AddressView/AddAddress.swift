@@ -30,7 +30,7 @@ class AddAddress: UIViewController {
     
     @IBAction func addAddress(_ sender: Any){
      //   self.navigationController?.popViewController(animated: true)
-        DispatchQueue.main.async { [self] in
+        //DispatchQueue.main.async { [self] in
             if editFlag{
                 editAddress.country = TFCountry.text ?? ""
                 editAddress.city = TFCity.text ?? ""
@@ -42,7 +42,7 @@ class AddAddress: UIViewController {
                 addressViewModel.addAddress(country: TFCountry.text ?? "", city: TFCity.text ?? "", address: TFAddress.text ?? "", phone: TFPhone.text ?? "")
             }
 
-        }
+      //  }
         self.navigationController?.popViewController(animated: true)
 
         
