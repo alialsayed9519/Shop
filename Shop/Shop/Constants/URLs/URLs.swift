@@ -11,8 +11,7 @@ struct URLs {
     private static var baseURL = "https://54e7ce1d28a9d3b395830ea17be70ae1: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@mad-ism2022.myshopify.com/admin/api/2022-04/"
     
     static func getCategoriesURL() -> String {
-        let fullUrl = baseURL + "smart_collections.json"
-        return fullUrl
+        return baseURL + "smart_collections.json"
     }
     static func customer()->String{
         return baseURL+"customers.json"
@@ -63,13 +62,13 @@ struct URLs {
         return baseURL + "draft_orders/\(id).json"
     }
 
-  static func priceRole() -> String {
+    static func priceRole() -> String {
         return baseURL + "price_rules.json"
     }
     
     static func order()->String{
-            return baseURL + "orders.json"
-        }
+        return baseURL + "orders.json"
+    }
 }
 
 

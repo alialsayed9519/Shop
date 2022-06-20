@@ -12,50 +12,50 @@ class PaymentVc: UIViewController {
 
     @IBOutlet weak var discountView: UIView!
     @IBOutlet weak var paymentView: UIView!
+    @IBOutlet weak var detailsView: UIView!
     @IBOutlet weak var cashButton: UIButton!
     @IBOutlet weak var onlineButton: UIButton!
+    @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var TFcopun: UITextField!
+    @IBOutlet weak var applyButton: UIButton!
+    @IBOutlet weak var LPrice: UILabel!
+    @IBOutlet weak var LDiscount: UILabel!
+    @IBOutlet weak var LShipping: UILabel!
+    @IBOutlet weak var LTotale: UILabel!
+   
+  var order: Order?
+    var price: Int?
+    var total: Int?
+    var currency: String?
     
-    var order: Order?
+    private let viewModel = OrderViewModel()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       
         // Do any additional setup after loading the view.
+      
+        self.discountView.layer.cornerRadius = 20
+        self.paymentView.layer.cornerRadius = 20
+        self.detailsView.layer.cornerRadius = 20
+        self.continueButton.layer.cornerRadius = 20
+        self.applyButton.layer.cornerRadius = 20
+        
+        price = Int((order?.current_total_price) ?? "0") ?? 0
+        total = price! + 15
+        currency = userDefault().getCurrency()
+        
+        self.LPrice.text = "\(String(describing: price)).00 \(String(describing: currency))"
+        self.LDiscount.text = "0.00 \(String(describing: currency))"
+        self.LShipping.text = "15.00 \(String(describing: currency))"
+        self.LTotale.text = "\(String(describing: total)).00 \(String(describing: currency))"
     }
 
 
 
     func payMent(){
-//        braintreeClient = BTAPIClient(authorization: "sandbox_v26b7763_zchjhvj48cst95wd")!
-//        let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-//
-//                // Specify the transaction amount here. "2.32" is used in this example.
-//                let request = BTPayPalCheckoutRequest(amount: "2.32")
-//                request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
-//
-//                payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
-//                    if let tokenizedPayPalAccount = tokenizedPayPalAccount {
-//                        print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
-//
-//                        // Access additional information
-//                        let email = tokenizedPayPalAccount.email
-//                        let firstName = tokenizedPayPalAccount.firstName
-//                        let lastName = tokenizedPayPalAccount.lastName
-//                        let phone = tokenizedPayPalAccount.phone
-//
-//                        // See BTPostalAddress.h for details
-//                        let billingAddress = tokenizedPayPalAccount.billingAddress
-//                        let shippingAddress = tokenizedPayPalAccount.shippingAddress
-//                    } else if let error = error {
-//                        // Handle error here...
-//                    } else {
-//                        // Buyer canceled payment approval
-//                    }
-//                }
         print("salmaaaaaa")
         func fetchClientToken() {
-            // TODO: Switch this URL to your own authenticated API
             let clientTokenURL = NSURL(string: "sandbox_v26b7763_zchjhvj48cst95wd")!
             let clientTokenRequest = NSMutableURLRequest(url: clientTokenURL as URL)
             clientTokenRequest.setValue("text/plain", forHTTPHeaderField: "Accept")
@@ -92,16 +92,37 @@ class PaymentVc: UIViewController {
     }
     @IBAction func pay(_ sender: Any) {
         payMent()
-        self.discountView.layer.cornerRadius = 20
-        self.paymentView.layer.cornerRadius = 20
-        
     }
-
-   
     @IBAction func cashPayment(_ sender: Any) {
+        order?.gateway = "Cash On Delivery"
     }
     
     @IBAction func onlinePayment(_ sender: Any) {
+        order?.gateway = "Paypal"
     }
+    @IBAction func continuePayment(_ sender: Any) {
+        order?.currency = self.currency
+        order?.email = userDefault().getEmail()
+        switch order?.gateway {
+        case "Cash On Delivery":
+            viewModel.postOrder(order: order!)
+        //    self.navigationController?.pushViewController(, animated: <#T##Bool#>)
+        default:
+            print("Ay 7aga")
+        }
+    }
+    
+    @IBAction func applydiscountCode(_ sender: Any) {
+        let discount = viewModel.checkDescountCode(copun: TFcopun.text ?? "")
+        utils.showAlert(message: discount.1, title: "Discount Code", view: self)
+        total = 15 + price! - (price! * (discount.0 / 100))
+        
+        //MARK: - Update Order
+        order?.discount = "\(discount.0)"
+        order?.current_total_price = "total"
+        
+        //MARK: - Update labels
+        self.LDiscount.text = "\(discount.0).00 \(String(describing: currency))"
+        self.LTotale.text = "\(String(describing: total)).00 \(String(describing: currency))"
+    }    
 }
-

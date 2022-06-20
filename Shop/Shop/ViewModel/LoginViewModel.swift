@@ -37,16 +37,10 @@ class LoginViewModel:loginTemp{
                             let comingEmail=customer.email ?? ""
                             let comingPassword = customer.tags ?? ""
                             if comingEmail==email && comingPassword==password{
-                                print("user found")
                                 self?.defaults.login()
-                                print(self?.defaults.isLoggedIn())
-
                                 self?.defaults.setId(id: customer.id ?? 0)
-                                if customer.addresses?.count ?? 0>0 && customer.addresses?[0].address1 != ""{
-                                    for address in customer.addresses!{
-                                        self?.coreData.setAddress(address: address)
-                                    }
-                                }
+                                self?.defaults.setEmail(email: customer.email ?? "")
+                                self?.defaults.setUserName(userName: "\(String(describing: customer.first_name)) \(String(describing: customer.last_name))")
                                 self?.navigate=true
                                 break
                             }

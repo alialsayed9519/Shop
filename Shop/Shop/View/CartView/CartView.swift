@@ -19,22 +19,34 @@ class CartView: UIViewController{
 
     
     @IBAction func checkoutBoutton(_ sender: Any) {
-        if userDefault().isLoggedIn() {
-            if order?.address == nil{
-                let addressTable = AddressesTable()
-                addressTable.chooseAddressFlag = true
-                self.navigationController?.pushViewController(addressTable, animated: true)
+
+        if (items.count == 0){
+            if userDefault().isLoggedIn() {
+                if order?.pilling_address == nil{
+                    let addressTable = AddressesTable()
+                    addressTable.chooseAddressFlag = true
+                    self.navigationController?.pushViewController(addressTable, animated: true)
+                }else{
+                    order?.line_items = self.items
+                    order?.current_total_price = totalPrice.text
+                    let paymentVc = PaymentVc()
+                    paymentVc.order = self.order
+                    self.navigationController?.pushViewController(paymentVc, animated: true)
+                }
             }else{
-                order?.line_items = self.items
-                let paymentVc = PaymentVc()
-                paymentVc.order = self.order
-                self.navigationController?.pushViewController(paymentVc, animated: true)
+                let login = loginvc()
+                login.homeFlag = false
+                self.navigationController?.pushViewController(login, animated: true)
+
+        } else {
+            let alert = UIAlertController(title: "Empty Cart", message: "There is no items in your cart", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Back to shopp", style: .default) { (action) in
+                self.navigationController?.pushViewController(HomeVc(), animated: true)
             }
-        }else{
-            let login = loginvc()
-            login.homeFlag = false
-            self.navigationController?.pushViewController(login, animated: true)
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
         }
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +64,7 @@ class CartView: UIViewController{
     
     func onSuccessUpdateView() {
         items = draftOrderViewModel.lineItems ?? []
-        print("aaaaaaa")
+        self.clacTotal()
         self.tableView.reloadData()
     }
     
@@ -64,6 +76,15 @@ class CartView: UIViewController{
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func clacTotal() {
+        var total = 0
+        for item in items{
+            total += item.quantity * Int(item.price)!
+        }
+        totalPrice.text = "\(total)"
+    }
+
 }
 
 extension CartView: UITableViewDataSource, UITableViewDelegate{
