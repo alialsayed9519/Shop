@@ -320,8 +320,11 @@ class NetworkService {
     
     func updateCustomerNote(id: String, user: User, completion: @escaping (Data?, URLResponse?, Error?)->()) {
         guard let url = URL(string: URLs.customer(id: id)) else {return}
+    func postOrder(order: APIOrder, completion: @escaping (Data?, URLResponse?, Error?)->()){
+        guard let url = URL(string: URLs.order()) else {return}
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
+        request.httpMethod = "POST"
         let session = URLSession.shared
         
         do {
@@ -331,13 +334,25 @@ class NetworkService {
             print(error.localizedDescription)
         }
         print(try? user.asDictionary())
+        
+        //HTTP Headers
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.httpShouldHandleCookies = false
 
+        
         session.dataTask(with: request) { (data, response, error) in
             completion(data, response, error)
         }.resume()
     }
     
+
+    }
+
+    func getOrders(completion: @escaping (DataResponse<Orders, AFError>) -> ()){
+        AF.request(URLs.order()).validate().responseDecodable(of:Orders.self) { (response) in
+            completion(response)
+            
+        }
+    }
 }

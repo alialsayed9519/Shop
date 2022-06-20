@@ -27,27 +27,23 @@ class ProductDetailsVc: UIViewController {
     @IBOutlet weak var navigationtitle: UINavigationItem!
     @IBOutlet weak var descTextView: UITextView!
     @IBOutlet weak var favButton: UIButton!
-//    @IBOutlet weak var addToBag: UIButton!
+    @IBOutlet weak var addToBag: UIButton!
     let productImageCell="ImageCollectionViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         displayProduct()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        
+        ratingCosmos.settings.updateOnTouch = false
         let backItem = UIBarButtonItem()
             backItem.title = "Category"
-       // navBar.ba = backItem;
-      //  addToBag.backgroundColor = .blue
-       // addToBag.layer.cornerRadius = 20
-
+        addToBag.layer.cornerRadius = 20
+        
         let nibCell = UINib(nibName: productImageCell, bundle: nil)
         productImageCollectionView.register(nibCell, forCellWithReuseIdentifier: productImageCell)
         // Do any additional setup after loading the view.
     }
     func displayProduct(){
-      //  navigationtitle.title=product?.vendor
-//        navigationtitle.backBarButtonItem
         navigationItem.title=product?.vendor
         //title=product?.vendor
         reviewTextView.text=product?.product_type

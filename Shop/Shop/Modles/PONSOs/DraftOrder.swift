@@ -15,9 +15,7 @@ struct ProductImage: Codable {
     let src: String
 }
 
-
-
-
+//MARK: gitting Models
 struct Draft: Decodable {
     let draft_order: DraftOrder
 }
@@ -27,7 +25,7 @@ struct DraftOrder: Decodable {
     let line_items: [LineItems]
 }
 
-struct LineItems: Decodable {
+struct LineItems: Codable {
     let id: Int
     let variant_id: Int
     let product_id: Int
@@ -41,11 +39,7 @@ struct customer: Codable {
     let id :Int
 }
 
-
-
-
-
-
+//MARK: posting Models
 struct Api: Codable {
     let draft_order: Sendd
 }
@@ -63,8 +57,6 @@ struct OrderItem: Codable {
 struct Orders: Codable{
     let orders: [OrderItem]
 }
-
-
 
 struct Updated: Codable {
     let draft_order: Modify

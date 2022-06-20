@@ -51,9 +51,9 @@ class HomeVc: UIViewController {
     }
     
     func showAddsImages() {
-        let images = [UIImage(named: "dd1"), UIImage(named: "add2"), UIImage(named: "add3")].compactMap{$0} // ignore nil image
+        let images = [UIImage(named: "add1"), UIImage(named: "add2"), UIImage(named: "add3")].compactMap{$0} // ignore nil image
         addsImage.animationImages = images
-        addsImage.animationDuration = 10
+        addsImage.animationDuration = 7
         addsImage.roundedImage()
         addsImage.startAnimating()
     }
@@ -110,9 +110,9 @@ extension HomeVc: UICollectionViewDataSource, UICollectionViewDelegate,UICollect
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let brand = brands[indexPath.row]
-        let proVc=brandProductsVc()
-        proVc.smartCol=brand
-        self.navigationController?.pushViewController(proVc, animated: true)
+    //    let proVc=brandProductsVc()
+       // proVc.smartCol=brand
+      //  self.navigationController?.pushViewController(proVc, animated: true)
     }
     
     func showAlert(title: String, messgae: String) {
