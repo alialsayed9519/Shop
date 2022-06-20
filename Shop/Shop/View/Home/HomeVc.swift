@@ -51,9 +51,9 @@ class HomeVc: UIViewController {
     }
     
     func showAddsImages() {
-        let images = [UIImage(named: "dd1"), UIImage(named: "add2"), UIImage(named: "add3")].compactMap{$0} // ignore nil image
+        let images = [UIImage(named: "add1"), UIImage(named: "add2"), UIImage(named: "add3")].compactMap{$0} // ignore nil image
         addsImage.animationImages = images
-        addsImage.animationDuration = 10
+        addsImage.animationDuration = 7
         addsImage.roundedImage()
         addsImage.startAnimating()
     }

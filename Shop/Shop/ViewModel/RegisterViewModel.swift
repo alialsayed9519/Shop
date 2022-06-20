@@ -56,13 +56,19 @@ class RegisterViewModel:regTemp{
                 if let data = data {
                     let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments)as! Dictionary<String,Any>
                     let getCustomer = json["customer"] as? Dictionary<String,Any>
-                    let id=getCustomer?["id"] as? Int ?? 0
-                    let name=getCustomer?["first_name"] as? String ?? ""
+                    let id = getCustomer?["id"] as? Int ?? 0
+                    let firstName = getCustomer?["first_name"] as? String ?? ""
+                    let lastName=getCustomer?["last_name"] as? String ?? ""
+                    let name = firstName+lastName
                     let draftId = getCustomer?["note"] as? String ?? "false"
+                    let email=getCustomer?["email"] as? String ?? ""
+                    
+                    
                     if id != 0 {
                         self?.defaults.login()
                         self?.defaults.setId(id: id)
-                        self?.defaults.setUserNAme(userName:name)
+                        self?.defaults.setEmail(email: email)
+                        self?.defaults.setUserName(userName: name)
                         self?.defaults.setDraftOrder(note: draftId)
                         DispatchQueue.main.async {
                             self?.navigate()
@@ -76,10 +82,6 @@ class RegisterViewModel:regTemp{
                         }
                         
                     }
-                    
-                    
-                    
-                    
             }
         }
     }
