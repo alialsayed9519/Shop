@@ -33,7 +33,6 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
         var fistpart: String = fullTitle[0]
         var secondpArt: String = fullTitle[1]
         self.producTitle.text=secondpArt
-        print(secondpArt)
         self.productImage.sd_setImage(with: URL(string: product.images[0].src), placeholderImage: UIImage(named: "adidas"))
         self.favProductBtn.setTitle("", for: .normal)
      

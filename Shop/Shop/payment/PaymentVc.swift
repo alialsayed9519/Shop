@@ -24,9 +24,9 @@ class PaymentVc: UIViewController {
     @IBOutlet weak var LTotale: UILabel!
    
   var order: Order?
-    var price: Int?
-    var total: Int?
-    var currency: String?
+    var price: Int = 0
+    var total: Int = 0
+    var currency: String = "EGP"
     
     private let viewModel = OrderViewModel()
 
@@ -41,11 +41,11 @@ class PaymentVc: UIViewController {
         self.continueButton.layer.cornerRadius = 20
         self.applyButton.layer.cornerRadius = 20
         
-        price = Int((order?.current_total_price) ?? "0") ?? 0
-        total = price! + 15
+        price = Int((order?.current_total_price ?? "0.0") ) ?? 0
+        total = price + 15
         currency = userDefault().getCurrency()
         
-        self.LPrice.text = "\(String(describing: price)).00 \(String(describing: currency))"
+        self.LPrice.text = "\(price).00 \(currency)"
         self.LDiscount.text = "0.00 \(String(describing: currency))"
         self.LShipping.text = "15.00 \(String(describing: currency))"
         self.LTotale.text = "\(String(describing: total)).00 \(String(describing: currency))"
@@ -96,11 +96,15 @@ class PaymentVc: UIViewController {
     }
     @IBAction func cashPayment(_ sender: Any) {
         order?.gateway = "Cash On Delivery"
-        
+        cashButton.setImage(UIImage(named: "radioOn"),for: .normal)
+        onlineButton.setImage(UIImage(named: "radioOf"),for: .normal)
     }
     
     @IBAction func onlinePayment(_ sender: Any) {
         order?.gateway = "Paypal"
+        onlineButton.setImage(UIImage(named: "radioOn"),for: .normal)
+        cashButton.setImage(UIImage(named: "radioOf"),for: .normal)
+
     }
     @IBAction func continuePayment(_ sender: Any) {
         order?.currency = self.currency
@@ -111,6 +115,7 @@ class PaymentVc: UIViewController {
         //    self.navigationController?.pushViewController(, animated: <#T##Bool#>)
         case "Paypal":
             payMent()
+            print("salma elawadyyasmeen")
         default:
             print("Ay 7aga")
         }
@@ -118,8 +123,8 @@ class PaymentVc: UIViewController {
     
     @IBAction func applydiscountCode(_ sender: Any) {
         let discount = viewModel.checkDescountCode(copun: TFcopun.text ?? "")
-     //   utils.showAlert(message: discount.1, title: "Discount Code", view: self)
-        total = 15 + price! - (price! * (discount.0 / 100))
+        utils.showAlert(message: discount.1, title: "Discount Code", view: self)
+        total = 15 + price - (price * (discount.0 / 100))
         
         //MARK: - Update Order
         order?.discount = "\(discount.0)"

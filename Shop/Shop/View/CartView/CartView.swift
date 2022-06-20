@@ -19,7 +19,7 @@ class CartView: UIViewController{
 
     
     @IBAction func checkoutBoutton(_ sender: Any) {
-       // order = Order()
+        checkoutButton.layer.cornerRadius = 20
         if items.count != 0{
             if  userDefault().isLoggedIn(){
                 if order.pilling_address == nil{
@@ -91,7 +91,7 @@ class CartView: UIViewController{
             print(Int(item.price))
             total += Double(item.quantity) * (Double(item.price) ?? 0.0)
         }
-        totalPrice.text = "\(total)"
+        totalPrice.text = "\(Int(total))"
     }
 }
 
