@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,7 +12,7 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileTableViewCell" rowHeight="59" id="KGk-i7-Jjw" customClass="ProfileTableViewCell" customModule="Shop" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="425" height="59"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="425" height="59"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -30,17 +29,26 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4G-Gr-X7a">
+                        <rect key="frame" x="350" y="12" width="67" height="31"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="r4G-Gr-X7a" secondAttribute="bottom" constant="26" id="dJy-GM-Yzk"/>
                     <constraint firstAttribute="bottom" secondItem="hMG-PM-fK8" secondAttribute="bottom" constant="8" id="egZ-AX-qVz"/>
                     <constraint firstItem="RZz-bn-gVb" firstAttribute="leading" secondItem="hMG-PM-fK8" secondAttribute="trailing" constant="4" id="gXD-8O-iNt"/>
                     <constraint firstItem="hMG-PM-fK8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="n2K-aq-5FC"/>
                     <constraint firstItem="RZz-bn-gVb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="oP9-wf-MKY"/>
+                    <constraint firstAttribute="trailing" secondItem="r4G-Gr-X7a" secondAttribute="trailing" constant="8" id="p10-AN-nem"/>
+                    <constraint firstItem="r4G-Gr-X7a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="r1Z-F9-gkX"/>
                     <constraint firstItem="hMG-PM-fK8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="vSp-O4-bNS"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="button" destination="r4G-Gr-X7a" id="dTN-p3-iul"/>
                 <outlet property="image1" destination="hMG-PM-fK8" id="vST-X7-fin"/>
                 <outlet property="name" destination="RZz-bn-gVb" id="Zh6-wj-0DI"/>
             </connections>

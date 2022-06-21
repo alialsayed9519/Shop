@@ -18,9 +18,21 @@ protocol userDefaultsprotocol{
     func getDraftOrder() -> String
     func setEmail(email:String)
     func getEmail() -> String
+    func setCurrency(key:String,value:String)
+    func getCurrency(key:String)->String
 }
 class userDefault:userDefaultsprotocol{
- 
+    func setCurrency(key: String, value: String) {
+        UserDefaults.standard.set(value, forKey: key)
+    }
+    
+    func getCurrency(key: String = "currency") -> String {
+        let currency=UserDefaults.standard.string(forKey: key)
+        if currency==""{
+            return "USD"
+        }
+        return currency ?? "USD"
+    }
     func getEmail() -> String {
         return UserDefaults.standard.value(forKey:"email") as? String ?? ""
     }

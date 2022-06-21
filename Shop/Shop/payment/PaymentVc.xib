@@ -11,15 +11,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaymentVc" customModule="Shop" customModuleProvider="target">
             <connections>
-                <outlet property="LDiscount" destination="5u5-a2-rvY" id="Ntu-gX-f4P"/>
-                <outlet property="LPrice" destination="wSm-vC-8mZ" id="5RK-az-ZrE"/>
-                <outlet property="LShipping" destination="ZK1-Gg-uhq" id="cLq-aw-ryp"/>
-                <outlet property="LTotale" destination="OgW-Mn-OAZ" id="wGq-Dc-4tG"/>
-                <outlet property="TFcopun" destination="dyA-Wz-Bdz" id="wJ7-XE-aER"/>
-                <outlet property="applyButton" destination="lSJ-Dk-T0O" id="dFa-we-Gss"/>
+                <outlet property="LDiscount" destination="5u5-a2-rvY" id="r0a-1q-OQn"/>
+                <outlet property="LPrice" destination="wSm-vC-8mZ" id="KeG-dv-Zeq"/>
+                <outlet property="LShipping" destination="ZK1-Gg-uhq" id="0L5-XV-vkq"/>
+                <outlet property="LTotale" destination="OgW-Mn-OAZ" id="CNb-u1-FI4"/>
+                <outlet property="TFcopun" destination="dyA-Wz-Bdz" id="J9K-hr-FOV"/>
+                <outlet property="applyButton" destination="lSJ-Dk-T0O" id="VY6-Xc-9eZ"/>
                 <outlet property="cashButton" destination="xfL-XH-VT0" id="iHG-7k-yJq"/>
-                <outlet property="continueButton" destination="a9B-fD-aBL" id="oqu-pi-MVu"/>
-                <outlet property="detailsView" destination="tmk-2e-3mW" id="Qgq-BZ-6Vm"/>
+                <outlet property="continueButton" destination="a9B-fD-aBL" id="KSy-FS-V1n"/>
+                <outlet property="detailsView" destination="tmk-2e-3mW" id="40v-Eq-NRs"/>
                 <outlet property="discountView" destination="zLo-zW-LFj" id="XY9-VO-cJS"/>
                 <outlet property="onlineButton" destination="m8Z-03-vsn" id="0J6-Dy-VLe"/>
                 <outlet property="paymentView" destination="qaI-WH-9G9" id="eCK-Nh-ONL"/>
@@ -111,13 +111,14 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="253" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dyA-Wz-Bdz">
-                            <rect key="frame" x="16" y="109.5" width="280" height="34"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dyA-Wz-Bdz">
+                            <rect key="frame" x="16" y="109.5" width="280" height="38.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lSJ-Dk-T0O">
-                            <rect key="frame" x="312" y="109.5" width="70" height="34"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lSJ-Dk-T0O">
+                            <rect key="frame" x="312" y="109.5" width="70" height="38.5"/>
                             <color key="backgroundColor" red="0.30671769380000002" green="0.56494402889999995" blue="0.18259373309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal">

@@ -69,6 +69,14 @@ struct URLs {
     static func order()->String{
         return baseURL + "orders.json"
     }
+    
+    static func allOrders(customerId: Int)->String{
+        return baseURL + "customers/\(customerId)/orders.json"
+    }
+    
+    static func productsForSubCategory(collectionId: Int, productType: String) ->String{
+        return products(collectionId: collectionId) + "?product_type=\"\(productType)\""
+    }
 }
 
 

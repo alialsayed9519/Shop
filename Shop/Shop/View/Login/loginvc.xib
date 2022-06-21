@@ -34,7 +34,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xsm-7y-sUj">
-                    <rect key="frame" x="64" y="508" width="286" height="40"/>
+                    <rect key="frame" x="64" y="506.5" width="286" height="40"/>
                     <color key="backgroundColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal">
                         <attributedString key="attributedTitle">
@@ -58,9 +58,9 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HJN-cy-iBQ" customClass="HoshiTextField" customModule="TextFieldEffects">
-                    <rect key="frame" x="32" y="399" width="350" height="41.5"/>
+                    <rect key="frame" x="32" y="399" width="350" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fef-8Q-Cec">
                     <rect key="frame" x="277" y="658" width="73" height="38"/>
@@ -99,7 +99,7 @@
             <size key="intrinsicContentSize" width="84.5" height="41.5"/>
         </designable>
         <designable name="HJN-cy-iBQ">
-            <size key="intrinsicContentSize" width="139" height="41.5"/>
+            <size key="intrinsicContentSize" width="139" height="40"/>
         </designable>
     </designables>
     <resources>

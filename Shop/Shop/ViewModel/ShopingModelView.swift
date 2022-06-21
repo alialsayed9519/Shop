@@ -101,9 +101,19 @@ class ShopingViewModel{
             fetchProducts(collectionID: categories[itemIndex].id!)}
     }
     
-    func filterPorductsBySubCategory(subCategoryName: String) {
-       self.allProduct = allProduct?.filter{
-            ($0.product_type == subCategoryName)
+    func filterPorductsBySubCategory(itemIndex: Int, subCategoryName: String) {
+        guard let categories = self.categorys else {
+            return
+        }
+        network.getProductBySubCategory(collectionId: categories[itemIndex].id!, productType: subCategoryName) { (products, error) in
+            if let message = error?.localizedDescription{
+                self.error = message
+               // print(error?.localizedDescription)
+            }else {
+                if let respons = products {
+                    self.allProduct = respons
+                }
+            }
         }
     }
     
