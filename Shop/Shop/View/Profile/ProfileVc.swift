@@ -90,10 +90,10 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
                 cell.name.text = "currency"
                 cell.button.isHidden=false
                 cell.button.setTitle("choose currency", for: .normal)
-                if userdefaults.getCurrency(key: "currency")=="USD"{
+                if currencyViewMode.getCurrency(key: "currency")=="USD"{
                     cell.button.setTitle("USD", for: .normal)
                 }
-                else if userdefaults.getCurrency(key: "currency")=="EGP"{
+                else if currencyViewMode.getCurrency(key: "currency")=="EGP"{
                     cell.button.setTitle("EGP", for: .normal)
                 }
             default:
