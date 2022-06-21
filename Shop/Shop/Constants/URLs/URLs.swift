@@ -75,7 +75,7 @@ struct URLs {
     }
     
     static func productsForSubCategory(collectionId: Int, productType: String) ->String{
-        return products(collectionId: collectionId) + "?product_type=\"\(productType)\""
+        return products(collectionId: collectionId) + "&?product_type=\(productType)"
     }
 }
 
