@@ -143,5 +143,12 @@ class DraftOrderViewModel {
         }
     }
     
+    func increaseItemQuantaty(orderItem: LineItems) {
+        for i in 0..<lineItems!.count {
+            if lineItems![i].variant_id == orderItem.variant_id {
+                lineItems![i].quantity = lineItems![i].quantity + 1
+            }
+        }
+    }
     
 }

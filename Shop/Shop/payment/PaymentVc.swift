@@ -197,7 +197,7 @@ class PaymentVc: UIViewController {
         switch order?.gateway {
         case "Cash On Delivery":
             viewModel.postOrder(order: order!)
-            self.navigationController?.pushViewController(HomeVc(), animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
         case "Paypal":
             payMent()
             print("salma elawadyyasmeen")

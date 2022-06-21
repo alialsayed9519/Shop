@@ -15,19 +15,20 @@ class CartItem: UITableViewCell {
     @IBOutlet weak var itemVonder: UILabel!
     @IBOutlet weak var itemPrice: UILabel!
     @IBOutlet weak var itemCounter: UILabel!
-    
+
  //   var product : Pproduct = Pproduct(quant: 1)
       private var counterValue = 1
       var productIndex = 0
 
     //  var cartSelectionDelegate: CartSelection?
-    
-    var ima = ""
+    var item: LineItems?
+    var productImage = ""
     var count: Int = 1
     
     @IBAction func icreseCount(_ sender: Any) {
         count = count + 1
         itemCounter.text = "\(count)"
+        draftOrderViewModel.increaseItemQuantaty(orderItem: item!)
      //   print(count)
       //  product.quant = count
      //   cartSelectionDelegate?.addProductToCart(product: product, atindex: productIndex)
@@ -49,9 +50,10 @@ class CartItem: UITableViewCell {
     }
     
     func updateUI(item: LineItems) {
+        self.item = item
         itemName.text = item.title
-     //   itemCounter.text = String(describing: item.quantity)
-        itemCounter.text = String(describing: count)
+        itemCounter.text = String(describing: item.quantity)
+      //  itemCounter.text = String(describing: count)
 
         itemVonder.text = item.vendor
         let id = String(describing: item.product_id)
@@ -62,8 +64,8 @@ class CartItem: UITableViewCell {
     }
     
     func onSuccessUpdateView() {
-        ima = draftOrderViewModel.imageURL!
-        itemimage.sd_setImage(with: URL(string: ima), placeholderImage: UIImage(named: "adidas.png"))
+        productImage = draftOrderViewModel.imageURL!
+        itemimage.sd_setImage(with: URL(string: productImage), placeholderImage: UIImage(named: "adidas.png"))
     }
     
 }
