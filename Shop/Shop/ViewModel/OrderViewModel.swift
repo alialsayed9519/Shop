@@ -10,7 +10,18 @@ import Foundation
 
 class OrderViewModel {
     
-    
+    var bindOrders: (()->()) = {}
+    var bindError : (()->()) = {}
+    var orders: [OrderFromAPI]! {
+        didSet{
+            self.bindOrders()
+        }
+    }
+    var error: String!{
+        didSet{
+            self.bindError()
+        }
+    }
     
     private var network = NetworkService()
     private var defaults = userDefault()
@@ -20,9 +31,13 @@ class OrderViewModel {
         var copunValue: (Int, String)
         
         switch copun {
-        case defaults.getThirtyDescountTitle() || "SHOPIT30":
+        case defaults.getThirtyDescountTitle():
             copunValue = (30, "Nice, now you have 30% off")
-        case defaults.getFiftyDescountTitle() || "SHOPIT50":
+        case "SHOPIT30":
+            copunValue = (30, "Nice, now you have 30% off")
+        case defaults.getFiftyDescountTitle():
+            copunValue = (50, "Nice, now you have 50% off")
+        case "SHOPIT50":
             copunValue = (50, "Nice, now you have 50% off")
         case "":
             copunValue = (0, "No copun Entered")
@@ -53,12 +68,12 @@ class OrderViewModel {
         }
     
     func fetchAllOrders(){
-        network.getOrders() { orderFromAPI, error in
-            if let orderFromAPI = orderFromAPI {
+        network.getOrders() { (response, error) in
+            if let orderFromAPI = response {
                 self.orders = orderFromAPI
             }
             else{
-                self.showError = error?.localizedDescription
+                self.error = error?.localizedDescription
             }
         }
         }

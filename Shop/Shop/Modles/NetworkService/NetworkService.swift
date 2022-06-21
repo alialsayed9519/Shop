@@ -298,10 +298,19 @@ class NetworkService {
 
     }
 
-    func getOrders(completion: @escaping (DataResponse<, AFError>) -> ()){
-        let id = userDefault().getId()
-        AF.request(URLs.allOrders(customerId: id)).validate().responseDecodable(of:Orders.self) { (response) in
-            completion(response)
+    func getOrders(completion: @escaping ([OrderFromAPI]?, Error?) -> ()){
+        let customerID = userDefault().getId()
+        AF.request(URLs.allOrders(customerId: customerID))        .responseDecodable(of:OrdersFromAPI.self){(response) in
+            switch response.result{
+                case .success(_):
+                    guard let data = response.value
+                    else{
+                        return
+                    }
+                    completion(data.orders, nil)
+                case .failure(let error):
+                    completion(nil, error)
+            }
         }
     }
     

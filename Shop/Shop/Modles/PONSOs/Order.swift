@@ -37,6 +37,6 @@ struct OrderFromAPI: Codable {
     let Created_at: String?
 }
 
-struct OrdersFromAPI {
+struct OrdersFromAPI: Codable {
     let orders: [OrderFromAPI]
 }
