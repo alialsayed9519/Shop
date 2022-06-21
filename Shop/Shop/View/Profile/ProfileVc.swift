@@ -12,18 +12,19 @@ class ProfileVc: UIViewController {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet private weak var tableView: UITableView!
     private let profileTableViewCellId = "ProfileTableViewCell"
-var currencyViewModel=currencyViewModel()
+    var currencyViewMode = currencyViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         let nibCell = UINib(nibName: profileTableViewCellId, bundle: nil)
         tableView.register(nibCell, forCellReuseIdentifier: profileTableViewCellId)
-        currencyViewModel.bindCurrencyViewModel=onSucess
+        currencyViewMode.bindCurrencyViewModel=onSucess
     }
     func onSucess(){
-        guard let currency=currencyViewModel.currency
+        guard let currency=currencyViewMode.currency
         else{
             return
         }
+        
     }
     func setUserData(){
             let name=userdefaults.getUserName()
@@ -33,11 +34,11 @@ var currencyViewModel=currencyViewModel()
         let alert=UIAlertController(title: "choose currency", message: nil, preferredStyle: .alert)
         let egpAction=UIAlertAction(title: "EGP", style: .default){
             (UIAlertAction) in
-            self.currencyViewModel.setCurrency(key: "currency", value: "EGP")
-        }
+            self.currencyViewMode.setCurrency(key: "currency", value: "EGP")
+                    }
         let usdAction=UIAlertAction(title: "USD", style: .default){
             (UIAlertAction) in
-            self.currencyViewModel.setCurrency(key: "currency", value: "USD")
+            self.currencyViewMode.setCurrency(key: "currency", value: "USD")
         }
         alert.addAction(egpAction)
         alert.addAction(usdAction)
@@ -83,12 +84,22 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 cell.image1.image = UIImage(named: "shopping-bag")
                 cell.name.text = "My Orders"
+                cell.button.isHidden=true
             case 1:
                 cell.image1.image = UIImage(named: "heart")
                 cell.name.text = "currency"
+                cell.button.isHidden=false
+                cell.button.setTitle("choose currency", for: .normal)
+                if userdefaults.getCurrency(key: "currency")=="USD"{
+                    cell.button.setTitle("USD", for: .normal)
+                }
+                else if userdefaults.getCurrency(key: "currency")=="EGP"{
+                    cell.button.setTitle("EGP", for: .normal)
+                }
             default:
                 cell.image1.image = UIImage(named: "address")
                 cell.name.text = "Address"
+                cell.button.isHidden=true
             }
             
         default:
@@ -132,7 +143,7 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 print("order")
             case 1:
-                print("whislist")
+                showCurrencyAlert()
             default:
                 self.navigationController?.pushViewController(AddressesTable(), animated: true)
             }

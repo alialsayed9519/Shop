@@ -23,7 +23,7 @@ class currencyViewModel: NSObject {
         userDefaults.setCurrency(key: key, value:value)
         self.currency=value
     }
-    func getCurrency(key:String){
+    func getCurrency(key:String)->String{
         self.currency=userDefaults.getCurrency(key: key)
         return self.currency!
     }
