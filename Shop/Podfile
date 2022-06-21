@@ -19,8 +19,8 @@ target 'Shop' do
 
 pod 'Alamofire'
 pod 'ReachabilitySwift'
-pod 'SDWebImage', '~> 5.0'
 pod 'TextFieldEffects'
+pod 'SDWebImage', '~> 5.0'
 pod 'Cosmos'
 pod 'JJFloatingActionButton'
 pod 'RxSwift' 

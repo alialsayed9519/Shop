@@ -20,3 +20,24 @@ struct Customers:Codable{
 struct Login:Codable{
     let customers:[Customers]
 }
+
+
+
+struct User: Codable {
+    let customer: Person
+}
+
+struct Person: Codable{
+    let id: Int
+    let note: String
+}
+
+/*
+ {
+     "customer": {
+         "id": 6267847737602,
+         "note": "42845057581314"
+     }
+ }
+ */
+

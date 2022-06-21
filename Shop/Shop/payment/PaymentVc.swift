@@ -18,6 +18,7 @@ class PaymentVc: UIViewController {
     @IBOutlet weak var TFcopun: UITextField!
     @IBOutlet weak var applyButton: UIButton!
     @IBOutlet weak var LTotale: UILabel!
+
     @IBOutlet weak var LShipping: UILabel!
     @IBOutlet weak var LDiscount: UILabel!
     @IBOutlet weak var LPrice: UILabel!
@@ -27,11 +28,12 @@ class PaymentVc: UIViewController {
     var order: Order?
         var price: Int = 0
         var total: Int = 0
-        var currency: String = "EGP"
+        var currency: String = ""
         
         private let viewModel = OrderViewModel()
 
         
+
         override func viewDidLoad() {
             super.viewDidLoad()
             // Do any additional setup after loading the view.
@@ -94,7 +96,6 @@ class PaymentVc: UIViewController {
                 URLSession.shared.dataTask(with: clientTokenRequest as URLRequest) { (data, response, error) -> Void in
                     // TODO: Handle errors
                     let clientToken = String(data: data!, encoding: String.Encoding.utf8)
-
                     // As an example, you may wish to present Drop-in at this point.
                     // Continue to the next section to learn more...
                     }.resume()
@@ -139,6 +140,24 @@ class PaymentVc: UIViewController {
             cashButton.setImage(UIImage(named: "radioOf"),for: .normal)
 
         }
+        showDropIn(clientTokenOrTokenizationKey: "sandbox_v26b7763_zchjhvj48cst95wd")
+    }*/
+/*
+    func showDropIn(clientTokenOrTokenizationKey: String) {
+        let request =  BTDropInRequest()
+        let dropIn = BTDropInController(authorization: clientTokenOrTokenizationKey, request: request)
+        { (controller, result, error) in
+            if (error != nil) {
+                print("ERROR")
+            } else if (result?.isCanceled == true) {
+                print("CANCELED")
+            } else if let result = result {
+                print("sucessfully paid")
+                // Use the BTDropInResult properties to update your UI
+                // result.paymentMethodType
+                // result.paymentMethod
+                // result.paymentIcon
+                // result.paymentDescription
         @IBAction func continuePayment(_ sender: Any) {
             order?.currency = self.currency
             order?.email = userDefault().getEmail()
@@ -151,8 +170,33 @@ class PaymentVc: UIViewController {
                 print("salma elawadyyasmeen")
             default:
                 print("Ay 7aga")
+
             }
         }
+        self.present(dropIn!, animated: true, completion: nil)*/
+    }
+    @IBAction func pay(_ sender: Any) {
+     //   payMent()
+    }
+  
+    
+  
+    @IBAction func continuePayment(_ sender: Any) {
+        order?.currency = self.currency
+        order?.email = userDefault().getEmail()
+        switch order?.gateway {
+        case "Cash On Delivery":
+            viewModel.postOrder(order: order!)
+        //    self.navigationController?.pushViewController(, animated: <#T##Bool#>)
+        case "Paypal":
+            payMent()
+            print("salma elawadyyasmeen")
+        default:
+            print("Ay 7aga")
+        }
+    }
+    
+  
         
         @IBAction func applydiscountCode(_ sender: Any) {
             let discount = viewModel.checkDescountCode(copun: TFcopun.text ?? "")
