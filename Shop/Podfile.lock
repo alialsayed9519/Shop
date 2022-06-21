@@ -2,6 +2,7 @@ PODS:
   - Alamofire (5.6.1)
   - Cosmos (23.0.0)
   - JJFloatingActionButton (2.5.0)
+  - lottie-ios (3.3.0)
   - ReachabilitySwift (5.0.0)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
@@ -9,15 +10,16 @@ PODS:
   - RxRelay (6.5.0):
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
-  - SDWebImage (5.12.6):
-    - SDWebImage/Core (= 5.12.6)
-  - SDWebImage/Core (5.12.6)
+  - SDWebImage (5.12.5):
+    - SDWebImage/Core (= 5.12.5)
+  - SDWebImage/Core (5.12.5)
   - TextFieldEffects (1.6.0)
 
 DEPENDENCIES:
   - Alamofire
   - Cosmos
   - JJFloatingActionButton
+  - lottie-ios
   - ReachabilitySwift
   - RxCocoa
   - RxSwift
@@ -29,6 +31,7 @@ SPEC REPOS:
     - Alamofire
     - Cosmos
     - JJFloatingActionButton
+    - lottie-ios
     - ReachabilitySwift
     - RxCocoa
     - RxRelay
@@ -40,13 +43,14 @@ SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   JJFloatingActionButton: fdc3aefb0f28f04d0f988fa25d5fac97028a9ea7
+  lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
-  SDWebImage: a47aea9e3d8816015db4e523daff50cfd294499d
+  SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: e1d11da34e186bf19175bc7e52f77fc29e65c084
+PODFILE CHECKSUM: 59eeac57f541eeb1e909e468d75e157f2cbfb5cd
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.8.4

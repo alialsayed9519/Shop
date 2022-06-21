@@ -257,7 +257,6 @@ class NetworkService {
         session.dataTask(with: request) { (data, response, error) in
             completion(data, response, error)
         }.resume()
-
     }
     
     func fetchPriceRules(completion:@escaping ([Price_Rule]?, Error?)->()){
@@ -277,9 +276,9 @@ class NetworkService {
     }
     
     func postOrder(order: APIOrder, completion: @escaping (Data?, URLResponse?, Error?)->()){
-        guard let url = URL(string: URLs.order()) else {return}
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+       guard let url = URL(string: URLs.order()) else {return}
+      var request = URLRequest(url: url)
+      request.httpMethod = "POST"
         let session = URLSession.shared
         request.httpShouldHandleCookies = false
         do {
@@ -298,22 +297,48 @@ class NetworkService {
 
     }
 
-    func getOrders(completion: @escaping ([OrderFromAPI]?, Error?) -> ()){
-        let customerID = userDefault().getId()
-        AF.request(URLs.allOrders(customerId: customerID))        .responseDecodable(of:OrdersFromAPI.self){(response) in
-            switch response.result{
+
+    func getCustomerById(id: String, completion: @escaping (User?, Error?)->()){
+        AF.request(URLs.customer(id: id))
+             .responseDecodable(of: User.self) { (response) in
+                switch response.result {
                 case .success(_):
-                    guard let data = response.value
-                    else{
-                        return
-                    }
-                    completion(data.orders, nil)
+                    guard let data = response.value else { return }
+                    completion(data, nil)
+               
                 case .failure(let error):
                     completion(nil, error)
+                }
             }
         }
     }
     
+    func updateCustomerNote(id: String, user: User, completion: @escaping (Data?, URLResponse?, Error?)->()) {
+        guard let url = URL(string: URLs.customer(id: id)) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: user.asDictionary(), options: .prettyPrinted)
+          
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        print(try? user.asDictionary())
+        
+        //HTTP Headers
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.httpShouldHandleCookies = false
+
+        
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+    }
+
+
     func getProductBySubCategory(collectionId: Int, productType: String, completion:@escaping ([Product]?,Error?)->()){
         AF.request(URLs.productsForSubCategory(collectionId: collectionId, productType: productType))
              .responseDecodable(of:AllProducts.self){

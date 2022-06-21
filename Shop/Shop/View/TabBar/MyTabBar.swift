@@ -8,14 +8,18 @@
 import UIKit
 
 class MyTabBar: UITabBarController {
-   
+    let defaults:userDefaultsprotocol=userDefault()
+    let home = HomeVc()
+    let catagory = CategoryVc()
+    let profile = ProfileVc()
+    let guestProfile=GuestProfileVc()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let home = HomeVc()
-        let catagory = CategoryVc()
-        let profile = ProfileVc()
-        
-        self.setViewControllers([home, catagory, profile], animated: true)
+               // self.setViewControllers([home, catagory, profile], animated: true)
+        let isLogged = defaults.isLoggedIn()
+        setViews(isLogedIn: isLogged)
+
         self.tabBar.backgroundColor = .white
         
         guard let items = self.tabBar.items else {return}
@@ -29,6 +33,15 @@ class MyTabBar: UITabBarController {
             }
         }
         
+    }
+    func setViews(isLogedIn:Bool){
+        if isLogedIn{
+            self.setViewControllers([home, catagory, profile], animated: true)
+        }
+        else{
+            self.setViewControllers([home, catagory, guestProfile], animated: true)
+
+        }
     }
 
 }

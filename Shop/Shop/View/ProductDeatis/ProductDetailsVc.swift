@@ -12,6 +12,8 @@ class ProductDetailsVc: UIViewController {
     var product:Product!
     var ratings=[4,4.5,5]
     @IBOutlet weak var productImageCollectionView: UICollectionView!
+    private let customerViewModel = CustomerViewModel()
+    private var user: User? = nil
     
     @IBOutlet weak var imageControl: UIPageControl!
     private let draftOrderViewModel = DraftOrderViewModel()
@@ -25,27 +27,23 @@ class ProductDetailsVc: UIViewController {
     @IBOutlet weak var navigationtitle: UINavigationItem!
     @IBOutlet weak var descTextView: UITextView!
     @IBOutlet weak var favButton: UIButton!
-//    @IBOutlet weak var addToBag: UIButton!
+    @IBOutlet weak var addToBag: UIButton!
     let productImageCell="ImageCollectionViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         displayProduct()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        
+        ratingCosmos.settings.updateOnTouch = false
         let backItem = UIBarButtonItem()
             backItem.title = "Category"
-       // navBar.ba = backItem;
-      //  addToBag.backgroundColor = .blue
-       // addToBag.layer.cornerRadius = 20
-
+        addToBag.layer.cornerRadius = 20
+        
         let nibCell = UINib(nibName: productImageCell, bundle: nil)
         productImageCollectionView.register(nibCell, forCellWithReuseIdentifier: productImageCell)
         // Do any additional setup after loading the view.
     }
     func displayProduct(){
-      //  navigationtitle.title=product?.vendor
-//        navigationtitle.backBarButtonItem
         navigationItem.title=product?.vendor
         //title=product?.vendor
         reviewTextView.text=product?.product_type
@@ -56,29 +54,34 @@ class ProductDetailsVc: UIViewController {
         
     }
  
+    override func viewWillAppear(_ animated: Bool) {
+        print(userDefault().getId())
+        customerViewModel.getCustomerwith(id: String(userDefault().getId()))
+        customerViewModel.bindUser = { self.onSuccessUpdateView() }
+    }
+    
+    func onSuccessUpdateView() {
+        user = customerViewModel.customer
+    }
 
     @IBAction func addToCart(_ sender: Any) {
-        if userDefault().isLoggedIn() {
-           
-        // check if customer have draft or no. if no
-            print(userDefault().getDraftOrder())
-            //userDefault.getDraftOrder() == "0"
-            if false {
+        let userDefault: userDefaultsprotocol = userDefault()
+        print("\(user?.customer.note)     user?.customer.note    addToCart ")
+        if userDefault.isLoggedIn() {
+            if user?.customer.note == "0" {
                 print("addToCart post")
-            let firstProduct = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault().getId())))
-          //      print(userDefault.getId())
-            draftOrderViewModel.postNewDraftOrderWith(order: firstProduct)
-        }
-                 
-        // if yes modify
-        if true {
-         //   print(userDefault.getId())
-            print("addToCart modify")
-            draftOrderViewModel.updateAnExistingDraftOrder(variantId: (product?.variants![0].id)!)
-        }
+                let firstProduct = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault.getId())))
+                draftOrderViewModel.postNewDraftOrderWith(order: firstProduct)
+           
+            } else {
+                //print(userDefault.getId())
+                print("addToCart modify")
+            //    print(user?.customer.note)
+                draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.note)!, variantId: (product?.variants![0].id)!)
+            }
             
         } else {
-            print(userDefault().isLoggedIn())
+            print(userDefault.isLoggedIn())
             let alert = UIAlertController(title: "Error", message: "Guest can't add to cart please login first", preferredStyle: .alert)
             let loginAction  = UIAlertAction(title: "go to login ", style: .default) { (UIAlertAction) in
                 let login = loginvc()

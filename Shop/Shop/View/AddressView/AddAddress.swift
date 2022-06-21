@@ -20,33 +20,25 @@ class AddAddress: UIViewController {
     var addressViewModel = AddressViewModel()
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         updateUI()
         addressViewModel.bindAddresses = self.bindAddresses
         addressViewModel.bindError = self.bindError
     }
     
     @IBAction func addAddress(_ sender: Any){
-     //   self.navigationController?.popViewController(animated: true)
-        //DispatchQueue.main.async { [self] in
-            if editFlag{
+            if editFlag {
                 editAddress.country = TFCountry.text ?? ""
                 editAddress.city = TFCity.text ?? ""
                 editAddress.address1 = TFAddress.text ?? ""
                 editAddress.phone = TFPhone.text ?? ""
                 addressViewModel.editAddress(address: editAddress)
 
-            }else{
+            } else {
                 addressViewModel.addAddress(country: TFCountry.text ?? "", city: TFCity.text ?? "", address: TFAddress.text ?? "", phone: TFPhone.text ?? "")
             }
 
-      //  }
-        self.navigationController?.popViewController(animated: true)
-
-        
-     
+        self.navigationController?.popToViewController(ProfileVc(), animated: true)
     }
     
     func updateUI() {
