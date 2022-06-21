@@ -129,7 +129,7 @@ class ShopingViewModel{
                     userDefault().setFiftyDescountTitle(title: response[0].title)
                     userDefault().setThirtyDescountID(id: response[1].id)
                     userDefault().setThirtyDescountTitle(title: response[1].title)
-                    userDefault().setDescountMessage(message: "For 50% off enter \(response[0].title)\nFor 30% off enter \(response[1].title)")
+                    userDefault().setDescountMessage(message: "For 50% off copy this code  \(response[0].title) or enter SHOPIT50\nFor 30% off copy this code \(response[1].title) or enter SHOPIT30")
                 }
             }
         }
