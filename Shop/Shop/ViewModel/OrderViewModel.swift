@@ -10,6 +10,8 @@ import Foundation
 
 class OrderViewModel {
     
+    
+    
     private var network = NetworkService()
     private var defaults = userDefault()
     private let draftOrderViewModel = DraftOrderViewModel()
@@ -18,10 +20,12 @@ class OrderViewModel {
         var copunValue: (Int, String)
         
         switch copun {
-        case defaults.getThirtyDescountTitle():
+        case defaults.getThirtyDescountTitle() || "SHOPIT30":
             copunValue = (30, "Nice, now you have 30% off")
-        case defaults.getFiftyDescountTitle():
+        case defaults.getFiftyDescountTitle() || "SHOPIT50":
             copunValue = (50, "Nice, now you have 50% off")
+        case "":
+            copunValue = (0, "No copun Entered")
         default:
             copunValue = (0, "Invalid copun")
         }
@@ -46,5 +50,16 @@ class OrderViewModel {
                     }
                 }
             }
+        }
+    
+    func fetchAllOrders(){
+        network.getOrders() { orderFromAPI, error in
+            if let orderFromAPI = orderFromAPI {
+                self.orders = orderFromAPI
+            }
+            else{
+                self.showError = error?.localizedDescription
+            }
+        }
         }
 }
