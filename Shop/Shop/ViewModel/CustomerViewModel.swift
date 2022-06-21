@@ -51,7 +51,7 @@ class CustomerViewModel {
                 print("\(message)        vm")
             }
             if let response = response as? HTTPURLResponse {
-                print("\(response.statusCode)   vm")
+                print("\(response.statusCode)   modifyCustomerNote  CustomerViewModel   vm")
             }
         }
     }

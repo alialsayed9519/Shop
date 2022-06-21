@@ -7,7 +7,11 @@
 
 import UIKit
 
-class CartView: UIViewController{
+protocol CartSelection {
+    func addProductToCart(product : Pproduct, atindex : Int)
+}
+
+class CartView: UIViewController, CartSelection {
     private let draftOrderViewModel = DraftOrderViewModel()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalPrice: UILabel!
@@ -20,6 +24,21 @@ class CartView: UIViewController{
     @IBOutlet var checkoutButton: UIView!
     var order = Order()
 
+    func addProductToCart(product: Pproduct, atindex: Int) {
+        items[atindex].quantity = product.quant
+            calculateTotal()
+        }
+
+        func calculateTotal()
+        {
+            var total = 0.0
+            for item in items{
+             //   print("\(Int(item.price))     clacTotal  ")
+                total += Double(item.quantity) * (Double(item.price) ?? 0.0)
+            }
+            totalPrice.text = "\(Int(total))"
+
+        }
     
     @IBAction func checkoutBoutton(_ sender: Any) {
         checkoutButton.layer.cornerRadius = 20
@@ -47,7 +66,8 @@ class CartView: UIViewController{
         else{
             let alert = UIAlertController(title: "Empty Cart", message: "There is no items in your cart", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Back to shopp", style: .default) { (action) in
-                self.navigationController?.pushViewController(HomeVc(), animated: true)
+              //  self.navigationController?.pushViewController(HomeVc(), animated: true)
+                self.navigationController?.popViewController(animated: true)
             }
             alert.addAction(okAction)
             self.present(alert, animated: true, completion: nil)
@@ -63,30 +83,29 @@ class CartView: UIViewController{
         tableView.dataSource = self
         tableView.delegate = self  
         tableView.registerNib(cell: CartItem.self)
-        
-     // draftOrderViewModel.deleteAnExistingDraftOrder()
-        print(userDefault().getId())
-        customerViewModel.getCustomerwith(id: String(userDefault().getId()))
-        customerViewModel.bindUser = { self.getUser() }
-      /*
-        draftOrderViewModel.getDraftOrderLineItems()
-        draftOrderViewModel.bindDraftOrderLineItemsViewModelToView = { self.onSuccessUpdateView() }
-        draftOrderViewModel.bindDraftViewModelErrorToView = { self.onFailUpdateView() }
-*/
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       
-        
-        if userDefault().isLoggedIn() {
-      //      draftOrderViewModel.getDraftOrderLineItems(id: (user?.customer.note)!)
-       //     draftOrderViewModel.bindDraftOrderLineItemsViewModelToView = { self.onSuccessUpdateView() }
-        //    draftOrderViewModel.bindDraftViewModelErrorToView = { self.onFailUpdateView() }
+        print("\(userDefault().getId())        cartView")
+        customerViewModel.getCustomerwith(id: String(userDefault().getId()))
+        customerViewModel.bindUser = { self.getUserSuccess() }
+    }
+    
+    func getUserSuccess() {
+        user = customerViewModel.customer
+        print("\(String(describing: user?.customer.note))          getUserSuccess")
+        if user?.customer.note != "0" && userDefault().isLoggedIn() {
+            print("\((user?.customer.note)!)     getUserSuccess     ")
+            userDefault().setDraftOrder(note: (user?.customer.note)!)
+            draftOrderViewModel.getDraftOrderLineItems(id: (user?.customer.note)!)
+            draftOrderViewModel.bindDraftOrderLineItemsViewModelToView = { self.onSuccessUpdateView() }
+            draftOrderViewModel.bindDraftViewModelErrorToView = { self.onFailUpdateView() }
         }
     }
     
-    func getUser() {
-        user = customerViewModel.customer
+    override func viewWillDisappear(_ animated: Bool) {
+        
     }
     
     func onSuccessUpdateView() {
@@ -108,7 +127,6 @@ class CartView: UIViewController{
         print("clacTotal")
         var total = 0.0
         for item in items{
-            print(Int(item.price))
             total += Double(item.quantity) * (Double(item.price) ?? 0.0)
         }
         totalPrice.text = "\(Int(total))"
@@ -124,7 +142,11 @@ extension CartView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueNib() as CartItem
         let item = items[indexPath.row]
-        cell.updateUI(item: item)
+        items[indexPath.row].quantity = cell.count
+        print("d3d3      \(items[indexPath.row].quantity)")
+        cell.updateUI(item: item, index: indexPath.row)
+        cell.cartSelectionDelegate = self
+
         return cell
     }
 }

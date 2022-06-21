@@ -26,7 +26,7 @@ class PaymentVc: UIViewController {
   var order: Order?
     var price: Int = 0
     var total: Int = 0
-    var currency: String = "EGP"
+    var currency: String = ""
     
     private let viewModel = OrderViewModel()
 

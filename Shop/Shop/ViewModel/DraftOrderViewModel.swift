@@ -13,7 +13,8 @@ class DraftOrderViewModel {
     var bindDraftViewModelErrorToView: (() -> ()) = {}
     var bindImageURLToView: (() -> ()) = {}
     var bindDraftViewModelMassageToView: (() -> ()) = {}
-
+    private let customerViewModel = CustomerViewModel()
+    private var user: User? = nil
     var lineItems: [LineItems]? {
         didSet {
             self.bindDraftOrderLineItemsViewModelToView()
@@ -47,6 +48,7 @@ class DraftOrderViewModel {
         networkService.postNewDraftOrder(order: order) { data, response, error in
             if let error: Error = error {
                 let message = error.localizedDescription
+                print("postNewDraftOrderWith    vm")
                 self.showError = message
             }
             guard let data = data else {
@@ -57,29 +59,32 @@ class DraftOrderViewModel {
                 let jsonObj = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
                 let i = jsonObj!["draft_order"] as? [String: Any]
                 let draftId = i!["id"] as! Int
-               // print(type(of: draftId))
+                print(type(of: draftId))
                 print("\(String(describing: draftId))   postNewDraftOrderWith  vm")
+               // userDefault().setDraftOrder(note: String(draftId))
                 customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: String(draftId))))
                 
             } catch {
-                print(error.localizedDescription)
+                print("\(error.localizedDescription)    postNewDraftOrderWith  vm")
                 self.showError = error.localizedDescription
             }
         }
     }
-    
-    func getDraftOrderLineItems(id: String = "1100811043074") {
+
+    func getDraftOrderLineItems(id: String) {
         networkService.getSingleDraftOrder(id: id) { (items, error) in
             if let error: Error = error {
                 let message = error.localizedDescription
+                print("   getDraftOrderLineItems  error")
                 self.showError = message
             } else {
+                print("   getDraftOrderLineItems  vm")
                 self.lineItems = items
             }
         }
     }
     
-    func getProductImageFromAPI(id: String = "42845057581314") {
+    func getProductImageFromAPI(id: String) {
         networkService.getProductImageById(id: id) { imageURL, error in
             if let error: Error = error {
                 let message = error.localizedDescription
@@ -90,19 +95,21 @@ class DraftOrderViewModel {
         }
     }
     
-    func deleteAnExistingDraftOrder(id: String = "1100706447618") {
+    func deleteAnExistingDraftOrder(id: String) {
         networkService.removeAnExistingDraftOrder(id: id) { data, response, error in
             if let error: Error = error {
                 let message = error.localizedDescription
                 self.showError = message
             } else {
-                print("good")
+                print("deleteAnExistingDraftOrder       vm")
+                //userDefault().setDraftOrder(note: "0")
                 print(data!)
+                self.customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: "0")))
             }
         }
     }
     
-    func updateAnExistingDraftOrder(id: String = "1100811043074", variantId: Int) {
+    func updateAnExistingDraftOrder(id: String, variantId: Int) {
         networkService.getSingleDraftOrder(id: id) { (arrOfLineItems, error) in
             if let error: Error = error {
                 let message = error.localizedDescription
@@ -128,7 +135,7 @@ class DraftOrderViewModel {
                     }
                     
                     if let response = response as? HTTPURLResponse {
-                        print("\(response.statusCode)   vm")
+                        print("\(response.statusCode)   updateAnExistingDraftOrder   vm")
                     }
                     
                 }
