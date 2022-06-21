@@ -186,7 +186,7 @@ extension CategoryVc{
         }
         self.products = products
         if let productType = subCategoryName {
-            shopViewModel.filterPorductsBySubCategory(subCategoryName: productType)
+            shopViewModel.filterPorductsBySubCategory(itemIndex: mainCategoryIndex, subCategoryName: productType)
         }
         self.collectionView.reloadData()
     }
@@ -199,19 +199,19 @@ extension CategoryVc{
         actionButton.addItem(title: "shoes", image: UIImage(named: "shoes")?.withRenderingMode(.alwaysOriginal)) { item in
             self.actionButton.buttonImage = UIImage(named: "shoes")
             self.subCategoryName = "SHOES"
-            self.shopViewModel.filterPorductsBySubCategory(subCategoryName: self.subCategoryName!)
+            self.shopViewModel.filterPorductsBySubCategory(itemIndex: self.mainCategoryIndex, subCategoryName: self.subCategoryName!)
         }
 
         actionButton.addItem(title: "T-Shirts", image: UIImage(named: "t-shirt")?.withRenderingMode(.alwaysOriginal)) { item in
             self.actionButton.buttonImage = UIImage(named: "t-shirt")
             self.subCategoryName = "T-SHIRTS"
-            self.shopViewModel.filterPorductsBySubCategory(subCategoryName: self.subCategoryName!)
+            self.shopViewModel.filterPorductsBySubCategory(itemIndex: self.mainCategoryIndex, subCategoryName: self.subCategoryName!)
         }
 
         actionButton.addItem(title: "Accessres", image: UIImage(named: "accessres")?.withRenderingMode(.alwaysOriginal)) { item in
             self.actionButton.buttonImage = UIImage(named: "accessres")
             self.subCategoryName = "ACCESSRES"
-            self.shopViewModel.filterPorductsBySubCategory(subCategoryName: self.subCategoryName!)
+            self.shopViewModel.filterPorductsBySubCategory(itemIndex: self.mainCategoryIndex, subCategoryName: self.subCategoryName!)
         }
         
         actionButton.display(inViewController: self)
@@ -219,12 +219,12 @@ extension CategoryVc{
     }
     func customizFAB(){
         actionButton.handleSingleActionDirectly = true
-        actionButton.buttonDiameter = 90
+        actionButton.buttonDiameter = 70
         actionButton.overlayView.backgroundColor = UIColor(white: 0, alpha: 0.3)
         actionButton.buttonImage = UIImage(named: "filter")
         actionButton.buttonColor = .white
         actionButton.buttonImageColor = .white
-        actionButton.buttonImageSize = CGSize(width: 65, height: 65)
+        actionButton.buttonImageSize = CGSize(width: 45, height: 45)
 
        // actionButton.buttonAnimationConfiguration = .transition(toImage: UIImage(named: "X"))
         actionButton.itemAnimationConfiguration = .slideIn(withInterItemSpacing: 14)

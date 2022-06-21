@@ -301,7 +301,25 @@ class NetworkService {
     func getOrders(completion: @escaping (DataResponse<Orders, AFError>) -> ()){
         AF.request(URLs.order()).validate().responseDecodable(of:Orders.self) { (response) in
             completion(response)
-            
+        }
+    }
+    
+    func getProductBySubCategory(collectionId: Int, productType: String, completion:@escaping ([Product]?,Error?)->()){
+        
+        AF.request(URLs.productsForSubCategory(collectionId: collectionId, productType: productType))
+             .responseDecodable(of:AllProducts.self){
+            (response) in
+            switch response.result{
+            case .success(_):
+                guard let data = response.value
+                else {
+                    return
+                }
+                completion(data.products,nil)
+            case .failure(let error) :
+                completion(nil,error)
+                print(error.localizedDescription)
+            }
         }
     }
 }
