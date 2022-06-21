@@ -16,21 +16,21 @@ class CartItem: UITableViewCell {
     @IBOutlet weak var itemPrice: UILabel!
     @IBOutlet weak var itemCounter: UILabel!
     
-    var product : Pproduct = Pproduct(quant: 1)
+ //   var product : Pproduct = Pproduct(quant: 1)
       private var counterValue = 1
       var productIndex = 0
 
-      var cartSelectionDelegate: CartSelection?
+    //  var cartSelectionDelegate: CartSelection?
     
     var ima = ""
-    var count: Int = 0
+    var count: Int = 1
     
     @IBAction func icreseCount(_ sender: Any) {
         count = count + 1
         itemCounter.text = "\(count)"
-        print(count)
-        product.quant = count
-        cartSelectionDelegate?.addProductToCart(product: product, atindex: productIndex)
+     //   print(count)
+      //  product.quant = count
+     //   cartSelectionDelegate?.addProductToCart(product: product, atindex: productIndex)
     }
     
     @IBAction func decreseCount(_ sender: Any) {
@@ -38,8 +38,8 @@ class CartItem: UITableViewCell {
             count = count - 1
             itemCounter.text = "\(count)"
         }
-        product.quant = count
-       cartSelectionDelegate?.addProductToCart(product: product, atindex: productIndex)
+      //  product.quant = count
+    //   cartSelectionDelegate?.addProductToCart(product: product, atindex: productIndex)
        
     }
     
@@ -48,10 +48,10 @@ class CartItem: UITableViewCell {
         // Initialization code
     }
     
-    func updateUI(item: LineItems, index: Int) {
+    func updateUI(item: LineItems) {
         itemName.text = item.title
-        itemCounter.text = String(describing: item.quantity)
-        itemCounter.text = String(describing: itemCounter)
+     //   itemCounter.text = String(describing: item.quantity)
+        itemCounter.text = String(describing: count)
 
         itemVonder.text = item.vendor
         let id = String(describing: item.product_id)
@@ -67,7 +67,8 @@ class CartItem: UITableViewCell {
     }
     
 }
-
+/*
 struct Pproduct {
     var quant: Int
 }
+*/

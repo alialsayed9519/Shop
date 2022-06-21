@@ -337,14 +337,7 @@ class NetworkService {
         }.resume()
     }
 
-     func getOrders(completion: @escaping (DataResponse<, AFError>) -> ()){
-        let id = userDefault().getId()
-        AF.request(URLs.allOrders(customerId: id)).validate().responseDecodable(of:Orders.self) { (response) in
 
-            completion(response)
-        }
-    }
-    
     func getProductBySubCategory(collectionId: Int, productType: String, completion:@escaping ([Product]?,Error?)->()){
         AF.request(URLs.productsForSubCategory(collectionId: collectionId, productType: productType))
              .responseDecodable(of:AllProducts.self){

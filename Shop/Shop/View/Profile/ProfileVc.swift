@@ -17,6 +17,7 @@ class ProfileVc: UIViewController {
         super.viewDidLoad()
         let nibCell = UINib(nibName: profileTableViewCellId, bundle: nil)
         tableView.register(nibCell, forCellReuseIdentifier: profileTableViewCellId)
+        setUserData()
         currencyViewMode.bindCurrencyViewModel=onSucess
     }
     func onSucess(){
@@ -90,12 +91,12 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
                 cell.name.text = "currency"
                 cell.button.isHidden=false
                 cell.button.setTitle("choose currency", for: .normal)
-                if currencyViewMode.getCurrency(key: "currency")=="USD"{
-                    cell.button.setTitle("USD", for: .normal)
-                }
-                else if currencyViewMode.getCurrency(key: "currency")=="EGP"{
-                    cell.button.setTitle("EGP", for: .normal)
-                }
+               //  currencyViewMode.getCurrency(key: "currency")=="USD"{
+                    cell.button.setTitle(currencyViewMode.getCurrency(key: "currency"), for: .normal)
+                
+//                else if currencyViewMode.getCurrency(key: "currency")=="EGP"{
+//                   // cell.button.setTitle(, for: .normal)
+//                }
             default:
                 cell.image1.image = UIImage(named: "address")
                 cell.name.text = "Address"

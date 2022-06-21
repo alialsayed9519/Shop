@@ -6,12 +6,12 @@
 //
 
 import UIKit
-
+/*
 protocol CartSelection {
     func addProductToCart(product : Pproduct, atindex : Int)
 }
-
-class CartView: UIViewController, CartSelection {
+*/
+class CartView: UIViewController {
     private let draftOrderViewModel = DraftOrderViewModel()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalPrice: UILabel!
@@ -23,7 +23,7 @@ class CartView: UIViewController, CartSelection {
     
     @IBOutlet var checkoutButton: UIView!
     var order = Order()
-
+/*
     func addProductToCart(product: Pproduct, atindex: Int) {
         items[atindex].quantity = product.quant
             calculateTotal()
@@ -39,7 +39,7 @@ class CartView: UIViewController, CartSelection {
             totalPrice.text = "\(Int(total))"
 
         }
-    
+    */
     @IBAction func checkoutBoutton(_ sender: Any) {
         checkoutButton.layer.cornerRadius = 20
         if items.count != 0{
@@ -142,10 +142,10 @@ extension CartView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueNib() as CartItem
         let item = items[indexPath.row]
-        items[indexPath.row].quantity = cell.count
-        print("d3d3      \(items[indexPath.row].quantity)")
-        cell.updateUI(item: item, index: indexPath.row)
-        cell.cartSelectionDelegate = self
+       // items[indexPath.row].quantity = cell.count
+        //print("d3d3      \(items[indexPath.row].quantity)")
+        cell.updateUI(item: item)
+       // cell.cartSelectionDelegate = self
 
         return cell
     }
