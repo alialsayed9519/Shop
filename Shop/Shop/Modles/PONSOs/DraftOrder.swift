@@ -31,7 +31,7 @@ struct LineItems: Codable {
     let product_id: Int
     let title: String
     let vendor: String
-    let quantity: Int
+    var quantity: Int
     let price: String
 }
 

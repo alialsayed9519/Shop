@@ -14,7 +14,7 @@ class OrderViewModel {
     
     private var network = NetworkService()
     private var defaults = userDefault()
-    
+    private let draftOrderViewModel = DraftOrderViewModel()
     func checkDescountCode(copun: String) -> (Int, String) {
         
         var copunValue: (Int, String)
@@ -46,7 +46,7 @@ class OrderViewModel {
                     let returnedCustomer = returnedOrder?["customer"] as? Dictionary<String,Any>
                     let id = returnedCustomer?["id"] as? Int ?? 0
                     if id != 0 {
-                        print("call empty cart")
+                        self.draftOrderViewModel.deleteAnExistingDraftOrder(id: userDefault().getDraftOrder())
                     }
                 }
             }
