@@ -26,10 +26,8 @@ class CartView: UIViewController {
     var order = Order()
 
     @IBAction func checkoutBoutton(_ sender: Any) {
-        checkoutButton.layer.cornerRadius = 20
         if items.count != 0{
             if  userDefault().isLoggedIn(){
-                updateDraftOrderBeforeNavigate()
                 if order.pilling_address == nil{
                     let addressTable = AddressesTable()
                     addressTable.chooseAddressFlag = true

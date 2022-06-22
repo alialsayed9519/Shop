@@ -26,11 +26,11 @@ class PaymentVc: UIViewController {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var detailsView: UIView!
     var order: Order?
-        var price: Double = 0
-        var total: Double = 0
-        var currency: String = ""
-        
-        private let viewModel = OrderViewModel()
+    var price: Double = 0
+    var total: Double = 0
+    var currency: String = ""
+    
+    private let viewModel = OrderViewModel()
 
         
 
