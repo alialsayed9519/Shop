@@ -30,14 +30,6 @@ struct User: Codable {
 struct Person: Codable{
     let id: Int
     let note: String
+    let last_name: String?
 }
-
-/*
- {
-     "customer": {
-         "id": 6267847737602,
-         "note": "42845057581314"
-     }
- }
- */
 

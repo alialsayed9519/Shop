@@ -38,7 +38,7 @@ class AddAddress: UIViewController {
                 addressViewModel.addAddress(country: TFCountry.text ?? "", city: TFCity.text ?? "", address: TFAddress.text ?? "", phone: TFPhone.text ?? "")
             }
 
-        self.navigationController?.popToViewController(ProfileVc(), animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     func updateUI() {
