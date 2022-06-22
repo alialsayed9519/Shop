@@ -16,7 +16,6 @@ struct Order: Codable{
     var current_total_price:String?
     var gateway: String?
     var total_discounts: String?
-
 }
 
 struct APIOrder: Codable {
@@ -37,6 +36,6 @@ struct OrderFromAPI: Codable {
     let Created_at: String?
 }
 
-struct OrdersFromAPI {
+struct OrdersFromAPI: Codable {
     let orders: [OrderFromAPI]
 }

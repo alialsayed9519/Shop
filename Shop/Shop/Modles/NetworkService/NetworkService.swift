@@ -310,6 +310,7 @@ class NetworkService {
                     completion(nil, error)
                 }
             }
+        }
     }
     
     func updateCustomerNote(id: String, user: User, completion: @escaping (Data?, URLResponse?, Error?)->()) {

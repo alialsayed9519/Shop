@@ -10,7 +10,18 @@ import Foundation
 
 class OrderViewModel {
     
-    
+    var bindOrders: (()->()) = {}
+    var bindError : (()->()) = {}
+    var orders: [OrderFromAPI]! {
+        didSet{
+            self.bindOrders()
+        }
+    }
+    var error: String!{
+        didSet{
+            self.bindError()
+        }
+    }
     
     private var network = NetworkService()
     private var defaults = userDefault()
@@ -53,6 +64,16 @@ class OrderViewModel {
                         self.draftOrderViewModel.deleteAnExistingDraftOrder(id: userDefault().getDraftOrder())
                     }
                 }
+            }
+        }
+    
+    func fetchAllOrders(){
+        network.getOrders() { (response, error) in
+            if let orderFromAPI = response {
+                self.orders = orderFromAPI
+            }
+            else{
+                self.error = error?.localizedDescription
             }
         }
     
