@@ -355,4 +355,29 @@ class NetworkService {
             }
         }
     }
+    
+    func updateCustomerFav(id: String, user: User, completion: @escaping (Data?, URLResponse?, Error?)->()) {
+        guard let url = URL(string: URLs.customer(id: id)) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: user.asDictionary(), options: .prettyPrinted)
+          
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        print(try? user.asDictionary())
+        
+        //HTTP Headers
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.httpShouldHandleCookies = false
+
+        
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+    }
 }

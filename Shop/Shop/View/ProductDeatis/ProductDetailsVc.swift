@@ -55,7 +55,7 @@ class ProductDetailsVc: UIViewController {
     }
  
     override func viewWillAppear(_ animated: Bool) {
-        print(userDefault().getId())
+        print("\(userDefault().getId())     user id")
         customerViewModel.getCustomerwith(id: String(userDefault().getId()))
         customerViewModel.bindUser = { self.onSuccessUpdateView() }
     }
@@ -88,7 +88,7 @@ class ProductDetailsVc: UIViewController {
             let loginAction  = UIAlertAction(title: "go to login ", style: .default) { (UIAlertAction) in
                 let login = loginvc()
                // login.homeFlag = false
-                self.navigationController?.pushViewController(login, animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             }
             
             let okAction  = UIAlertAction(title: "ok", style: .default) { (UIAlertAction) in

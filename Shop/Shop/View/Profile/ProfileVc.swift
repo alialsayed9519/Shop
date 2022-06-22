@@ -106,6 +106,7 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
         default:
                 cell.image1.image = UIImage(named: "aboutUs")
                 cell.name.text = "About us"
+            cell.button.isHidden=true
         }
         cell.accessoryType = .disclosureIndicator
         return cell

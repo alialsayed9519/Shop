@@ -40,7 +40,7 @@ class LoginViewModel:loginTemp{
                                 self?.defaults.login()
                                 self?.defaults.setId(id: customer.id ?? 0)
                                 self?.defaults.setEmail(email: customer.email ?? "")
-                                self?.defaults.setUserName(userName: "\(String(describing: customer.first_name)) \(String(describing: customer.last_name))")
+                                self?.defaults.setUserName(userName: "\(String(describing: customer.first_name))")
                                 self?.navigate=true
                                 break
                             }

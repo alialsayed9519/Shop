@@ -24,11 +24,12 @@ class CartView: UIViewController {
     
     @IBOutlet var checkoutButton: UIView!
     var order = Order()
-////////    add  method   updateDraftOrderBeforeNavigate()   when need to post order
+
     @IBAction func checkoutBoutton(_ sender: Any) {
         checkoutButton.layer.cornerRadius = 20
         if items.count != 0{
             if  userDefault().isLoggedIn(){
+                updateDraftOrderBeforeNavigate()
                 if order.pilling_address == nil{
                     let addressTable = AddressesTable()
                     addressTable.chooseAddressFlag = true
@@ -98,7 +99,9 @@ class CartView: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        updateDraftOrderBeforeNavigate()
+        if !items.isEmpty {
+            updateDraftOrderBeforeNavigate()
+        }
     }
     
     func onSuccessUpdateView() {

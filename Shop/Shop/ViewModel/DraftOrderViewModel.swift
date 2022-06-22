@@ -43,7 +43,7 @@ class DraftOrderViewModel {
        self.networkService = NetworkService()
    }
     
-    func postNewDraftOrderWith(order: Api) {
+    func postNewDraftOrderWith(order: Api, flag: Bool = true) {
         let customerViewModel = CustomerViewModel()
         
         networkService.postNewDraftOrder(order: order) { data, response, error in
@@ -63,7 +63,13 @@ class DraftOrderViewModel {
                 print(type(of: draftId))
                 print("\(String(describing: draftId))   postNewDraftOrderWith  vm")
                // userDefault().setDraftOrder(note: String(draftId))
-                customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: String(draftId))))
+                if flag == true {
+                    customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: String(draftId), last_name: "0")))
+                }
+                
+                if flag == false {
+                    customerViewModel.modifyCustomerFav(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: String(0), last_name: String(draftId))))
+                }
                 
             } catch {
                 print("\(error.localizedDescription)    postNewDraftOrderWith  vm")
@@ -105,7 +111,7 @@ class DraftOrderViewModel {
                 print("deleteAnExistingDraftOrder       vm")
                 //userDefault().setDraftOrder(note: "0")
                 print(data!)
-                self.customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: "0")))
+                self.customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: "0", last_name: "0")))
             }
         }
     }
