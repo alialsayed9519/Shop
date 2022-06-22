@@ -55,18 +55,19 @@ class ProductDetailsVc: UIViewController {
     }
  
     override func viewWillAppear(_ animated: Bool) {
-        print(userDefault().getId())
+        print("\(userDefault().getId())     user id")
         customerViewModel.getCustomerwith(id: String(userDefault().getId()))
         customerViewModel.bindUser = { self.onSuccessUpdateView() }
     }
     
+   
     func onSuccessUpdateView() {
         user = customerViewModel.customer
     }
 
     @IBAction func addToCart(_ sender: Any) {
         let userDefault: userDefaultsprotocol = userDefault()
-        print("\(user?.customer.note)     user?.customer.note    addToCart ")
+        print("\(String(describing: user?.customer.note))     user?.customer.note    addToCart ")
         if userDefault.isLoggedIn() {
             if user?.customer.note == "0" {
                 print("addToCart post")
@@ -78,6 +79,7 @@ class ProductDetailsVc: UIViewController {
                 print("addToCart modify")
             //    print(user?.customer.note)
                 draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.note)!, variantId: (product?.variants![0].id)!)
+                draftOrderViewModel.bindDraftViewModelErrorToView = { showAlert(title: "Message", message: self.draftOrderViewModel.showMassage!, view: self) }
             }
             
         } else {
@@ -86,7 +88,7 @@ class ProductDetailsVc: UIViewController {
             let loginAction  = UIAlertAction(title: "go to login ", style: .default) { (UIAlertAction) in
                 let login = loginvc()
                // login.homeFlag = false
-                self.navigationController?.pushViewController(login, animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             }
             
             let okAction  = UIAlertAction(title: "ok", style: .default) { (UIAlertAction) in
