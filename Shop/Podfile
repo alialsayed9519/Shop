@@ -25,5 +25,6 @@ pod 'Cosmos'
 pod 'JJFloatingActionButton'
 pod 'RxSwift' 
 pod 'RxCocoa' 
+pod 'lottie-ios'
  
 end
