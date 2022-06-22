@@ -41,7 +41,10 @@ class AddressesTable: UIViewController, NavigationHelper{
 
        
         if chooseAddressFlag {
-            if addresses.count != 0 {
+            if addresses.count == 0 {
+                button.isHidden = false
+            }
+            else{
                 button.isHidden = true
             }
         }
