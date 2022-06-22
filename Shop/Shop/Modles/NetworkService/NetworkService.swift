@@ -194,7 +194,7 @@ class NetworkService {
         }.resume()
     }
 
-    func getSingleDraftOrder(id: String, completion: @escaping ([LineItems]?, Error?)->()){
+    func getSingleDraftOrder(id: String, completion: @escaping ([LineItem]?, Error?)->()){
         AF.request(URLs.getSingleDraftOrder(id: id))
              .responseDecodable(of: Draft.self) { (response) in
                 switch response.result {

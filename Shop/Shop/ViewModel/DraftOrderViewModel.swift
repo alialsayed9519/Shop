@@ -15,7 +15,7 @@ class DraftOrderViewModel {
     var bindDraftViewModelMassageToView: (() -> ()) = {}
     private let customerViewModel = CustomerViewModel()
     private var user: User? = nil
-    var lineItems: [LineItems]? {
+    var lineItems: [LineItem]? {
         didSet {
             self.bindDraftOrderLineItemsViewModelToView()
         }
@@ -45,6 +45,7 @@ class DraftOrderViewModel {
     
     func postNewDraftOrderWith(order: Api) {
         let customerViewModel = CustomerViewModel()
+        
         networkService.postNewDraftOrder(order: order) { data, response, error in
             if let error: Error = error {
                 let message = error.localizedDescription
@@ -119,6 +120,10 @@ class DraftOrderViewModel {
                 let oldLineItems = arrOfLineItems!
                 var new: [OrderItem] = []
                 for item in oldLineItems {
+                    if item.variant_id == variantId {
+                        self.showMassage = "this item added before, choose a nother one"
+                        return
+                    }
                     let orderItem = OrderItem(variant_id: item.variant_id, quantity: item.quantity)
                     new.append(orderItem)
                 }
@@ -137,16 +142,30 @@ class DraftOrderViewModel {
                     if let response = response as? HTTPURLResponse {
                         print("\(response.statusCode)   updateAnExistingDraftOrder   vm")
                     }
-                    
                 }
             }
         }
     }
     
-    func increaseItemQuantaty(orderItem: LineItems) {
+    func increaseItemQuantaty(orderItem: LineItem) {
         for i in 0..<lineItems!.count {
             if lineItems![i].variant_id == orderItem.variant_id {
                 lineItems![i].quantity = lineItems![i].quantity + 1
+            }
+        }
+    }
+    
+    func updateAnExistingDraftOrder(id: String, items: [OrderItem]) {
+        let newLineItems = Updated(draft_order: Modify(id: Int(id)!, line_items: items))
+        networkService.ModifyAnExistingDraftOrder(id: id, order:  newLineItems) { data, response, error in
+            if let error: Error = error {
+                let message = error.localizedDescription
+                self.showError = message
+                print(message)
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                print("\(response.statusCode)   updateAnExistingDraftOrder   array   vm")
             }
         }
     }

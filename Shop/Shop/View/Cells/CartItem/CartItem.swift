@@ -18,27 +18,34 @@ class CartItem: UITableViewCell {
 
  //   var product : Pproduct = Pproduct(quant: 1)
       private var counterValue = 1
-      var productIndex = 0
-
+  //    var productIndex = 0
+    
+    var buttonIncrease : ((UITableViewCell) -> Void)?
+    var buttonDecrease : ((UITableViewCell) -> Void)?
+   
     //  var cartSelectionDelegate: CartSelection?
-    var item: LineItems?
+ //   var item: LineItems?
     var productImage = ""
-    var count: Int = 1
+  //  var count: Int = 1
     
     @IBAction func icreseCount(_ sender: Any) {
-        count = count + 1
-        itemCounter.text = "\(count)"
-        draftOrderViewModel.increaseItemQuantaty(orderItem: item!)
+        buttonIncrease?(self)
+
+    //    count = count + 1
+     //   itemCounter.text = "\(count)"
+     //   draftOrderViewModel.increaseItemQuantaty(orderItem: item!)
      //   print(count)
       //  product.quant = count
      //   cartSelectionDelegate?.addProductToCart(product: product, atindex: productIndex)
     }
     
     @IBAction func decreseCount(_ sender: Any) {
-        if count > 1 {
-            count = count - 1
-            itemCounter.text = "\(count)"
-        }
+        buttonDecrease?(self)
+
+      //  if count > 1 {
+       //     count = count - 1
+       //     itemCounter.text = "\(count)"
+      //  }
       //  product.quant = count
     //   cartSelectionDelegate?.addProductToCart(product: product, atindex: productIndex)
        
@@ -48,18 +55,16 @@ class CartItem: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    
-    func updateUI(item: LineItems) {
-        self.item = item
+   
+    func updateUI(item: LineItem) {
+      //  self.item = item
         itemName.text = item.title
-        itemCounter.text = String(describing: item.quantity)
+     //   itemCounter.text = String(describing: item.quantity)
       //  itemCounter.text = String(describing: count)
-
         itemVonder.text = item.vendor
         let id = String(describing: item.product_id)
         draftOrderViewModel.getProductImageFromAPI(id: id)
         draftOrderViewModel.bindImageURLToView = { self.onSuccessUpdateView() }
-
         itemPrice.text = String(describing: item.price)
     }
     

@@ -8,7 +8,7 @@
 import Foundation
 
 struct Order: Codable{
-    var line_items: [LineItems]?
+    var line_items: [LineItem]?
     var email: String?
     var pilling_address: Address?
     var financial_status: String = "paid"

@@ -60,13 +60,14 @@ class ProductDetailsVc: UIViewController {
         customerViewModel.bindUser = { self.onSuccessUpdateView() }
     }
     
+   
     func onSuccessUpdateView() {
         user = customerViewModel.customer
     }
 
     @IBAction func addToCart(_ sender: Any) {
         let userDefault: userDefaultsprotocol = userDefault()
-        print("\(user?.customer.note)     user?.customer.note    addToCart ")
+        print("\(String(describing: user?.customer.note))     user?.customer.note    addToCart ")
         if userDefault.isLoggedIn() {
             if user?.customer.note == "0" {
                 print("addToCart post")
@@ -78,6 +79,7 @@ class ProductDetailsVc: UIViewController {
                 print("addToCart modify")
             //    print(user?.customer.note)
                 draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.note)!, variantId: (product?.variants![0].id)!)
+                draftOrderViewModel.bindDraftViewModelErrorToView = { showAlert(title: "Message", message: self.draftOrderViewModel.showMassage!, view: self) }
             }
             
         } else {
