@@ -115,34 +115,12 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
         return 2
     }
     
-    
-    
-   /*
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        
-        switch indexPath.section {
-        case 0:
-            switch indexPath.row {
-            case 0:
-                print("order")
-            case 1:
-                print("whislist")
-            default:
-                self.navigationController?.pushViewController(AddressesTable(), animated: true)
-            }
-            
-        default:
-            print("about us")
-        }
-    }
-    */
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
             switch indexPath.row {
             case 0:
-                print("order")
+                self.navigationController?.pushViewController(OrdersTable(), animated: true)
             case 1:
                 showCurrencyAlert()
             default:
