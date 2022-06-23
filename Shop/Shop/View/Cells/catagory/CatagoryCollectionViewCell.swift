@@ -48,11 +48,7 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
         self.productImage.sd_setImage(with: URL(string: product.images[0].src), placeholderImage: UIImage(named: "adidas"))
         self.favProductBtn.setTitle("", for: .normal)
      
-        if favoriteViewModel.isProductFavoriteWith(id: product.variants![0].id) {
-            print("\(product.variants![0].id)     ididididididididi")
-            let image = UIImage(named: "")
-            self.favProductBtn.setImage(image, for: .normal)
-        }
+
         
         
     }

@@ -21,21 +21,21 @@ class FavoriteViewController: UIViewController {
         
         let nibCell = UINib(nibName: "CatagoryCollectionViewCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "CatagoryCollectionViewCell")
-        favoriteViewModel.bindFavoriteProductsToFavoriteViewController = { self.BindData() }
-        favoriteViewModel.getAllFavoriteProductsFromDataCore()
+//        favoriteViewModel.bindFavoriteProductsToFavoriteViewController = { self.BindData() }
+//        favoriteViewModel.getAllFavoriteProductsFromDataCore()
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         collectionView.reloadData()
-        if favoriteViewModel.isFavoriteProductsExistinCoreData() {
-            noProductsLabel.isHidden = true
-        }
+//        if favoriteViewModel.isFavoriteProductsExistinCoreData() {
+//            noProductsLabel.isHidden = true
+//        }
     }
     
     func BindData(){
-        favProducts = favoriteViewModel.favoriteProducts ?? []
-        self.collectionView.reloadData()
+//        favProducts = favoriteViewModel.favoriteProducts ?? []
+//        self.collectionView.reloadData()
     }
     
 }
@@ -65,7 +65,7 @@ extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDe
     
     @objc func deleteProductFromFav(sender: UIButton) {
         let index = IndexPath(row: sender.tag, section: 0)
-        favoriteViewModel.deleteProductFromFavoriteWith(id: favProducts[index.row].variants![0].id)
+//        favoriteViewModel.deleteProductFromFavoriteWith(id: favProducts[index.row].variants![0].id)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
