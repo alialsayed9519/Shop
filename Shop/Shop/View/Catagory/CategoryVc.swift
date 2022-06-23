@@ -166,21 +166,21 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
         print("\(String(describing: user?.customer.last_name))     user?.customer.marketing_opt_in_level    addToFav ")
         if userDefault.isLoggedIn() {
             if user?.customer.last_name == "0" {
-                print("addToCart post")
+                print("addToFav post")
                 let firstFav = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: products[index.row].variants![0].id, quantity: 1)], customer: customer(id: userDefault.getId())))
-                draftOrderViewModel.postNewDraftOrderWith(order: firstFav, flag: false)
+                draftOrderViewModel.postNewDraftOrderWith(order: firstFav, flag: false, note: (user?.customer.note)!)
            
             } else {
                 //print(userDefault.getId())
                 print("addToFav modify")
             //    print(user?.customer.note)
                 draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.last_name)!, variantId: products[index.row].variants![0].id)
-                draftOrderViewModel.bindDraftViewModelErrorToView = { showAlert(title: "Message", message: self.draftOrderViewModel.showMassage!, view: self) }
+             //   draftOrderViewModel.bindDraftViewModelErrorToView = { showAlert(title: "Message", message: self.draftOrderViewModel.showMassage!, view: self) }
             }
             
         } else {
             print(userDefault.isLoggedIn())
-            let alert = UIAlertController(title: "Error", message: "Guest can't add to cart please login first", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Message", message: "Guest can't add to Favorite please login first", preferredStyle: .alert)
             let loginAction  = UIAlertAction(title: "go to login ", style: .default) { (UIAlertAction) in
                 let login = loginvc()
                // login.homeFlag = false

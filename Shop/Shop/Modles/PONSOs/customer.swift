@@ -30,6 +30,6 @@ struct User: Codable {
 struct Person: Codable{
     let id: Int
     let note: String
-    let last_name: String?
+    let last_name: String
 }
 

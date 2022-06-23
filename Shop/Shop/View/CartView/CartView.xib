@@ -11,7 +11,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartView" customModule="Shop" customModuleProvider="target">
             <connections>
                 <outlet property="checkoutButton" destination="i5M-Pr-FkT" id="Lu8-cf-ico"/>
-                <outlet property="noItemsInCart" destination="Dxq-dZ-BDn" id="OmG-rk-Ze5"/>
                 <outlet property="tableView" destination="CB7-xx-2ul" id="t2y-3r-zg3"/>
                 <outlet property="totalPrice" destination="YkB-Rk-DTQ" id="KUi-8e-RrH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -60,18 +59,6 @@
                         <action selector="checkoutBoutton:" destination="-1" eventType="touchUpInside" id="uI2-CI-E7s"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dxq-dZ-BDn">
-                    <rect key="frame" x="40" y="436.5" width="334" height="23.5"/>
-                    <attributedString key="attributedText">
-                        <fragment content="No Products In Cart Go Back And Add ">
-                            <attributes>
-                                <font key="NSFont" metaFont="system" size="21"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                            </attributes>
-                        </fragment>
-                    </attributedString>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -80,10 +67,8 @@
                 <constraint firstItem="YkB-Rk-DTQ" firstAttribute="leading" secondItem="lig-uk-T2S" secondAttribute="trailing" constant="8" id="8Fl-4z-rbs"/>
                 <constraint firstItem="CB7-xx-2ul" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="CwL-bL-dRj"/>
                 <constraint firstItem="lig-uk-T2S" firstAttribute="top" secondItem="CB7-xx-2ul" secondAttribute="bottom" constant="16" id="DPf-86-53m"/>
-                <constraint firstItem="Dxq-dZ-BDn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="INS-Vj-ii9"/>
                 <constraint firstItem="xXa-4V-DvL" firstAttribute="top" secondItem="lig-uk-T2S" secondAttribute="bottom" constant="16" id="K92-k9-XPt"/>
                 <constraint firstItem="xXa-4V-DvL" firstAttribute="top" secondItem="YkB-Rk-DTQ" secondAttribute="bottom" constant="16" id="KDD-Q1-LcM"/>
-                <constraint firstItem="Dxq-dZ-BDn" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Mu0-W9-cah"/>
                 <constraint firstAttribute="trailing" secondItem="CB7-xx-2ul" secondAttribute="trailing" constant="8" id="OCl-5E-wK2"/>
                 <constraint firstItem="YkB-Rk-DTQ" firstAttribute="leading" secondItem="lig-uk-T2S" secondAttribute="trailing" constant="8" id="XpG-uq-x8d"/>
                 <constraint firstItem="lig-uk-T2S" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="bCB-ol-0fG"/>

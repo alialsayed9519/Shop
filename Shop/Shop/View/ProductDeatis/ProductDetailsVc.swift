@@ -72,7 +72,7 @@ class ProductDetailsVc: UIViewController {
             if user?.customer.note == "0" {
                 print("addToCart post")
                 let firstProduct = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault.getId())))
-                draftOrderViewModel.postNewDraftOrderWith(order: firstProduct)
+                draftOrderViewModel.postNewDraftOrderWith(order: firstProduct, lastName: (user?.customer.last_name)!)
            
             } else {
                 //print(userDefault.getId())

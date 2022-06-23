@@ -6,11 +6,7 @@
 //
 
 import UIKit
-/*
-protocol CartSelection {
-    func addProductToCart(product : Pproduct, atindex : Int)
-}
-*/
+
 class CartView: UIViewController {
     private let draftOrderViewModel = DraftOrderViewModel()
     @IBOutlet weak var tableView: UITableView!
@@ -106,9 +102,7 @@ class CartView: UIViewController {
         items = draftOrderViewModel.lineItems ?? []
         self.tableView.reloadData()
         self.clacTotal()
-        if items.count != 0 {
-            noItemsInCart.isHidden = true
-        }
+        
     }
     
     func onFailUpdateView() {
