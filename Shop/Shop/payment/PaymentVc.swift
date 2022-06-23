@@ -83,51 +83,7 @@ class PaymentVc: UIViewController {
                     }
                   //  self.viewModel.postOrder(order: self.order!)
                 }
-
-
-        
     }
-
-
-     /*   func payMent(){
-            print("salmaaaaaa")
-            func fetchClientToken() {
-                let clientTokenURL = NSURL(string: "sandbox_v26b7763_zchjhvj48cst95wd")!
-                let clientTokenRequest = NSMutableURLRequest(url: clientTokenURL as URL)
-                clientTokenRequest.setValue("text/plain", forHTTPHeaderField: "Accept")
-
-                URLSession.shared.dataTask(with: clientTokenRequest as URLRequest) { (data, response, error) -> Void in
-                    // TODO: Handle errors
-                    let clientToken = String(data: data!, encoding: String.Encoding.utf8)
-                    // As an example, you may wish to present Drop-in at this point.
-                    // Continue to the next section to learn more...
-                    }.resume()
-            }
-            showDropIn(clientTokenOrTokenizationKey: "sandbox_v26b7763_zchjhvj48cst95wd")
-        }*/
-    /*
-        func showDropIn(clientTokenOrTokenizationKey: String) {
-            let request =  BTDropInRequest()
-            let dropIn = BTDropInController(authorization: clientTokenOrTokenizationKey, request: request)
-            { (controller, result, error) in
-                if (error != nil) {
-                    print("ERROR")
-                } else if (result?.isCanceled == true) {
-                    print("CANCELED")
-                } else if let result = result {
-                    print("sucessfully paid")
-                    // Use the BTDropInResult properties to update your UI
-                    // result.paymentMethodType
-                    // result.paymentMethod
-                    // result.paymentIcon
-                    // result.paymentDescription
-                }
-                controller.dismiss(animated: true, completion: nil)
-            }
-            self.present(dropIn!, animated: true, completion: nil)
-            
-        
-        }*/
        
         @IBAction func cashPayment(_ sender: Any) {
             order?.gateway = "Cash On Delivery"
@@ -141,55 +97,6 @@ class PaymentVc: UIViewController {
             cashButton.setImage(UIImage(named: "radioOf"),for: .normal)
 
         }
-        //showDropIn(clientTokenOrTokenizationKey: "sandbox_v26b7763_zchjhvj48cst95wd")
-
-/*
-    func showDropIn(clientTokenOrTokenizationKey: String) {
-        let request =  BTDropInRequest()
-        let dropIn = BTDropInController(authorization: clientTokenOrTokenizationKey, request: request)
-        { (controller, result, error) in
-            if (error != nil) {
-                print("ERROR")
-            } else if (result?.isCanceled == true) {
-                print("CANCELED")
-            } else if let result = result {
-                print("sucessfully paid")
-                // Use the BTDropInResult properties to update your UI
-                // result.paymentMethodType
-                // result.paymentMethod
-                // result.paymentIcon
-                // result.paymentDescription
-        @IBAction func continuePayment(_ sender: Any) {
-            order?.currency = self.currency
-            order?.email = userDefault().getEmail()
-            switch order?.gateway {
-            case "Cash On Delivery":
-                viewModel.postOrder(order: order!)
-            //    self.navigationController?.pushViewController(, animated: <#T##Bool#>)
-            case "Paypal":
-                payMent()
-                print("salma elawadyyasmeen")
-            default:
-                print("Ay 7aga")
-
-            }
-        }
-        self.present(dropIn!, animated: true, completion: nil)
-    }*/
-  /*  @IBAction func pay(_ sender: Any) {
-     //   payMent()
-    }*/
-  
-   
-
-
-
-
-
-
-
-
-  /////
 
     @IBAction func continuePayment(_ sender: Any) {
         order?.currency = self.currency
@@ -210,19 +117,15 @@ class PaymentVc: UIViewController {
         
         @IBAction func applydiscountCode(_ sender: Any) {
             let discount = viewModel.checkDescountCode(copun: TFcopun.text ?? "")
-          //  utils.showAlert(message: discount.1, title: "Discount Code", view: self)
-            var discountValue = Double(discount.0 / 100)
-            total = 15 + price - (price * discountValue)
+            utils.showAlert(message: discount.1, title: "Discount Code", view: self)
+            total = 15 + price - discount.0
             
             //MARK: - Update Order
             order?.total_discounts = "\(discount.0)"
-            order?.current_total_price = "total"
+            order?.current_total_price = "\(total)"
             
             //MARK: - Update labels
             self.LDiscount.text = "\(discount.0).00 \(String(describing: currency))"
             self.LTotale.text = "\(String(describing: total)).00 \(String(describing: currency))"
-            print(discount.0/100)
-          //  print(price * (discount.0 / 100))
-        print(total)
         }
     }
