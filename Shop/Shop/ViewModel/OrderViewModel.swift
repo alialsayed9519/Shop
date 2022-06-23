@@ -67,7 +67,7 @@ class OrderViewModel {
             }
         }
     
-    func fetchAllOrders(){
+    func fetchAllOrders() {
         network.getOrders() { (response, error) in
             if let orderFromAPI = response {
                 self.orders = orderFromAPI
@@ -76,5 +76,5 @@ class OrderViewModel {
                 self.error = error?.localizedDescription
             }
         }
-    
+    }
 }

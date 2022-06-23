@@ -6,11 +6,7 @@
 //
 
 import UIKit
-/*
-protocol CartSelection {
-    func addProductToCart(product : Pproduct, atindex : Int)
-}
-*/
+
 class CartView: UIViewController {
     private let draftOrderViewModel = DraftOrderViewModel()
     @IBOutlet weak var tableView: UITableView!
@@ -26,10 +22,8 @@ class CartView: UIViewController {
     var order = Order()
 
     @IBAction func checkoutBoutton(_ sender: Any) {
-        checkoutButton.layer.cornerRadius = 20
         if items.count != 0{
             if  userDefault().isLoggedIn(){
-                updateDraftOrderBeforeNavigate()
                 if order.pilling_address == nil{
                     let addressTable = AddressesTable()
                     addressTable.chooseAddressFlag = true
@@ -108,9 +102,7 @@ class CartView: UIViewController {
         items = draftOrderViewModel.lineItems ?? []
         self.tableView.reloadData()
         self.clacTotal()
-        if items.count != 0 {
-            noItemsInCart.isHidden = true
-        }
+        
     }
     
     func onFailUpdateView() {

@@ -310,7 +310,6 @@ class NetworkService {
                     completion(nil, error)
                 }
             }
-        }
     }
     
     func updateCustomerNote(id: String, user: User, completion: @escaping (Data?, URLResponse?, Error?)->()) {
@@ -381,4 +380,21 @@ class NetworkService {
             completion(data, response, error)
         }.resume()
     }
+    
+     func getOrders(completion: @escaping ([OrderFromAPI]?, Error?) -> ()) {
+         let customerID = userDefault().getId()
+         AF.request(URLs.allOrders(customerId: customerID))        .responseDecodable(of:OrdersFromAPI.self){(response) in
+             switch response.result{
+                 case .success(_):
+                     guard let data = response.value
+                     else{
+                         return
+                     }
+                     completion(data.orders, nil)
+                 case .failure(let error):
+                     completion(nil, error)
+             }
+         }
+     }
+
 }

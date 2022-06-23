@@ -10,8 +10,9 @@ import UIKit
 class OrdersTable: UITableViewController {
     
     private let veiwModel = OrderViewModel()
-    var orders: [OrderFromAPI]
+    var orders: [OrderFromAPI] = []
         
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(cell: OrderCell.self)
@@ -38,7 +39,7 @@ class OrdersTable: UITableViewController {
     }
     
     func bindError() {
-        let message = addressViewModel.error
+        let message = veiwModel.error
         let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
             print("alert working")
@@ -65,6 +66,14 @@ class OrdersTable: UITableViewController {
         cell.updateUI(order: order)
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(orders[0].current_total_price)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 215
     }
 
     /*
@@ -111,5 +120,8 @@ class OrdersTable: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    
     
 }

@@ -8,21 +8,33 @@
 import UIKit
 import Lottie
 class launchScreenVc: UIViewController {
-
+    private var  animationView :AnimationView?
     override func viewDidLoad() {
         super.viewDidLoad()
-        let animationView = AnimationView()
-                
-                animationView.animation = Animation.named("online")
-                //animationView.contentMode = .scaleAspectFit
-                animationView.frame = view.bounds
-                animationView.loopMode = .loop
-                animationView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                animationView.center = view.center
-               
-                animationView.play()
-                view.addSubview(animationView)
-                
+        print("salma")
+        print("anima")
+        animationView = .init(name: "coffee")
+          
+          animationView!.frame = view.bounds
+          
+          // 3. Set animation content mode
+          
+          animationView!.contentMode = .scaleAspectFit
+          
+          // 4. Set animation loop mode
+          
+          animationView!.loopMode = .loop
+          
+          // 5. Adjust animation speed
+          
+          animationView!.animationSpeed = 0.5
+          
+          view.addSubview(animationView!)
+          
+          // 6. Play animation
+          
+          animationView!.play()
+        print("ffffff")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak self] in
                     guard let self = self else {return}
                         self.navigationController?.pushViewController(EntryVc(), animated: true)

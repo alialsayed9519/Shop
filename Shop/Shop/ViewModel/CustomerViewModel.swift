@@ -39,7 +39,9 @@ class CustomerViewModel {
                 return
             }
             self.customer = user
-            print("\(user.customer.note)    getCustomerwith  sucss    vm")
+            print("\(user.customer.id)    user.customer.id  sucss    vm")
+            print("\(user.customer.note)    user.customer.note  sucss    vm")
+            print("\(user.customer.last_name)    user.customer.last_name  sucss    vm")
         }
     }
     
