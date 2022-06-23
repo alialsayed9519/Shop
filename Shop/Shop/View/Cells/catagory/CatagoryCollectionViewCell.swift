@@ -26,8 +26,11 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
     func setPrice(price: inout String){
         let currency=defaults.getCurrency(key: "currency")
         if currency=="USD" {
-          //  price="\(Int(price) ?? 0)"+" "+"USD"
-            price=price+""+"USD"
+            print(price)
+            let m="\((Double(price)!)*18)"
+            print (m)
+           price="\(m)"+" "+"USD"
+            //price="\(price)"+""+"USD"
         }
         else if currency=="EGP"{
             price=price+" "+"EGP"
