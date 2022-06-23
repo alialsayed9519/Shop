@@ -8,7 +8,7 @@
 import Foundation
 
 class FavoriteViewModel {
-    private let coreDataManager: CoreDataManager!
+   /* private let coreDataManager: CoreDataManager!
     var bindFavoriteProductsToFavoriteViewController: (() -> ()) = {}
     var favoriteProducts: [Product]? {
         didSet {
@@ -54,5 +54,5 @@ class FavoriteViewModel {
         print("getAllFavoriteProductsFromDataCore")
         self.favoriteProducts = coreDataManager.getAllFavoriteProducts()
         return favoriteProducts?.count != 0
-    }
+    }*/
 }

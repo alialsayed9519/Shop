@@ -17,7 +17,10 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet  var favProductBtn: UIButton!
     
     @IBOutlet weak var producTitle: UILabel!
-    private let favoriteViewModel = FavoriteViewModel()
+    //private let favoriteViewModel = FavoriteViewModel()
+    private let draftOrderViewModel = DraftOrderViewModel()
+    var prodImage = ""
+    
     var defaults:userDefaultsprotocol=userDefault()
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,16 +53,23 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
         self.producTitle.text=secondpArt
         self.productImage.sd_setImage(with: URL(string: product.images[0].src), placeholderImage: UIImage(named: "adidas"))
         self.favProductBtn.setTitle("", for: .normal)
-     
-        if favoriteViewModel.isProductFavoriteWith(id: product.variants![0].id) {
-            print("\(product.variants![0].id)     ididididididididi")
-            let image = UIImage(named: "")
-            self.favProductBtn.setImage(image, for: .normal)
-        }
-        
-        
+    }
+    
+    func updateFavoriteUI(item: LineItem) {      
+        favProductBtn.setTitle("", for: .normal)
+        favProductBtn.setImage(UIImage(named: "heart"), for: .normal)
+        favProductBtn.tintColor = .red
+        self.productPrice.text = item.price
+        self.producTitle.text = item.title
+        let id = String(describing: item.product_id)
+        draftOrderViewModel.getProductImageFromAPI(id: id)
+        draftOrderViewModel.bindImageURLToView = { self.onSuccessUpdateView() }
+    }
+    
+    func onSuccessUpdateView() {
+        prodImage = draftOrderViewModel.imageURL!
+        print(prodImage)
+        productImage.sd_setImage(with: URL(string: prodImage), placeholderImage: UIImage(named: "adidas.png"))
     }
     
 }
-
-

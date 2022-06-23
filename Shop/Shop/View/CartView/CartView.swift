@@ -6,42 +6,22 @@
 //
 
 import UIKit
-/*
-protocol CartSelection {
-    func addProductToCart(product : Pproduct, atindex : Int)
-}
-*/
+
 class CartView: UIViewController {
     private let draftOrderViewModel = DraftOrderViewModel()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalPrice: UILabel!
    
+    @IBOutlet weak var noItemsInCart: UILabel!
     private let customerViewModel = CustomerViewModel()
     private var user: User? = nil
     
-    var items = [LineItems]()
+    var items = [LineItem]()
     
     @IBOutlet var checkoutButton: UIView!
     var order = Order()
-/*
-    func addProductToCart(product: Pproduct, atindex: Int) {
-        items[atindex].quantity = product.quant
-            calculateTotal()
-        }
 
-        func calculateTotal()
-        {
-            var total = 0.0
-            for item in items{
-             //   print("\(Int(item.price))     clacTotal  ")
-                total += Double(item.quantity) * (Double(item.price) ?? 0.0)
-            }
-            totalPrice.text = "\(Int(total))"
-
-        }
-    */
     @IBAction func checkoutBoutton(_ sender: Any) {
-        checkoutButton.layer.cornerRadius = 20
         if items.count != 0{
             if  userDefault().isLoggedIn(){
                 if order.pilling_address == nil{
@@ -104,14 +84,25 @@ class CartView: UIViewController {
         }
     }
     
+    fileprivate func updateDraftOrderBeforeNavigate() {
+        var newItems: [OrderItem] = []
+        for item in items {
+            newItems.append(OrderItem(variant_id: item.variant_id, quantity: item.quantity))
+        }
+        draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.note)!, items: newItems)
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
-        
+        if !items.isEmpty {
+            updateDraftOrderBeforeNavigate()
+        }
     }
     
     func onSuccessUpdateView() {
         items = draftOrderViewModel.lineItems ?? []
         self.tableView.reloadData()
         self.clacTotal()
+        
     }
     
     func onFailUpdateView() {
@@ -142,11 +133,50 @@ extension CartView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueNib() as CartItem
         let item = items[indexPath.row]
-       // items[indexPath.row].quantity = cell.count
-        //print("d3d3      \(items[indexPath.row].quantity)")
+        
+        cell.itemCounter.text = String(items[indexPath.row].quantity )
+        cell.buttonIncrease = { (cell) in
+            self.items[indexPath.row].quantity += 1
+            self.tableView.reloadData()
+            self.clacTotal()
+        }
+        cell.buttonDecrease = { (cell) in
+            if self.items[indexPath.row].quantity > 1 {
+                self.items[indexPath.row].quantity -= 1
+                self.tableView.reloadData()
+                self.clacTotal()
+            }
+        }
+        
         cell.updateUI(item: item)
-       // cell.cartSelectionDelegate = self
 
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            items.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
+            self.clacTotal()
+            if items.count > 1 {
+                var newItems: [OrderItem] = []
+                for item in items {
+                    newItems.append(OrderItem(variant_id: item.variant_id, quantity: item.quantity))
+                }
+                draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.note)!, items: newItems)
+            } else {
+                draftOrderViewModel.deleteAnExistingDraftOrder(id: (user?.customer.note)!)
+             //   noItemsInCart.isHidden = true
+            }
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(items[indexPath.row].quantity)
+    }
+    
 }

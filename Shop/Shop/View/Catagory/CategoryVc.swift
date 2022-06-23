@@ -25,6 +25,11 @@ var searching=false
     private var mainCategoryIndex = 0
     private var subCategoryName: String?
     let searchController=UISearchController(searchResultsController: nil)
+   
+    private let customerViewModel = CustomerViewModel()
+    private var user: User? = nil
+    private let draftOrderViewModel = DraftOrderViewModel()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +69,13 @@ var searching=false
         if ReachabilityViewModel.isConnected() {
             internetImage.isHidden = true
         }
+        print("\(userDefault().getId())     user id")
+        customerViewModel.getCustomerwith(id: String(userDefault().getId()))
+        customerViewModel.bindUser = { self.onSuccessUpdateView() }
+    }
+    
+    func onSuccessUpdateView() {
+        user = customerViewModel.customer
     }
     
     @IBAction func tabItemSelected(_ sender: UIBarButtonItem) {
@@ -149,7 +161,38 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
     
     @objc func addProductToFav(sender: UIButton) {
         let index = IndexPath(row: sender.tag, section: 0)
-        favoriteViewModel.addProductToFavorite(product: products[index.row])
+//        favoriteViewModel.addProductToFavorite(product: products[index.row])
+        let userDefault: userDefaultsprotocol = userDefault()
+        print("\(String(describing: user?.customer.last_name))     user?.customer.marketing_opt_in_level    addToFav ")
+        if userDefault.isLoggedIn() {
+            if user?.customer.last_name == "0" {
+                print("addToFav post")
+                let firstFav = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: products[index.row].variants![0].id, quantity: 1)], customer: customer(id: userDefault.getId())))
+                draftOrderViewModel.postNewDraftOrderWith(order: firstFav, flag: false, note: (user?.customer.note)!)
+           
+            } else {
+                //print(userDefault.getId())
+                print("addToFav modify")
+            //    print(user?.customer.note)
+                draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.last_name)!, variantId: products[index.row].variants![0].id)
+             //   draftOrderViewModel.bindDraftViewModelErrorToView = { showAlert(title: "Message", message: self.draftOrderViewModel.showMassage!, view: self) }
+            }
+            
+        } else {
+            print(userDefault.isLoggedIn())
+            let alert = UIAlertController(title: "Message", message: "Guest can't add to Favorite please login first", preferredStyle: .alert)
+            let loginAction  = UIAlertAction(title: "go to login ", style: .default) { (UIAlertAction) in
+                let login = loginvc()
+               // login.homeFlag = false
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            
+            let okAction  = UIAlertAction(title: "ok", style: .default) { (UIAlertAction) in
+            }
+            alert.addAction(okAction)
+            alert.addAction(loginAction)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

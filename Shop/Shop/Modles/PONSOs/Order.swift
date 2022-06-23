@@ -8,7 +8,7 @@
 import Foundation
 
 struct Order: Codable{
-    var line_items: [LineItems]?
+    var line_items: [LineItem]?
     var email: String?
     var pilling_address: Address?
     var financial_status: String = "paid"
@@ -16,7 +16,6 @@ struct Order: Codable{
     var current_total_price:String?
     var gateway: String?
     var total_discounts: String?
-
 }
 
 struct APIOrder: Codable {
@@ -28,15 +27,15 @@ struct APIOrders: Codable {
 }
 
 struct OrderFromAPI: Codable {
-    let pilling_address: Address?
+    let customer: customer?
     let financial_status: String?
     let currency:String?
     let current_total_price:String?
     let gateway: String?
     let total_discounts: String?
-    let Created_at: String?
+    let created_at: String?
 }
 
-struct OrdersFromAPI {
+struct OrdersFromAPI: Codable {
     let orders: [OrderFromAPI]
 }

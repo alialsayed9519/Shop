@@ -22,10 +22,10 @@ struct Draft: Decodable {
 
 struct DraftOrder: Decodable {
     let id: Int
-    let line_items: [LineItems]
+    let line_items: [LineItem]
 }
 
-struct LineItems: Codable {
+struct LineItem: Codable {
     let id: Int
     let variant_id: Int
     let product_id: Int
@@ -37,6 +37,7 @@ struct LineItems: Codable {
 
 struct customer: Codable {
     let id :Int
+    let default_address: Address?
 }
 
 //MARK: posting Models
