@@ -11,10 +11,11 @@ import SDWebImage
 class ProductDetailsVc: UIViewController {
     var product:Product!
     var ratings=[4,4.5,5]
+    var defaults:userDefaultsprotocol=userDefault()
     @IBOutlet weak var productImageCollectionView: UICollectionView!
     private let customerViewModel = CustomerViewModel()
     private var user: User? = nil
-    
+     var totalPrice:String?
     @IBOutlet weak var imageControl: UIPageControl!
     private let draftOrderViewModel = DraftOrderViewModel()
     
@@ -48,12 +49,23 @@ class ProductDetailsVc: UIViewController {
         //title=product?.vendor
         reviewTextView.text=product?.product_type
         descTextView.text=product?.body_html
-        priceLabel.text=product?.variants![0].price
+       var p=product?.variants![0].price
+        setPrice(price: &p!)
+        //priceLabel.text=product?.variants![0].price
         ratingCosmos.rating=ratings.randomElement()!
         
         
     }
- 
+    func setPrice(price: inout String){
+        let currency=defaults.getCurrency(key: "currency")
+        if currency=="USD" {
+          price=price+" "+"USD"
+        }
+        else if currency=="EGP"{
+            price=price+" "+"EGP"
+        }
+        priceLabel.text=price
+    }
     override func viewWillAppear(_ animated: Bool) {
         print("\(userDefault().getId())     user id")
         customerViewModel.getCustomerwith(id: String(userDefault().getId()))

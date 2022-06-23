@@ -36,10 +36,13 @@ class ProfileVc: UIViewController {
         let egpAction=UIAlertAction(title: "EGP", style: .default){
             (UIAlertAction) in
             self.currencyViewMode.setCurrency(key: "currency", value: "EGP")
+            print(self.currencyViewMode.getCurrency(key: "currency"))
+
                     }
         let usdAction=UIAlertAction(title: "USD", style: .default){
             (UIAlertAction) in
             self.currencyViewMode.setCurrency(key: "currency", value: "USD")
+            print(self.currencyViewMode.getCurrency(key: "currency"))
         }
         alert.addAction(egpAction)
         alert.addAction(usdAction)
@@ -90,13 +93,13 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
                 cell.image1.image = UIImage(named: "heart")
                 cell.name.text = "currency"
                 cell.button.isHidden=false
-                cell.button.setTitle("choose currency", for: .normal)
+                
                //  currencyViewMode.getCurrency(key: "currency")=="USD"{
                     cell.button.setTitle(currencyViewMode.getCurrency(key: "currency"), for: .normal)
                 
 //                else if currencyViewMode.getCurrency(key: "currency")=="EGP"{
 //                   // cell.button.setTitle(, for: .normal)
-//                }
+//
             default:
                 cell.image1.image = UIImage(named: "address")
                 cell.name.text = "Address"

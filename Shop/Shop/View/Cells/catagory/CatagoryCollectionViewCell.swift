@@ -21,14 +21,27 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
     private let draftOrderViewModel = DraftOrderViewModel()
     var prodImage = ""
     
+    var defaults:userDefaultsprotocol=userDefault()
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    func setPrice(price: inout String){
+        let currency=defaults.getCurrency(key: "currency")
+        if currency=="USD" {
+          //  price="\(Int(price) ?? 0)"+" "+"USD"
+            price=price+""+"USD"
+        }
+        else if currency=="EGP"{
+            price=price+" "+"EGP"
+        }
+        self.productPrice.text=price
+    }
     func updateUI(product: Product) {
-        self.productPrice.text = product.variants?[0].price ?? "`123`"
-       
+        var p=product.variants![0].price
+
+        //self.productPrice.text = product.variants?[0].price ?? "`123`"
+       setPrice(price: &p)
         
         let fullTitle = product.title.components(separatedBy: " | ")
 

@@ -7,9 +7,9 @@
 
 import UIKit
 //import Braintree
-import BraintreeDropIn
+//import BraintreeDropIn
 class PaymentVc: UIViewController {
-   var braintreeClient: BTAPIClient!
+//   var braintreeClient: BTAPIClient!
     @IBOutlet weak var discountView: UIView!
     @IBOutlet weak var paymentView: UIView!
     @IBOutlet weak var cashButton: UIButton!
@@ -53,7 +53,7 @@ class PaymentVc: UIViewController {
             self.LShipping.text = "15.00 \(String(describing: currency))"
             self.LTotale.text = "\(String(describing: total)).00 \(String(describing: currency))"
         }
-    func payMent(){
+  /*  func payMent(){
         braintreeClient = BTAPIClient(authorization: "sandbox_v26b7763_zchjhvj48cst95wd")!
         let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
 
@@ -86,48 +86,8 @@ class PaymentVc: UIViewController {
 
 
         
-    }
+    }*/
 
-
-     /*   func payMent(){
-            print("salmaaaaaa")
-            func fetchClientToken() {
-                let clientTokenURL = NSURL(string: "sandbox_v26b7763_zchjhvj48cst95wd")!
-                let clientTokenRequest = NSMutableURLRequest(url: clientTokenURL as URL)
-                clientTokenRequest.setValue("text/plain", forHTTPHeaderField: "Accept")
-
-                URLSession.shared.dataTask(with: clientTokenRequest as URLRequest) { (data, response, error) -> Void in
-                    // TODO: Handle errors
-                    let clientToken = String(data: data!, encoding: String.Encoding.utf8)
-                    // As an example, you may wish to present Drop-in at this point.
-                    // Continue to the next section to learn more...
-                    }.resume()
-            }
-            showDropIn(clientTokenOrTokenizationKey: "sandbox_v26b7763_zchjhvj48cst95wd")
-        }*/
-    /*
-        func showDropIn(clientTokenOrTokenizationKey: String) {
-            let request =  BTDropInRequest()
-            let dropIn = BTDropInController(authorization: clientTokenOrTokenizationKey, request: request)
-            { (controller, result, error) in
-                if (error != nil) {
-                    print("ERROR")
-                } else if (result?.isCanceled == true) {
-                    print("CANCELED")
-                } else if let result = result {
-                    print("sucessfully paid")
-                    // Use the BTDropInResult properties to update your UI
-                    // result.paymentMethodType
-                    // result.paymentMethod
-                    // result.paymentIcon
-                    // result.paymentDescription
-                }
-                controller.dismiss(animated: true, completion: nil)
-            }
-            self.present(dropIn!, animated: true, completion: nil)
-            
-        
-        }*/
        
         @IBAction func cashPayment(_ sender: Any) {
             order?.gateway = "Cash On Delivery"
@@ -199,7 +159,7 @@ class PaymentVc: UIViewController {
             viewModel.postOrder(order: order!)
             self.navigationController?.popToRootViewController(animated: true)
         case "Paypal":
-            payMent()
+//            payMent()
             print("salma elawadyyasmeen")
         default:
             print("Ay 7aga")

@@ -54,15 +54,15 @@
                                 <constraint firstAttribute="height" constant="62" id="Qcg-QM-6tV"/>
                                 <constraint firstAttribute="width" constant="398" id="oXO-cw-XTH"/>
                             </constraints>
-                            <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                             <color key="textColor" systemColor="labelColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjP-cP-U7y">
-                            <rect key="frame" x="8" y="138.5" width="83.5" height="21.5"/>
+                            <rect key="frame" x="8" y="139" width="145" height="22"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="KjP-cP-U7y" secondAttribute="height" multiplier="31:8" id="cHE-rT-4Fg"/>
+                                <constraint firstAttribute="width" secondItem="KjP-cP-U7y" secondAttribute="height" multiplier="31:8" constant="59.75" id="cHE-rT-4Fg"/>
                             </constraints>
                             <attributedString key="attributedText">
                                 <fragment content="440EGP">
@@ -81,14 +81,14 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="KjP-cP-U7y" firstAttribute="leading" secondItem="wyk-Gg-Gnl" secondAttribute="leading" constant="8" id="SPZ-S6-a3H"/>
-                        <constraint firstAttribute="bottom" secondItem="KjP-cP-U7y" secondAttribute="bottom" constant="8" id="XST-zt-40l"/>
+                        <constraint firstAttribute="bottom" secondItem="KjP-cP-U7y" secondAttribute="bottom" constant="7" id="XST-zt-40l"/>
                         <constraint firstItem="jSi-wG-RfB" firstAttribute="leading" secondItem="wyk-Gg-Gnl" secondAttribute="leading" constant="8" id="gSP-Dg-hgE"/>
                         <constraint firstAttribute="height" constant="168" id="ghx-on-Yjz"/>
                         <constraint firstItem="lXX-J3-iQd" firstAttribute="top" secondItem="jSi-wG-RfB" secondAttribute="bottom" constant="28" id="hVj-jg-bKe"/>
                         <constraint firstItem="SQH-Rg-hjK" firstAttribute="leading" secondItem="wyk-Gg-Gnl" secondAttribute="leading" constant="8" id="m4z-00-2ue"/>
                         <constraint firstItem="SQH-Rg-hjK" firstAttribute="top" secondItem="wyk-Gg-Gnl" secondAttribute="top" constant="8" id="pNB-u5-X9S"/>
                         <constraint firstItem="jSi-wG-RfB" firstAttribute="top" secondItem="SQH-Rg-hjK" secondAttribute="bottom" constant="13" id="r0a-iG-cz9"/>
-                        <constraint firstItem="lXX-J3-iQd" firstAttribute="leading" secondItem="KjP-cP-U7y" secondAttribute="trailing" constant="89.5" id="vkd-r8-GaG"/>
+                        <constraint firstItem="lXX-J3-iQd" firstAttribute="leading" secondItem="KjP-cP-U7y" secondAttribute="trailing" constant="28" id="vkd-r8-GaG"/>
                         <constraint firstItem="lXX-J3-iQd" firstAttribute="leading" secondItem="wyk-Gg-Gnl" secondAttribute="leading" constant="181" id="whV-2F-gMO"/>
                     </constraints>
                 </view>
