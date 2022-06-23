@@ -37,6 +37,7 @@ struct LineItem: Codable {
 
 struct customer: Codable {
     let id :Int
+    let default_address: Address?
 }
 
 //MARK: posting Models

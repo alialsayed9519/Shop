@@ -27,14 +27,13 @@ struct APIOrders: Codable {
 }
 
 struct OrderFromAPI: Codable {
-  //  let pilling_address: Address?
+    let customer: customer?
     let financial_status: String?
     let currency:String?
     let current_total_price:String?
     let gateway: String?
     let total_discounts: String?
-    let default_address: Address?
-  //  let Created_at: String?
+    let created_at: String?
 }
 
 struct OrdersFromAPI: Codable {

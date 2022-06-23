@@ -30,9 +30,10 @@ class OrderCell: UITableViewCell {
     }
     
     func updateUI(order: OrderFromAPI){
-    //    let address = "\(String(describing: order.default_address?.country!)), \(String(describing: order.default_address?.city!)), \(String(describing: order.default_address?.address1))"
-      //  self.addressLabel.text = address
-       // self.dataLabel.text = order.Created_at!
+        let address = order.customer!.default_address!
+        let addressText = "\(address.country), \(address.city), \(address.address1)"
+        self.addressLabel.text = addressText
+        self.dataLabel.text = order.created_at!
         self.paymentMethodLabel.text = order.gateway!
         self.totalLabel.text = "\(order.current_total_price!) \(order.currency!)"
         self.discountLabel.text = "\(order.total_discounts!) \(order.currency!)"
