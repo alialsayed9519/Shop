@@ -7,9 +7,9 @@
 
 import UIKit
 //import Braintree
-//import BraintreeDropIn
+import BraintreeDropIn
 class PaymentVc: UIViewController {
-//   var braintreeClient: BTAPIClient!
+  var braintreeClient: BTAPIClient!
     @IBOutlet weak var discountView: UIView!
     @IBOutlet weak var paymentView: UIView!
     @IBOutlet weak var cashButton: UIButton!
@@ -54,35 +54,35 @@ class PaymentVc: UIViewController {
             self.LTotale.text = "\(String(describing: total)).00 \(String(describing: currency))"
         }
         func payMent(){
-//            braintreeClient = BTAPIClient(authorization: "sandbox_v26b7763_zchjhvj48cst95wd")!
-//            let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-//
-//                    // Specify the transaction amount here. "2.32" is used in this example.
-//            let request = BTPayPalCheckoutRequest(amount: (LTotale?.text)!)
-//                    request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
-//
-//                    payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
-//                        if let tokenizedPayPalAccount = tokenizedPayPalAccount {
-//                            print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
-//
-//                            // Access additional information
-//                            let email = tokenizedPayPalAccount.email
-//                            let firstName = tokenizedPayPalAccount.firstName
-//                            let lastName = tokenizedPayPalAccount.lastName
-//                            let phone = tokenizedPayPalAccount.phone
-//
-//                            // See BTPostalAddress.h for details
-//                            let billingAddress = tokenizedPayPalAccount.billingAddress
-//                            let shippingAddress = tokenizedPayPalAccount.shippingAddress
-//                            self.viewModel.postOrder(order: self.order!)
-//                            self.navigationController?.pushViewController(HomeVc(), animated: true)
-//                        } else if let error = error {
-//                            // Handle error here...
-//                        } else {
-//                            // Buyer canceled payment approval
-//                        }
-//                      //  self.viewModel.postOrder(order: self.order!)
-//                    }
+            braintreeClient = BTAPIClient(authorization: "sandbox_v26b7763_zchjhvj48cst95wd")!
+            let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
+
+                    // Specify the transaction amount here. "2.32" is used in this example.
+            let request = BTPayPalCheckoutRequest(amount: (LTotale?.text)!)
+                    request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
+
+                    payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
+                        if let tokenizedPayPalAccount = tokenizedPayPalAccount {
+                            print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
+
+                            // Access additional information
+                            let email = tokenizedPayPalAccount.email
+                            let firstName = tokenizedPayPalAccount.firstName
+                            let lastName = tokenizedPayPalAccount.lastName
+                            let phone = tokenizedPayPalAccount.phone
+
+                            // See BTPostalAddress.h for details
+                            let billingAddress = tokenizedPayPalAccount.billingAddress
+                            let shippingAddress = tokenizedPayPalAccount.shippingAddress
+                            self.viewModel.postOrder(order: self.order!)
+                            self.navigationController?.pushViewController(doneVc(), animated: true)
+                        } else if let error = error {
+                            // Handle error here...
+                        } else {
+                            // Buyer canceled payment approval
+                        }
+                      //  self.viewModel.postOrder(order: self.order!)
+                    }
         }
        
         @IBAction func cashPayment(_ sender: Any) {
@@ -104,7 +104,7 @@ class PaymentVc: UIViewController {
         switch order?.gateway {
         case "Cash On Delivery":
             viewModel.postOrder(order: order!)
-            self.navigationController?.popToRootViewController(animated: true)
+            self.navigationController?.pushViewController(doneVc(), animated: true)
         case "Paypal":
 //            payMent()
             print("salma elawadyyasmeen")
