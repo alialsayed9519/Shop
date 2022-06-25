@@ -24,16 +24,21 @@ class brandProductsVc: UIViewController {
         let brandProductCell=UINib(nibName:productCell , bundle: nil)
                 productCollectionView.register(brandProductCell, forCellWithReuseIdentifier:productCell)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-
-       brandImg.sd_setImage(with:URL(string:smartCol.image.src), placeholderImage: UIImage(named: "adidas.png"))
+        setBrandImage()
         print(smartCol.id)
        // shopViewModel.fetchbrandProducts(collectionTitle: smartCol.title)
         print(smartCol.title)
 
-        //shopViewModel.filterBrandsByNmae(brandName:smartCol.title)
+        shopViewModel.fetchbrandProducts(collectionTitle: smartCol.title)
         shopViewModel.bindProducts=self.onSuccess
     
         // Do any additional setup after loading the view.
+    }
+    func setBrandImage(){
+        brandImg.layer.cornerRadius=10
+        brandImg.layer.borderWidth=4
+        brandImg.layer.borderColor=UIColor.black.cgColor
+       brandImg.sd_setImage(with:URL(string:smartCol.image.src), placeholderImage: UIImage(named: "adidas.png"))
     }
     func onSuccess() {
           guard let products = shopViewModel.allProduct
@@ -58,7 +63,7 @@ class brandProductsVc: UIViewController {
 
 }
 
-extension brandProductsVc:UICollectionViewDelegate,UICollectionViewDataSource{
+extension brandProductsVc:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -81,4 +86,9 @@ extension brandProductsVc:UICollectionViewDelegate,UICollectionViewDataSource{
         vc.product=product
         navigationController?.pushViewController(vc, animated: true)
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+                let side = (view.frame.size.width-10)/2
+                let height = view.frame.size.height / 4
+                return CGSize(width: side, height: height)
+            }
 }
