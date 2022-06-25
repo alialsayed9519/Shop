@@ -48,8 +48,6 @@
 		38151964284646E400F29C49 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38151952284646E400F29C49 /* ProfileTableViewCell.xib */; };
 		381519672846491200F29C49 /* SmartCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381519652846491100F29C49 /* SmartCollection.swift */; };
 		381519682846491200F29C49 /* SmartCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381519652846491100F29C49 /* SmartCollection.swift */; };
-		381519692846491200F29C49 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381519662846491100F29C49 /* Brand.swift */; };
-		3815196A2846491200F29C49 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381519662846491100F29C49 /* Brand.swift */; };
 		3855960B28454A3C00A56C78 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855960A28454A3C00A56C78 /* NetworkService.swift */; };
 		3855960D28454A3C00A56C78 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855960C28454A3C00A56C78 /* Collections.swift */; };
 		411B3B09283E7B9C006EBC17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411B3B08283E7B9C006EBC17 /* AppDelegate.swift */; };
@@ -71,6 +69,7 @@
 		411B3B97283E83C9006EBC17 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411B3B96283E83C9006EBC17 /* UIImage.swift */; };
 		418C3768283EB774007E9CAD /* EntryVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418C3766283EB774007E9CAD /* EntryVc.swift */; };
 		418C3769283EB774007E9CAD /* EntryVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 418C3767283EB774007E9CAD /* EntryVc.xib */; };
+		419E9D1D285E4F2C000823D5 /* DraftOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419E9D1C285E4F2C000823D5 /* DraftOrder.swift */; };
 		58DC25CA5E7A40BF47886E4B /* Pods_Shop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9821A875E87CF80C5A188C /* Pods_Shop.framework */; };
 		8C8006783243C29DE0B29882 /* Pods_Shop_ShopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378A3A96A62476D1AD37721B /* Pods_Shop_ShopUITests.framework */; };
 /* End PBXBuildFile section */
@@ -110,7 +109,6 @@
 		38151951284646E400F29C49 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		38151952284646E400F29C49 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
 		381519652846491100F29C49 /* SmartCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartCollection.swift; sourceTree = "<group>"; };
-		381519662846491100F29C49 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		3855960A28454A3C00A56C78 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		3855960C28454A3C00A56C78 /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
 		411B3B05283E7B9C006EBC17 /* Shop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +134,7 @@
 		411B3B96283E83C9006EBC17 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		418C3766283EB774007E9CAD /* EntryVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryVc.swift; sourceTree = "<group>"; };
 		418C3767283EB774007E9CAD /* EntryVc.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryVc.xib; sourceTree = "<group>"; };
+		419E9D1C285E4F2C000823D5 /* DraftOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraftOrder.swift; sourceTree = "<group>"; };
 		5E9821A875E87CF80C5A188C /* Pods_Shop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72E42249CA4927F5989AA591 /* Pods_ShopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7693154AD6607F0C6D99A5DC /* Pods-Shop-ShopUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shop-ShopUITests.debug.xcconfig"; path = "Target Support Files/Pods-Shop-ShopUITests/Pods-Shop-ShopUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -185,7 +184,7 @@
 		1166CA1D283EACF10036648C /* PONSOs */ = {
 			isa = PBXGroup;
 			children = (
-				381519662846491100F29C49 /* Brand.swift */,
+				419E9D1C285E4F2C000823D5 /* DraftOrder.swift */,
 				381519652846491100F29C49 /* SmartCollection.swift */,
 				1166CA1E283EAD260036648C /* Porduct.swift */,
 				3855960C28454A3C00A56C78 /* Collections.swift */,
@@ -714,12 +713,12 @@
 				3815193A284646C100F29C49 /* CartView.swift in Sources */,
 				381519672846491200F29C49 /* SmartCollection.swift in Sources */,
 				411B3B0B283E7B9C006EBC17 /* SceneDelegate.swift in Sources */,
+				419E9D1D285E4F2C000823D5 /* DraftOrder.swift in Sources */,
 				38151953284646E400F29C49 /* CatagoryCollectionViewCell.swift in Sources */,
 				411B3B8D283E82B2006EBC17 /* URLs.swift in Sources */,
 				411B3B86283E7FC5006EBC17 /* ProfileVc.swift in Sources */,
 				3855960B28454A3C00A56C78 /* NetworkService.swift in Sources */,
 				1166CA24283EADB60036648C /* UITableView.swift in Sources */,
-				381519692846491200F29C49 /* Brand.swift in Sources */,
 				411B3B7E283E7F88006EBC17 /* HomeVc.swift in Sources */,
 				3855960D28454A3C00A56C78 /* Collections.swift in Sources */,
 				381519282846468500F29C49 /* loginvc.swift in Sources */,
@@ -736,7 +735,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3815195A284646E400F29C49 /* BrandsCollectionViewCell.swift in Sources */,
-				3815196A2846491200F29C49 /* Brand.swift in Sources */,
 				38151960284646E400F29C49 /* ProfileTableViewCell.swift in Sources */,
 				3815193B284646C100F29C49 /* CartView.swift in Sources */,
 				381519682846491200F29C49 /* SmartCollection.swift in Sources */,

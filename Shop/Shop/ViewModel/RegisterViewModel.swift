@@ -31,7 +31,7 @@ class RegisterViewModel:regTemp{
         if firstName != ""{
             if checkEmailValidation(email: email){
                 if password.count >= 6{
-                    let customer = Customers(first_name: firstName, last_name: lastName, email: email, phone: nil, tags: password, id: nil, verified_email: true, addresses: nil)
+                    let customer = Customers(first_name: "\(firstName) \(lastName)", last_name: "0", note: "0", email: email, phone: nil, tags: password, id: nil, verified_email: true, addresses: nil)
                    let newCustomer=Customer(customer: customer)
                     register(customer: newCustomer)
                 }
@@ -56,12 +56,20 @@ class RegisterViewModel:regTemp{
                 if let data = data {
                     let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments)as! Dictionary<String,Any>
                     let getCustomer = json["customer"] as? Dictionary<String,Any>
-                    let id=getCustomer?["id"] as? Int ?? 0
-                    let name=getCustomer?["first_name"] as? String ?? ""
+                    let id = getCustomer?["id"] as? Int ?? 0
+                    let firstName = getCustomer?["first_name"] as? String ?? ""
+                    let lastName=getCustomer?["last_name"] as? String ?? ""
+                    let name = firstName+lastName
+                    let draftId = getCustomer?["note"] as? String ?? "false"
+                    let email=getCustomer?["email"] as? String ?? ""
+                    let fav = getCustomer?["phone"] as? String ?? ""
+                    
                     if id != 0 {
                         self?.defaults.login()
                         self?.defaults.setId(id: id)
-                        self?.defaults.setUserNAme(userName:name)
+                        self?.defaults.setEmail(email: email)
+                        self?.defaults.setUserName(userName: name)
+                        self?.defaults.setDraftOrder(note: draftId)
                         DispatchQueue.main.async {
                             self?.navigate()
                         }
@@ -74,10 +82,6 @@ class RegisterViewModel:regTemp{
                         }
                         
                     }
-                    
-                    
-                    
-                    
             }
         }
     }

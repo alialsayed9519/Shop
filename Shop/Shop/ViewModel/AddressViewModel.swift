@@ -35,7 +35,7 @@ class AddressViewModel {
             }
             else {
                 if let respons = addresses {
-                    print(respons[0])
+                  //  print(respons[0])
                     self.addresses = respons
                 }
             }
@@ -46,9 +46,13 @@ class AddressViewModel {
         if country != ""{
             if city != ""{
                 if address != ""{
-                    let address = Address(address1: address, city: city, province: "", phone: phone, zip: "", last_name: "", first_name: "", country: country)
-                    addAddress(address: address)
-                }else{
+                    if phone != "" {
+                        let address = Address(address1: address, city: city, province: "", phone: phone, zip: "", last_name: "", first_name: "", country: country)
+                        addAddress(address: address)
+                    } else {
+                        error = "Please enter your phone"
+                    }
+                    }else{
                     error = "Please enter your address"
                 }
             }else{
@@ -74,7 +78,7 @@ class AddressViewModel {
                 let returnedCustomer = json["customer"] as? Dictionary<String,Any>
                 do{
                     let reutrnedCust = try JSONDecoder().decode(Customer.self, from: data)
-                   // newAddress.id = reutrnedCust.addresses?.last?.id ?? 0
+                    newAddress.id = reutrnedCust.customer.addresses?.last?.id ?? 0
                 }catch{
                     print("could parse response: \(error.localizedDescription)")
                 }

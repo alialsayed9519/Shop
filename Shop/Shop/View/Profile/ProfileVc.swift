@@ -8,15 +8,74 @@
 import UIKit
 
 class ProfileVc: UIViewController {
-
+    var userdefaults:userDefaultsprotocol=userDefault()
+    @IBOutlet weak var userName: UILabel!
     @IBOutlet private weak var tableView: UITableView!
     private let profileTableViewCellId = "ProfileTableViewCell"
-    
+    var currencyViewMode = currencyViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         let nibCell = UINib(nibName: profileTableViewCellId, bundle: nil)
         tableView.register(nibCell, forCellReuseIdentifier: profileTableViewCellId)
+        setUserData()
+        currencyViewMode.bindCurrencyViewModel=onSucess
     }
+    func onSucess(){
+        guard let currency=currencyViewMode.currency
+        else{
+            return
+        }
+        
+    }
+    func setUserData(){
+            let name=userdefaults.getUserName()
+            userName.text=name
+        }
+    func showCurrencyAlert(){
+        let alert=UIAlertController(title: "choose currency", message: nil, preferredStyle: .alert)
+        let egpAction=UIAlertAction(title: "EGP", style: .default){
+            (UIAlertAction) in
+            self.currencyViewMode.setCurrency(key: "currency", value: "EGP")
+            print(self.currencyViewMode.getCurrency(key: "currency"))
+
+                    }
+        let usdAction=UIAlertAction(title: "USD", style: .default){
+            (UIAlertAction) in
+            self.currencyViewMode.setCurrency(key: "currency", value: "USD")
+            print(self.currencyViewMode.getCurrency(key: "currency"))
+        }
+        alert.addAction(egpAction)
+        alert.addAction(usdAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+        func showAlertSheet(title:String, message:String,complition:@escaping (Bool)->Void){
+            let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+            let logOut = UIAlertAction(title: "Log out", style: .destructive) { _ in
+                complition(true)
+            }
+            let cancel = UIAlertAction(title: "Cancel", style: .default) { _ in
+                complition(false)
+            }
+            actionSheet.addAction(logOut)
+            actionSheet.addAction(cancel)
+            self.present(actionSheet, animated: true, completion: nil)
+        }
+
+    @IBAction func logout(_ sender: Any) {
+        showAlertSheet(title: "do you want to logout", message: "sorry to see you leave us 💔"){
+                    sucess
+                    in
+                    if sucess{
+                        self.userdefaults.logout()
+                        //self.userdefaults.setId(id: nil)
+                        let home = MyTabBar(nibName: "MyTabBar", bundle: nil)
+                        self.navigationController?.pushViewController(home, animated: true)
+                        print(self.userdefaults.isLoggedIn())
+                    }
+                }
+        
+    }
+    
 
 }
 
@@ -29,17 +88,28 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 cell.image1.image = UIImage(named: "shopping-bag")
                 cell.name.text = "My Orders"
+                cell.button.isHidden=true
             case 1:
                 cell.image1.image = UIImage(named: "heart")
-                cell.name.text = "My Wishlist"
+                cell.name.text = "currency"
+                cell.button.isHidden=false
+                
+               //  currencyViewMode.getCurrency(key: "currency")=="USD"{
+                    cell.button.setTitle(currencyViewMode.getCurrency(key: "currency"), for: .normal)
+                
+//                else if currencyViewMode.getCurrency(key: "currency")=="EGP"{
+//                   // cell.button.setTitle(, for: .normal)
+//
             default:
                 cell.image1.image = UIImage(named: "address")
                 cell.name.text = "Address"
+                cell.button.isHidden=true
             }
             
         default:
                 cell.image1.image = UIImage(named: "aboutUs")
                 cell.name.text = "About us"
+            cell.button.isHidden=true
         }
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -49,18 +119,14 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
         return 2
     }
     
-    
-    
-    
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
             switch indexPath.row {
             case 0:
-                print("order")
+                self.navigationController?.pushViewController(OrdersTable(), animated: true)
             case 1:
-                print("whislist")
+                showCurrencyAlert()
             default:
                 self.navigationController?.pushViewController(AddressesTable(), animated: true)
             }

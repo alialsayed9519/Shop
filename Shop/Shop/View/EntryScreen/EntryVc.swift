@@ -16,7 +16,11 @@ class EntryVc: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-
+        print(userDefault().getId())
+        print(userDefault().getUserName())
+        print(userDefault().getDraftOrder())
+        print(userDefault().isLoggedIn())
+        
         entryImage.image=UIImage(named: "shop")
         
         login.layer.cornerRadius=20
@@ -36,4 +40,7 @@ class EntryVc: UIViewController {
         self.navigationController?.pushViewController(home, animated: true)
     }
 
+    @IBAction func payment(_ sender: Any) {
+        self.navigationController?.pushViewController(PaymentVc(), animated: true)
+    }
 }

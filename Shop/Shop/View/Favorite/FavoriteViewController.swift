@@ -9,10 +9,10 @@ import UIKit
 
 class FavoriteViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
-    
-    @IBOutlet weak var noProductsLabel: UILabel!
-    private var favProducts = [Product]()
-    private let favoriteViewModel = FavoriteViewModel()
+    private var items = [LineItem]()
+    private let draftOrderViewModel = DraftOrderViewModel()
+    private let customerViewModel = CustomerViewModel()
+    private var user: User? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,20 +21,26 @@ class FavoriteViewController: UIViewController {
         
         let nibCell = UINib(nibName: "CatagoryCollectionViewCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "CatagoryCollectionViewCell")
-        favoriteViewModel.bindFavoriteProductsToFavoriteViewController = { self.BindData() }
-        favoriteViewModel.getAllFavoriteProductsFromDataCore()
 
+        print("\(userDefault().getId())     user id")
+        customerViewModel.getCustomerwith(id: String(userDefault().getId()))
+        customerViewModel.bindUser = { self.onSuccessUpdateView() }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         collectionView.reloadData()
-        if favoriteViewModel.isFavoriteProductsExistinCoreData() {
-            noProductsLabel.isHidden = true
+    }
+    
+    func onSuccessUpdateView() {
+        user = customerViewModel.customer
+        if user?.customer.last_name != "0" {
+            draftOrderViewModel.getDraftOrderLineItems(id: (user?.customer.last_name)!)
+            draftOrderViewModel.bindDraftOrderLineItemsViewModelToView = { self.BindData() }
         }
     }
     
     func BindData(){
-        favProducts = favoriteViewModel.favoriteProducts ?? []
+        items = draftOrderViewModel.lineItems ?? []
         self.collectionView.reloadData()
     }
     
@@ -48,7 +54,8 @@ extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return favProducts.count
+        print(items.count)
+        return items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -57,21 +64,32 @@ extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDe
         cell.favProductBtn.tag = indexPath.row
         cell.favProductBtn.addTarget(self, action: #selector(deleteProductFromFav), for: .touchUpInside)
         
-        let product = favProducts[indexPath.row]
-        cell.updateUI(product: product)
+        let product = items[indexPath.row]
+        cell.updateFavoriteUI(item: product)
                 
         return cell
     }
     
     @objc func deleteProductFromFav(sender: UIButton) {
-        let index = IndexPath(row: sender.tag, section: 0)
-        favoriteViewModel.deleteProductFromFavoriteWith(id: favProducts[index.row].variants![0].id)
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        if items.count > 1 {
+            var newItems: [OrderItem] = []
+            for index in 0..<items.count {
+                if indexPath.row == index { continue }
+                newItems.append(OrderItem(variant_id: items[index].variant_id, quantity: items[index].quantity))
+            }
+            draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.last_name)!, items: newItems)
+
+        } else {
+            draftOrderViewModel.deleteAnExistingDraftOrder(id: (user?.customer.last_name)!,flag: false ,note: (user?.customer.note)!)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let side = (view.frame.size.width - 30 )/3
-            return CGSize(width: side, height: side)
-    }
+            let side = (view.frame.size.width-10)/2
+            let height = view.frame.size.height / 4
+            return CGSize(width: side, height: height)
+        }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 

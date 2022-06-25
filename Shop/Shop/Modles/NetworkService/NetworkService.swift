@@ -107,13 +107,13 @@ class NetworkService {
     func fetchAddresses(completion: @escaping ([Address]?, Error?) -> () ){
         
         let customerID = userDefault().getId()
-        AF.request(URLs.AllAddresses(customerId: customerID))
+        AF.request(URLs.allAddresses(customerId: customerID))
             .responseDecodable(of: CustomerAddresses.self){ (response) in
                 
                 switch response.result{
                 case .success(_):
                     guard let data = response.value else { return }
-                    print(data.addresses![0].city)
+                   // print(data.addresses![0].city)
                     completion(data.addresses,nil)
                 case .failure(let error) :
                     completion(nil,error)
@@ -189,6 +189,231 @@ class NetworkService {
                 
             }
         }
-        
     }
+ 
+    func postNewDraftOrder(order: Api, completion: @escaping (Data?, URLResponse?, Error?)->()) {
+        guard let url = URL(string: URLs.getDraftOrdersURL()) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let session = URLSession.shared
+        request.httpShouldHandleCookies = false
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: order.asDictionary(), options: .prettyPrinted)
+          
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+    }
+
+    func getSingleDraftOrder(id: String, completion: @escaping ([LineItem]?, Error?)->()){
+        AF.request(URLs.getSingleDraftOrder(id: id))
+             .responseDecodable(of: Draft.self) { (response) in
+                switch response.result {
+                case .success(_):
+                    guard let data = response.value else { return }
+                    completion(data.draft_order.line_items, nil)
+               
+                case .failure(let error):
+                    completion(nil, error)
+                }
+            }
+    }
+   
+    func getProductImageById(id: String , completion: @escaping (String?, Error?)->()){
+        AF.request(URLs.getProductImage(id: id))
+             .responseDecodable(of: Images.self) { (response) in
+                switch response.result {
+                case .success(_):
+                    guard let data = response.value else { return }
+                    completion(data.images[0].src, nil)
+               
+                case .failure(let error):
+                    completion(nil, error)
+                }
+            }
+    }
+
+    func removeAnExistingDraftOrder(id: String , completion: @escaping (Data?, URLResponse?, Error?)->()){
+        guard let url = URL(string: URLs.deleteDraftOrder(id: id)) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        let session = URLSession.shared
+             
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+             
+    }
+    
+    func ModifyAnExistingDraftOrder(id: String, order: Updated, completion: @escaping (Data?, URLResponse?, Error?)->()) {
+        guard let url = URL(string: URLs.modifyDeraftOrder(id: id)) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: order.asDictionary(), options: .prettyPrinted)
+          
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        print(try? order.asDictionary())
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.httpShouldHandleCookies = false
+
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+    }
+    
+    func fetchPriceRules(completion:@escaping ([Price_Rule]?, Error?)->()){
+    AF.request(URLs.priceRole())
+        .responseDecodable(of:Price_Rules.self){(response) in
+            switch response.result{
+                case .success(_):
+                    guard let data = response.value
+                    else{
+                        return
+                    }
+                    completion(data.price_rules, nil)
+                case .failure(let error):
+                    completion(nil, error)
+            }
+        }
+    }
+    
+    func postOrder(order: APIOrder, completion: @escaping (Data?, URLResponse?, Error?)->()){
+       guard let url = URL(string: URLs.order()) else {return}
+      var request = URLRequest(url: url)
+      request.httpMethod = "POST"
+        let session = URLSession.shared
+        request.httpShouldHandleCookies = false
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: order.asDictionary(), options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        //HTTP Headers
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+
+    }
+
+
+    func getCustomerById(id: String, completion: @escaping (User?, Error?)->()){
+        AF.request(URLs.customer(id: id))
+             .responseDecodable(of: User.self) { (response) in
+                switch response.result {
+                case .success(_):
+                    guard let data = response.value else { return }
+                    completion(data, nil)
+               
+                case .failure(let error):
+                    completion(nil, error)
+                }
+            }
+    }
+    
+    func updateCustomerNote(id: String, user: User, completion: @escaping (Data?, URLResponse?, Error?)->()) {
+        guard let url = URL(string: URLs.customer(id: id)) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: user.asDictionary(), options: .prettyPrinted)
+          
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        print(try? user.asDictionary())
+        
+        //HTTP Headers
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.httpShouldHandleCookies = false
+
+        
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+    }
+
+
+    func getProductBySubCategory(collectionId: Int, productType: String, completion:@escaping ([Product]?,Error?)->()){
+        AF.request(URLs.productsForSubCategory(collectionId: collectionId, productType: productType))
+             .responseDecodable(of:AllProducts.self){
+            (response) in
+            switch response.result{
+            case .success(_):
+                guard let data = response.value
+                else {
+                    return
+                }
+                completion(data.products,nil)
+            case .failure(let error) :
+                completion(nil,error)
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func updateCustomerFav(id: String, user: User, completion: @escaping (Data?, URLResponse?, Error?)->()) {
+        guard let url = URL(string: URLs.customer(id: id)) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: user.asDictionary(), options: .prettyPrinted)
+          
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        print(try? user.asDictionary())
+        
+        //HTTP Headers
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.httpShouldHandleCookies = false
+
+        
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
+    }
+    
+     func getOrders(completion: @escaping ([OrderFromAPI]?, Error?) -> ()) {
+         let customerID = userDefault().getId()
+         AF.request(URLs.allOrders(customerId: customerID))        .responseDecodable(of:OrdersFromAPI.self){(response) in
+             switch response.result{
+                 case .success(_):
+                     guard let data = response.value
+                     else{
+                         return
+                     }
+                     completion(data.orders, nil)
+                 case .failure(let error):
+                     completion(nil, error)
+             }
+         }
+     }
+
 }

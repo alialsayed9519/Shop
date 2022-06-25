@@ -16,27 +16,60 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet  var favProductBtn: UIButton!
     
-    private let favoriteViewModel = FavoriteViewModel()
-
+    @IBOutlet weak var producTitle: UILabel!
+    //private let favoriteViewModel = FavoriteViewModel()
+    private let draftOrderViewModel = DraftOrderViewModel()
+    var prodImage = ""
+    
+    var defaults:userDefaultsprotocol=userDefault()
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    func setPrice(price: inout String){
+        let currency=defaults.getCurrency(key: "currency")
+        if currency=="USD" {
+            print(price)
+            let m="\((Double(price)!)*18)"
+            print (m)
+           price="\(m)"+" "+"USD"
+            //price="\(price)"+""+"USD"
+        }
+        else if currency=="EGP"{
+            price=price+" "+"EGP"
+        }
+        self.productPrice.text=price
+    }
     func updateUI(product: Product) {
-        self.productPrice.text = product.variants?[0].price ?? "123"
+        var p=product.variants![0].price
+
+        //self.productPrice.text = product.variants?[0].price ?? "`123`"
+       setPrice(price: &p)
+        
+        let fullTitle = product.title.components(separatedBy: " | ")
+
+        var fistpart: String = fullTitle[0]
+        var secondpArt: String = fullTitle[1]
+        self.producTitle.text=secondpArt
         self.productImage.sd_setImage(with: URL(string: product.images[0].src), placeholderImage: UIImage(named: "adidas"))
         self.favProductBtn.setTitle("", for: .normal)
-     
-        if favoriteViewModel.isProductFavoriteWith(id: product.variants![0].id) {
-            print("\(product.variants![0].id)     ididididididididi")
-            let image = UIImage(named: "")
-            self.favProductBtn.setImage(image, for: .normal)
-        }
-        
-        
+    }
+    
+    func updateFavoriteUI(item: LineItem) {      
+        favProductBtn.setTitle("", for: .normal)
+        favProductBtn.setImage(UIImage(named: "heart"), for: .normal)
+        favProductBtn.tintColor = .red
+        self.productPrice.text = item.price
+        self.producTitle.text = item.title
+        let id = String(describing: item.product_id)
+        draftOrderViewModel.getProductImageFromAPI(id: id)
+        draftOrderViewModel.bindImageURLToView = { self.onSuccessUpdateView() }
+    }
+    
+    func onSuccessUpdateView() {
+        prodImage = draftOrderViewModel.imageURL!
+        print(prodImage)
+        productImage.sd_setImage(with: URL(string: prodImage), placeholderImage: UIImage(named: "adidas.png"))
     }
     
 }
-
-

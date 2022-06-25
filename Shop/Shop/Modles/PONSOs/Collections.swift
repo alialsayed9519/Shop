@@ -22,9 +22,6 @@ struct CustomCollection: Codable{
     var published_scope: String?
     var admin_graphql_api_id: String?
     var image: collectionImage?
-    
-    
-    
 }
 
 struct collectionImage: Codable{
