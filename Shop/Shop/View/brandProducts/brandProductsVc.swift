@@ -16,6 +16,7 @@ class brandProductsVc: UIViewController {
     @IBOutlet weak var navigationITitle: UINavigationItem!
     let productCell="CatagoryCollectionViewCell"
     var smartCol:SmartCollection!
+    var custom:CustomCollection!
     var products = [Product]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,7 @@ class brandProductsVc: UIViewController {
 
        brandImg.sd_setImage(with:URL(string:smartCol.image.src), placeholderImage: UIImage(named: "adidas.png"))
         print(smartCol.id)
-        shopViewModel.fetchProducts(collectionID:smartCol.id)
+       // shopViewModel.fetchbrandProducts(collectionTitle: smartCol.title)
         print(smartCol.title)
 
         //shopViewModel.filterBrandsByNmae(brandName:smartCol.title)
@@ -73,5 +74,11 @@ extension brandProductsVc:UICollectionViewDelegate,UICollectionViewDataSource{
         
 //        proCell.productImg.sd_setImage(with: URL(string: (product?.images[0].src)!),placeholderImage: UIImage(named: "adidas"))
         return proCell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let product = products[indexPath.row]
+        let vc = ProductDetailsVc()
+        vc.product=product
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
