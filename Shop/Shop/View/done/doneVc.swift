@@ -11,9 +11,15 @@ class doneVc: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        setDoneAnimation()
+    }
+    func setDoneAnimation(){
         let animationView = AnimationView()
                 
-                animationView.animation = Animation.named("done")
+                animationView.animation = Animation.named("donn")
                 //animationView.contentMode = .scaleAspectFit
                 animationView.frame = view.bounds
                 animationView.loopMode = .loop
@@ -28,9 +34,8 @@ class doneVc: UIViewController {
                         self.navigationController?.pushViewController(HomeVc(), animated: true)
                     
                 }
-        // Do any additional setup after loading the view.
-    }
 
+    }
 
     /*
     // MARK: - Navigation

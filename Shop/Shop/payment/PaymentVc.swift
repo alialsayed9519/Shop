@@ -7,9 +7,9 @@
 
 import UIKit
 //import Braintree
-//import BraintreeDropIn
+import BraintreeDropIn
 class PaymentVc: UIViewController {
-//   var braintreeClient: BTAPIClient!
+  var braintreeClient: BTAPIClient!
     @IBOutlet weak var discountView: UIView!
     @IBOutlet weak var paymentView: UIView!
     @IBOutlet weak var cashButton: UIButton!
@@ -75,7 +75,7 @@ class PaymentVc: UIViewController {
                             let billingAddress = tokenizedPayPalAccount.billingAddress
                             let shippingAddress = tokenizedPayPalAccount.shippingAddress
                             self.viewModel.postOrder(order: self.order!)
-                            self.navigationController?.pushViewController(HomeVc(), animated: true)
+                            self.navigationController?.pushViewController(doneVc(), animated: true)
                         } else if let error = error {
                             // Handle error here...
                         } else {
@@ -104,7 +104,7 @@ class PaymentVc: UIViewController {
         switch order?.gateway {
         case "Cash On Delivery":
             viewModel.postOrder(order: order!)
-            self.navigationController?.popToRootViewController(animated: true)
+            self.navigationController?.pushViewController(doneVc(), animated: true)
         case "Paypal":
 //            payMent()
             print("salma elawadyyasmeen")
@@ -118,7 +118,7 @@ class PaymentVc: UIViewController {
         @IBAction func applydiscountCode(_ sender: Any) {
             let discount = viewModel.checkDescountCode(copun: TFcopun.text ?? "")
             utils.showAlert(message: discount.1, title: "Discount Code", view: self)
-            total = 15 + price - discount.0
+            total = 15 + price - Double(discount.0)
             
             //MARK: - Update Order
             order?.total_discounts = "\(discount.0)"

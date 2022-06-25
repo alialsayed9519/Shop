@@ -167,7 +167,7 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
         if userDefault.isLoggedIn() {
             if user?.customer.last_name == "0" {
                 print("addToFav post")
-                let firstFav = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: products[index.row].variants![0].id, quantity: 1)], customer: customer(id: userDefault.getId())))
+                let firstFav = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: products[index.row].variants![0].id, quantity: 1)], customer: customer(id: userDefault.getId(), default_address: nil)))
                 draftOrderViewModel.postNewDraftOrderWith(order: firstFav, flag: false, note: (user?.customer.note)!)
            
             } else {
