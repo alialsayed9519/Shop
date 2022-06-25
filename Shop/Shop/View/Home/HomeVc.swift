@@ -14,6 +14,7 @@ class HomeVc: UIViewController {
     @IBOutlet private weak var addsImage: UIImageView!
     private let brandsCollectionViewCellId = "BrandsCollectionViewCell"
     private var brands: [SmartCollection] = []
+    
     private var brandsViewModel = BrandsViewModel()
     
     override func viewDidLoad() {

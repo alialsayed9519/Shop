@@ -79,7 +79,6 @@ class ShopingViewModel{
         }
     }
     func filterBrandsByNmae(brandName:String){
-        fetchAllProducts()
         self.allProduct=allProduct?.filter{
             ($0.vendor==brandName)
         }
