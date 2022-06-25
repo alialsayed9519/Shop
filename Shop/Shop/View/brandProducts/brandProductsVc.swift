@@ -10,32 +10,45 @@ import SDWebImage
 class brandProductsVc: UIViewController {
     private let shopViewModel = ShopingViewModel()
    
-    @IBOutlet weak var brandImg: UIImageView!
-    let productCell="productCell"
-    var smartCol:SmartCollection?
-    var product:Product!
     @IBOutlet weak var productCollectionView: UICollectionView!
- 
+    @IBOutlet weak var brandImg: UIImageView!
+    
+    @IBOutlet weak var navigationITitle: UINavigationItem!
+    let productCell="CatagoryCollectionViewCell"
+    var smartCol:SmartCollection!
+    var custom:CustomCollection!
+    var products = [Product]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationITitle.title=smartCol.title
         let brandProductCell=UINib(nibName:productCell , bundle: nil)
                 productCollectionView.register(brandProductCell, forCellWithReuseIdentifier:productCell)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        setBrandImage()
+        print(smartCol.id)
+       // shopViewModel.fetchbrandProducts(collectionTitle: smartCol.title)
+        print(smartCol.title)
 
-    //  brandImg.sd_setImage(with:URL(string:smartCol?.image
-//.src?),placeholderImage:UIImage(named:"adidas.png"))
-      //  brandImg.sd_setImage(with: URL(string:smartCol?.image), placeholderImage: UIImage(named: "adidas,png"))
-    //  brandImg.sd_setImage(with: URL(string: smartCol?.image.src?), placeholderImage: UIImage(named: "adidas.png"))
-      //  shopViewModel.filterBrandsByNmae(brandName:smartCol?.title?)
-//    shopViewModel.filterBrandsByNmae(brandName: smartCol?.title!)
-       // let imageView = SDAnimatedImageView()
-        let animatedImage = SDAnimatedImage(named: (smartCol?.image.src)!)
-        brandImg.image = animatedImage
+        shopViewModel.fetchbrandProducts(collectionTitle: smartCol.title)
+        shopViewModel.bindProducts=self.onSuccess
+    
         // Do any additional setup after loading the view.
     }
-
-    func display(){
+    func setBrandImage(){
+        brandImg.layer.cornerRadius=10
+        brandImg.layer.borderWidth=4
+        brandImg.layer.borderColor=UIColor.black.cgColor
+       brandImg.sd_setImage(with:URL(string:smartCol.image.src), placeholderImage: UIImage(named: "adidas.png"))
+    }
+    func onSuccess() {
+          guard let products = shopViewModel.allProduct
+           else {
+            print("no products")
+            return
+            
+        }
+        self.products = products
+        productCollectionView.reloadData()
         
     }
     /*
@@ -50,19 +63,32 @@ class brandProductsVc: UIViewController {
 
 }
 
-extension brandProductsVc:UICollectionViewDelegate,UICollectionViewDataSource{
+extension brandProductsVc:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return products.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let proCell=collectionView.dequeueReusableCell(withReuseIdentifier: productCell, for: indexPath) as! productCell
-        proCell.productName.text=product.title
-        proCell.productImg.sd_setImage(with: URL(string: product.images[0].src), placeholderImage: UIImage(named: "adidas"))
+        let proCell=collectionView.dequeueReusableCell(withReuseIdentifier: productCell, for: indexPath) as! CatagoryCollectionViewCell
+        let product = products[indexPath.row]
+        proCell.updateUI(product: product)
+        
+//        proCell.productImg.sd_setImage(with: URL(string: (product?.images[0].src)!),placeholderImage: UIImage(named: "adidas"))
         return proCell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let product = products[indexPath.row]
+        let vc = ProductDetailsVc()
+        vc.product=product
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+                let side = (view.frame.size.width-10)/2
+                let height = view.frame.size.height / 4
+                return CGSize(width: side, height: height)
+            }
 }

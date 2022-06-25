@@ -56,6 +56,19 @@ class ShopingViewModel{
         }
     }
     
+    func fetchbrandProducts(collectionTitle: String = "ADIDAS") {
+        network.fetchbrandProducts(collectionTitle: collectionTitle) { (products, error) in
+            if let message = error?.localizedDescription{
+                self.error = message
+               // print(error?.localizedDescription)
+            }else {
+                if let respons = products {
+                   // print(respons[0])
+                    self.allProduct = respons
+                }
+            }
+        }
+    }
     
     func fetchCustomCollection(){
         network.fetchCustomCatagegories { (customCollections, error) in
@@ -85,7 +98,6 @@ class ShopingViewModel{
     }
     
     func filterBrandsByNmae(brandName:String){
-        fetchAllProducts()
         self.allProduct=allProduct?.filter{
             ($0.vendor==brandName)
         }
