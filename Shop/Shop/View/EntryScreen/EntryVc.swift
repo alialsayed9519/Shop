@@ -37,10 +37,7 @@ class EntryVc: UIViewController {
     
     @IBAction func goToHome(_ sender: Any) {
         let home = MyTabBar(nibName: "MyTabBar", bundle: nil)
-        self.navigationController?.pushViewController(home, animated: true)
+        self.navigationController?.pushViewController(OnBoardVc(), animated: true)
     }
 
-    @IBAction func payment(_ sender: Any) {
-        self.navigationController?.pushViewController(PaymentVc(), animated: true)
-    }
 }
