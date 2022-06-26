@@ -146,17 +146,16 @@ class NetworkService {
         }.resume()
     }
        
-       func editAddress(id: Int, address: Address, completion: @escaping(Data?, URLResponse?, Error?)->()){
-        updateCustomerAddresses(httpMethod: "PUT", id: id, completion: completion)
+       func editAddress(addressId: Int, completion: @escaping(Data?, URLResponse?, Error?)->()){
+        updateCustomerAddresses(httpMethod: "PUT", addressId: addressId, completion: completion)
     }
 
        
-    func deleteAddress(id: Int, completion: @escaping(Data?, URLResponse?, Error?)->()){
-        updateCustomerAddresses(httpMethod: "DELETE", id: id, completion: completion)
+    func deleteAddress(addrssId: Int, completion: @escaping(Data?, URLResponse?, Error?)->()){
+        updateCustomerAddresses(httpMethod: "DELETE", addressId: addrssId, completion: completion)
     }
     
-    private func updateCustomerAddresses(httpMethod: String, id: Int, completion: @escaping(Data?, URLResponse?, Error?)->()){
-        let addressId = id
+    private func updateCustomerAddresses(httpMethod: String, addressId: Int, completion: @escaping(Data?, URLResponse?, Error?)->()){
         let customerId = userDefault().getId()
         guard let url = URL(string: URLs.oneAddress(customerId: customerId, addressId: addressId)) else {return}
         var request = URLRequest(url: url)

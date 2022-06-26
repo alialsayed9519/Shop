@@ -85,6 +85,9 @@ extension AddressesTable: UITableViewDataSource, UITableViewDelegate{
             self.addAddressView.editAddress = self.addresses[indexPath.row]
             self.navigationController?.pushViewController(self.addAddressView, animated: true)
         }
+        cell.deleteButton = {
+            self.addressViewModel.deleteAddress(addressId: address.id)
+        }
         return cell
     }
     
