@@ -68,6 +68,18 @@ class AddressesTable: UIViewController{
             lable.isHidden = true
         }
     }
+    
+    private func showDeleteAlert(addressId: Int){
+        let alert = UIAlertController(title: "Delete Address", message: "Are you sour you want to delete this address", preferredStyle: .alert)
+        let cancel  = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
+        }
+        let delete = UIAlertAction(title: "Yes", style: .default) { (UIAlertAction) in
+            self.addressViewModel.deleteAddress(addressId: addressId)
+        }
+        alert.addAction(cancel)
+        alert.addAction(delete)
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 //MARK: - table data source and delgate
@@ -86,7 +98,7 @@ extension AddressesTable: UITableViewDataSource, UITableViewDelegate{
             self.navigationController?.pushViewController(self.addAddressView, animated: true)
         }
         cell.deleteButton = {
-            self.addressViewModel.deleteAddress(addressId: address.id)
+            self.showDeleteAlert(addressId: address.id)
         }
         return cell
     }
@@ -97,6 +109,16 @@ extension AddressesTable: UITableViewDataSource, UITableViewDelegate{
             self.order?.pilling_address = addresses[indexPath.row]
             payment.order? = self.order!
             self.navigationController?.pushViewController(payment, animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            self.showDeleteAlert(addressId: addresses[indexPath.row].id)
+        }
+        else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
 }
