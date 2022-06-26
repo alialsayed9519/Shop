@@ -80,6 +80,11 @@ extension AddressesTable: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueNib() as AddressCell
         let address = addresses[indexPath.row]
         cell.updateUI(address: address)
+        cell.editButton = {
+            self.addAddressView.editFlag = true
+            self.addAddressView.editAddress = self.addresses[indexPath.row]
+            self.navigationController?.pushViewController(self.addAddressView, animated: true)
+        }
         return cell
     }
     

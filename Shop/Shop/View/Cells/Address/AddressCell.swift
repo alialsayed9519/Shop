@@ -12,7 +12,7 @@ class AddressCell: UITableViewCell {
     @IBOutlet weak var country: UILabel!
     @IBOutlet weak var cityAddress: UILabel!
     @IBOutlet weak var phone: UILabel!
-    var editAddress: Address?
+    var editButton : (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,11 +26,10 @@ class AddressCell: UITableViewCell {
     }
     
     @IBAction func editAddress(_ sender: Any) {
-        
+        editButton?()
     }
     
     func updateUI(address: Address){
-        editAddress = address
         country.text = address.country
         cityAddress.text = address.city! + ", " + address.address1!
         phone.text = address.phone!
