@@ -12,8 +12,6 @@ class AddressCell: UITableViewCell {
     @IBOutlet weak var country: UILabel!
     @IBOutlet weak var cityAddress: UILabel!
     @IBOutlet weak var phone: UILabel!
-    
-    var delegate: NavigationHelper?
     var editAddress: Address?
     
     override func awakeFromNib() {
@@ -28,9 +26,9 @@ class AddressCell: UITableViewCell {
     }
     
     @IBAction func editAddress(_ sender: Any) {
-        print("editAddress")
-        self.delegate?.editAddrss(editAddress: editAddress!)
+        
     }
+    
     func updateUI(address: Address){
         editAddress = address
         country.text = address.country
