@@ -117,10 +117,10 @@ class ShopingViewModel{
         guard let categories = self.categorys else {
             return
         }
-        network.getProductBySubCategory(collectionId: categories[itemIndex].id!, productType: subCategoryName) { (products, error) in
+        let generalFlag = (itemIndex == 0)
+        network.getProductBySubCategory(generalFlag: generalFlag, collectionId: categories[itemIndex].id!, productType: subCategoryName) { (products, error) in
             if let message = error?.localizedDescription{
                 self.error = message
-               // print(error?.localizedDescription)
             }else {
                 if let respons = products {
                     self.allProduct = respons
