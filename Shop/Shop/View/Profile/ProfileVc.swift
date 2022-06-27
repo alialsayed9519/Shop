@@ -129,8 +129,10 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
             }
             
         default:
+            self.navigationController?.pushViewController(AboutUs(), animated: true)
             print("about us")
         }
+    
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

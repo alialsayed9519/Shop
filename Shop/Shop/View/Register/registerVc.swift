@@ -14,10 +14,10 @@ class registerVc: UIViewController {
     
     @IBOutlet weak var regiBtn: UIButton!
     @IBOutlet weak var logBtn: UIButton!
-    @IBOutlet weak var passTf: HoshiTextField!
-    @IBOutlet weak var emailTf: HoshiTextField!
-    @IBOutlet weak var lnameTf: HoshiTextField!
-    @IBOutlet weak var fnameTf: HoshiTextField!
+    @IBOutlet weak var passTf: UITextField!
+    @IBOutlet weak var emailTf: UITextField!
+    @IBOutlet weak var lnameTf: UITextField!
+    @IBOutlet weak var fnameTf: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
        // regiBtn.backgroundColor =.green
@@ -32,6 +32,7 @@ class registerVc: UIViewController {
             [weak self] (message) in
             (self?.showAlert(message: message))
         }, onCompleted: nil, onDisposed:nil )
+
         registerViewModel.navigate={[weak self ]
             in
             self?.navigate()
@@ -55,7 +56,7 @@ class registerVc: UIViewController {
         
      }
     func showAlert(message:String){
-        let alert=UIAlertController(title: "warning", message: message, preferredStyle: .alert)
+        let alert=UIAlertController(title: "Register", message: message, preferredStyle: .alert)
         let okAction=UIAlertAction(title: "OK", style: .default){
             (action) in
             print("alert")
