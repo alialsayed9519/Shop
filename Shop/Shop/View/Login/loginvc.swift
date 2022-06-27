@@ -15,9 +15,9 @@ class loginvc: UIViewController {
     @IBOutlet weak var signInBtn: UIButton!
     @IBOutlet weak var loginImg: UIImageView!
     
-    @IBOutlet weak var emailTf: HoshiTextField!
+    @IBOutlet weak var emailTf: UITextField!
     
-    @IBOutlet weak var passTf: HoshiTextField!
+    @IBOutlet weak var passTf: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
       loginviewModel=LoginViewModel(appdelegate: &delegate)

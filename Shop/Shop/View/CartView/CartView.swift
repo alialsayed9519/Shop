@@ -61,7 +61,7 @@ class CartView: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.title = "Cart"
         tableView.dataSource = self
-        tableView.delegate = self  
+        tableView.delegate = self
         tableView.registerNib(cell: CartItem.self)
     
     }
