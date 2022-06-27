@@ -15,10 +15,9 @@ class CartItem: UITableViewCell {
     @IBOutlet weak var itemVonder: UILabel!
     @IBOutlet weak var itemPrice: UILabel!
     @IBOutlet weak var itemCounter: UILabel!
-    
+    var defaults:userDefaultsprotocol=userDefault()
     var buttonIncrease : ((UITableViewCell) -> Void)?
     var buttonDecrease : ((UITableViewCell) -> Void)?
-   
     var productImage = ""
     
     @IBAction func icreseCount(_ sender: Any) {
@@ -41,7 +40,19 @@ class CartItem: UITableViewCell {
         draftOrderViewModel.getProductImageFromAPI(id: id)
         
         draftOrderViewModel.bindImageURLToView = { self.onSuccessUpdateView() }
-        itemPrice.text = String(describing: item.price)
+        var p=item.price
+        setPrice(price: &p)
+    }
+    func setPrice(price: inout String){
+        let currency=defaults.getCurrency(key: "currency")
+        if currency=="USD" {
+           price=price+" "+"USD"
+        }
+        else if currency=="EGP"{
+            let m="\((Double(price)!)*18)"
+           price="\(m)"+" "+"EGP"
+        }
+        itemPrice.text=price
     }
     
     func onSuccessUpdateView() {

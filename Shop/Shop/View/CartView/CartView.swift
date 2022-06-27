@@ -17,7 +17,7 @@ class CartView: UIViewController {
     private var user: User? = nil
     
     var items = [LineItem]()
-    
+    var defaults:userDefaultsprotocol=userDefault()
     @IBOutlet var checkoutButton: UIView!
     var order = Order()
 
@@ -117,11 +117,36 @@ class CartView: UIViewController {
     func clacTotal() {
         print("clacTotal")
         var total = 0.0
+        var totalpr=""
         for item in items{
             total += Double(item.quantity) * (Double(item.price) ?? 0.0)
+            let currency=defaults.getCurrency(key: "currency")
+            if currency=="USD" {
+               totalpr="\(total)"+" "+"USD"
+            }
+            else if currency=="EGP"{
+                let m="\((total)*18)"
+               totalpr="\(m)"+" "+"EGP"
+            }
+            
         }
-        totalPrice.text = "\(Int(total))"
+
+        totalPrice.text = totalpr
     }
+    
+    
+    func setPrice(price: inout String){
+        let currency=defaults.getCurrency(key: "currency")
+        if currency=="USD" {
+           price=price+" "+"USD"
+        }
+        else if currency=="EGP"{
+            let m="\((Double(price)!)*18)"
+           price="\(m)"+" "+"EGP"
+        }
+        totalPrice.text=price
+    }
+
 }
 
 extension CartView: UITableViewDataSource, UITableViewDelegate{
