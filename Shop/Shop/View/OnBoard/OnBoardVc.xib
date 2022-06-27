@@ -11,10 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnBoardVc" customModule="Shop" customModuleProvider="target">
             <connections>
-                <outlet property="getstarted" destination="NVW-Bm-oPj" id="WRM-WV-lHF"/>
-                <outlet property="pageControl" destination="rMs-Rz-jLd" id="ZAD-yJ-0ag"/>
-                <outlet property="scrollView" destination="6l0-4p-gAf" id="YNV-ei-Caw"/>
-                <outlet property="signIn" destination="X9s-ge-cqj" id="JJc-J7-7gq"/>
+                <outlet property="getStartedBtn" destination="TyZ-CM-mBf" id="Zno-bv-nmb"/>
+                <outlet property="pagecontrol" destination="Rn9-AK-nt1" id="dPl-Rg-cQ6"/>
+                <outlet property="scrollView" destination="Gj3-xz-s0s" id="KHf-f6-aAv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,95 +22,54 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVW-Bm-oPj">
-                    <rect key="frame" x="42" y="701" width="330" height="42"/>
-                    <color key="backgroundColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain">
-                        <attributedString key="attributedTitle">
-                            <fragment content="Get Started">
-                                <attributes>
-                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" size="24" name="Helvetica"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyZ-CM-mBf">
+                    <rect key="frame" x="32" y="770" width="350" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Xts-6J-N5o"/>
+                    </constraints>
+                    <color key="tintColor" systemColor="systemOrangeColor"/>
+                    <buttonConfiguration key="configuration" style="filled" image="cart.fill" catalog="system" imagePlacement="trailing" title="Get Started" cornerStyle="large">
+                        <color key="baseBackgroundColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </buttonConfiguration>
                     <connections>
-                        <action selector="gotoHome:" destination="-1" eventType="touchUpInside" id="NY2-zA-ExA"/>
+                        <action selector="getStartedAction:" destination="-1" eventType="touchUpInside" id="7xG-Qz-Z6a"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hB-OD-yR7">
-                    <rect key="frame" x="64" y="775" width="184" height="42"/>
-                    <attributedString key="attributedText">
-                        <fragment content="Have an account ?">
-                            <attributes>
-                                <font key="NSFont" metaFont="system" size="24"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                            </attributes>
-                        </fragment>
-                    </attributedString>
-                    <nil key="highlightedColor"/>
-                </label>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="rMs-Rz-jLd">
-                    <rect key="frame" x="149" y="643" width="116" height="26"/>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Rn9-AK-nt1">
+                    <rect key="frame" x="0.0" y="690" width="414" height="26"/>
                     <color key="pageIndicatorTintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
-                        <action selector="pageChanged:" destination="-1" eventType="valueChanged" id="B5E-B9-KVM"/>
+                        <action selector="pageChanged:" destination="-1" eventType="valueChanged" id="dwt-zw-nQE"/>
                     </connections>
                 </pageControl>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6l0-4p-gAf">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="621"/>
-                    <viewLayoutGuide key="contentLayoutGuide" id="Pj8-82-S5H"/>
-                    <viewLayoutGuide key="frameLayoutGuide" id="I14-Px-XxS"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gj3-xz-s0s">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="728"/>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9s-ge-cqj">
-                    <rect key="frame" x="278" y="775" width="93.5" height="42"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain">
-                        <attributedString key="attributedTitle">
-                            <fragment content="sign in">
-                                <attributes>
-                                    <font key="NSFont" size="24" name="Helvetica"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                    </buttonConfiguration>
-                    <connections>
-                        <action selector="gotoLogin:" destination="-1" eventType="touchUpInside" id="jsM-PH-TbJ"/>
-                    </connections>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="6l0-4p-gAf" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="2bV-wC-bCR"/>
-                <constraint firstItem="rMs-Rz-jLd" firstAttribute="top" secondItem="6l0-4p-gAf" secondAttribute="bottom" constant="16" id="CC1-MP-zAW"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="3hB-OD-yR7" secondAttribute="bottom" constant="45" id="ICo-c5-iyn"/>
-                <constraint firstItem="6l0-4p-gAf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JJe-gI-60u"/>
-                <constraint firstItem="NVW-Bm-oPj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="42" id="LVk-kE-0Fu"/>
-                <constraint firstItem="X9s-ge-cqj" firstAttribute="top" secondItem="NVW-Bm-oPj" secondAttribute="bottom" constant="32" id="Rfp-3O-zAV"/>
-                <constraint firstItem="6l0-4p-gAf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SDn-eS-uJy"/>
-                <constraint firstItem="rMs-Rz-jLd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="149" id="VFY-jD-fBh"/>
-                <constraint firstItem="3hB-OD-yR7" firstAttribute="top" secondItem="NVW-Bm-oPj" secondAttribute="bottom" constant="32" id="XBA-48-37S"/>
-                <constraint firstItem="NVW-Bm-oPj" firstAttribute="top" secondItem="rMs-Rz-jLd" secondAttribute="bottom" constant="32" id="XvS-ru-CqU"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NVW-Bm-oPj" secondAttribute="trailing" constant="42" id="Y0G-JO-MHQ"/>
-                <constraint firstItem="X9s-ge-cqj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="278" id="hRF-8K-Yvq"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rMs-Rz-jLd" secondAttribute="trailing" constant="149" id="iwq-Kt-8hb"/>
-                <constraint firstItem="rMs-Rz-jLd" firstAttribute="top" secondItem="6l0-4p-gAf" secondAttribute="bottom" constant="16" id="j49-qf-JSp"/>
-                <constraint firstItem="NVW-Bm-oPj" firstAttribute="top" secondItem="rMs-Rz-jLd" secondAttribute="bottom" constant="32" id="qoS-tw-a8c"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="X9s-ge-cqj" secondAttribute="bottom" constant="45" id="rZv-4a-YhD"/>
-                <constraint firstItem="3hB-OD-yR7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="64" id="wnz-jO-8Wx"/>
-                <constraint firstItem="6l0-4p-gAf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xQo-fX-kPU"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3hB-OD-yR7" secondAttribute="trailing" constant="166" id="xbi-4q-q2A"/>
+                <constraint firstItem="TyZ-CM-mBf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="6R0-1l-YYA"/>
+                <constraint firstItem="Gj3-xz-s0s" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7s5-UP-n3B"/>
+                <constraint firstItem="TyZ-CM-mBf" firstAttribute="top" secondItem="Gj3-xz-s0s" secondAttribute="bottom" constant="42" id="GRn-H9-C13"/>
+                <constraint firstItem="Rn9-AK-nt1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="KQf-do-Vgc"/>
+                <constraint firstItem="Gj3-xz-s0s" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="SA1-KM-Hzg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TyZ-CM-mBf" secondAttribute="trailing" constant="32" id="Zfv-Ym-nvM"/>
+                <constraint firstItem="Rn9-AK-nt1" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="gQO-Di-dUF"/>
+                <constraint firstItem="Gj3-xz-s0s" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qOj-Z7-Wuj"/>
+                <constraint firstItem="Rn9-AK-nt1" firstAttribute="bottom" secondItem="Gj3-xz-s0s" secondAttribute="bottom" constant="-12" id="uYU-h3-2fE"/>
+                <constraint firstItem="TyZ-CM-mBf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="726" id="xUa-Jr-UP2"/>
             </constraints>
-            <point key="canvasLocation" x="137.68115942028987" y="47.544642857142854"/>
+            <point key="canvasLocation" x="137.68115942028987" y="80.357142857142847"/>
         </view>
     </objects>
     <resources>
+        <image name="cart.fill" catalog="system" width="128" height="102"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
