@@ -68,7 +68,7 @@ class RegisterViewModel:regTemp{
                         self?.defaults.login()
                         self?.defaults.setId(id: id)
                         self?.defaults.setEmail(email: email)
-                        self?.defaults.setUserName(userName: name)
+                        self?.defaults.setUserName(userName: firstName)
                         self?.defaults.setDraftOrder(note: draftId)
                         DispatchQueue.main.async {
                             self?.navigate()

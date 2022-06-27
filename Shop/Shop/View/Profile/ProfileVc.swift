@@ -18,13 +18,11 @@ class ProfileVc: UIViewController {
         let nibCell = UINib(nibName: profileTableViewCellId, bundle: nil)
         tableView.register(nibCell, forCellReuseIdentifier: profileTableViewCellId)
         setUserData()
-        currencyViewMode.bindCurrencyViewModel=onSucess
+                currencyViewMode.bindCurrencyViewModel=onSucess
     }
     func onSucess(){
-        guard let currency=currencyViewMode.currency
-        else{
-            return
-        }
+      //  tableView.reloadData()
+
         
     }
     func setUserData(){
@@ -50,7 +48,7 @@ class ProfileVc: UIViewController {
     }
         func showAlertSheet(title:String, message:String,complition:@escaping (Bool)->Void){
             let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-            let logOut = UIAlertAction(title: "Log out", style: .destructive) { _ in
+            let logOut = UIAlertAction(title: "Log Out", style: .destructive) { _ in
                 complition(true)
             }
             let cancel = UIAlertAction(title: "Cancel", style: .default) { _ in
@@ -90,13 +88,12 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
                 cell.name.text = "My Orders"
                 cell.button.isHidden=true
             case 1:
-                cell.image1.image = UIImage(named: "heart")
+                cell.image1.image = UIImage(named: "currency")
                 cell.name.text = "currency"
                 cell.button.isHidden=false
                 
                //  currencyViewMode.getCurrency(key: "currency")=="USD"{
                     cell.button.setTitle(currencyViewMode.getCurrency(key: "currency"), for: .normal)
-                
 //                else if currencyViewMode.getCurrency(key: "currency")=="EGP"{
 //                   // cell.button.setTitle(, for: .normal)
 //
@@ -111,7 +108,7 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
                 cell.name.text = "About us"
             cell.button.isHidden=true
         }
-        cell.accessoryType = .disclosureIndicator
+    
         return cell
     }
     
