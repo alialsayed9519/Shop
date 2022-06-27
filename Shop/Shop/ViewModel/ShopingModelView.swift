@@ -136,12 +136,12 @@ class ShopingViewModel{
             }
             else {
                 if let response = priceRule{
-                    self.price_rules = response
                     userDefault().setFiftyDescountID(id: response[0].id)
                     userDefault().setFiftyDescountTitle(title: response[0].title)
                     userDefault().setThirtyDescountID(id: response[1].id)
                     userDefault().setThirtyDescountTitle(title: response[1].title)
-                    userDefault().setDescountMessage(message: "For 50% off copy this code  \(response[0].title) or enter SHOPIT50\nFor 30% off copy this code \(response[1].title) or enter SHOPIT30")
+                    self.price_rules = response
+
                 }
             }
         }

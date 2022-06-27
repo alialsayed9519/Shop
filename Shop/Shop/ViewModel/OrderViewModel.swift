@@ -32,19 +32,16 @@ class OrderViewModel {
             
             switch copun {
             case defaults.getThirtyDescountTitle():
-                copunValue = (30, "Nice, now you have 30% off")
-            case "SHOPIT30":
+                defaults.setThirtyDescountTitle(title: "")
                 copunValue = (30, "Nice, now you have 30% off")
             case defaults.getFiftyDescountTitle():
-                copunValue = (50, "Nice, now you have 50% off")
-            case "SHOPIT50":
+                defaults.setFiftyDescountTitle(title: "")
                 copunValue = (50, "Nice, now you have 50% off")
             case "":
                 copunValue = (0, "No copun Entered")
             default:
                 copunValue = (0, "Invalid copun")
             }
-            
             return copunValue
         }
     
