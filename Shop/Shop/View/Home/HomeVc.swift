@@ -45,9 +45,7 @@ class HomeVc: UIViewController {
     }
     
     @objc func imageTapped(){
-        if userDefault().getDescountMessage() != ""{
-            self.showAlert(title: "Mid year sale", messgae: userDefault().getDescountMessage())
-        }
+        self.navigationController?.pushViewController(Discount(), animated: true)
     }
     
     func showAddsImages() {
