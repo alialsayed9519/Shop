@@ -28,6 +28,12 @@
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iv1-ER-wz8">
                     <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                     <items>
+                        <barButtonItem title="Item" image="search" id="0FS-cc-hP2">
+                            <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="searc:" destination="-1" id="HCu-04-daV"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="GIM-cA-LF3"/>
                         <barButtonItem title="Item" image="heart" catalog="system" id="1zT-yL-8CI" userLabel="Favorite">
                             <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -105,6 +111,7 @@
         <image name="cart" catalog="system" width="128" height="102"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="noInternet" width="2000" height="2000"/>
+        <image name="search" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

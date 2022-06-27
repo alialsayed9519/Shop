@@ -26,8 +26,8 @@ class PaymentVc: UIViewController {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var detailsView: UIView!
     var order: Order?
-    var price: Double = 0
-    var total: Double = 0
+    var price: Double = 0.0
+    var total: Double = 0.0
     var currency: String = ""
     
     private let viewModel = OrderViewModel()
@@ -46,12 +46,13 @@ class PaymentVc: UIViewController {
             
             price = Double((order?.current_total_price ?? "0.0") ) ?? 0.0
             total = price + 15
+
             currency = userDefault().getCurrency()
             
-            self.LPrice.text = "\(price).00 \(currency)"
+            self.LPrice.text = "\(price) \(currency)"
             self.LDiscount.text = "0.00 \(String(describing: currency))"
             self.LShipping.text = "15.00 \(String(describing: currency))"
-            self.LTotale.text = "\(String(describing: total)).00 \(String(describing: currency))"
+            self.LTotale.text = "\(String(describing: total)) \(String(describing: currency))"
         }
         func payMent(){
             braintreeClient = BTAPIClient(authorization: "sandbox_v26b7763_zchjhvj48cst95wd")!
@@ -118,7 +119,7 @@ class PaymentVc: UIViewController {
         @IBAction func applydiscountCode(_ sender: Any) {
             let discount = viewModel.checkDescountCode(copun: TFcopun.text ?? "")
             utils.showAlert(message: discount.1, title: "Discount Code", view: self)
-            total = 15 + price - Double(discount.0)
+            total = 15 + Double(price) - Double(discount.0)
             
             //MARK: - Update Order
             order?.total_discounts = "\(discount.0)"

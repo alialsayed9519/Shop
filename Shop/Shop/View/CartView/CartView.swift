@@ -14,7 +14,7 @@ class CartView: UIViewController {
     @IBOutlet weak var noItemsInCart: UILabel!
     private let customerViewModel = CustomerViewModel()
     private var user: User? = nil
-    
+    var defaults:userDefaultsprotocol=userDefault()
     var items = [LineItem]()
     
     @IBOutlet var checkoutButton: UIView!
@@ -57,7 +57,7 @@ class CartView: UIViewController {
         super.viewDidLoad()
         print(items.count)
         tableView.dataSource = self
-        tableView.delegate = self  
+        tableView.delegate = self
         tableView.registerNib(cell: CartItem.self)
     
     }
@@ -107,14 +107,41 @@ class CartView: UIViewController {
         showAlert(title: "Error", message: message!, view: self)
     }
     
+//
+    ///////////////////////////
     func clacTotal() {
         print("clacTotal")
         var total = 0.0
+        var totalpr=0.0
         for item in items{
             total += Double(item.quantity) * (Double(item.price) ?? 0.0)
+            let currency=defaults.getCurrency(key: "currency")
+            if currency=="USD" {
+               totalpr=total
+            }
+            else if currency=="EGP"{
+                
+               totalpr=total*18
+            }
+            
         }
-        totalPrice.text = "\(Int(total))"
+
+        totalPrice.text = "\(Int(totalpr))"
     }
+    //////////////////////////
+    
+    func setPrice(price: inout String){
+        let currency=defaults.getCurrency(key: "currency")
+        if currency=="USD" {
+           price=price+" "+"USD"
+        }
+        else if currency=="EGP"{
+            let m="\((Double(price)!)*18)"
+           price="\(m)"+" "+"EGP"
+        }
+        totalPrice.text=price
+    }
+
 }
 
 extension CartView: UITableViewDataSource, UITableViewDelegate{

@@ -73,13 +73,13 @@
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uM8-Y9-2Pa">
                     <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                     <items>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="GIM-cA-LF3"/>
                         <barButtonItem image="search" id="2Jq-Jb-Znl">
                             <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="search:" destination="-1" id="uLV-pa-2Os"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="GIM-cA-LF3"/>
                         <barButtonItem title="Item" image="heart" catalog="system" id="1zT-yL-8CI" userLabel="Favorite">
                             <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
