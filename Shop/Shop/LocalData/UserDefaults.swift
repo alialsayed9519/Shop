@@ -21,7 +21,7 @@ protocol userDefaultsprotocol{
     func setCurrency(key:String,value:String)
     func getCurrency(key:String)->String
 }
-class userDefault:userDefaultsprotocol{
+class userDefault: userDefaultsprotocol{
     func setCurrency(key: String, value: String) {
         UserDefaults.standard.set(value, forKey: key)
     }

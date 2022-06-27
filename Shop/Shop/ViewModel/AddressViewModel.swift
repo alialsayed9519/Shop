@@ -31,7 +31,7 @@ class AddressViewModel {
         network.fetchAddresses() { (addresses, error) in
             if let message = error?.localizedDescription{
                 self.error = message
-                print(error?.localizedDescription)
+                print(error?.localizedDescription ?? "NO error")
             }
             else {
                 if let respons = addresses {
@@ -95,8 +95,8 @@ class AddressViewModel {
     }
     
     func editAddress(address: Address){
-        let id = userDefault().getId()
-        network.editAddress(id: id, address: address) { [weak self] (data, response, error) in
+        let id = address.id!
+        network.editAddress(addressId: id) { [weak self] (data, response, error) in
             if error != nil {
                 print("error while editing address \(error!)")
                 self?.error = "An error occured while editing your address"
@@ -118,19 +118,16 @@ class AddressViewModel {
             }
         }
     }
-//    func deleteAddress(addressId: Int){
-//        network.deleteAddress(id: addressId) { [weak self] (data, response, error) in
-//            let json = try! JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! Dictionary<String,Any>
-//            if json.isEmpty {
-//                print("deleted")
-//                //delete address from coreData
-//                self?.coreDataRepo.deleteAddress(id: addressId)
-//                self?.addresses = self?.coreDataRepo.getAddresses()
-//            }else{
-//                print("cant delete")
-//                self?.cantDeleteAddress()
-//            }
-//            print(json)
-//        }
-//    }
+    func deleteAddress(addressId: Int){
+        network.deleteAddress(addrssId: addressId) { [weak self] (data, response, error) in
+            let json = try! JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! Dictionary<String,Any>
+            if json.isEmpty {
+                print("deleted")
+                self?.fetchAddresses()
+            }else{
+                print("cant delete")
+                self?.error = "We can not delete this address"
+            }
+        }
+    }
 }

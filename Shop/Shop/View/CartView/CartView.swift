@@ -11,7 +11,6 @@ class CartView: UIViewController {
     private let draftOrderViewModel = DraftOrderViewModel()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalPrice: UILabel!
-   
     @IBOutlet weak var noItemsInCart: UILabel!
     private let customerViewModel = CustomerViewModel()
     private var user: User? = nil
@@ -26,6 +25,7 @@ class CartView: UIViewController {
             if  userDefault().isLoggedIn(){
                 if order.pilling_address == nil{
                     let addressTable = AddressesTable()
+                    addressTable.order = self.order
                     addressTable.chooseAddressFlag = true
                     self.navigationController?.pushViewController(addressTable, animated: true)
                 }
@@ -45,8 +45,7 @@ class CartView: UIViewController {
         }
         else{
             let alert = UIAlertController(title: "Empty Cart", message: "There is no items in your cart", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Back to shopp", style: .default) { (action) in
-              //  self.navigationController?.pushViewController(HomeVc(), animated: true)
+            let okAction = UIAlertAction(title: "Continue shopping", style: .default) { (action) in
                 self.navigationController?.popViewController(animated: true)
             }
             alert.addAction(okAction)
@@ -57,9 +56,6 @@ class CartView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(items.count)
-        // Do any additional setup after loading the view.
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.title = "Cart"
         tableView.dataSource = self
         tableView.delegate = self  
         tableView.registerNib(cell: CartItem.self)
@@ -67,19 +63,20 @@ class CartView: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("\(userDefault().getId())        cartView")
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.title = "Cart"
         customerViewModel.getCustomerwith(id: String(userDefault().getId()))
         customerViewModel.bindUser = { self.getUserSuccess() }
     }
     
     func getUserSuccess() {
         user = customerViewModel.customer
-        print("\(String(describing: user?.customer.note))          getUserSuccess")
         if user?.customer.note != "0" && userDefault().isLoggedIn() {
-            print("\((user?.customer.note)!)     getUserSuccess     ")
             userDefault().setDraftOrder(note: (user?.customer.note)!)
             draftOrderViewModel.getDraftOrderLineItems(id: (user?.customer.note)!)
-            draftOrderViewModel.bindDraftOrderLineItemsViewModelToView = { self.onSuccessUpdateView() }
+            draftOrderViewModel.bindDraftOrderLineItemsViewModelToView = { self.onSuccessUpdateView()
+                
+            }
             draftOrderViewModel.bindDraftViewModelErrorToView = { self.onFailUpdateView() }
         }
     }
@@ -106,12 +103,8 @@ class CartView: UIViewController {
     }
     
     func onFailUpdateView() {
-        let alert = UIAlertController(title: "Error", message: draftOrderViewModel.showError, preferredStyle: .alert)
-        let okAction  = UIAlertAction(title: "Ok", style: .default) { (UIAlertAction) in
-            
-        }
-        alert.addAction(okAction)
-        self.present(alert, animated: true, completion: nil)
+        let message = draftOrderViewModel.showError
+        showAlert(title: "Error", message: message!, view: self)
     }
     
     func clacTotal() {
@@ -126,7 +119,6 @@ class CartView: UIViewController {
 
 extension CartView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(items.count)
         return items.count
     }
     
@@ -176,7 +168,6 @@ extension CartView: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(items[indexPath.row].quantity)
     }
     
 }

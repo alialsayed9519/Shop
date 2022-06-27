@@ -146,17 +146,16 @@ class NetworkService {
         }.resume()
     }
        
-       func editAddress(id: Int, address: Address, completion: @escaping(Data?, URLResponse?, Error?)->()){
-        updateCustomerAddresses(httpMethod: "PUT", id: id, completion: completion)
+       func editAddress(addressId: Int, completion: @escaping(Data?, URLResponse?, Error?)->()){
+        updateCustomerAddresses(httpMethod: "PUT", addressId: addressId, completion: completion)
     }
 
        
-    func deleteAddress(id: Int, completion: @escaping(Data?, URLResponse?, Error?)->()){
-        updateCustomerAddresses(httpMethod: "DELETE", id: id, completion: completion)
+    func deleteAddress(addrssId: Int, completion: @escaping(Data?, URLResponse?, Error?)->()){
+        updateCustomerAddresses(httpMethod: "DELETE", addressId: addrssId, completion: completion)
     }
     
-    private func updateCustomerAddresses(httpMethod: String, id: Int, completion: @escaping(Data?, URLResponse?, Error?)->()){
-        let addressId = id
+    private func updateCustomerAddresses(httpMethod: String, addressId: Int, completion: @escaping(Data?, URLResponse?, Error?)->()){
         let customerId = userDefault().getId()
         guard let url = URL(string: URLs.oneAddress(customerId: customerId, addressId: addressId)) else {return}
         var request = URLRequest(url: url)
@@ -268,7 +267,6 @@ class NetworkService {
         } catch let error {
             print(error.localizedDescription)
         }
-        print(try? order.asDictionary())
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.httpShouldHandleCookies = false
@@ -343,7 +341,6 @@ class NetworkService {
         } catch let error {
             print(error.localizedDescription)
         }
-        print(try? user.asDictionary())
         
         //HTTP Headers
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -357,8 +354,15 @@ class NetworkService {
     }
 
 
-    func getProductBySubCategory(collectionId: Int, productType: String, completion:@escaping ([Product]?,Error?)->()){
-        AF.request(URLs.productsForSubCategory(collectionId: collectionId, productType: productType))
+    func getProductBySubCategory(generalFlag: Bool, collectionId: Int, productType: String, completion:@escaping ([Product]?,Error?)->()){
+        var url: String
+        if generalFlag{
+            url = URLs.allProductsForSubCategory(productType: productType)
+        }
+        else{
+            url = URLs.productsForSubCategory(collectionId: collectionId, productType: productType)
+        }
+        AF.request(url)
              .responseDecodable(of:AllProducts.self){
             (response) in
             switch response.result{
@@ -387,7 +391,6 @@ class NetworkService {
         } catch let error {
             print(error.localizedDescription)
         }
-        print(try? user.asDictionary())
         
         //HTTP Headers
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

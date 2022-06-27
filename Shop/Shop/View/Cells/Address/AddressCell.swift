@@ -12,9 +12,8 @@ class AddressCell: UITableViewCell {
     @IBOutlet weak var country: UILabel!
     @IBOutlet weak var cityAddress: UILabel!
     @IBOutlet weak var phone: UILabel!
-    
-    var delegate: NavigationHelper?
-    var editAddress: Address?
+    var editButton : (() -> Void)?
+    var deleteButton : (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,11 +27,14 @@ class AddressCell: UITableViewCell {
     }
     
     @IBAction func editAddress(_ sender: Any) {
-        print("editAddress")
-        self.delegate?.editAddrss(editAddress: editAddress!)
+        editButton?()
     }
+    
+    @IBAction func deleteAddress(_ sender: Any) {
+        deleteButton?()
+    }
+    
     func updateUI(address: Address){
-        editAddress = address
         country.text = address.country
         cityAddress.text = address.city! + ", " + address.address1!
         phone.text = address.phone!
