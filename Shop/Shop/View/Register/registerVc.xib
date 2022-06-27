@@ -84,13 +84,13 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etH-SW-iIN">
-                    <rect key="frame" x="45" y="719" width="259.5" height="27.5"/>
+                    <rect key="frame" x="25" y="719" width="259.5" height="27.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWv-RN-Ncl">
-                    <rect key="frame" x="312.5" y="713" width="68" height="39.5"/>
+                    <rect key="frame" x="292.5" y="713" width="68" height="39.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <state key="normal" title="Sign In">
                         <color key="titleColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -118,7 +118,7 @@
                 <constraint firstItem="heb-P3-NRK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="RA2-kh-HTb"/>
                 <constraint firstItem="8IT-0m-Rxn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="RLg-Ha-gge"/>
                 <constraint firstItem="as6-Ad-PEP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="YBh-MA-Q5I"/>
-                <constraint firstItem="etH-SW-iIN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="a25-WH-qHY"/>
+                <constraint firstItem="etH-SW-iIN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="a25-WH-qHY"/>
                 <constraint firstItem="etH-SW-iIN" firstAttribute="top" secondItem="cdb-JZ-hNw" secondAttribute="bottom" constant="32" id="dKD-hF-8Tm"/>
                 <constraint firstItem="8IT-0m-Rxn" firstAttribute="top" secondItem="k2t-Jp-nTd" secondAttribute="bottom" constant="44" id="dZg-Fh-yRg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="heb-P3-NRK" secondAttribute="trailing" constant="12" id="grE-wR-9H5"/>
@@ -133,20 +133,6 @@
             <point key="canvasLocation" x="140.57971014492756" y="71.651785714285708"/>
         </view>
     </objects>
-    <designables>
-        <designable name="8IT-0m-Rxn">
-            <size key="intrinsicContentSize" width="146" height="37"/>
-        </designable>
-        <designable name="as6-Ad-PEP">
-            <size key="intrinsicContentSize" width="145" height="37"/>
-        </designable>
-        <designable name="heb-P3-NRK">
-            <size key="intrinsicContentSize" width="134.5" height="36"/>
-        </designable>
-        <designable name="qeC-cU-L7U">
-            <size key="intrinsicContentSize" width="92" height="37"/>
-        </designable>
-    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

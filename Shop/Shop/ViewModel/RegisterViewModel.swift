@@ -9,6 +9,8 @@ import Foundation
 import RxCocoa
 import RxSwift
 protocol regTemp{
+    var title:String? { get}
+    var message:String?{get}
     var alertMsgDriver:Driver<String> {get}
     var alertMsgSubject:PublishSubject<String>{get}
     func register(firstName:String,lastName:String,email:String,password:String)
@@ -16,6 +18,10 @@ protocol regTemp{
     
 }
 class RegisterViewModel:regTemp{
+    var message: String?
+    
+    var title: String?
+    
     var navigate={
         print ("navigation")
     }
@@ -29,6 +35,7 @@ class RegisterViewModel:regTemp{
     }
     func register(firstName: String, lastName: String, email: String, password: String) {
         if firstName != ""{
+            if lastName != ""{
             if checkEmailValidation(email: email){
                 if password.count >= 6{
                     let customer = Customers(first_name: "\(firstName) \(lastName)", last_name: "0", note: "0", email: email, phone: nil, tags: password, id: nil, verified_email: true, addresses: nil)
@@ -37,23 +44,40 @@ class RegisterViewModel:regTemp{
                 }
                 else{
                     alertMsgSubject.onNext("Password should be 6 characters at least")
+                    title="Warning"
+                    message="Password should be 6 characters at least"
+                    //showAlert(title: passt, message: message)
                 }
                 
             }else{
                 alertMsgSubject.onNext("please enter a valid email")
+                title="Warning"
+                message="please enter a valid email"
             }
-        }else{
+                
+        }
+            else{
+                alertMsgSubject.onNext("Please your lastname")
+                title="Warning"
+                message="Please your firstName"
+            }
+        }
+            
+            else{
             alertMsgSubject.onNext("Please your firstName")
+            title="Warning"
+            message="Please your firstName"
+                showAlert(title: "first", message: "mmmM", view: registerVc())
         }
         
         
     }
+  
     func register(customer:Customer){
         network.register(newCutomer: customer){[weak self] (data, response, error) in
             if error != nil {
                 print(error!)
-            } else {
-                if let data = data {
+            } else {                if let data = data {
                     let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments)as! Dictionary<String,Any>
                     let getCustomer = json["customer"] as? Dictionary<String,Any>
                     let id = getCustomer?["id"] as? Int ?? 0
@@ -75,10 +99,14 @@ class RegisterViewModel:regTemp{
                         }
                         self?.alertMsgSubject.onNext("registered successfully")
                         print("registered successfully")
+                        self?.title="Congratulations"
+                        self?.message="registered successfully"
                     }
                         else{
                             self?.alertMsgSubject.onNext("An error occurred while registering")
                             print("error occurred while reg")
+                            self?.title="Error"
+                            self?.message="An error occurred while registering"
                         }
                         
                     }
