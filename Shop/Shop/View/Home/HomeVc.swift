@@ -44,6 +44,13 @@ class HomeVc: UIViewController {
         }
     }
     
+    
+    
+    
+    @IBAction func searc(_ sender: Any) {
+        self.navigationController?.pushViewController(ProductListVc(), animated: true)
+    }
+    
     @objc func imageTapped(){
         if userDefault().getDescountMessage() != ""{
             self.showAlert(title: "Mid year sale", messgae: userDefault().getDescountMessage())
