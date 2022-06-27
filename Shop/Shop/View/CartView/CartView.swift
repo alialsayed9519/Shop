@@ -15,9 +15,9 @@ class CartView: UIViewController {
     @IBOutlet weak var noItemsInCart: UILabel!
     private let customerViewModel = CustomerViewModel()
     private var user: User? = nil
-    
-    var items = [LineItem]()
     var defaults:userDefaultsprotocol=userDefault()
+    var items = [LineItem]()
+    
     @IBOutlet var checkoutButton: UIView!
     var order = Order()
 
@@ -114,26 +114,28 @@ class CartView: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+//
+    ///////////////////////////
     func clacTotal() {
         print("clacTotal")
         var total = 0.0
-        var totalpr=""
+        var totalpr=0.0
         for item in items{
             total += Double(item.quantity) * (Double(item.price) ?? 0.0)
             let currency=defaults.getCurrency(key: "currency")
             if currency=="USD" {
-               totalpr="\(total)"+" "+"USD"
+               totalpr=total
             }
             else if currency=="EGP"{
-                let m="\((total)*18)"
-               totalpr="\(m)"+" "+"EGP"
+                
+               totalpr=total*18
             }
             
         }
 
-        totalPrice.text = totalpr
+        totalPrice.text = "\(Int(totalpr))"
     }
-    
+    //////////////////////////
     
     func setPrice(price: inout String){
         let currency=defaults.getCurrency(key: "currency")
