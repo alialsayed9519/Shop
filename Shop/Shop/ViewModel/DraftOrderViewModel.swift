@@ -16,6 +16,21 @@ class DraftOrderViewModel {
     private let customerViewModel = CustomerViewModel()
     private var user: User? = nil
     
+    var bindMaxQuantToView: (() -> ()) = {}
+    var bindNumberOfItemsToView: (() -> ()) = {}
+    
+    var maxQuant: Int? {
+        didSet {
+            self.bindMaxQuantToView()
+        }
+    }
+    
+    var numberOfItems: Int? {
+        didSet {
+            self.bindNumberOfItemsToView()
+        }
+    }
+    
     var lineItems: [LineItem]? {
         didSet {
             self.bindDraftOrderLineItemsViewModelToView()
@@ -36,7 +51,7 @@ class DraftOrderViewModel {
     
     var showMassage: String? {
         didSet {
-            self.bindDraftViewModelErrorToView()
+            self.bindDraftViewModelMassageToView()
         }
     }
     
@@ -52,10 +67,13 @@ class DraftOrderViewModel {
                 let message = error.localizedDescription
                 print("postNewDraftOrderWith    vm")
                 self.showError = message
+                return
             }
             guard let data = data else {
                 return
             }
+            
+            print("asasasasasasas")
             
             do {
                 let jsonObj = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
@@ -65,6 +83,7 @@ class DraftOrderViewModel {
                 print("\(String(describing: draftId))   postNewDraftOrderWith  vm")
                // userDefault().setDraftOrder(note: String(draftId))
                 if flag == true {
+                    self.showError = "The Product is added to cart"
                     customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: String(draftId), last_name: lastName)))
                 }
                 
@@ -115,7 +134,7 @@ class DraftOrderViewModel {
                 //userDefault().setDraftOrder(note: "0")
                 print(data!)
                 if flag == true {
-                    self.customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: "0", last_name: "")))
+                    self.customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: "0", last_name: lastName)))
                 }
                 if flag == false {
                     self.customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: note, last_name: "0")))
@@ -153,6 +172,10 @@ class DraftOrderViewModel {
                         print(message)
                     }
                     
+                    if data != nil {
+                        self.showMassage = "The Product is added to cart"
+                    }
+                    
                     if let response = response as? HTTPURLResponse {
                         print("\(response.statusCode)   updateAnExistingDraftOrder   vm")
                         
@@ -179,4 +202,29 @@ class DraftOrderViewModel {
         }
     }
     
+    func getSingleProductVariant(variantid: String) {
+        networkService.receiveSingleProductVariant(variantid: variantid) { variant, error in
+            if let error: Error = error {
+                let message = error.localizedDescription
+                self.showError = message
+            } else {
+                self.maxQuant = variant?.inventory_quantity
+            }
+        }
+    }
+    
+    func getNumberOfItemesInCart(id: String) {
+        print(id)
+        networkService.getSingleDraftOrder(id: id) { (items, error) in
+            if let error: Error = error {
+                let message = error.localizedDescription
+                print("   getDraftOrderLineItems  error")
+                print(message)
+                self.showError = message
+            } else {
+                print("   getDraftOrderLineItems  vm")
+                self.numberOfItems = items?.count
+            }
+        }
+    }
 }
