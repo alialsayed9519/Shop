@@ -47,8 +47,13 @@ class AddressViewModel {
             if city != ""{
                 if address != ""{
                     if phone != "" {
-                        let address = Address(address1: address, city: city, province: "", phone: phone, zip: "", last_name: "", first_name: "", country: country)
-                        addAddress(address: address)
+                        if self.isValidPhone(phone: phone){
+                            let address = Address(address1: address, city: city, province: "", phone: phone, zip: "", last_name: "", first_name: "", country: country)
+                            addAddress(address: address)
+                        } else {
+                            error = "Please enter valid phone"
+                        }
+                        
                     } else {
                         error = "Please enter your phone"
                     }
@@ -130,4 +135,10 @@ class AddressViewModel {
             }
         }
     }
+    
+    private func isValidPhone(phone: String) -> Bool {
+      let phoneRegex = "^[0-9]{6,14}$";
+      let valid = NSPredicate(format: "SELF MATCHES %@", phoneRegex).evaluate(with: phone)
+      return valid
+   }
 }
