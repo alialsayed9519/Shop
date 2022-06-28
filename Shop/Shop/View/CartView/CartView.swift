@@ -71,8 +71,7 @@ class CartView: UIViewController {
     
     func getUserSuccess() {
         user = customerViewModel.customer
-        if user?.customer.note != "0" && userDefault().isLoggedIn() {
-            userDefault().setDraftOrder(note: (user?.customer.note)!)
+        if user?.customer.note != "0" && userDefault().isLoggedIn() {            userDefault().setDraftOrder(note: (user?.customer.note)!)
             draftOrderViewModel.getDraftOrderLineItems(id: (user?.customer.note)!)
             draftOrderViewModel.bindDraftOrderLineItemsViewModelToView = { self.onSuccessUpdateView()
                 
@@ -99,7 +98,6 @@ class CartView: UIViewController {
         items = draftOrderViewModel.lineItems ?? []
         self.tableView.reloadData()
         self.clacTotal()
-        
     }
     
     func onFailUpdateView() {
@@ -126,21 +124,10 @@ class CartView: UIViewController {
             
         }
 
-        totalPrice.text = "\(Int(totalpr))"
+        totalPrice.text = "\(totalpr)"
     }
     //////////////////////////
-    
-    func setPrice(price: inout String){
-        let currency=defaults.getCurrency(key: "currency")
-        if currency=="USD" {
-           price=price+" "+"USD"
-        }
-        else if currency=="EGP"{
-            let m="\((Double(price)!)*18)"
-           price="\(m)"+" "+"EGP"
-        }
-        totalPrice.text=price
-    }
+ 
 
 }
 
@@ -152,24 +139,49 @@ extension CartView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueNib() as CartItem
         let item = items[indexPath.row]
-        
-        cell.itemCounter.text = String(items[indexPath.row].quantity )
-        cell.buttonIncrease = { (cell) in
-            self.items[indexPath.row].quantity += 1
-            self.tableView.reloadData()
+        cell.updateUI(item: item)
+
+       // cell.itemCounter.text = String(items[indexPath.row].quantity )
+        var count =  self.items[indexPath.row].quantity
+
+        cell.buttonIncrease = {
+            count += 1
+            cell.itemCounter.text = String(count)
+            self.items[indexPath.row].quantity = count
             self.clacTotal()
         }
-        cell.buttonDecrease = { (cell) in
+        cell.buttonDecrease = {
             if self.items[indexPath.row].quantity > 1 {
-                self.items[indexPath.row].quantity -= 1
-                self.tableView.reloadData()
+                count -= 1
+                cell.itemCounter.text = String(count)
+                self.items[indexPath.row].quantity = count
                 self.clacTotal()
             }
         }
         
-        cell.updateUI(item: item)
+        cell.deleteItem.tag = indexPath.row
+        cell.deleteItem.addTarget(self, action: #selector(deleteItemFromCart), for: .touchUpInside)
 
         return cell
+    }
+    
+    @objc func deleteItemFromCart(sender: UIButton) {
+        let index = IndexPath(row: sender.tag, section: 0)
+        items.remove(at: index.row)
+        tableView.deleteRows(at: [index], with: .fade)
+        tableView.reloadData()
+        self.clacTotal()
+        if items.count >= 1 {
+            var newItems: [OrderItem] = []
+            for item in items {
+                newItems.append(OrderItem(variant_id: item.variant_id, quantity: item.quantity))
+            }
+            draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.note)!, items: newItems)
+        } else {
+            print("else")
+            draftOrderViewModel.deleteAnExistingDraftOrder(id: (user?.customer.note)!, lastName: (user?.customer.last_name)!)
+         //   noItemsInCart.isHidden = true
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -179,14 +191,14 @@ extension CartView: UITableViewDataSource, UITableViewDelegate{
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
             self.clacTotal()
-            if items.count > 1 {
+            if items.count >= 1 {
                 var newItems: [OrderItem] = []
                 for item in items {
                     newItems.append(OrderItem(variant_id: item.variant_id, quantity: item.quantity))
                 }
                 draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.note)!, items: newItems)
             } else {
-                draftOrderViewModel.deleteAnExistingDraftOrder(id: (user?.customer.note)!)
+                draftOrderViewModel.deleteAnExistingDraftOrder(id: (user?.customer.note)!, lastName: (user?.customer.last_name)!)
              //   noItemsInCart.isHidden = true
             }
         } else if editingStyle == .insert {

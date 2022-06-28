@@ -31,8 +31,9 @@ class doneVc: UIViewController {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak self] in
                     guard let self = self else {return}
-                        self.navigationController?.pushViewController(HomeVc(), animated: true)
-                    
+                    let home = MyTabBar(nibName: "MyTabBar", bundle: nil)
+                    self.navigationController?.pushViewController(home, animated: true)
+
                 }
 
     }

@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeVc" customModule="Shop" customModuleProvider="target">
             <connections>
                 <outlet property="addsImage" destination="vYR-pY-D2F" id="MMH-X9-onI"/>
+                <outlet property="cartBtn" destination="UFI-Kv-TvD" id="N9W-J1-TH3"/>
                 <outlet property="collectionView" destination="cf8-Yk-Wtd" id="6Aj-EA-qxx"/>
                 <outlet property="internetImage" destination="1Nq-2k-o8i" id="wo0-qg-p0z"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

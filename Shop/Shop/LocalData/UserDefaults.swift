@@ -11,7 +11,7 @@ protocol userDefaultsprotocol{
     func setId(id:Int)
     func login()
     func isLoggedIn()->Bool
-    func getUserName()->String
+    func getUserName()->String?
     func getId()->Int
     func logout()
     func setDraftOrder(note: String)
@@ -45,7 +45,7 @@ class userDefault: userDefaultsprotocol{
         UserDefaults.standard.set(false, forKey: "IsLoggedIn")
     }
     
-    func getUserName() -> String {
+    func getUserName() -> String? {
         return UserDefaults.standard.value(forKey: "name") as? String ?? ""
     }
     

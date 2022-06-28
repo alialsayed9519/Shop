@@ -36,7 +36,11 @@ class AddressesTable: UIViewController{
     
     func bindAddresses(){
         addresses = addressViewModel.addresses ?? []
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+
+        }
+        
     }
     
     func bindError() {

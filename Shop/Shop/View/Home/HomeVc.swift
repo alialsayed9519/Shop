@@ -9,10 +9,15 @@ import UIKit
 
 class HomeVc: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
-    
+    private let customerViewModel = CustomerViewModel()
+    private var user: User? = nil
+    var numberOfItems: Int = 0
+    private let draftOrderViewModel = DraftOrderViewModel()
     @IBOutlet private weak var internetImage: UIImageView!
     @IBOutlet private weak var addsImage: UIImageView!
     private let brandsCollectionViewCellId = "BrandsCollectionViewCell"
+    
+    @IBOutlet weak var cartBtn: UIBarButtonItem!
     private var brands: [SmartCollection] = []
     private var priceRules: [Price_Rule] = []
     private var brandsViewModel = BrandsViewModel()
@@ -42,6 +47,23 @@ class HomeVc: UIViewController {
         if ReachabilityViewModel.isConnected() {
             internetImage.isHidden = true
         }
+        customerViewModel.getCustomerwith(id: String(userDefault().getId()))
+        customerViewModel.bindUser = { self.onSuccessUpdate() }
+    }
+    
+    func onSuccessUpdate() {
+        user = customerViewModel.customer
+        if user?.customer.note != "0" && user != nil {
+            draftOrderViewModel.getNumberOfItemesInCart(id: (user?.customer.note)!)
+            draftOrderViewModel.bindNumberOfItemsToView = { self.bind() }
+        } else {
+            self.cartBtn.setBadge(text: "0")
+        }
+    }
+    
+    func bind() {
+        numberOfItems = draftOrderViewModel.numberOfItems ?? 0
+        self.cartBtn.setBadge(text: String(numberOfItems))
     }
     
     

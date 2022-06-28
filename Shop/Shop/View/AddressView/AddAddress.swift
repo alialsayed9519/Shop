@@ -24,7 +24,7 @@ class AddAddress: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
-        addressViewModel.bindAddresses = self.bindAddresses
+        addressViewModel.bindAddresses = self.navigate
         addressViewModel.bindError = self.bindError
     }
     
@@ -40,7 +40,6 @@ class AddAddress: UIViewController {
             addressViewModel.addAddress(country: TFCountry.text ?? "", city: TFCity.text ?? "", address: TFAddress.text ?? "", phone: TFPhone.text ?? "")
         }
 
-        self.navigationController?.popToRootViewController(animated: true)
     }
     
     func updateUI() {
@@ -55,27 +54,29 @@ class AddAddress: UIViewController {
     }
     
     func bindAddresses() {
-        let newAddress = Address(address1: TFAddress.text, city: TFCity.text, province: "", phone: TFPhone.text, zip: "", last_name: "", first_name: "", country: TFCountry.text, id: nil)
-        let addressText = "\(String(describing: newAddress.country)), \(String(describing: newAddress.city)), \(String(describing: newAddress.address1))"
+//        let newAddress = Address(address1: TFAddress.text, city: TFCity.text, province: "", phone: TFPhone.text, zip: "", last_name: "", first_name: "", country: TFCountry.text, id: nil)
+  //      let addressText = "\(String(describing: newAddress.country)), \(String(describing: newAddress.city)), \(String(describing: newAddress.address1))"
         var message: String
-        var view: UIViewController
+     //   var view: UIViewController
         if chooseAddressFlag{
-            message = "Your order will be shipped to this address: \n\(addressText)"
+            message = "Your order will be shipped to this address: \n"
             let payment = PaymentVc()
-            self.order?.pilling_address = newAddress
+         //   self.order?.pilling_address = newAddress
             payment.order = self.order
-            view = payment
+          //  view = payment
         } else {
             if editFlag{
-                message = "You just edited the old address to be:\n\(addressText)"
+                message = "You just edited the old address to be:\n"
             } else{
-                message = "You just added this address:\n\(addressText)"
+                message = "You just added this address:\n"
             }
-            view = ProfileVc()
+          //  view = ProfileVc()
         }
         let alert = UIAlertController(title: "Addresses", message: message, preferredStyle: .alert)
         let okAction  = UIAlertAction(title: "Ok", style: .default) { (UIAlertAction) in
-            self.navigationController?.pushViewController(view, animated: true)
+            self.navigationController?.popViewController(animated: true)
+
+          //  self.navigationController?.pushViewController(view, animated: true)
         }
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
@@ -84,5 +85,12 @@ class AddAddress: UIViewController {
     func bindError() {
         let message = addressViewModel.error
         showAlert(title: "Error", message: message!, view: self)
+    }
+    
+    func navigate() {
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
+      //  self.navigationController?.pushViewController(AddressesTable(), animated: true)
     }
 }

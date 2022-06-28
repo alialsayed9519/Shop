@@ -68,15 +68,23 @@
                             <action selector="decreseCount:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="QiI-6Q-jmN"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="weM-Ap-eR6">
+                        <rect key="frame" x="162" y="122" width="66" height="31"/>
+                        <color key="backgroundColor" red="1" green="0.15338520550000001" blue="0.21661486260000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Delete"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ErG-04-N7r" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="0FF-1d-bfH"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="weM-Ap-eR6" secondAttribute="bottom" constant="4" id="0qy-fL-ttC"/>
                     <constraint firstItem="iae-C6-5w9" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="8" id="7H7-SG-s2l"/>
                     <constraint firstItem="iae-C6-5w9" firstAttribute="leading" secondItem="8Kl-r9-1XC" secondAttribute="trailing" constant="8" id="7cG-3C-b9y"/>
                     <constraint firstItem="ErG-04-N7r" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="93J-LF-2M8"/>
                     <constraint firstItem="fQo-pE-TBp" firstAttribute="top" secondItem="UrC-wM-7Nu" secondAttribute="bottom" constant="16" id="MiH-KD-TA2"/>
                     <constraint firstAttribute="trailingMargin" secondItem="UrC-wM-7Nu" secondAttribute="trailing" constant="8" id="MuL-i1-0jM"/>
                     <constraint firstAttribute="bottomMargin" secondItem="fQo-pE-TBp" secondAttribute="bottom" constant="8" id="Pl3-wh-2OD"/>
+                    <constraint firstItem="weM-Ap-eR6" firstAttribute="leading" secondItem="ErG-04-N7r" secondAttribute="trailing" constant="4" id="Q3E-iB-KxU"/>
                     <constraint firstAttribute="bottomMargin" secondItem="8Kl-r9-1XC" secondAttribute="bottom" constant="8" id="UK9-Xe-O4B"/>
                     <constraint firstItem="8Kl-r9-1XC" firstAttribute="leading" secondItem="fQo-pE-TBp" secondAttribute="trailing" constant="8" id="UQf-XI-lj8"/>
                     <constraint firstItem="0XL-mp-hLC" firstAttribute="leading" secondItem="ErG-04-N7r" secondAttribute="trailing" constant="8" id="XWd-WV-dkA"/>
@@ -95,6 +103,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="deleteItem" destination="weM-Ap-eR6" id="tDr-BN-Igx"/>
                 <outlet property="itemCounter" destination="8Kl-r9-1XC" id="w9g-gt-RgB"/>
                 <outlet property="itemName" destination="0XL-mp-hLC" id="tmo-PD-oLO"/>
                 <outlet property="itemPrice" destination="UrC-wM-7Nu" id="QJ4-fx-DIA"/>

@@ -9,7 +9,7 @@ import UIKit
 //import Braintree
 import BraintreeDropIn
 class PaymentVc: UIViewController {
-  var braintreeClient: BTAPIClient!
+    var braintreeClient: BTAPIClient!
     @IBOutlet weak var discountView: UIView!
     @IBOutlet weak var paymentView: UIView!
     @IBOutlet weak var cashButton: UIButton!
@@ -25,6 +25,7 @@ class PaymentVc: UIViewController {
     
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var detailsView: UIView!
+    
     var order: Order?
     var price: Double = 0.0
     var total: Double = 0.0
@@ -61,7 +62,6 @@ class PaymentVc: UIViewController {
                     // Specify the transaction amount here. "2.32" is used in this example.
             let request = BTPayPalCheckoutRequest(amount: (LTotale?.text)!)
                     request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
-
                     payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
                         if let tokenizedPayPalAccount = tokenizedPayPalAccount {
                             print("Got a nonce: \(tokenizedPayPalAccount.nonce)")

@@ -31,4 +31,5 @@ struct Variant:Codable{
     let id:Int
     let product_id:Int
     let price:String
+    let inventory_quantity: Int
 }
