@@ -39,7 +39,8 @@ class ProductDetailsVc: UIViewController {
         let backItem = UIBarButtonItem()
             backItem.title = "Category"
         addToBag.layer.cornerRadius = 20
-        
+        customerViewModel.bindErrorToView = { self.run() }
+
         let nibCell = UINib(nibName: productImageCell, bundle: nil)
         productImageCollectionView.register(nibCell, forCellWithReuseIdentifier: productImageCell)
         // Do any additional setup after loading the view.
@@ -59,11 +60,13 @@ class ProductDetailsVc: UIViewController {
     func setPrice(price: inout String){
         let currency=defaults.getCurrency(key: "currency")
         if currency=="USD" {
-           price=price+" "+"USD"
+            
+           price = price+" "+"USD"
         }
         else if currency=="EGP"{
             let m="\((Double(price)!)*18)"
-           price="\(m)"+" "+"EGP"
+
+            price="\(m)"+" "+"EGP"
         }
         priceLabel.text=price
     }
@@ -82,17 +85,18 @@ class ProductDetailsVc: UIViewController {
         let userDefault: userDefaultsprotocol = userDefault()
         print("\(String(describing: user?.customer.note))     user?.customer.note    addToCart ")
         if userDefault.isLoggedIn() {
-            if user?.customer.note == "0" {
+            if user?.customer.note == "0" || user?.customer.note == nil {
                 print("addToCart post")
-                let firstProduct = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault.getId(), default_address: nil)))
+                let firstProduct = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault.getId())))
                 draftOrderViewModel.postNewDraftOrderWith(order: firstProduct, lastName: (user?.customer.last_name)!)
-           
+               
             } else {
                 //print(userDefault.getId())
                 print("addToCart modify")
             //    print(user?.customer.note)
                 draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.note)!, variantId: (product?.variants![0].id)!)
-                draftOrderViewModel.bindDraftViewModelErrorToView = { showAlert(title: "Message", message: self.draftOrderViewModel.showMassage!, view: self) }
+               // draftOrderViewModel.bindDraftViewModelErrorToView = { showAlert(title: "Message", message: self.draftOrderViewModel.showError!, view: self) }
+                
             }
             
         } else {
@@ -113,6 +117,16 @@ class ProductDetailsVc: UIViewController {
     }
     
 
+   func run() {
+       print("in run")
+       let alert = UIAlertController(title: "message", message: "added to cart", preferredStyle: .alert)
+
+       let okAction  = UIAlertAction(title: "ok", style: .default) { (UIAlertAction) in
+       }
+       alert.addAction(okAction)
+       self.present(alert, animated: true, completion: nil)
+    }
+    
 }
 extension ProductDetailsVc:UICollectionViewDelegate,UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {

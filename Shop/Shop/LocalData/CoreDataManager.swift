@@ -10,7 +10,7 @@ import CoreData
 import UIKit
 
 class CoreDataManager {
-    var appDelegate: AppDelegate?
+   /* var appDelegate: AppDelegate?
     
     init() {
         appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -72,6 +72,6 @@ class CoreDataManager {
         
         return list
     }
-    
+    */
     
 }

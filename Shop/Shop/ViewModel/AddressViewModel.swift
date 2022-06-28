@@ -47,13 +47,8 @@ class AddressViewModel {
             if city != ""{
                 if address != ""{
                     if phone != "" {
-                        if self.isValidPhone(phone: phone){
-                            let address = Address(address1: address, city: city, province: "", phone: phone, zip: "", last_name: "", first_name: "", country: country)
-                            addAddress(address: address)
-                        } else {
-                            error = "Please enter valid phone"
-                        }
-                        
+                        let address = Address(address1: address, city: city, province: "", phone: phone, zip: "", last_name: "", first_name: "", country: country)
+                        addAddress(address: address)
                     } else {
                         error = "Please enter your phone"
                     }
@@ -100,8 +95,9 @@ class AddressViewModel {
     }
     
     func editAddress(address: Address){
-        let id = address.id!
-        network.editAddress(addressId: id) { [weak self] (data, response, error) in
+        let id = userDefault().getId()
+  //      let editAddress = address
+        network.editAddress(id: id, address: address) { [weak self] (data, response, error) in
             if error != nil {
                 print("error while editing address \(error!)")
                 self?.error = "An error occured while editing your address"
@@ -113,11 +109,13 @@ class AddressViewModel {
                 print("json: \(json)")
                 let returnedCustomer = json["customer_address"] as? Dictionary<String,Any>
                 let id = returnedCustomer?["id"] as? Int ?? 0
+//                let addresses = returnedCustomer?["addresses"] as? Int ?? 0
                 if id == 0 {
                     // failed to edit address
                     self?.error = "An error occured while editing your address"
                 }else {
                     //succeeded to edit address
+                    print("address edited")
                     self?.bindAddresses()
                 }
             }
@@ -135,10 +133,4 @@ class AddressViewModel {
             }
         }
     }
-    
-    private func isValidPhone(phone: String) -> Bool {
-      let phoneRegex = "^[0-9]{6,14}$";
-      let valid = NSPredicate(format: "SELF MATCHES %@", phoneRegex).evaluate(with: phone)
-      return valid
-   }
 }

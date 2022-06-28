@@ -15,17 +15,18 @@ class CartItem: UITableViewCell {
     @IBOutlet weak var itemVonder: UILabel!
     @IBOutlet weak var itemPrice: UILabel!
     @IBOutlet weak var itemCounter: UILabel!
+    @IBOutlet weak var deleteItem: UIButton!
+    var buttonIncrease : ()->() = {}
+    var buttonDecrease : ()->() = {}
     var defaults:userDefaultsprotocol=userDefault()
-    var buttonIncrease : ((UITableViewCell) -> Void)?
-    var buttonDecrease : ((UITableViewCell) -> Void)?
     var productImage = ""
     
     @IBAction func icreseCount(_ sender: Any) {
-        buttonIncrease?(self)
+        buttonIncrease()
     }
     
     @IBAction func decreseCount(_ sender: Any) {
-        buttonDecrease?(self)
+        buttonDecrease()
     }
     
     override func awakeFromNib() {
@@ -35,10 +36,10 @@ class CartItem: UITableViewCell {
    
     func updateUI(item: LineItem) {
         itemName.text = item.title
+        itemCounter.text = String(item.quantity)
         itemVonder.text = item.vendor
         let id = String(describing: item.product_id)
         draftOrderViewModel.getProductImageFromAPI(id: id)
-        
         draftOrderViewModel.bindImageURLToView = { self.onSuccessUpdateView() }
         var p=item.price
         setPrice(price: &p)
@@ -60,6 +61,8 @@ class CartItem: UITableViewCell {
         print("\(productImage)         kkkkkkkkk")
         itemimage.sd_setImage(with: URL(string: productImage), placeholderImage: UIImage(named: "adidas.png"))
     }
+    
+    
 }
 
 

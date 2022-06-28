@@ -53,10 +53,21 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
         self.favProductBtn.setTitle("", for: .normal)
     }
     
-    func updateFavoriteUI(item: LineItem) {      
-        favProductBtn.setTitle("", for: .normal)
-        favProductBtn.setImage(UIImage(named: "heart"), for: .normal)
-        favProductBtn.tintColor = .red
+    func updateFavoriteUI(item: LineItem) {
+       
+        
+  
+        if #available(iOS 13.0, *) {
+            let i = UIImage(systemName: "heart.fill")
+            favProductBtn.setTitle("", for: .normal)
+            favProductBtn.setImage(i, for: .normal)
+           // favProductBtn.tintColor = .red
+            
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        
         self.productPrice.text = item.price
         self.producTitle.text = item.title
         let id = String(describing: item.product_id)

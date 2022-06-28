@@ -81,6 +81,9 @@ struct URLs {
     static func productsForSubCategory(collectionId: Int, productType: String) ->String{
         return products(collectionId: collectionId) + "&?product_type=\(productType)"
     }
+    static func receiveProductVariant(variantId: String) -> String {
+        return baseURL + "variants/\(variantId).json"
+    }
     
     static func allProductsForSubCategory(productType: String) ->String{
         return allProducts() + "&?product_type=\(productType)"

@@ -9,6 +9,7 @@ import UIKit
 import JJFloatingActionButton
 
 class CategoryVc: UIViewController {
+    @IBOutlet weak var cartBtn: UIBarButtonItem!
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tabBar: UIToolbar!
@@ -29,13 +30,12 @@ var searching=false
     private let customerViewModel = CustomerViewModel()
     private var user: User? = nil
     private let draftOrderViewModel = DraftOrderViewModel()
-
+    var numberOfItems: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setSearchController()
         // Do any additional setup after loading the view.
-        
         let nibCell = UINib(nibName: "CatagoryCollectionViewCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "CatagoryCollectionViewCell")
         createFAB()
@@ -43,7 +43,8 @@ var searching=false
         shopViewModel.fetchCustomCollection()
         shopViewModel.bindCategorys = onCategoriesSuccess
         shopViewModel.bindProducts = onProductsSuccess
-
+        shopViewModel.bindSubCategories = onSubCategorySuccess
+        shopViewModel.bindError = onBindError
     }
     
     func setSearchController(){
@@ -76,6 +77,17 @@ var searching=false
     
     func onSuccessUpdateView() {
         user = customerViewModel.customer
+        if user?.customer.note != "0" && user != nil {
+            draftOrderViewModel.getNumberOfItemesInCart(id: (user?.customer.note)!)
+            draftOrderViewModel.bindNumberOfItemsToView = { self.bind() }
+        } else {
+            self.cartBtn.setBadge(text: "0")
+        }
+    }
+    
+    func bind() {
+        numberOfItems = draftOrderViewModel.numberOfItems ?? 0
+        self.cartBtn.setBadge(text: String(numberOfItems))
     }
     
     @IBAction func tabItemSelected(_ sender: UIBarButtonItem) {
@@ -167,7 +179,7 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
         if userDefault.isLoggedIn() {
             if user?.customer.last_name == "0" {
                 print("addToFav post")
-                let firstFav = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: products[index.row].variants![0].id, quantity: 1)], customer: customer(id: userDefault.getId(), default_address: nil)))
+                let firstFav = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: products[index.row].variants![0].id, quantity: 1)], customer: customer(id: userDefault.getId())))
                 draftOrderViewModel.postNewDraftOrderWith(order: firstFav, flag: false, note: (user?.customer.note)!)
            
             } else {
@@ -231,7 +243,24 @@ extension CategoryVc{
         if let productType = subCategoryName {
             shopViewModel.filterPorductsBySubCategory(itemIndex: mainCategoryIndex, subCategoryName: productType)
         }
+        internetImage.isHidden = true
         self.collectionView.reloadData()
+    }
+    
+    func onSubCategorySuccess(){
+        guard  let products = shopViewModel.allProduct else {
+            print("there are no proucts yet")
+            return
+        }
+        self.products = products
+        internetImage.isHidden = true
+        self.collectionView.reloadData()
+    }
+    
+    func onBindError(){
+        self.internetImage.isHidden = false
+        internetImage.image = UIImage(named: "NoData")
+        
     }
 }
 

@@ -14,6 +14,7 @@ class ProfileVc: UIViewController {
     private let profileTableViewCellId = "ProfileTableViewCell"
     var currencyViewMode = currencyViewModel()
     override func viewDidLoad() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         super.viewDidLoad()
         let nibCell = UINib(nibName: profileTableViewCellId, bundle: nil)
         tableView.register(nibCell, forCellReuseIdentifier: profileTableViewCellId)
@@ -25,10 +26,12 @@ class ProfileVc: UIViewController {
 
         
     }
+    
     func setUserData(){
-            let name=userdefaults.getUserName()
-            userName.text=name
-        }
+        let name = userdefaults.getUserName()
+        userName.text = name!
+    }
+    
     func showCurrencyAlert(){
         let alert=UIAlertController(title: "choose currency", message: nil, preferredStyle: .alert)
         let egpAction=UIAlertAction(title: "EGP", style: .default){

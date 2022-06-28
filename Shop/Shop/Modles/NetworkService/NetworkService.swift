@@ -65,7 +65,7 @@ class NetworkService {
             
         }
     }
-
+    
      func fetchbrandProducts(collectionTitle:String, completion: @escaping ([Product]?, Error?) -> () ){
         AF.request(URLs.brandproducts(collectionTitle:collectionTitle))
              .responseDecodable(of:AllProducts.self){
@@ -87,6 +87,7 @@ class NetworkService {
     
     
     func fetchProducts(collectionID:Int, completion: @escaping ([Product]?, Error?) -> () ){
+        print(URLs.products(collectionId: collectionID))
        AF.request(URLs.products(collectionId: collectionID))
             .responseDecodable(of:AllProducts.self){
            (response) in
@@ -146,9 +147,31 @@ class NetworkService {
         }.resume()
     }
        
-       func editAddress(addressId: Int, completion: @escaping(Data?, URLResponse?, Error?)->()){
-        updateCustomerAddresses(httpMethod: "PUT", addressId: addressId, completion: completion)
+    func editAddress(id: Int, address: Address, completion: @escaping(Data?, URLResponse?, Error?)->()){
+        let id = id
+        let putObject = UpdateAddress(address: address)
+        
+        guard let url = URL(string: URLs.oneAddress(customerId: id, addressId: address.id)) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared
+        request.httpShouldHandleCookies = false
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: putObject.asDictionary(), options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        //HTTP Headers
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        session.dataTask(with: request) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
     }
+
 
        
     func deleteAddress(addrssId: Int, completion: @escaping(Data?, URLResponse?, Error?)->()){
@@ -362,6 +385,7 @@ class NetworkService {
         else{
             url = URLs.productsForSubCategory(collectionId: collectionId, productType: productType)
         }
+        print(url)
         AF.request(url)
              .responseDecodable(of:AllProducts.self){
             (response) in
@@ -418,5 +442,19 @@ class NetworkService {
              }
          }
      }
+    
+    func receiveSingleProductVariant(variantid: String, completion: @escaping (Variant?, Error?) -> ()) {
+        AF.request(URLs.receiveProductVariant(variantId: variantid))
+             .responseDecodable(of: Variant.self) { (response) in
+                switch response.result {
+                case .success(_):
+                    guard let data = response.value else { return }
+                    completion(data, nil)
+               
+                case .failure(let error):
+                    completion(nil, error)
+                }
+            }
+    }
 
 }

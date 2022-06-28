@@ -27,7 +27,7 @@ struct APIOrders: Codable {
 }
 
 struct OrderFromAPI: Codable {
-    let customer: customer?
+    let customer: OrderCustomer?
     let financial_status: String?
     let currency:String?
     let current_total_price:String?
@@ -38,4 +38,9 @@ struct OrderFromAPI: Codable {
 
 struct OrdersFromAPI: Codable {
     let orders: [OrderFromAPI]
+}
+
+struct OrderCustomer: Codable {
+    let id :Int
+    let default_address: Address?
 }
