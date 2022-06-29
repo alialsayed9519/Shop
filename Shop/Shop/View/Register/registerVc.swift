@@ -22,7 +22,7 @@ class registerVc: UIViewController {
         super.viewDidLoad()
        // regiBtn.backgroundColor =.green
         regiBtn.layer.cornerRadius=20
-        regImg.image=UIImage(named: "shop")
+        regImg.image=UIImage(named: "loginn")
         bindToViewModel()
         // Do any additional setup after loading the view.
     }

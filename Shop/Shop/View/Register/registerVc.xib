@@ -65,7 +65,7 @@
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdb-JZ-hNw">
                     <rect key="frame" x="12" y="632" width="390" height="55"/>
-                    <color key="backgroundColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.1967988014" green="0.25351768730000002" blue="0.34522667530000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="55" id="CaH-0B-5Lc"/>
                     </constraints>
@@ -73,7 +73,7 @@
                         <attributedString key="attributedTitle">
                             <fragment content="Sign Up">
                                 <attributes>
-                                    <color key="NSColor" systemColor="tertiarySystemBackgroundColor"/>
+                                    <color key="NSColor" red="0.80606919529999999" green="0.76350432629999998" blue="0.69426709409999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <font key="NSFont" metaFont="system" size="19"/>
                                 </attributes>
                             </fragment>
@@ -86,14 +86,13 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etH-SW-iIN">
                     <rect key="frame" x="25" y="719" width="259.5" height="27.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                    <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWv-RN-Ncl">
                     <rect key="frame" x="292.5" y="713" width="68" height="39.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <state key="normal" title="Sign In">
-                        <color key="titleColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleColor" red="0.1967988014" green="0.25351768730000002" blue="0.34522667530000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="loginBtn:" destination="-1" eventType="touchUpInside" id="5ue-pl-uga"/>
@@ -135,9 +134,6 @@
     </objects>
     <resources>
         <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="tertiarySystemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
