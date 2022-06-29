@@ -61,7 +61,7 @@ class ProductDetailsVc: UIViewController {
     func setPrice(price: inout String){
         let currency=defaults.getCurrency(key: "currency")
         if currency=="USD" {
-            let m="\((Double(price)!)/18)"
+            let m="\((Float(price)!)/18)"
 
             price="\(m)"+" "+"USD"
         

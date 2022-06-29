@@ -30,7 +30,7 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
         let currency=defaults.getCurrency(key: "currency")
         if currency=="USD" {
             print(price)
-            let m="\((Double(price)!)/18)"
+            let m="\((Float(price)!)/18)"
            price="\(m)"+" "+"USD"
             
         }
