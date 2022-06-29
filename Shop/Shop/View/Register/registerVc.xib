@@ -92,7 +92,7 @@
                     <rect key="frame" x="292.5" y="713" width="68" height="39.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <state key="normal" title="Sign In">
-                        <color key="titleColor" red="0.1967988014" green="0.25351768730000002" blue="0.34522667530000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleColor" red="0.90213054420000005" green="0.49655848740000003" blue="0.51623362299999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="loginBtn:" destination="-1" eventType="touchUpInside" id="5ue-pl-uga"/>

@@ -47,6 +47,7 @@ class ProductDetailsVc: UIViewController {
     }
     func displayProduct(){
         navigationItem.title=product?.vendor
+        
         //title=product?.vendor
         reviewTextView.text=product?.product_type
         descTextView.text=product?.body_html
