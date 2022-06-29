@@ -11,7 +11,6 @@ class luanchVc: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-print("salma")
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {

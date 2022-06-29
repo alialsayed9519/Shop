@@ -42,7 +42,6 @@ class OrdersTable: UITableViewController {
         let message = veiwModel.error
         let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-            print("alert working")
         }
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
@@ -69,7 +68,6 @@ class OrdersTable: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(orders[0].current_total_price)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

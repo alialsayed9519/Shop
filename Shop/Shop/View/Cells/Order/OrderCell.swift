@@ -26,7 +26,6 @@ class OrderCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-        print("aya haga")
     }
     
     func updateUI(order: OrderFromAPI){

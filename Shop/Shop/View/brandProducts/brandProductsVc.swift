@@ -25,9 +25,6 @@ class brandProductsVc: UIViewController {
                 productCollectionView.register(brandProductCell, forCellWithReuseIdentifier:productCell)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         setBrandImage()
-        print(smartCol.id)
-       // shopViewModel.fetchbrandProducts(collectionTitle: smartCol.title)
-        print(smartCol.title)
 
         shopViewModel.fetchbrandProducts(collectionTitle: smartCol.title)
         shopViewModel.bindProducts=self.onSuccess
@@ -43,9 +40,7 @@ class brandProductsVc: UIViewController {
     func onSuccess() {
           guard let products = shopViewModel.allProduct
            else {
-            print("no products")
             return
-            
         }
         self.products = products
         productCollectionView.reloadData()
