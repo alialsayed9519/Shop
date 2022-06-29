@@ -39,8 +39,9 @@ class CartItem: UITableViewCell {
         itemCounter.text = String(item.quantity)
         itemVonder.text = item.vendor
         let id = String(describing: item.product_id)
-        draftOrderViewModel.getProductImageFromAPI(id: id)
-        draftOrderViewModel.bindImageURLToView = { self.onSuccessUpdateView() }
+        print("\(id)        product id")
+        draftOrderViewModel.getProductFromAPI(id: id)
+        draftOrderViewModel.bindProductToView = { self.onSuccessUpdateView() }
         var p=item.price
         setPrice(price: &p)
     }
@@ -57,7 +58,9 @@ class CartItem: UITableViewCell {
     }
     
     func onSuccessUpdateView() {
-        productImage = draftOrderViewModel.imageURL!
+        
+        print("sfjkavjrlelvldlvlfllflfllflflfllflflf")
+        productImage = (draftOrderViewModel.product?.images[0].src)!
         print("\(productImage)         kkkkkkkkk")
         itemimage.sd_setImage(with: URL(string: productImage), placeholderImage: UIImage(named: "adidas.png"))
     }

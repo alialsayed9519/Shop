@@ -71,12 +71,12 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
         self.productPrice.text = item.price
         self.producTitle.text = item.title
         let id = String(describing: item.product_id)
-        draftOrderViewModel.getProductImageFromAPI(id: id)
-        draftOrderViewModel.bindImageURLToView = { self.onSuccessUpdateView() }
+        draftOrderViewModel.getProductFromAPI(id: id)
+        draftOrderViewModel.bindProductToView = { self.onSuccessUpdateView() }
     }
     
     func onSuccessUpdateView() {
-        prodImage = draftOrderViewModel.imageURL!
+        prodImage = (draftOrderViewModel.product?.images[0].src)!
         print(prodImage)
         productImage.sd_setImage(with: URL(string: prodImage), placeholderImage: UIImage(named: "adidas.png"))
     }

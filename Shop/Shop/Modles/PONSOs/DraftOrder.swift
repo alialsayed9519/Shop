@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct Images: Codable {
-    let images: [ProductImage]
-}
-
-struct ProductImage: Codable {
-    let src: String
-}
+//struct Images: Codable {
+//    let images: [ProductImage]
+//}
+//
+//struct ProductImage: Codable {
+//    let src: String
+//}
 
 //MARK: gitting Models
 struct Draft: Decodable {

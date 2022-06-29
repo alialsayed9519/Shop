@@ -249,13 +249,13 @@ class NetworkService {
             }
     }
    
-    func getProductImageById(id: String , completion: @escaping (String?, Error?)->()){
-        AF.request(URLs.getProductImage(id: id))
-             .responseDecodable(of: Images.self) { (response) in
+    func getProductById(id: String , completion: @escaping (Product?, Error?)->()){
+        AF.request(URLs.getProduct(id: id))
+             .responseDecodable(of: Prod.self) { (response) in
                 switch response.result {
                 case .success(_):
                     guard let data = response.value else { return }
-                    completion(data.images[0].src, nil)
+                    completion(data.product, nil)
                
                 case .failure(let error):
                     completion(nil, error)
