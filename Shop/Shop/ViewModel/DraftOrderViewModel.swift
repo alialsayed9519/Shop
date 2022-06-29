@@ -7,7 +7,13 @@
 
 import Foundation
 
+protocol PQ {
+    func showMyAlert()
+}
+
+
 class DraftOrderViewModel {
+    var pqq: PQ?
     let networkService: NetworkService!
     var bindDraftOrderLineItemsViewModelToView: (() -> ()) = {}
     var bindDraftViewModelErrorToView: (() -> ()) = {}
@@ -57,7 +63,13 @@ class DraftOrderViewModel {
     
     init() {
        self.networkService = NetworkService()
+        
    }
+    
+    func sett(product:ProductDetailsVc) {
+        pqq = product
+        
+    }
     
     func postNewDraftOrderWith(order: Api, flag: Bool = true, note: String = "0", lastName: String = "0") {
         let customerViewModel = CustomerViewModel()
@@ -65,23 +77,20 @@ class DraftOrderViewModel {
         networkService.postNewDraftOrder(order: order) { data, response, error in
             if let error: Error = error {
                 let message = error.localizedDescription
-                print("postNewDraftOrderWith    vm")
                 self.showError = message
                 return
             }
             guard let data = data else {
                 return
             }
-            
-            print("asasasasasasas")
-            
+            DispatchQueue.main.async {
+                self.pqq?.showMyAlert()
+
+            }
             do {
                 let jsonObj = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
                 let i = jsonObj!["draft_order"] as? [String: Any]
                 let draftId = i!["id"] as! Int
-                print(type(of: draftId))
-                print("\(String(describing: draftId))   postNewDraftOrderWith  vm")
-               // userDefault().setDraftOrder(note: String(draftId))
                 if flag == true {
                     self.showError = "The Product is added to cart"
                     customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: String(draftId), last_name: lastName)))
@@ -99,7 +108,6 @@ class DraftOrderViewModel {
     }
 
     func getDraftOrderLineItems(id: String) {
-        print(id)
         networkService.getSingleDraftOrder(id: id) { (items, error) in
             if let error: Error = error {
                 let message = error.localizedDescription
@@ -134,9 +142,6 @@ class DraftOrderViewModel {
                 let message = error.localizedDescription
                 self.showError = message
             } else {
-                print("deleteAnExistingDraftOrder       vm")
-                //userDefault().setDraftOrder(note: "0")
-                print(data!)
                 if flag == true {
                     self.customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: "0", last_name: lastName)))
                 }
@@ -154,7 +159,6 @@ class DraftOrderViewModel {
                 let message = error.localizedDescription
                 self.showError = message
             } else {
-       //         print(arrOfLineItems!)
                 let oldLineItems = arrOfLineItems!
                 var new: [OrderItem] = []
                 for item in oldLineItems {
@@ -167,15 +171,11 @@ class DraftOrderViewModel {
                 }
                 
                 new.append(OrderItem(variant_id: variantId, quantity: 1))
-           //     print(new)
                 let api = Updated(draft_order: Modify(id: Int(id)!, line_items: new))
-           //     print(api)
-                
                 self.networkService.ModifyAnExistingDraftOrder(id: id, order: api ) { data, response, error in
                     if let error: Error = error {
                         let message = error.localizedDescription
                         self.showError = message
-                        print(message)
                     }
                     
                     if data != nil {
@@ -183,7 +183,6 @@ class DraftOrderViewModel {
                     }
                     
                     if let response = response as? HTTPURLResponse {
-                        print("\(response.statusCode)   updateAnExistingDraftOrder   vm")
                         
                     }
                 }
@@ -200,10 +199,7 @@ class DraftOrderViewModel {
                 self.showError = message
             }
             
-            if let response = response as? HTTPURLResponse  {
-                print("\(response.statusCode)   updateAnExistingDraftOrder   array   vm")
-                
-            }
+            if let response = response as? HTTPURLResponse  {}
         }
     }
     
@@ -219,15 +215,11 @@ class DraftOrderViewModel {
     }
     
     func getNumberOfItemesInCart(id: String) {
-        print(id)
         networkService.getSingleDraftOrder(id: id) { (items, error) in
             if let error: Error = error {
                 let message = error.localizedDescription
-                print("   getDraftOrderLineItems  error")
-                print(message)
                 self.showError = message
             } else {
-                print("   getDraftOrderLineItems  vm")
                 self.numberOfItems = items?.count
             }
         }

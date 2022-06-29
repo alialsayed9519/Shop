@@ -103,7 +103,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="decreseCount" destination="fQo-pE-TBp" id="cVS-zD-0Kw"/>
                 <outlet property="deleteItem" destination="weM-Ap-eR6" id="tDr-BN-Igx"/>
+                <outlet property="icreseCount" destination="iae-C6-5w9" id="PnE-BC-LBH"/>
                 <outlet property="itemCounter" destination="8Kl-r9-1XC" id="w9g-gt-RgB"/>
                 <outlet property="itemName" destination="0XL-mp-hLC" id="tmo-PD-oLO"/>
                 <outlet property="itemPrice" destination="UrC-wM-7Nu" id="QJ4-fx-DIA"/>

@@ -29,7 +29,6 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
     func setPrice(price: inout String){
         let currency=defaults.getCurrency(key: "currency")
         if currency=="USD" {
-            print(price)
             price="\(price)"+" "+"USD"
         }
         else if currency=="EGP"{
@@ -77,7 +76,6 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
     
     func onSuccessUpdateView() {
         prodImage = (draftOrderViewModel.product?.images[0].src)!
-        print(prodImage)
         productImage.sd_setImage(with: URL(string: prodImage), placeholderImage: UIImage(named: "adidas.png"))
     }
     

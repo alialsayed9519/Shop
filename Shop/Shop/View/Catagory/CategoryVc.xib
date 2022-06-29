@@ -40,31 +40,25 @@
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hMn-wl-9tg">
                     <rect key="frame" x="0.0" y="88" width="414" height="44"/>
                     <items>
-                        <barButtonItem title="General" id="Hnc-Oe-AvT" userLabel="Home">
-                            <connections>
-                                <action selector="tabItemSelected:" destination="-1" id="rdP-jC-P3P"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Cng-k3-vRr"/>
-                        <barButtonItem tag="4" title="Kid" id="r2r-f0-VEb">
+                        <barButtonItem tag="1" title="Kid" id="r2r-f0-VEb">
                             <connections>
                                 <action selector="tabItemSelected:" destination="-1" id="aMy-Rh-jrW"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="o1t-SD-D8m"/>
-                        <barButtonItem tag="8" title="Men" id="KRb-qK-Oqn">
+                        <barButtonItem tag="2" title="Men" id="KRb-qK-Oqn">
                             <connections>
                                 <action selector="tabItemSelected:" destination="-1" id="QeD-c2-Wny"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="0AD-Y1-0Ye"/>
-                        <barButtonItem tag="12" title="Sale" id="nmw-iT-ohk">
+                        <barButtonItem tag="3" title="Sale" id="nmw-iT-ohk">
                             <connections>
                                 <action selector="tabItemSelected:" destination="-1" id="pCx-Jj-osp"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Dh1-fG-4ST"/>
-                        <barButtonItem tag="16" title="Women" id="3nb-Tm-mEc">
+                        <barButtonItem tag="4" title="Women" id="3nb-Tm-mEc">
                             <connections>
                                 <action selector="tabItemSelected:" destination="-1" id="sSC-01-Utl"/>
                             </connections>

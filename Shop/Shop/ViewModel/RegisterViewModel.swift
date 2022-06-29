@@ -23,7 +23,6 @@ class RegisterViewModel:regTemp{
     var title: String?
     
     var navigate={
-        print ("navigation")
     }
     
     let network=NetworkService()
@@ -76,7 +75,6 @@ class RegisterViewModel:regTemp{
     func register(customer:Customer){
         network.register(newCutomer: customer){[weak self] (data, response, error) in
             if error != nil {
-                print(error!)
             } else {                if let data = data {
                     let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments)as! Dictionary<String,Any>
                     let getCustomer = json["customer"] as? Dictionary<String,Any>
@@ -98,13 +96,11 @@ class RegisterViewModel:regTemp{
                             self?.navigate()
                         }
                         self?.alertMsgSubject.onNext("registered successfully")
-                        print("registered successfully")
                         self?.title="Congratulations"
                         self?.message="registered successfully"
                     }
                         else{
                             self?.alertMsgSubject.onNext("An error occurred while registering")
-                            print("error occurred while reg")
                             self?.title="Error"
                             self?.message="An error occurred while registering"
                         }

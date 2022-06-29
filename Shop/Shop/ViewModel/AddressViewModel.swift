@@ -30,12 +30,9 @@ class AddressViewModel {
     func fetchAddresses() {
         network.fetchAddresses() { (addresses, error) in
             if let message = error?.localizedDescription{
-                self.error = message
-                print(error?.localizedDescription ?? "NO error")
-            }
+                self.error = message            }
             else {
                 if let respons = addresses {
-                  //  print(respons[0])
                     self.addresses = respons
                 }
             }
@@ -68,19 +65,17 @@ class AddressViewModel {
         var newAddress = address
         network.addAddress(id: id, address: address) { [weak self] (data, response, error) in
             if error != nil {
-                print("error while adding address \(error!)")
                 self?.error = "An error occured while adding your address"
                 return
             }
             if let data = data{
                 let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,Any>
-                print("json: \(json)")
                 let returnedCustomer = json["customer"] as? Dictionary<String,Any>
                 do{
                     let reutrnedCust = try JSONDecoder().decode(Customer.self, from: data)
                     newAddress.id = reutrnedCust.customer.addresses?.last?.id ?? 0
                 }catch{
-                    print("could parse response: \(error.localizedDescription)")
+                    
                 }
                 let id = returnedCustomer?["id"] as? Int ?? 0
                 if id == 0 {
@@ -99,23 +94,18 @@ class AddressViewModel {
   //      let editAddress = address
         network.editAddress(id: id, address: address) { [weak self] (data, response, error) in
             if error != nil {
-                print("error while editing address \(error!)")
                 self?.error = "An error occured while editing your address"
                 //failed to save address
                 return
             }
             if let data = data{
                 let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,Any>
-                print("json: \(json)")
                 let returnedCustomer = json["customer_address"] as? Dictionary<String,Any>
                 let id = returnedCustomer?["id"] as? Int ?? 0
-//                let addresses = returnedCustomer?["addresses"] as? Int ?? 0
                 if id == 0 {
-                    // failed to edit address
                     self?.error = "An error occured while editing your address"
                 }else {
                     //succeeded to edit address
-                    print("address edited")
                     self?.bindAddresses()
                 }
             }
@@ -125,10 +115,8 @@ class AddressViewModel {
         network.deleteAddress(addrssId: addressId) { [weak self] (data, response, error) in
             let json = try! JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! Dictionary<String,Any>
             if json.isEmpty {
-                print("deleted")
                 self?.fetchAddresses()
             }else{
-                print("cant delete")
                 self?.error = "We can not delete this address"
             }
         }

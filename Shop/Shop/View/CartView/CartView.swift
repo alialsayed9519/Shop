@@ -55,7 +55,6 @@ class CartView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(items.count)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerNib(cell: CartItem.self)
@@ -107,10 +106,7 @@ class CartView: UIViewController {
         showAlert(title: "Error", message: message!, view: self)
     }
     
-//
-    ///////////////////////////
     func clacTotal() {
-        print("clacTotal")
         var total = 0.0
         var totalpr=0.0
         for item in items{
@@ -128,9 +124,6 @@ class CartView: UIViewController {
 
         totalPrice.text = "\(totalpr)"
     }
-    //////////////////////////
- 
-
 }
 
 extension CartView: UITableViewDataSource, UITableViewDelegate{
@@ -143,32 +136,40 @@ extension CartView: UITableViewDataSource, UITableViewDelegate{
         let item = items[indexPath.row]
         cell.updateUI(item: item)
         self.items[indexPath.row].maxQuantity = cell.number
-        print("\(String(describing: cell.number))              ;;;;;;;")
-       // cell.itemCounter.text = String(items[indexPath.row].quantity )
         var count =  self.items[indexPath.row].quantity
         
-        cell.buttonIncrease = {
-            if count <= self.items[indexPath.row].maxQuantity ?? 2 {
-                count += 1
-                cell.itemCounter.text = String(count)
-                self.items[indexPath.row].quantity = count
-                self.clacTotal()
-            } else {
-                let alert = UIAlertController(title: "message", message: "this is the max Quantity ", preferredStyle: .alert)
-                let okAction  = UIAlertAction(title: "ok", style: .default) { (UIAlertAction) in
+        var max: Int?
+        draftOrderViewModel.getProductFromAPI(id: String(items[indexPath.row].product_id))
+        draftOrderViewModel.bindProductToView = {
+             max = self.draftOrderViewModel.product?.variants?[0].inventory_quantity
+        }
+        
+     //   if !items.isEmpty {
+            cell.buttonIncrease = {
+                
+                if count <= max ?? 2 {
+                    count += 1
+                    cell.itemCounter.text = String(count)
+                    self.items[indexPath.row].quantity = count
+                    self.clacTotal()
+                } else {
+                    let alert = UIAlertController(title: "message", message: "this is the max Quantity ", preferredStyle: .alert)
+                    let okAction  = UIAlertAction(title: "ok", style: .default) { (UIAlertAction) in
+                    }
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
                 }
-                alert.addAction(okAction)
-                self.present(alert, animated: true, completion: nil)
             }
+            cell.buttonDecrease = {
+                if self.items[indexPath.row].quantity > 1 {
+                    count -= 1
+                    cell.itemCounter.text = String(count)
+                    self.items[indexPath.row].quantity = count
+                    self.clacTotal()
+                }
+         //   }
         }
-        cell.buttonDecrease = {
-            if self.items[indexPath.row].quantity > 1 {
-                count -= 1
-                cell.itemCounter.text = String(count)
-                self.items[indexPath.row].quantity = count
-                self.clacTotal()
-            }
-        }
+        
         
         cell.deleteItem.tag = indexPath.row
         cell.deleteItem.addTarget(self, action: #selector(deleteItemFromCart), for: .touchUpInside)
@@ -189,9 +190,7 @@ extension CartView: UITableViewDataSource, UITableViewDelegate{
             }
             draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.note)!, items: newItems)
         } else {
-            print("else")
             draftOrderViewModel.deleteAnExistingDraftOrder(id: (user?.customer.note)!, lastName: (user?.customer.last_name)!)
-         //   noItemsInCart.isHidden = true
         }
     }
     

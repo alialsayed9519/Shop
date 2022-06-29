@@ -8,7 +8,16 @@
 import UIKit
 import Cosmos
 import SDWebImage
-class ProductDetailsVc: UIViewController {
+class ProductDetailsVc: UIViewController, PQ {
+    func showMyAlert() {
+        let alert = UIAlertController(title: "message", message: "added tddddddddo cart", preferredStyle: .alert)
+
+        let okAction  = UIAlertAction(title: "ok", style: .default) { (UIAlertAction) in
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     var product:Product!
     var ratings=[4,4.5,5]
     var defaults:userDefaultsprotocol=userDefault()
@@ -44,7 +53,9 @@ class ProductDetailsVc: UIViewController {
         let nibCell = UINib(nibName: productImageCell, bundle: nil)
         productImageCollectionView.register(nibCell, forCellWithReuseIdentifier: productImageCell)
         // Do any additional setup after loading the view.
+        draftOrderViewModel.sett(product: self)
     }
+    
     func displayProduct(){
         navigationItem.title=product?.vendor
         //title=product?.vendor
@@ -71,7 +82,6 @@ class ProductDetailsVc: UIViewController {
         priceLabel.text=price
     }
     override func viewWillAppear(_ animated: Bool) {
-        print("\(userDefault().getId())     user id")
         customerViewModel.getCustomerwith(id: String(userDefault().getId()))
         customerViewModel.bindUser = { self.onSuccessUpdateView() }
     }
@@ -83,25 +93,23 @@ class ProductDetailsVc: UIViewController {
 
     @IBAction func addToCart(_ sender: Any) {
         let userDefault: userDefaultsprotocol = userDefault()
-        print("\(String(describing: user?.customer.note))     user?.customer.note    addToCart ")
         if userDefault.isLoggedIn() {
             if user?.customer.note == "0" || user?.customer.note == nil {
-                print("addToCart post")
                 let firstProduct = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault.getId())))
                 draftOrderViewModel.postNewDraftOrderWith(order: firstProduct, lastName: (user?.customer.last_name)!)
              //   draftOrderViewModel.bindDraftViewModelErrorToView = { showAlert(title: "Message", message: self.draftOrderViewModel.showError!, view: self) }
 
             } else {
-                //print(userDefault.getId())
-                print("addToCart modify")
-            //    print(user?.customer.note)
                 draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.note)!, variantId: (product?.variants![0].id)!)
                 draftOrderViewModel.bindDraftViewModelErrorToView = { showAlert(title: "Message", message: self.draftOrderViewModel.showError!, view: self) }
+               
                 
             }
             
+            
+            
+            
         } else {
-            print(userDefault.isLoggedIn())
             let alert = UIAlertController(title: "Error", message: "Guest can't add to cart please login first", preferredStyle: .alert)
             let loginAction  = UIAlertAction(title: "go to login ", style: .default) { (UIAlertAction) in
                 let login = loginvc()
@@ -119,7 +127,6 @@ class ProductDetailsVc: UIViewController {
     
 
    func run() {
-       print("in run")
        let alert = UIAlertController(title: "message", message: "added to cart", preferredStyle: .alert)
 
        let okAction  = UIAlertAction(title: "ok", style: .default) { (UIAlertAction) in
@@ -142,7 +149,6 @@ extension ProductDetailsVc:UICollectionViewDelegate,UICollectionViewDataSource{
         let imageCell=collectionView.dequeueReusableCell(withReuseIdentifier: productImageCell, for: indexPath) as! ImageCollectionViewCell
         
         let ImageSrc = product.images[indexPath.row].src
-        print(ImageSrc)
         imageCell.proimageCell.sd_setImage(with: URL(string: ImageSrc), placeholderImage: UIImage(named: "adidas.png"))
 
       //  imageCell.productImg.sd_setImage(with: URL(string: ImageSrc), completed: nil)

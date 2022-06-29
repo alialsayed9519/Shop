@@ -53,8 +53,6 @@ class LoginViewModel:loginTemp{
                         }
                     case .failure(let error):
                         self?.alertMessage="an error ocurred while login"
-                        print(error)
-                        
                     }
                 }
             }else{

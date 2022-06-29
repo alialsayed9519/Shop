@@ -49,7 +49,6 @@ class OrderViewModel {
             let myOrder = APIOrder(order: order)
             network.postOrder(order: myOrder) { (data, response, error) in
                 if error != nil{
-                    print("error while posting order \(error!.localizedDescription)")
                 }
                 if let data = data{
                     let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,Any>

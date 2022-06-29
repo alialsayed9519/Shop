@@ -41,15 +41,11 @@ class CustomerViewModel {
             if let error: Error = error {
                 let message = error.localizedDescription
                 self.showError = message
-                print("\(message)    getCustomerwith  error    vm")
             }
             guard let user = user else {
                 return
             }
             self.customer = user
-            print("\(user.customer.id)    user.customer.id  sucss    vm")
-            print("\(user.customer.note)    user.customer.note  sucss    vm")
-            print("\(user.customer.last_name)    user.customer.last_name  sucss    vm")
         }
     }
     
@@ -58,10 +54,8 @@ class CustomerViewModel {
             if let error: Error = error {
                 let message = error.localizedDescription
                 self.showError = message
-                print("\(message)        vm")
             }
             if let response = response as? HTTPURLResponse {
-                print("\(response.statusCode)   modifyCustomerNote  CustomerViewModel   vm")
             }
             self.reload = true
         }
@@ -71,11 +65,8 @@ class CustomerViewModel {
             networkService.updateCustomerFav(id: id, user: user) { data, response, error in
                 if let error: Error = error {
                     let message = error.localizedDescription
-                    self.showError = message
-                    print("\(message)        vm")
-                }
+                    self.showError = message                }
                 if let response = response as? HTTPURLResponse {
-                    print("\(response.statusCode)   modifyCustomerNote  CustomerViewModel   vm")
                 }
             }
         }
