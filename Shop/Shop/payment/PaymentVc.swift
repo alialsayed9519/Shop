@@ -30,7 +30,7 @@ class PaymentVc: UIViewController {
     var price: Double = 0.0
     var total: Double = 0.0
     var currency: String = ""
-    
+    var subPrice:Double = 0.0
     private let viewModel = OrderViewModel()
 
         
@@ -46,11 +46,11 @@ class PaymentVc: UIViewController {
             self.applyButton.layer.cornerRadius = 20
             
             price = Double((order?.current_total_price ?? "0.0") ) ?? 0.0
-            total = price + 15
+            total = subPrice + 15
 
             currency = userDefault().getCurrency()
             
-            self.LPrice.text = "\(price) \(currency)"
+            self.LPrice.text = "\(subPrice) \(currency)"
             self.LDiscount.text = "0.00 \(String(describing: currency))"
             self.LShipping.text = "15.00 \(String(describing: currency))"
             self.LTotale.text = "\(String(describing: total)) \(String(describing: currency))"

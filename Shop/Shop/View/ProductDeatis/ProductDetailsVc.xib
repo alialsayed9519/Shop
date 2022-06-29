@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailsVc" customModule="Shop" customModuleProvider="target">
             <connections>
-                <outlet property="addToBag" destination="guo-jH-jf4" id="Jvt-OW-Qg6"/>
+                <outlet property="addToBag" destination="guo-jH-jf4" id="fp5-XJ-5xP"/>
                 <outlet property="descTextView" destination="KYM-89-wLY" id="R4A-h0-Lur"/>
                 <outlet property="favButton" destination="hfA-ws-hgd" id="xqC-0o-I9q"/>
                 <outlet property="imageControl" destination="K2A-4g-4So" id="6C9-Kc-uLd"/>
@@ -152,7 +152,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
-                        <action selector="addToCart:" destination="-1" eventType="touchUpInside" id="Lc3-TZ-uHe"/>
+                        <action selector="addToCart:" destination="-1" eventType="touchUpInside" id="ybb-o4-Jme"/>
                     </connections>
                 </button>
             </subviews>

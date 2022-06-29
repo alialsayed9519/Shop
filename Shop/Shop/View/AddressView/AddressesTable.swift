@@ -18,6 +18,7 @@ class AddressesTable: UIViewController{
     let addAddressView = AddAddress()
     var order: Order?
     var chooseAddressFlag = false
+    var subTotal:Double=0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,6 +113,7 @@ extension AddressesTable: UITableViewDataSource, UITableViewDelegate{
             let payment = PaymentVc()
             self.order?.pilling_address = addresses[indexPath.row]
             payment.order? = self.order!
+            payment.subPrice=self.subTotal
             self.navigationController?.pushViewController(payment, animated: true)
         }
     }

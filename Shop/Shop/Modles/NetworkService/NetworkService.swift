@@ -76,7 +76,6 @@ class NetworkService {
                 else {
                     return
                 }
-                print(data.products[0].title)
                 completion(data.products,nil)
             case .failure(let error) :
                 completion(nil,error)
