@@ -120,12 +120,13 @@ class CartView: UIViewController {
             total += Double(item.quantity) * (Double(item.price) ?? 0.0)
             let currency=defaults.getCurrency(key: "currency")
             if currency=="USD" {
-               totalpr=total
+            
+                totalpr=total/18
                 currLabel="USD"
             }
             else if currency=="EGP"{
                 
-               totalpr=total*18
+                totalpr=total
                 currLabel="EGp"
             }
             

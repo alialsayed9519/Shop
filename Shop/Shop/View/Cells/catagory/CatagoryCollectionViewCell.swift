@@ -30,11 +30,12 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
         let currency=defaults.getCurrency(key: "currency")
         if currency=="USD" {
             print(price)
-            price="\(price)"+" "+"USD"
+            let m="\((Double(price)!)/18)"
+           price="\(m)"+" "+"USD"
+            
         }
         else if currency=="EGP"{
-            let m="\((Double(price)!)*18)"
-           price="\(m)"+" "+"EGP"
+           price=price+" "+"EGP"
         }
         self.productPrice.text=price
     }

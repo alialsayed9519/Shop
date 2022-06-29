@@ -60,13 +60,13 @@ class ProductDetailsVc: UIViewController {
     func setPrice(price: inout String){
         let currency=defaults.getCurrency(key: "currency")
         if currency=="USD" {
-            
-           price = price+" "+"USD"
+            let m="\((Double(price)!)/18)"
+
+            price="\(m)"+" "+"USD"
+        
         }
         else if currency=="EGP"{
-            let m="\((Double(price)!)*18)"
-
-            price="\(m)"+" "+"EGP"
+            price = price+" "+"EGP"
         }
         priceLabel.text=price
     }
