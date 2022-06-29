@@ -26,7 +26,7 @@ class NetworkService {
         do{
             request.httpBody = try JSONSerialization.data(withJSONObject: newCutomer.asDictionary(), options: .prettyPrinted)}
         catch let error {
-            print(error.localizedDescription)
+            compeletion(nil, nil, error)
         }
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -57,7 +57,6 @@ class NetworkService {
         case .success(_):
             guard let data = response.value
             else{return}
-                print(data.custom_collections?[0].title as Any)
                 completion(data.custom_collections, nil)
             case .failure(let error):
                 completion(nil,error)
@@ -79,14 +78,13 @@ class NetworkService {
                 completion(data.products,nil)
             case .failure(let error) :
                 completion(nil,error)
-                print(error.localizedDescription)
             }
         }
     }
     
     
     func fetchProducts(collectionID:Int, completion: @escaping ([Product]?, Error?) -> () ){
-        print(URLs.products(collectionId: collectionID))
+        print(URLs.products(collectionId: collectionID) + ">>> fitch product")
        AF.request(URLs.products(collectionId: collectionID))
             .responseDecodable(of:AllProducts.self){
            (response) in
@@ -96,7 +94,6 @@ class NetworkService {
                else {
                    return
                }
-               print(data.products[0].title)
                completion(data.products,nil)
            case .failure(let error) :
                completion(nil,error)
@@ -113,11 +110,9 @@ class NetworkService {
                 switch response.result{
                 case .success(_):
                     guard let data = response.value else { return }
-                   // print(data.addresses![0].city)
                     completion(data.addresses,nil)
                 case .failure(let error) :
                     completion(nil,error)
-                    print(error.localizedDescription)
                 }
             }
     }
@@ -134,7 +129,6 @@ class NetworkService {
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: putObject.asDictionary(), options: .prettyPrinted)
         } catch let error {
-            print(error.localizedDescription)
         }
            
         //MARK: HTTP Headers
@@ -159,7 +153,6 @@ class NetworkService {
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: putObject.asDictionary(), options: .prettyPrinted)
         } catch let error {
-            print(error.localizedDescription)
         }
         
         //HTTP Headers
@@ -223,7 +216,6 @@ class NetworkService {
             request.httpBody = try JSONSerialization.data(withJSONObject: order.asDictionary(), options: .prettyPrinted)
           
         } catch let error {
-            print(error.localizedDescription)
         }
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -248,13 +240,13 @@ class NetworkService {
             }
     }
    
-    func getProductImageById(id: String , completion: @escaping (String?, Error?)->()){
-        AF.request(URLs.getProductImage(id: id))
-             .responseDecodable(of: Images.self) { (response) in
+    func getProductById(id: String , completion: @escaping (Product?, Error?)->()){
+        AF.request(URLs.getProduct(id: id))
+             .responseDecodable(of: Prod.self) { (response) in
                 switch response.result {
                 case .success(_):
                     guard let data = response.value else { return }
-                    completion(data.images[0].src, nil)
+                    completion(data.product, nil)
                
                 case .failure(let error):
                     completion(nil, error)
@@ -287,7 +279,6 @@ class NetworkService {
             request.httpBody = try JSONSerialization.data(withJSONObject: order.asDictionary(), options: .prettyPrinted)
           
         } catch let error {
-            print(error.localizedDescription)
         }
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -323,7 +314,6 @@ class NetworkService {
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: order.asDictionary(), options: .prettyPrinted)
         } catch let error {
-            print(error.localizedDescription)
         }
         
         //HTTP Headers
@@ -361,7 +351,6 @@ class NetworkService {
             request.httpBody = try JSONSerialization.data(withJSONObject: user.asDictionary(), options: .prettyPrinted)
           
         } catch let error {
-            print(error.localizedDescription)
         }
         
         //HTTP Headers
@@ -384,20 +373,22 @@ class NetworkService {
         else{
             url = URLs.productsForSubCategory(collectionId: collectionId, productType: productType)
         }
-        print(url)
+        print("path: \(url)")
         AF.request(url)
              .responseDecodable(of:AllProducts.self){
             (response) in
+                print("responce: \(response)")
             switch response.result{
             case .success(_):
                 guard let data = response.value
                 else {
+                    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
                     return
                 }
                 completion(data.products,nil)
             case .failure(let error) :
                 completion(nil,error)
-                print(error.localizedDescription)
+                print("error: \(error)")
             }
         }
     }
@@ -412,7 +403,6 @@ class NetworkService {
             request.httpBody = try JSONSerialization.data(withJSONObject: user.asDictionary(), options: .prettyPrinted)
           
         } catch let error {
-            print(error.localizedDescription)
         }
         
         //HTTP Headers

@@ -23,7 +23,6 @@ var searching=false
     
     private let shopViewModel = ShopingViewModel()
     private var mainCategoryIndex = 0
-    private var subCategoryName: String?
     let searchController=UISearchController(searchResultsController: nil)
    
     private let customerViewModel = CustomerViewModel()
@@ -117,7 +116,6 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
                     searchedProduct.append(product)
                 }
             }
-            
         }
         else{
             searching=false
@@ -169,7 +167,6 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
     
     @objc func addProductToFav(sender: UIButton) {
         let index = IndexPath(row: sender.tag, section: 0)
-//        favoriteViewModel.addProductToFavorite(product: products[index.row])
         let userDefault: userDefaultsprotocol = userDefault()
         print("\(String(describing: user?.customer.last_name))     user?.customer.marketing_opt_in_level    addToFav ")
         if userDefault.isLoggedIn() {
@@ -179,11 +176,8 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
                 draftOrderViewModel.postNewDraftOrderWith(order: firstFav, flag: false, note: (user?.customer.note)!)
            
             } else {
-                //print(userDefault.getId())
                 print("addToFav modify")
-            //    print(user?.customer.note)
                 draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.last_name)!, variantId: products[index.row].variants![0].id)
-             //   draftOrderViewModel.bindDraftViewModelErrorToView = { showAlert(title: "Message", message: self.draftOrderViewModel.showMassage!, view: self) }
             }
             
         } else {
@@ -236,9 +230,6 @@ extension CategoryVc{
             return
         }
         self.products = products
-        if let productType = subCategoryName {
-            shopViewModel.filterPorductsBySubCategory(itemIndex: mainCategoryIndex, subCategoryName: productType)
-        }
         internetImage.isHidden = true
         self.collectionView.reloadData()
     }
@@ -266,20 +257,17 @@ extension CategoryVc{
         
         actionButton.addItem(title: "shoes", image: UIImage(named: "shoes")?.withRenderingMode(.alwaysOriginal)) { item in
             self.actionButton.buttonImage = UIImage(named: "shoes")
-            self.subCategoryName = "SHOES"
-            self.shopViewModel.filterPorductsBySubCategory(itemIndex: self.mainCategoryIndex, subCategoryName: self.subCategoryName!)
+            self.shopViewModel.filterPorductsBySubCategory(itemIndex: self.mainCategoryIndex, subCategoryName: "SHOES")
         }
 
         actionButton.addItem(title: "T-Shirts", image: UIImage(named: "t-shirt")?.withRenderingMode(.alwaysOriginal)) { item in
             self.actionButton.buttonImage = UIImage(named: "t-shirt")
-            self.subCategoryName = "T-SHIRTS"
-            self.shopViewModel.filterPorductsBySubCategory(itemIndex: self.mainCategoryIndex, subCategoryName: self.subCategoryName!)
+            self.shopViewModel.filterPorductsBySubCategory(itemIndex: self.mainCategoryIndex, subCategoryName: "T-SHIRTS")
         }
 
         actionButton.addItem(title: "Accessres", image: UIImage(named: "accessres")?.withRenderingMode(.alwaysOriginal)) { item in
             self.actionButton.buttonImage = UIImage(named: "accessres")
-            self.subCategoryName = "ACCESSRES"
-            self.shopViewModel.filterPorductsBySubCategory(itemIndex: self.mainCategoryIndex, subCategoryName: self.subCategoryName!)
+            self.shopViewModel.filterPorductsBySubCategory(itemIndex: self.mainCategoryIndex, subCategoryName: "ACCESSRES")
         }
         
         actionButton.display(inViewController: self)

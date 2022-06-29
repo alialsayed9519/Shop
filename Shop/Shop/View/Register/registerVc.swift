@@ -59,7 +59,6 @@ class registerVc: UIViewController {
         let alert=UIAlertController(title: "Register", message: message, preferredStyle: .alert)
         let okAction=UIAlertAction(title: "OK", style: .default){
             (action) in
-            print("alert")
         }
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)

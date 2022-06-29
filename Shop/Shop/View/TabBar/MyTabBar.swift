@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class MyTabBar: UITabBarController {
     let defaults:userDefaultsprotocol=userDefault()
@@ -19,10 +20,12 @@ class MyTabBar: UITabBarController {
                // self.setViewControllers([home, catagory, profile], animated: true)
         let isLogged = defaults.isLoggedIn()
         setViews(isLogedIn: isLogged)
-
-        self.tabBar.backgroundColor = .white
-        
+       // C2DED1
+      //  self.tabBar.backgroundColor = UIColor(sd_hexString: "C2DED1")
         guard let items = self.tabBar.items else {return}
+    //    let image = UIImage(systemName: "house")
+//        354259
+//        image?.withTintColor(Color(r: 35, g: 42, b: 59, a: Double))
         let images = ["house","star.fill" ,"person"]
         
         for i in 0...2 {
@@ -40,7 +43,6 @@ class MyTabBar: UITabBarController {
         }
         else{
             self.setViewControllers([home, catagory, guestProfile], animated: true)
-
         }
     }
 

@@ -29,10 +29,12 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
     func setPrice(price: inout String){
         let currency=defaults.getCurrency(key: "currency")
         if currency=="USD" {
+
             print(price)
             let m="\((Float(price)!)/18)"
            price="\(m)"+" "+"USD"
             
+
         }
         else if currency=="EGP"{
            price=price+" "+"EGP"
@@ -72,13 +74,12 @@ class CatagoryCollectionViewCell: UICollectionViewCell {
         self.productPrice.text = item.price
         self.producTitle.text = item.title
         let id = String(describing: item.product_id)
-        draftOrderViewModel.getProductImageFromAPI(id: id)
-        draftOrderViewModel.bindImageURLToView = { self.onSuccessUpdateView() }
+        draftOrderViewModel.getProductFromAPI(id: id)
+        draftOrderViewModel.bindProductToView = { self.onSuccessUpdateView() }
     }
     
     func onSuccessUpdateView() {
-        prodImage = draftOrderViewModel.imageURL!
-        print(prodImage)
+        prodImage = (draftOrderViewModel.product?.images[0].src)!
         productImage.sd_setImage(with: URL(string: prodImage), placeholderImage: UIImage(named: "adidas.png"))
     }
     

@@ -64,8 +64,6 @@ class PaymentVc: UIViewController {
                     request.currencyCode = "USD" // Optional; see BTPayPalCheckoutRequest.h for more options
                     payPalDriver.tokenizePayPalAccount(with: request) { (tokenizedPayPalAccount, error) in
                         if let tokenizedPayPalAccount = tokenizedPayPalAccount {
-                            print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
-
                             // Access additional information
                             let email = tokenizedPayPalAccount.email
                             let firstName = tokenizedPayPalAccount.firstName
@@ -107,8 +105,7 @@ class PaymentVc: UIViewController {
             viewModel.postOrder(order: order!)
             self.navigationController?.pushViewController(doneVc(), animated: true)
         case "Paypal":
-//            payMent()
-            print("salma elawadyyasmeen")
+            payMent()
         default:
             print("Ay 7aga")
         }

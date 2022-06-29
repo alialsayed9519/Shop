@@ -54,8 +54,8 @@ struct URLs {
         return baseURL + "draft_orders/\(id).json"
     }
     
-    static func getProductImage(id: String) -> String {
-        return baseURL + "products/\(id)/images.json"
+    static func getProduct(id: String) -> String {
+        return baseURL + "products/\(id).json"
     }
     
     static func deleteDraftOrder(id: String) -> String {
@@ -79,14 +79,14 @@ struct URLs {
     }
     
     static func productsForSubCategory(collectionId: Int, productType: String) ->String{
-        return products(collectionId: collectionId) + "&?product_type=\(productType)"
+        return products(collectionId: collectionId) + "&product_type=\(productType)"
     }
     static func receiveProductVariant(variantId: String) -> String {
         return baseURL + "variants/\(variantId).json"
     }
     
     static func allProductsForSubCategory(productType: String) ->String{
-        return allProducts() + "&?product_type=\(productType)"
+        return allProducts() + "&product_type=\(productType)"
     }
 }
 

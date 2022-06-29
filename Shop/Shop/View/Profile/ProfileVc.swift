@@ -38,13 +38,11 @@ class ProfileVc: UIViewController {
         let egpAction=UIAlertAction(title: "EGP", style: .default){
             (UIAlertAction) in
             self.currencyViewMode.setCurrency(key: "currency", value: "EGP")
-            print(self.currencyViewMode.getCurrency(key: "currency"))
 
                     }
         let usdAction=UIAlertAction(title: "USD", style: .default){
             (UIAlertAction) in
             self.currencyViewMode.setCurrency(key: "currency", value: "USD")
-            print(self.currencyViewMode.getCurrency(key: "currency"))
         }
         alert.addAction(egpAction)
         alert.addAction(usdAction)
@@ -71,9 +69,7 @@ class ProfileVc: UIViewController {
                         self.userdefaults.logout()
                         //self.userdefaults.setId(id: nil)
                         let home = MyTabBar(nibName: "MyTabBar", bundle: nil)
-                        self.navigationController?.pushViewController(home, animated: true)
-                        print(self.userdefaults.isLoggedIn())
-                    }
+                        self.navigationController?.pushViewController(home, animated: true)                    }
                 }
         
     }
@@ -145,7 +141,6 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
             
         default:
             self.navigationController?.pushViewController(AboutUs(), animated: true)
-            print("about us")
         }
     
     }

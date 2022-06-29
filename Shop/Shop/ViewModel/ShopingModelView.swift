@@ -32,7 +32,6 @@ class ShopingViewModel{
            self.bindProducts()
        }
    }
-   
    var categorys: [CustomCollection]?{
        didSet{
            self.bindCategorys()
@@ -54,10 +53,8 @@ class ShopingViewModel{
        network.fetchProducts(collectionID: collectionID) { (products, error) in
            if let message = error?.localizedDescription{
                self.error = message
-              // print(error?.localizedDescription)
            }else {
                if let respons = products {
-                  // print(respons[0])
                    self.allProduct = respons
                }
            }
@@ -67,11 +64,8 @@ class ShopingViewModel{
    func fetchbrandProducts(collectionTitle: String = "ADIDAS") {
        network.fetchbrandProducts(collectionTitle: collectionTitle) { (products, error) in
            if let message = error?.localizedDescription{
-               self.error = message
-              // print(error?.localizedDescription)
-           }else {
+               self.error = message           }else {
                if let respons = products {
-                  // print(respons[0])
                    self.allProduct = respons
                }
            }
@@ -123,17 +117,21 @@ class ShopingViewModel{
    
    func filterPorductsBySubCategory(itemIndex: Int, subCategoryName: String) {
        guard let categories = self.categorys else {
+           print("return")
            return
        }
-       let generalFlag = (itemIndex == 0)
-       network.getProductBySubCategory(generalFlag: generalFlag, collectionId: categories[itemIndex].id!, productType: subCategoryName) { (products, error) in
-           if let message = error?.localizedDescription{
-               self.error = message
-           }else {
-               if let respons = products {
-                   self.allProductForSubCategory = respons
-               }
+       network.getProductBySubCategory(generalFlag: false, collectionId: categories[itemIndex].id!, productType: subCategoryName) { (products, error) in
+           
+           guard let error = error else {
+               print("error is: \(error)")
+               return
            }
+           guard let products = products else {
+               print("no products")
+               return
+           }
+           self.allProductForSubCategory = products
+           
        }
    }
    

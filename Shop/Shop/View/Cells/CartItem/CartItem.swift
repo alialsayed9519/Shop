@@ -16,11 +16,15 @@ class CartItem: UITableViewCell {
     @IBOutlet weak var itemPrice: UILabel!
     @IBOutlet weak var itemCounter: UILabel!
     @IBOutlet weak var deleteItem: UIButton!
+    
+    @IBOutlet weak var icreseCount: UIButton!
+    @IBOutlet weak var decreseCount: UIButton!
+    
     var buttonIncrease : ()->() = {}
     var buttonDecrease : ()->() = {}
     var defaults:userDefaultsprotocol=userDefault()
     var productImage = ""
-    
+    var number: Int?
     @IBAction func icreseCount(_ sender: Any) {
         buttonIncrease()
     }
@@ -39,11 +43,27 @@ class CartItem: UITableViewCell {
         itemCounter.text = String(item.quantity)
         itemVonder.text = item.vendor
         let id = String(describing: item.product_id)
-        draftOrderViewModel.getProductImageFromAPI(id: id)
-        draftOrderViewModel.bindImageURLToView = { self.onSuccessUpdateView() }
+        draftOrderViewModel.getProductFromAPI(id: id)
+        draftOrderViewModel.bindProductToView = { self.onSuccessUpdateView() }
+        
         var p=item.price
         setPrice(price: &p)
     }
+    
+    func updateFav(item: LineItem) {
+        itemCounter.isHidden = true
+        icreseCount.isHidden = true
+        decreseCount.isHidden = true
+        itemName.text = item.title
+        itemCounter.text = String(item.quantity)
+        itemVonder.text = item.vendor
+        let id = String(describing: item.product_id)
+        draftOrderViewModel.getProductFromAPI(id: id)
+        draftOrderViewModel.bindProductToView = { self.onSuccessUpdateView() }
+    }
+    
+    
+    
     func setPrice(price: inout String){
         let currency=defaults.getCurrency(key: "currency")
         if currency=="USD" {
@@ -58,54 +78,12 @@ class CartItem: UITableViewCell {
     }
     
     func onSuccessUpdateView() {
-        productImage = draftOrderViewModel.imageURL!
-        print("\(productImage)         kkkkkkkkk")
+        var max = draftOrderViewModel.product?.variants?[0].inventory_quantity
+        number = max!
+        productImage = (draftOrderViewModel.product?.images[0].src)!
         itemimage.sd_setImage(with: URL(string: productImage), placeholderImage: UIImage(named: "adidas.png"))
     }
     
     
 }
 
-
-/*
- class CartItem: UITableViewCell {
-     private let draftOrderViewModel = DraftOrderViewModel()
-     @IBOutlet weak var itemimage: UIImageView!
-     @IBOutlet weak var itemName: UILabel!
-     @IBOutlet weak var itemVonder: UILabel!
-     @IBOutlet weak var itemPrice: UILabel!
-     @IBOutlet weak var itemCounter: UILabel!
-     
-     var buttonIncrease : ((UITableViewCell) -> Void)?
-     var buttonDecrease : ((UITableViewCell) -> Void)?
-    
-     var productImage = ""
-     
-     @IBAction func icreseCount(_ sender: Any) {
-         buttonIncrease?(self)
-     }
-     
-     @IBAction func decreseCount(_ sender: Any) {
-         buttonDecrease?(self)
-     }
-     
-     override func awakeFromNib() {
-         super.awakeFromNib()
-         // Initialization code
-     }
-    
-     func updateUI(item: LineItem) {
-         itemName.text = item.title
-         itemVonder.text = item.vendor
-         let id = String(describing: item.product_id)
-         draftOrderViewModel.getProductImageFromAPI(id: id)
-         draftOrderViewModel.bindImageURLToView = { self.onSuccessUpdateView() }
-         itemPrice.text = String(describing: item.price)
-     }
-     
-     func onSuccessUpdateView() {
-         productImage = draftOrderViewModel.imageURL!
-         itemimage.sd_setImage(with: URL(string: productImage), placeholderImage: UIImage(named: "adidas.png"))
-     }
- }
- */

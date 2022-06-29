@@ -8,27 +8,35 @@
 import UIKit
 
 class FavoriteViewController: UIViewController {
-    @IBOutlet private weak var collectionView: UICollectionView!
-    private var items = [LineItem]()
+    @IBOutlet weak var table: UITableView!
+    private var items: [LineItem] = []
     private let draftOrderViewModel = DraftOrderViewModel()
     private let customerViewModel = CustomerViewModel()
     private var user: User? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        table.dataSource = self
+        table.delegate = self
+        table.registerNib(cell: CartItem.self)
+    
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.title = "Favorite"
-        
-        let nibCell = UINib(nibName: "CatagoryCollectionViewCell", bundle: nil)
-        collectionView.register(nibCell, forCellWithReuseIdentifier: "CatagoryCollectionViewCell")
-
-        print("\(userDefault().getId())     user id")
         customerViewModel.getCustomerwith(id: String(userDefault().getId()))
         customerViewModel.bindUser = { self.onSuccessUpdateView() }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        collectionView.reloadData()
+    func getUserSuccess() {
+        user = customerViewModel.customer
+        if user?.customer.last_name != "0" && userDefault().isLoggedIn() {            userDefault().setDraftOrder(note: (user?.customer.note)!)
+            draftOrderViewModel.getDraftOrderLineItems(id: (user?.customer.last_name)!)
+            draftOrderViewModel.bindDraftOrderLineItemsViewModelToView = {
+                self.onSuccessUpdateView()
+            }
+        }
     }
     
     func onSuccessUpdateView() {
@@ -39,40 +47,36 @@ class FavoriteViewController: UIViewController {
         }
     }
     
-    func BindData(){
+    func BindData() {
         items = draftOrderViewModel.lineItems ?? []
-        self.collectionView.reloadData()
+        self.table.reloadData()
     }
     
 }
 
-// MARK: CollectionView Methods
-extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(items.count)
+extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatagoryCollectionViewCell", for: indexPath) as! CatagoryCollectionViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueNib() as CartItem
+        let item = items[indexPath.row]
         
-        cell.favProductBtn.tag = indexPath.row
-        cell.favProductBtn.addTarget(self, action: #selector(deleteProductFromFav), for: .touchUpInside)
-        
-        let product = items[indexPath.row]
-        cell.updateFavoriteUI(item: product)
-                
+        cell.updateFav(item: item)
+       
+        cell.deleteItem.tag = indexPath.row
+        cell.deleteItem.addTarget(self, action: #selector(deleteProductFromFav), for: .touchUpInside)
+
         return cell
     }
     
     @objc func deleteProductFromFav(sender: UIButton) {
         let indexPath = IndexPath(row: sender.tag, section: 0)
-        if items.count > 1 {
+        items.remove(at: indexPath.row)
+        table.deleteRows(at: [indexPath], with: .fade)
+        table.reloadData()
+        if items.count >= 1 {
             var newItems: [OrderItem] = []
             for index in 0..<items.count {
                 if indexPath.row == index { continue }
@@ -84,16 +88,28 @@ extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDe
             draftOrderViewModel.deleteAnExistingDraftOrder(id: (user?.customer.last_name)!,flag: false ,note: (user?.customer.note)!)
         }
     }
+
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let side = (view.frame.size.width-10)/2
-            let height = view.frame.size.height / 4
-            return CGSize(width: side, height: height)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            items.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
+            
+            if items.count >= 1 {
+                var newItems: [OrderItem] = []
+                for index in 0..<items.count {
+                    if indexPath.row == index { continue }
+                    newItems.append(OrderItem(variant_id: items[index].variant_id, quantity: items[index].quantity))
+                }
+                draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.last_name)!, items: newItems)
+
+            } else {
+                draftOrderViewModel.deleteAnExistingDraftOrder(id: (user?.customer.last_name)!,flag: false ,note: (user?.customer.note)!)
+            }
         }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+    
     }
+    
 }
-
-
