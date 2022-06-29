@@ -31,7 +31,7 @@ class luanchVc: UIViewController {
         view.addSubview(animationView)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak self] in
-            self?.navigationController?.pushViewController(HomeVc(), animated: true)
+            self?.navigationController?.pushViewController(OnBoardVc(), animated: true)
         }
 
     }

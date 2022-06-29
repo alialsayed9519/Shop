@@ -21,6 +21,7 @@ class ProfileVc: UIViewController {
         setUserData()
                 currencyViewMode.bindCurrencyViewModel=onSucess
     }
+    
     func onSucess(){
       //  tableView.reloadData()
 
@@ -85,27 +86,32 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 cell.image1.image = UIImage(named: "shopping-bag")
                 cell.name.text = "My Orders"
-                cell.button.isHidden=true
+              
             case 1:
                 cell.image1.image = UIImage(named: "currency")
                 cell.name.text = "currency"
-                cell.button.isHidden=false
+               
                 
                //  currencyViewMode.getCurrency(key: "currency")=="USD"{
-                    cell.button.setTitle(currencyViewMode.getCurrency(key: "currency"), for: .normal)
+                    
+                cell.currLabel.text=currencyViewMode.getCurrency(key: "currency")
+                cell.currLabel.isHidden=false
 //                else if currencyViewMode.getCurrency(key: "currency")=="EGP"{
 //                   // cell.button.setTitle(, for: .normal)
 //
             default:
                 cell.image1.image = UIImage(named: "address")
                 cell.name.text = "Address"
-                cell.button.isHidden=true
+                cell.currLabel.isHidden=true
             }
             
         default:
                 cell.image1.image = UIImage(named: "aboutUs")
                 cell.name.text = "About us"
-            cell.button.isHidden=true
+            cell.currLabel.isHidden=true
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     
         return cell
@@ -122,7 +128,13 @@ extension ProfileVc: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 self.navigationController?.pushViewController(OrdersTable(), animated: true)
             case 1:
-                showCurrencyAlert()
+//                let alert=currAlert()
+//                alert.modalPresentationStyle = .overCurrentContext
+//                alert.providesPresentationContextTransitionStyle=true
+//                alert.definesPresentationContext=true
+//                alert.modalTransitionStyle = .crossDissolve
+//                self.present(alert, animated: true, completion: nil)
+              showCurrencyAlert()
             default:
                 self.navigationController?.pushViewController(AddressesTable(), animated: true)
             }

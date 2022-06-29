@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailsVc" customModule="Shop" customModuleProvider="target">
             <connections>
-                <outlet property="addToBag" destination="guo-jH-jf4" id="Jvt-OW-Qg6"/>
+                <outlet property="addToBag" destination="guo-jH-jf4" id="fp5-XJ-5xP"/>
                 <outlet property="descTextView" destination="KYM-89-wLY" id="R4A-h0-Lur"/>
                 <outlet property="favButton" destination="hfA-ws-hgd" id="xqC-0o-I9q"/>
                 <outlet property="imageControl" destination="K2A-4g-4So" id="6C9-Kc-uLd"/>
@@ -30,7 +30,7 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfA-ws-hgd">
                     <rect key="frame" x="16" y="786" width="60.5" height="52"/>
-                    <color key="tintColor" red="0.33963787560000003" green="0.58774369959999995" blue="0.18231564759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" red="0.1967988014" green="0.25351768730000002" blue="0.34522667530000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" image="heart.fill" catalog="system">
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="50"/>
                     </state>
@@ -39,23 +39,23 @@
                     <rect key="frame" x="8" y="390" width="414" height="168"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQH-Rg-hjK">
-                            <rect key="frame" x="8" y="8" width="72" height="24"/>
+                            <rect key="frame" x="8" y="8" width="122" height="29"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="72" id="RbE-ye-4YP"/>
+                                <constraint firstAttribute="width" constant="122" id="RbE-ye-4YP"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <color key="textColor" red="0.90213054420000005" green="0.49655848740000003" blue="0.51623362299999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jSi-wG-RfB">
-                            <rect key="frame" x="8" y="45" width="398" height="62"/>
+                            <rect key="frame" x="8" y="50" width="398" height="62"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="62" id="Qcg-QM-6tV"/>
                                 <constraint firstAttribute="width" constant="398" id="oXO-cw-XTH"/>
                             </constraints>
                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                            <color key="textColor" systemColor="labelColor"/>
+                            <color key="textColor" red="0.1967988014" green="0.25351768730000002" blue="0.34522667530000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
@@ -71,10 +71,10 @@
                                     </attributes>
                                 </fragment>
                             </attributedString>
-                            <nil key="highlightedColor"/>
+                            <color key="highlightedColor" red="0.1967988014" green="0.25351768730000002" blue="0.34522667530000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lXX-J3-iQd" customClass="CosmosView" customModule="Cosmos">
-                            <rect key="frame" x="181" y="135" width="120" height="20"/>
+                            <rect key="frame" x="181" y="140" width="120" height="20"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                     </subviews>
@@ -96,16 +96,16 @@
                     <rect key="frame" x="8" y="566" width="414" height="196"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFO-Uo-cpc">
-                            <rect key="frame" x="8" y="8" width="100.5" height="24"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <nil key="textColor"/>
+                            <rect key="frame" x="8" y="8" width="129.5" height="29"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <color key="textColor" red="0.90213054420000005" green="0.49655848740000003" blue="0.51623362299999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KYM-89-wLY">
-                            <rect key="frame" x="8" y="37" width="398" height="151"/>
+                            <rect key="frame" x="8" y="42" width="398" height="146"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                            <color key="textColor" systemColor="labelColor"/>
+                            <color key="textColor" red="0.1967988014" green="0.25351768730000002" blue="0.34522667530000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
@@ -146,18 +146,18 @@
                 </navigationBar>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guo-jH-jf4">
                     <rect key="frame" x="92.5" y="794" width="297.5" height="44"/>
-                    <color key="backgroundColor" red="0.33963787560000003" green="0.58774369959999995" blue="0.18231564759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.1967988014" green="0.25351768730000002" blue="0.34522667530000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="26"/>
                     <state key="normal" title="Add to Bag">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="titleColor" red="0.80606919529999999" green="0.76350432629999998" blue="0.69426709409999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="addToCart:" destination="-1" eventType="touchUpInside" id="Lc3-TZ-uHe"/>
+                        <action selector="addToCart:" destination="-1" eventType="touchUpInside" id="ybb-o4-Jme"/>
                     </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemGray5Color"/>
+            <color key="backgroundColor" red="0.93178343770000005" green="0.90358066560000005" blue="0.78622090820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ub2-iw-fHC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="0LD-nm-khi"/>
                 <constraint firstItem="hfA-ws-hgd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="8L4-NY-Jei"/>
@@ -191,14 +191,8 @@
     </designables>
     <resources>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

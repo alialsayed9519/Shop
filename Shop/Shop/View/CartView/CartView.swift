@@ -12,6 +12,8 @@ class CartView: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalPrice: UILabel!
     @IBOutlet weak var noItemsInCart: UILabel!
+    
+    @IBOutlet weak var currencyLabel: UILabel!
     private let customerViewModel = CustomerViewModel()
     private var user: User? = nil
     var defaults:userDefaultsprotocol=userDefault()
@@ -26,7 +28,9 @@ class CartView: UIViewController {
                 if order.pilling_address == nil{
                     let addressTable = AddressesTable()
                     addressTable.order = self.order
+                    
                     addressTable.chooseAddressFlag = true
+                    addressTable.subTotal=self.clacTotal()
                     self.navigationController?.pushViewController(addressTable, animated: true)
                 }
                 else {
@@ -106,23 +110,31 @@ class CartView: UIViewController {
         showAlert(title: "Error", message: message!, view: self)
     }
     
-    func clacTotal() {
+
+    func clacTotal()->Double {
+       
         var total = 0.0
         var totalpr=0.0
+        var currLabel:String?
         for item in items{
             total += Double(item.quantity) * (Double(item.price) ?? 0.0)
             let currency=defaults.getCurrency(key: "currency")
             if currency=="USD" {
-               totalpr=total
+            
+                totalpr=total/18
+                currLabel="USD"
             }
             else if currency=="EGP"{
                 
-               totalpr=total*18
+                totalpr=total
+                currLabel="EGp"
             }
             
         }
-
-        totalPrice.text = "\(totalpr)"
+        totalPrice.text = "\(Double(totalpr))"
+        currencyLabel.text=currLabel
+     return Double(totalpr)
+        
     }
 }
 

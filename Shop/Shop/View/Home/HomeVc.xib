@@ -69,6 +69,7 @@
                     <attributedString key="attributedText">
                         <fragment content="Brand">
                             <attributes>
+                                <color key="NSColor" red="0.1967988014" green="0.25351768730000002" blue="0.34522667530000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <font key="NSFont" metaFont="system" size="27"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>

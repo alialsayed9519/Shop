@@ -43,7 +43,7 @@
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xsm-7y-sUj">
                     <rect key="frame" x="12" y="488" width="390" height="55"/>
-                    <color key="backgroundColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.1967988014" green="0.25351768730000002" blue="0.34522667530000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="55" id="jBH-VA-z67"/>
                     </constraints>
@@ -51,7 +51,7 @@
                         <attributedString key="attributedTitle">
                             <fragment content="Sign In">
                                 <attributes>
-                                    <color key="NSColor" systemColor="systemBackgroundColor"/>
+                                    <color key="NSColor" red="0.80606919529999999" green="0.76350432629999998" blue="0.69426709409999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <font key="NSFont" metaFont="system" size="30"/>
                                 </attributes>
                             </fragment>
@@ -61,18 +61,23 @@
                         <action selector="signInBtn:" destination="-1" eventType="touchUpInside" id="dHo-pt-Prc"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or do not have account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbY-KW-NQv">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbY-KW-NQv">
                     <rect key="frame" x="40" y="572" width="223.5" height="38"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Or do not have account?">
+                            <attributes>
+                                <font key="NSFont" metaFont="system" size="21"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <color key="highlightedColor" red="0.76389354470000004" green="0.87379878759999996" blue="0.82288867239999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fef-8Q-Cec">
                     <rect key="frame" x="271.5" y="572" width="73" height="38"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="21"/>
                     <state key="normal" title="Sing Up">
-                        <color key="titleColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleColor" red="0.90213054420000005" green="0.49655848740000003" blue="0.51623362299999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="signUpBtn:" destination="-1" eventType="touchUpInside" id="b4I-vB-7Gi"/>

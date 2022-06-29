@@ -22,7 +22,6 @@ var searching=false
     private var mainCategories = [CustomCollection]()
     
     private let shopViewModel = ShopingViewModel()
-    
     private var mainCategoryIndex = 0
     let searchController=UISearchController(searchResultsController: nil)
    
@@ -58,10 +57,7 @@ var searching=false
         definesPresentationContext=true
         searchController.searchBar.placeholder="search product By Name"
     }
-    
-    
-    
-    
+   
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: false)

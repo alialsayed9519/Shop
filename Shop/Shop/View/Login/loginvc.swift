@@ -23,7 +23,7 @@ class loginvc: UIViewController {
       loginviewModel=LoginViewModel(appdelegate: &delegate)
       //  signInBtn.backgroundColor =  .green
         signInBtn.layer.cornerRadius=20
-        loginImg.image=UIImage(named: "shop")
+        loginImg.image=UIImage(named: "loginn")
         bindToViewModel()
         // Do any additional setup after loading the view.
     }

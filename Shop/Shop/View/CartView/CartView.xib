@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartView" customModule="Shop" customModuleProvider="target">
             <connections>
                 <outlet property="checkoutButton" destination="i5M-Pr-FkT" id="Lu8-cf-ico"/>
+                <outlet property="currencyLabel" destination="eJ2-vb-R21" id="d7t-bJ-cP6"/>
                 <outlet property="tableView" destination="CB7-xx-2ul" id="t2y-3r-zg3"/>
                 <outlet property="totalPrice" destination="YkB-Rk-DTQ" id="KUi-8e-RrH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -59,12 +60,19 @@
                         <action selector="checkoutBoutton:" destination="-1" eventType="touchUpInside" id="uI2-CI-E7s"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJ2-vb-R21">
+                    <rect key="frame" x="112.5" y="782" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="CB7-xx-2ul" secondAttribute="bottom" constant="96" id="4HF-q1-kg4"/>
                 <constraint firstItem="YkB-Rk-DTQ" firstAttribute="leading" secondItem="lig-uk-T2S" secondAttribute="trailing" constant="8" id="8Fl-4z-rbs"/>
+                <constraint firstItem="eJ2-vb-R21" firstAttribute="leading" secondItem="YkB-Rk-DTQ" secondAttribute="trailing" constant="8" id="9Q4-wG-WuJ"/>
                 <constraint firstItem="CB7-xx-2ul" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="CwL-bL-dRj"/>
                 <constraint firstItem="lig-uk-T2S" firstAttribute="top" secondItem="CB7-xx-2ul" secondAttribute="bottom" constant="16" id="DPf-86-53m"/>
                 <constraint firstItem="xXa-4V-DvL" firstAttribute="top" secondItem="lig-uk-T2S" secondAttribute="bottom" constant="16" id="K92-k9-XPt"/>
@@ -74,6 +82,7 @@
                 <constraint firstItem="lig-uk-T2S" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="bCB-ol-0fG"/>
                 <constraint firstItem="xXa-4V-DvL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="c8s-2z-h6s"/>
                 <constraint firstAttribute="bottom" secondItem="xXa-4V-DvL" secondAttribute="bottom" constant="32" id="gcD-Cp-CcH"/>
+                <constraint firstItem="eJ2-vb-R21" firstAttribute="top" secondItem="CB7-xx-2ul" secondAttribute="bottom" constant="16" id="gll-Dl-eSk"/>
                 <constraint firstItem="YkB-Rk-DTQ" firstAttribute="top" secondItem="CB7-xx-2ul" secondAttribute="bottom" constant="16" id="hCT-e3-lYi"/>
                 <constraint firstItem="CB7-xx-2ul" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="pXP-Jk-sg6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xXa-4V-DvL" secondAttribute="trailing" constant="32" id="yFt-6Z-rJN"/>

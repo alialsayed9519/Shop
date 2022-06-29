@@ -58,6 +58,7 @@ class ProductDetailsVc: UIViewController, PQ {
     
     func displayProduct(){
         navigationItem.title=product?.vendor
+        
         //title=product?.vendor
         reviewTextView.text=product?.product_type
         descTextView.text=product?.body_html
@@ -71,13 +72,13 @@ class ProductDetailsVc: UIViewController, PQ {
     func setPrice(price: inout String){
         let currency=defaults.getCurrency(key: "currency")
         if currency=="USD" {
-            
-           price = price+" "+"USD"
+            let m="\((Float(price)!)/18)"
+
+            price="\(m)"+" "+"USD"
+        
         }
         else if currency=="EGP"{
-            let m="\((Double(price)!)*18)"
-
-            price="\(m)"+" "+"EGP"
+            price = price+" "+"EGP"
         }
         priceLabel.text=price
     }
