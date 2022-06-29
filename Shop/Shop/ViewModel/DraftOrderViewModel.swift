@@ -118,12 +118,14 @@ class DraftOrderViewModel {
             if let error: Error = error {
                 let message = error.localizedDescription
                 self.showError = message
-                print(message)
             } else {
-                print(prod)
                 self.product = prod
             }
         }
+    }
+    
+    func getMaxForAllProducts(products: [Int]) {
+        
     }
     
     func deleteAnExistingDraftOrder(id: String, flag: Bool = true, note: String = "0", lastName: String = "0") {
@@ -140,6 +142,7 @@ class DraftOrderViewModel {
                 }
                 if flag == false {
                     self.customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: note, last_name: "0")))
+                    
                 }
             }
         }
@@ -156,7 +159,7 @@ class DraftOrderViewModel {
                 var new: [OrderItem] = []
                 for item in oldLineItems {
                     if item.variant_id == variantId {
-                        self.showMassage = "this item added before, choose a nother one"
+                        self.showError = "this item added before, choose a nother one"
                         return
                     }
                     let orderItem = OrderItem(variant_id: item.variant_id, quantity: item.quantity)
@@ -167,6 +170,7 @@ class DraftOrderViewModel {
            //     print(new)
                 let api = Updated(draft_order: Modify(id: Int(id)!, line_items: new))
            //     print(api)
+                
                 self.networkService.ModifyAnExistingDraftOrder(id: id, order: api ) { data, response, error in
                     if let error: Error = error {
                         let message = error.localizedDescription
@@ -194,7 +198,6 @@ class DraftOrderViewModel {
             if let error: Error = error {
                 let message = error.localizedDescription
                 self.showError = message
-                print(message)
             }
             
             if let response = response as? HTTPURLResponse  {

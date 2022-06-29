@@ -11,6 +11,14 @@ class CustomerViewModel {
     let networkService: NetworkService!
     var bindErrorToView: (() -> ()) = {}
     var bindUser: (() -> ()) = {}
+    var bindReload: (() -> ()) = {}
+    
+    var reload: Bool? {
+        didSet {
+            self.bindReload()
+        }
+    }
+    
     
     var customer: User? {
         didSet {
@@ -55,6 +63,7 @@ class CustomerViewModel {
             if let response = response as? HTTPURLResponse {
                 print("\(response.statusCode)   modifyCustomerNote  CustomerViewModel   vm")
             }
+            self.reload = true
         }
     }
     

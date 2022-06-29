@@ -98,6 +98,8 @@ class CartView: UIViewController {
         items = draftOrderViewModel.lineItems ?? []
         self.tableView.reloadData()
         self.clacTotal()
+        
+        
     }
     
     func onFailUpdateView() {
@@ -140,15 +142,24 @@ extension CartView: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueNib() as CartItem
         let item = items[indexPath.row]
         cell.updateUI(item: item)
-
+        self.items[indexPath.row].maxQuantity = cell.number
+        print("\(String(describing: cell.number))              ;;;;;;;")
        // cell.itemCounter.text = String(items[indexPath.row].quantity )
         var count =  self.items[indexPath.row].quantity
-
+        
         cell.buttonIncrease = {
-            count += 1
-            cell.itemCounter.text = String(count)
-            self.items[indexPath.row].quantity = count
-            self.clacTotal()
+            if count <= self.items[indexPath.row].maxQuantity ?? 2 {
+                count += 1
+                cell.itemCounter.text = String(count)
+                self.items[indexPath.row].quantity = count
+                self.clacTotal()
+            } else {
+                let alert = UIAlertController(title: "message", message: "this is the max Quantity ", preferredStyle: .alert)
+                let okAction  = UIAlertAction(title: "ok", style: .default) { (UIAlertAction) in
+                }
+                alert.addAction(okAction)
+                self.present(alert, animated: true, completion: nil)
+            }
         }
         cell.buttonDecrease = {
             if self.items[indexPath.row].quantity > 1 {
