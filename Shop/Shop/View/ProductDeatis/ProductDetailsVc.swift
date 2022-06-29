@@ -89,13 +89,14 @@ class ProductDetailsVc: UIViewController {
                 print("addToCart post")
                 let firstProduct = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: (product?.variants![0].id)!, quantity: 1)], customer: customer(id: userDefault.getId())))
                 draftOrderViewModel.postNewDraftOrderWith(order: firstProduct, lastName: (user?.customer.last_name)!)
-               
+             //   draftOrderViewModel.bindDraftViewModelErrorToView = { showAlert(title: "Message", message: self.draftOrderViewModel.showError!, view: self) }
+
             } else {
                 //print(userDefault.getId())
                 print("addToCart modify")
             //    print(user?.customer.note)
                 draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.note)!, variantId: (product?.variants![0].id)!)
-               // draftOrderViewModel.bindDraftViewModelErrorToView = { showAlert(title: "Message", message: self.draftOrderViewModel.showError!, view: self) }
+                draftOrderViewModel.bindDraftViewModelErrorToView = { showAlert(title: "Message", message: self.draftOrderViewModel.showError!, view: self) }
                 
             }
             

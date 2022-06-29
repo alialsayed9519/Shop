@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,22 +27,23 @@
                 </imageView>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iv1-ER-wz8">
                     <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <color key="backgroundColor" red="0.76530593629999999" green="0.8729315996" blue="0.82133167979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <items>
                         <barButtonItem title="Item" image="search" id="0FS-cc-hP2">
-                            <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.1990022659" green="0.25409039859999999" blue="0.34491747620000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="searc:" destination="-1" id="HCu-04-daV"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="GIM-cA-LF3"/>
                         <barButtonItem title="Item" image="heart" catalog="system" id="1zT-yL-8CI" userLabel="Favorite">
-                            <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.1990022659" green="0.25409039859999999" blue="0.34491747620000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="navigateToFavoriteScreen:" destination="-1" id="A9y-MA-HKG"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem title="Item" image="cart" catalog="system" id="UFI-Kv-TvD" userLabel="Cart">
-                            <color key="tintColor" red="0.31449839470000002" green="0.5694625378" blue="0.1930316091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.1990022659" green="0.25409039859999999" blue="0.34491747620000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="navigateToCartScreen:" destination="-1" id="d0s-4k-uug"/>
                             </connections>
@@ -52,7 +52,7 @@
                 </toolbar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="cf8-Yk-Wtd">
                     <rect key="frame" x="8" y="429.5" width="398" height="458.5"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" red="0.93210750819999999" green="0.90283322330000004" blue="0.78818470240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Uos-Gu-3Gg">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -81,7 +81,7 @@
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" red="0.93210750819999999" green="0.90283322330000004" blue="0.78818470240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vYR-pY-D2F" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="23t-eU-NbV"/>
                 <constraint firstAttribute="bottom" secondItem="1Nq-2k-o8i" secondAttribute="bottom" constant="8" id="2Cg-8U-aNV"/>
@@ -113,8 +113,5 @@
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="noInternet" width="2000" height="2000"/>
         <image name="search" width="24" height="24"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
