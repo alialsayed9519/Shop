@@ -10,6 +10,11 @@ struct AllProducts:Codable{
     let products:[Product]
 }
 // MARK: - Product
+
+struct Prod: Codable {
+    let product: Product
+}
+
 struct Product: Codable {
     let id: Int
     let title, body_html, vendor,product_type: String

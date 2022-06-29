@@ -54,8 +54,9 @@ struct URLs {
         return baseURL + "draft_orders/\(id).json"
     }
     
-    static func getProductImage(id: String) -> String {
-        return baseURL + "products/\(id)/images.json"
+    static func getProduct(id: String) -> String {
+        print(baseURL + "products/\(id).json")
+        return baseURL + "products/\(id).json"
     }
     
     static func deleteDraftOrder(id: String) -> String {

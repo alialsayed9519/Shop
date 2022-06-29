@@ -11,7 +11,7 @@ class DraftOrderViewModel {
     let networkService: NetworkService!
     var bindDraftOrderLineItemsViewModelToView: (() -> ()) = {}
     var bindDraftViewModelErrorToView: (() -> ()) = {}
-    var bindImageURLToView: (() -> ()) = {}
+    var bindProductToView: (() -> ()) = {}
     var bindDraftViewModelMassageToView: (() -> ()) = {}
     private let customerViewModel = CustomerViewModel()
     private var user: User? = nil
@@ -37,9 +37,9 @@ class DraftOrderViewModel {
         }
     }
     
-    var imageURL: String? {
+    var product: Product? {
         didSet {
-            self.bindImageURLToView()
+            self.bindProductToView()
         }
     }
     
@@ -113,13 +113,15 @@ class DraftOrderViewModel {
         }
     }
     
-    func getProductImageFromAPI(id: String) {
-        networkService.getProductImageById(id: id) { imageURL, error in
+    func getProductFromAPI(id: String) {
+        networkService.getProductById(id: id) { prod, error in
             if let error: Error = error {
                 let message = error.localizedDescription
                 self.showError = message
+                print(message)
             } else {
-                self.imageURL = imageURL
+                print(prod)
+                self.product = prod
             }
         }
     }
@@ -208,7 +210,7 @@ class DraftOrderViewModel {
                 let message = error.localizedDescription
                 self.showError = message
             } else {
-                self.maxQuant = variant?.inventory_quantity
+             //   self.maxQuant = variant?.inventory_quantity
             }
         }
     }
