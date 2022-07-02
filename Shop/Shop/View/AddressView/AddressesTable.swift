@@ -103,7 +103,12 @@ extension AddressesTable: UITableViewDataSource, UITableViewDelegate{
             self.navigationController?.pushViewController(self.addAddressView, animated: true)
         }
         cell.deleteButton = {
-            self.showDeleteAlert(addressId: address.id)
+            if indexPath.row == 0{
+                self.error()
+            } else {
+                self.showDeleteAlert(addressId: address.id)
+
+            }
         }
         return cell
     }
@@ -112,7 +117,9 @@ extension AddressesTable: UITableViewDataSource, UITableViewDelegate{
         if chooseAddressFlag{
             let payment = PaymentVc()
             self.order?.pilling_address = addresses[indexPath.row]
-            payment.order? = self.order!
+            payment.order = self.order
+            print(order)
+            print(payment.order)
             payment.subPrice=self.subTotal
             self.navigationController?.pushViewController(payment, animated: true)
         }
@@ -121,11 +128,25 @@ extension AddressesTable: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            self.showDeleteAlert(addressId: addresses[indexPath.row].id)
+            if indexPath.row == 0{
+                self.error()
+            } else {
+                self.showDeleteAlert(addressId: addresses[indexPath.row].id)
+
+            }
         }
         else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
+        
+            }
+    func error(){
+        let alert = UIAlertController(title: "Error", message: "You can do not delete this address because it is your default address, but you still able to edit it", preferredStyle: .alert)
+        let okAction  = UIAlertAction(title: "ok", style: .default) { (UIAlertAction) in
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
     }
+
 }
 

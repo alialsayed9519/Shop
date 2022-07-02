@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoriteViewController: UIViewController {
+class FavoriteViewController: UIViewController {   
     @IBOutlet weak var table: UITableView!
     private var items: [LineItem] = []
     private let draftOrderViewModel = DraftOrderViewModel()
@@ -19,7 +19,6 @@ class FavoriteViewController: UIViewController {
         table.dataSource = self
         table.delegate = self
         table.registerNib(cell: CartItem.self)
-    
     }
     
     override func viewWillAppear(_ animated: Bool) {

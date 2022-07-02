@@ -45,24 +45,50 @@ class OrderViewModel {
             return copunValue
         }
     
+//    func postOrder(order: Order){
+//            let myOrder = APIOrder(order: order)
+//            network.postOrder(order: myOrder) { (data, response, error) in
+//                if error != nil{
+//                    print("error while posting order \(error!.localizedDescription)")
+//                }
+//                if let data = data{
+//                    let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,Any>
+//
+//                    let returnedOrder = json["order"] as? Dictionary<String,Any>
+//                    let returnedCustomer = returnedOrder?["customer"] as? Dictionary<String,Any>
+//                    let id = returnedCustomer?["id"] as? Int ?? 0
+//                    if id != 0 {
+//                        self.draftOrderViewModel.deleteAnExistingDraftOrder(id: userDefault().getDraftOrder())
+//                    }
+//                }
+//            }
+//        }
+    
     func postOrder(order: Order){
+        print("postOrder")
             let myOrder = APIOrder(order: order)
             network.postOrder(order: myOrder) { (data, response, error) in
+                print("data is :\(data)")
                 if error != nil{
+                    print("error while posting order \(error!.localizedDescription)")
                 }
                 if let data = data{
                     let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String,Any>
-
+                   // print("postOrder")
                     let returnedOrder = json["order"] as? Dictionary<String,Any>
                     let returnedCustomer = returnedOrder?["customer"] as? Dictionary<String,Any>
                     let id = returnedCustomer?["id"] as? Int ?? 0
+                    //print(response)
                     if id != 0 {
+                       // print("posttttttttOrder")
+
                         self.draftOrderViewModel.deleteAnExistingDraftOrder(id: userDefault().getDraftOrder())
                     }
                 }
             }
         }
-    
+
+
     func fetchAllOrders() {
         network.getOrders() { (response, error) in
             if let orderFromAPI = response {

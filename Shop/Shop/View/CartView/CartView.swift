@@ -27,15 +27,16 @@ class CartView: UIViewController {
             if  userDefault().isLoggedIn(){
                 if order.pilling_address == nil{
                     let addressTable = AddressesTable()
-                    addressTable.order = self.order
-                    
                     addressTable.chooseAddressFlag = true
                     addressTable.subTotal=self.clacTotal()
+                    order.current_total_price = totalPrice.text
+                    order.line_items = self.items
+                    addressTable.order = self.order
                     self.navigationController?.pushViewController(addressTable, animated: true)
                 }
                 else {
-                    order.line_items = self.items
                     order.current_total_price = totalPrice.text
+                    print("\(order.current_total_price)                   jjj")
                     let paymentVc = PaymentVc()
                     paymentVc.order = self.order
                     self.navigationController?.pushViewController(paymentVc, animated: true)
@@ -131,7 +132,7 @@ class CartView: UIViewController {
             }
             
         }
-        totalPrice.text = "\(Double(totalpr))"
+        totalPrice.text = "\(Int(totalpr))"
         currencyLabel.text=currLabel
      return Double(totalpr)
         
