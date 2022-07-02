@@ -9,6 +9,7 @@ import Foundation
 
 protocol PQ {
     func showMyAlert()
+    func showDeleteAlert()
 }
 
 
@@ -63,15 +64,17 @@ class DraftOrderViewModel {
     
     init() {
        self.networkService = NetworkService()
-        
    }
     
-    func sett(product:ProductDetailsVc) {
+    func setProductDetailsVc(product: ProductDetailsVc) {
         pqq = product
-        
     }
     
-    func postNewDraftOrderWith(order: Api, flag: Bool = true, note: String = "0", lastName: String = "0") {
+    func setCategory(cat: CategoryVc) {
+        pqq = cat
+    }
+    
+    func postNewDraftOrderWith(order: Api, flag: Bool = true, note: String = "0", lastName: String = "0", index: Int = 0) {
         let customerViewModel = CustomerViewModel()
         
         networkService.postNewDraftOrder(order: order) { data, response, error in
@@ -83,21 +86,26 @@ class DraftOrderViewModel {
             guard let data = data else {
                 return
             }
-            DispatchQueue.main.async {
-                self.pqq?.showMyAlert()
-
-            }
+            
             do {
                 let jsonObj = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
                 let i = jsonObj!["draft_order"] as? [String: Any]
                 let draftId = i!["id"] as! Int
                 if flag == true {
-                    self.showError = "The Product is added to cart"
+                    DispatchQueue.main.async {
+                        self.pqq?.showMyAlert()
+                    }
                     customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: String(draftId), last_name: lastName)))
                 }
                 
                 if flag == false {
+                    DispatchQueue.main.async {
+                        self.pqq?.showMyAlert()
+                      //  self.pqq.addFillHeart()
+                    }
+                    print("hete")
                     customerViewModel.modifyCustomerFav(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: note, last_name: String(draftId))))
+                    
                 }
                 
             } catch {
@@ -163,7 +171,7 @@ class DraftOrderViewModel {
                 var new: [OrderItem] = []
                 for item in oldLineItems {
                     if item.variant_id == variantId {
-                        self.showError = "this item added before, choose a nother one"
+                        self.showError = "this product added before, choose a nother one"
                         return
                     }
                     let orderItem = OrderItem(variant_id: item.variant_id, quantity: item.quantity)
@@ -179,7 +187,10 @@ class DraftOrderViewModel {
                     }
                     
                     if data != nil {
-                        self.showMassage = "The Product is added to cart"
+                        //self.showMassage = "The Product is added to cart"
+                        DispatchQueue.main.async {
+                            self.pqq?.showMyAlert()
+                        }
                     }
                     
                     if let response = response as? HTTPURLResponse {
@@ -224,4 +235,84 @@ class DraftOrderViewModel {
             }
         }
     }
+    
+    func updateFavorite(id: String, variantId: Int, note: String) {
+        networkService.getSingleDraftOrder(id: id) { (arrOfLineItems, error) in
+            if let error: Error = error {
+                let message = error.localizedDescription
+                self.showError = message
+            } else {
+                let oldLineItems = arrOfLineItems!
+                var new: [OrderItem] = []
+                var flag: Bool = false
+                for item in oldLineItems {
+                    if item.variant_id == variantId {
+                       // self.showError = "this product added before, choose a nother one"
+                       // return
+                        flag = true
+                        continue
+                    }
+                    let orderItem = OrderItem(variant_id: item.variant_id, quantity: item.quantity)
+                   
+                    new.append(orderItem)
+                }
+                if !flag {
+                    new.append(OrderItem(variant_id: variantId, quantity: 1))
+                }
+                if new.isEmpty {
+                    self.networkService.removeAnExistingDraftOrder(id: id) { data, response, error in
+                        if let error: Error = error {
+                            let message = error.localizedDescription
+                            self.showError = message
+                        } else {
+                            self.customerViewModel.modifyCustomerNote(id: String(userDefault().getId()), user: User(customer: Person(id: userDefault().getId(), note: note, last_name: "0")))
+                            DispatchQueue.main.async {
+                                self.pqq?.showDeleteAlert()
+                            }
+                        }
+                    }
+                } else {
+                    let api = Updated(draft_order: Modify(id: Int(id)!, line_items: new))
+                    self.networkService.ModifyAnExistingDraftOrder(id: id, order: api ) { data, response, error in
+                        if let error: Error = error {
+                            let message = error.localizedDescription
+                            self.showError = message
+                        }
+                        
+                        if data != nil {
+                            //self.showMassage = "The Product is added to cart"
+                            DispatchQueue.main.async {
+                                if flag {
+                                    self.pqq?.showDeleteAlert()
+                                } else {
+                                    self.pqq?.showMyAlert()
+                                }
+                            }
+                        }
+                        
+                        if let response = response as? HTTPURLResponse {
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func isProductFavorite(id: String, variantId: Int) {
+        networkService.getSingleDraftOrder(id: id) { (arrOfLineItems, error) in
+            if let error: Error = error {
+                let message = error.localizedDescription
+                self.showError = message
+            } else {
+                let oldLineItems = arrOfLineItems!
+                for item in oldLineItems {
+                    if item.variant_id == variantId {
+                       
+                    }
+                }
+            }
+    }
+    
+}
 }

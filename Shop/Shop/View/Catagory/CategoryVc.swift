@@ -8,13 +8,31 @@
 import UIKit
 import JJFloatingActionButton
 
-class CategoryVc: UIViewController {
+class CategoryVc: UIViewController, PQ {
+    func showMyAlert() {
+        let alert = UIAlertController(title: "message", message: "Product successfully added to Favorite", preferredStyle: .alert)
+
+        let okAction  = UIAlertAction(title: "ok", style: .default) { (UIAlertAction) in
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showDeleteAlert() {
+        let alert = UIAlertController(title: "message", message: "Product successfully deleted from Favorite", preferredStyle: .alert)
+
+        let okAction  = UIAlertAction(title: "ok", style: .default) { (UIAlertAction) in
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBOutlet weak var cartBtn: UIBarButtonItem!
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tabBar: UIToolbar!
     @IBOutlet private weak var internetImage: UIImageView!
-var searching=false
+    var searching=false
     var actionButton = JJFloatingActionButton()
     private let favoriteViewModel = FavoriteViewModel()
     private var products = [Product]()
@@ -43,6 +61,7 @@ var searching=false
         shopViewModel.bindProducts = onProductsSuccess
         shopViewModel.bindSubCategories = onSubCategorySuccess
         shopViewModel.bindError = onBindError
+        draftOrderViewModel.setCategory(cat: self)
     }
     
     func setSearchController(){
@@ -165,19 +184,23 @@ extension CategoryVc: UICollectionViewDataSource, UICollectionViewDelegate,UICol
         return cell
     }
     
+    
+    
     @objc func addProductToFav(sender: UIButton) {
         let index = IndexPath(row: sender.tag, section: 0)
         let userDefault: userDefaultsprotocol = userDefault()
         print("\(String(describing: user?.customer.last_name))     user?.customer.marketing_opt_in_level    addToFav ")
         if userDefault.isLoggedIn() {
-            if user?.customer.last_name == "0" {
+            var x = true
+            if user?.customer.last_name == "0" && x {
                 print("addToFav post")
                 let firstFav = Api(draft_order: Sendd(line_items: [OrderItem(variant_id: products[index.row].variants![0].id, quantity: 1)], customer: customer(id: userDefault.getId())))
-                draftOrderViewModel.postNewDraftOrderWith(order: firstFav, flag: false, note: (user?.customer.note)!)
+                x = false
+                draftOrderViewModel.postNewDraftOrderWith(order: firstFav, flag: false, note: (user?.customer.note)!, index: index.row)
            
             } else {
                 print("addToFav modify")
-                draftOrderViewModel.updateAnExistingDraftOrder(id: (user?.customer.last_name)!, variantId: products[index.row].variants![0].id)
+                draftOrderViewModel.updateFavorite(id: (user?.customer.last_name)!, variantId: products[index.row].variants![0].id, note: (user?.customer.note)!)
             }
             
         } else {

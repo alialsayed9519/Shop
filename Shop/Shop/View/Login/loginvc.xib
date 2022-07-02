@@ -28,7 +28,7 @@
                         <constraint firstAttribute="height" constant="210" id="93x-Bq-KnW"/>
                     </constraints>
                 </imageView>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7fh-ok-viT">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7fh-ok-viT">
                     <rect key="frame" x="12" y="312" width="390" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="VMI-rq-tyb"/>
@@ -36,7 +36,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HJN-cy-iBQ">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HJN-cy-iBQ">
                     <rect key="frame" x="12" y="396" width="390" height="60"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -51,7 +51,7 @@
                         <attributedString key="attributedTitle">
                             <fragment content="Sign In">
                                 <attributes>
-                                    <color key="NSColor" red="0.80606919529999999" green="0.76350432629999998" blue="0.69426709409999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="NSColor" red="1" green="0.9460974360663793" blue="0.85382366344882854" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <font key="NSFont" metaFont="system" size="30"/>
                                 </attributes>
                             </fragment>
@@ -77,7 +77,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="21"/>
                     <state key="normal" title="Sing Up">
-                        <color key="titleColor" red="0.90213054420000005" green="0.49655848740000003" blue="0.51623362299999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleColor" red="0.78545778990000004" green="0.29428571460000003" blue="0.1924397051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="signUpBtn:" destination="-1" eventType="touchUpInside" id="b4I-vB-7Gi"/>

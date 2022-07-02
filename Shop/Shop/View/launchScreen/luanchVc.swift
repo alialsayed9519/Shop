@@ -31,11 +31,11 @@ class luanchVc: UIViewController {
         view.addSubview(animationView)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [weak self] in
-            self?.navigationController?.pushViewController(OnBoardVc(), animated: true)
-        }
-
+            let home = MyTabBar(nibName: "MyTabBar", bundle: nil)
+            self?.navigationController?.pushViewController(home, animated: true)        }
     }
     /*
+     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

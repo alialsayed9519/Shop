@@ -39,6 +39,7 @@ class CartItem: UITableViewCell {
     }
    
     func updateUI(item: LineItem) {
+        deleteItem.setTitle("", for: .normal)
         itemName.text = item.title
         itemCounter.text = String(item.quantity)
         itemVonder.text = item.vendor
@@ -51,6 +52,7 @@ class CartItem: UITableViewCell {
     }
     
     func updateFav(item: LineItem) {
+        deleteItem.setTitle("", for: .normal)
         itemCounter.isHidden = true
         icreseCount.isHidden = true
         decreseCount.isHidden = true
@@ -67,7 +69,7 @@ class CartItem: UITableViewCell {
     func setPrice(price: inout String){
         let currency=defaults.getCurrency(key: "currency")
         if currency=="USD" {
-            let m="\((Double(price)!)/18)"
+            let m="\((Float(price)!)/18)"
            price="\(m)"+" "+"USD"
           
         }

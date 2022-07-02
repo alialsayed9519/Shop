@@ -19,39 +19,40 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ErG-04-N7r">
                         <rect key="frame" x="8" y="8" width="150" height="150"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="150" id="hei-tH-Ctn"/>
                             <constraint firstAttribute="width" constant="150" id="tn9-xK-pc0"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="item name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0XL-mp-hLC">
-                        <rect key="frame" x="166" y="32" width="146" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="item name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0XL-mp-hLC">
+                        <rect key="frame" x="166" y="32" width="146" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="0.1769800782" green="0.2595261633" blue="0.38721147179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="item size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2t4-qP-Zpd">
-                        <rect key="frame" x="166" y="61" width="130" height="21"/>
+                        <rect key="frame" x="166" y="60.5" width="130" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="0.1769800782" green="0.2595261633" blue="0.38721147179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="item price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UrC-wM-7Nu">
-                        <rect key="frame" x="166" y="90" width="130" height="21"/>
+                        <rect key="frame" x="166" y="89.5" width="130" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="0.1769800782" green="0.2595261633" blue="0.38721147179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Kl-r9-1XC">
-                        <rect key="frame" x="276" y="127" width="10" height="22"/>
+                        <rect key="frame" x="268" y="126.5" width="10" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="0.1769800782" green="0.2595261633" blue="0.38721147179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iae-C6-5w9">
-                        <rect key="frame" x="294" y="127" width="18" height="25"/>
+                        <rect key="frame" x="286" y="126.5" width="18" height="25"/>
+                        <color key="tintColor" red="0.78545778990000004" green="0.29428571460000003" blue="0.1924397051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" image="plus" catalog="system">
-                            <attributedString key="attributedTitle"/>
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                         </state>
                         <connections>
@@ -59,7 +60,8 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fQo-pE-TBp">
-                        <rect key="frame" x="250" y="127" width="18" height="22"/>
+                        <rect key="frame" x="242" y="126.5" width="18" height="22"/>
+                        <color key="tintColor" red="0.78545778990000004" green="0.29428571460000003" blue="0.1924397051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" image="minus" catalog="system">
                             <attributedString key="attributedTitle"/>
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
@@ -69,22 +71,21 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="weM-Ap-eR6">
-                        <rect key="frame" x="162" y="122" width="66" height="31"/>
-                        <color key="backgroundColor" red="1" green="0.15338520550000001" blue="0.21661486260000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <rect key="frame" x="174" y="118.5" width="44" height="31"/>
+                        <color key="tintColor" red="0.78545778990000004" green="0.29428571460000003" blue="0.1924397051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title="Delete"/>
+                        <buttonConfiguration key="configuration" style="plain" image="trash.fill" catalog="system"/>
                     </button>
                 </subviews>
+                <color key="backgroundColor" red="0.93518847230000002" green="0.90333229299999995" blue="0.78257882599999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="ErG-04-N7r" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="0FF-1d-bfH"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="weM-Ap-eR6" secondAttribute="bottom" constant="4" id="0qy-fL-ttC"/>
-                    <constraint firstItem="iae-C6-5w9" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="8" id="7H7-SG-s2l"/>
+                    <constraint firstItem="weM-Ap-eR6" firstAttribute="top" secondItem="UrC-wM-7Nu" secondAttribute="bottom" constant="8" id="4M1-LE-o4i"/>
                     <constraint firstItem="iae-C6-5w9" firstAttribute="leading" secondItem="8Kl-r9-1XC" secondAttribute="trailing" constant="8" id="7cG-3C-b9y"/>
                     <constraint firstItem="ErG-04-N7r" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="93J-LF-2M8"/>
                     <constraint firstItem="fQo-pE-TBp" firstAttribute="top" secondItem="UrC-wM-7Nu" secondAttribute="bottom" constant="16" id="MiH-KD-TA2"/>
                     <constraint firstAttribute="trailingMargin" secondItem="UrC-wM-7Nu" secondAttribute="trailing" constant="8" id="MuL-i1-0jM"/>
                     <constraint firstAttribute="bottomMargin" secondItem="fQo-pE-TBp" secondAttribute="bottom" constant="8" id="Pl3-wh-2OD"/>
-                    <constraint firstItem="weM-Ap-eR6" firstAttribute="leading" secondItem="ErG-04-N7r" secondAttribute="trailing" constant="4" id="Q3E-iB-KxU"/>
                     <constraint firstAttribute="bottomMargin" secondItem="8Kl-r9-1XC" secondAttribute="bottom" constant="8" id="UK9-Xe-O4B"/>
                     <constraint firstItem="8Kl-r9-1XC" firstAttribute="leading" secondItem="fQo-pE-TBp" secondAttribute="trailing" constant="8" id="UQf-XI-lj8"/>
                     <constraint firstItem="0XL-mp-hLC" firstAttribute="leading" secondItem="ErG-04-N7r" secondAttribute="trailing" constant="8" id="XWd-WV-dkA"/>
@@ -96,12 +97,15 @@
                     <constraint firstItem="UrC-wM-7Nu" firstAttribute="top" secondItem="2t4-qP-Zpd" secondAttribute="bottom" constant="8" id="eZO-z7-XEa"/>
                     <constraint firstItem="2t4-qP-Zpd" firstAttribute="top" secondItem="0XL-mp-hLC" secondAttribute="bottom" constant="8" id="hFJ-I7-WJS"/>
                     <constraint firstAttribute="trailingMargin" secondItem="2t4-qP-Zpd" secondAttribute="trailing" constant="8" id="j6Q-VD-fSW"/>
+                    <constraint firstItem="weM-Ap-eR6" firstAttribute="leading" secondItem="ErG-04-N7r" secondAttribute="trailing" constant="16" id="oDI-sc-tR9"/>
                     <constraint firstAttribute="trailing" secondItem="0XL-mp-hLC" secondAttribute="trailing" constant="8" id="q0o-ss-91n"/>
                     <constraint firstItem="UrC-wM-7Nu" firstAttribute="leading" secondItem="ErG-04-N7r" secondAttribute="trailing" constant="8" id="snH-uE-hNA"/>
                     <constraint firstAttribute="bottom" secondItem="iae-C6-5w9" secondAttribute="bottom" constant="16" id="tcA-SG-mlE"/>
+                    <constraint firstAttribute="trailing" secondItem="iae-C6-5w9" secondAttribute="trailing" constant="16" id="z9k-6J-C5z"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="decreseCount" destination="fQo-pE-TBp" id="cVS-zD-0Kw"/>
                 <outlet property="deleteItem" destination="weM-Ap-eR6" id="tDr-BN-Igx"/>
@@ -118,5 +122,6 @@
     <resources>
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="trash.fill" catalog="system" width="121" height="128"/>
     </resources>
 </document>

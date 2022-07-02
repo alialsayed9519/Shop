@@ -102,6 +102,7 @@ class PaymentVc: UIViewController {
         order?.email = userDefault().getEmail()
         switch order?.gateway {
         case "Cash On Delivery":
+            print("here")
             viewModel.postOrder(order: order!)
             self.navigationController?.pushViewController(doneVc(), animated: true)
         case "Paypal":

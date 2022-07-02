@@ -20,6 +20,7 @@ class EntryVc: UIViewController {
         login.layer.cornerRadius=20
         skip.layer.cornerRadius=20
         // Do any additional setup after loading the view.
+        print(userDefault().getId())
     }
 
 

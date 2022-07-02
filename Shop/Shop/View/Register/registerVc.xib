@@ -31,7 +31,7 @@
                         <constraint firstAttribute="width" secondItem="k2t-Jp-nTd" secondAttribute="height" multiplier="119:64" constant="-79.109375" id="Xk9-Hp-DMr"/>
                     </constraints>
                 </imageView>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8IT-0m-Rxn">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="  First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8IT-0m-Rxn">
                     <rect key="frame" x="12" y="288" width="390" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="VvJ-1M-EcO"/>
@@ -39,7 +39,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="as6-Ad-PEP">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="  Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="as6-Ad-PEP">
                     <rect key="frame" x="12" y="372" width="390" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="86n-Ct-Qk8"/>
@@ -47,7 +47,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qeC-cU-L7U">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="  Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qeC-cU-L7U">
                     <rect key="frame" x="12" y="456" width="390" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="pVu-1F-BqD"/>
@@ -55,7 +55,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="heb-P3-NRK">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="  Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="heb-P3-NRK">
                     <rect key="frame" x="12" y="540" width="390" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="L5w-GK-JHL"/>
@@ -73,7 +73,7 @@
                         <attributedString key="attributedTitle">
                             <fragment content="Sign Up">
                                 <attributes>
-                                    <color key="NSColor" red="0.80606919529999999" green="0.76350432629999998" blue="0.69426709409999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="NSColor" red="0.99375000000000002" green="0.98750000000000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <font key="NSFont" metaFont="system" size="19"/>
                                 </attributes>
                             </fragment>
@@ -92,7 +92,7 @@
                     <rect key="frame" x="292.5" y="713" width="68" height="39.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <state key="normal" title="Sign In">
-                        <color key="titleColor" red="0.90213054420000005" green="0.49655848740000003" blue="0.51623362299999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleColor" red="0.78545778990000004" green="0.29428571460000003" blue="0.1924397051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="loginBtn:" destination="-1" eventType="touchUpInside" id="5ue-pl-uga"/>

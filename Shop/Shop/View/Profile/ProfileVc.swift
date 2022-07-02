@@ -22,6 +22,10 @@ class ProfileVc: UIViewController {
                 currencyViewMode.bindCurrencyViewModel=onSucess
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     func onSucess(){
       //  tableView.reloadData()
 

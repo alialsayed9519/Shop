@@ -34,6 +34,7 @@
                     <attributedString key="attributedText">
                         <fragment content="Name">
                             <attributes>
+                                <color key="NSColor" red="0.1769800782" green="0.2595261633" blue="0.38721147179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <font key="NSFont" metaFont="system" size="24"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
@@ -42,17 +43,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C7P-DI-H7Q">
-                    <rect key="frame" x="20" y="321" width="374" height="43"/>
+                    <rect key="frame" x="20" y="309" width="374" height="43"/>
                     <color key="tintColor" systemColor="systemRedColor"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="log">
-                        <attributedString key="attributedTitle">
-                            <fragment content=" Logout">
-                                <attributes>
-                                    <font key="NSFont" size="25" name="Helvetica"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
+                    <buttonConfiguration key="configuration" style="plain" image="log" title=" Logout">
+                        <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="25"/>
                     </buttonConfiguration>
                     <connections>
                         <action selector="logout:" destination="-1" eventType="touchUpInside" id="hA2-Tu-NB3"/>
@@ -73,7 +68,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ail-7T-Lln" secondAttribute="bottom" id="7Nh-E6-BDl"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cFX-Dl-Lgk" secondAttribute="trailing" id="EFp-dC-byo"/>
                 <constraint firstItem="C7P-DI-H7Q" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="LCb-x5-HWQ"/>
-                <constraint firstItem="C7P-DI-H7Q" firstAttribute="top" secondItem="cFX-Dl-Lgk" secondAttribute="bottom" constant="20" id="RqK-Nf-UZk"/>
+                <constraint firstItem="C7P-DI-H7Q" firstAttribute="top" secondItem="cFX-Dl-Lgk" secondAttribute="bottom" constant="8" id="RqK-Nf-UZk"/>
                 <constraint firstItem="cFX-Dl-Lgk" firstAttribute="top" secondItem="Iy8-U7-JRo" secondAttribute="bottom" constant="20" id="U8s-cZ-dZ3"/>
                 <constraint firstItem="ail-7T-Lln" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="XoV-KR-5au"/>
                 <constraint firstItem="ail-7T-Lln" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.5" id="bct-jM-aTs"/>
